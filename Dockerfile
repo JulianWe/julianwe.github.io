@@ -7,4 +7,5 @@ RUN apt-get install nodejs -y
 
 COPY ./app /var/www/html/
 
+
 CMD ["nginx", "-g", "daemon off;"]
