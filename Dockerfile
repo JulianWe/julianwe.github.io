@@ -1,5 +1,6 @@
 FROM ubuntu:bionic
 
+
 RUN apt-get update && apt-get install -y curl
 RUN apt-get update && apt-get install -y nginx
 RUN apt-get install npm -y
