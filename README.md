@@ -20,3 +20,5 @@ docker build -t akash-webapp .
 
 docker run -d -p 8080:80 akash-webapp
 ``` 
+
+[![JulianWe GitHub stats](https://github-readme-stats.vercel.app/api?username=JulianWe)](https://github.com/JulianWe/github-readme-stats)
