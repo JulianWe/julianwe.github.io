@@ -26,4 +26,4 @@ docker run -d -p 8080:80 akash-webapp
 
 ![JulianWe GitHub stats](https://github-readme-stats.vercel.app/api?username=JulianWe&hide=contribs,prs)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=JulianWe&repo=github-readme-stats)](https://github.com/JulianWe/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=JulianWe&repo=Akash)](https://github.com/JulianWe/github-readme-stats)
