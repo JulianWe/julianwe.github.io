@@ -1,0 +1,52 @@
+<h1 id="sentinel-dvpn-tutorial">☁️ <a
+href="https://sentinel.co/">Sentinel DVPN</a> Tutorial 🐇</h1>
+<figure>
+<img src="images/sentinel.jpg" alt="Sentinel" />
+<figcaption aria-hidden="true">Sentinel</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>🕳️ <a
+href="https://github.com/sentinel-official/cli-client">Documentation</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$AKT Address</code></td>
+<td><code>sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="variables">Variables</h2>
+<p>:information_source: <strong>Note:</strong> you can always check if
+all the required variables are set using “echo $variable” before your
+command. |Name|Description|Example values | |—|—|—|
+|<code>ACCOUNT_ADDRESS</code>| The address of your account. |
+<code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code> |
+|<code>KEYRING_BACKEND</code>| Keyring backend to use for local keys.
+(os,file or test) | <code>file</code> | |<code>KEY_NAME</code> | The
+name of the key you will be deploying from. | <code>julian</code> |</p>
+<h1 id="prepare-sentinel-installation">Prepare <code>Sentinel</code>
+Installation ☁️</h1>
+<h2 id="start-installation">🏳️ Start Installation</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install v2ray wireguard-tools</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--silent</span> https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div>
+<h2 id="wallet-setup">💳 Wallet Setup</h2>
+<p><strong>Setup required variables <code>KEY_NAME</code> for wallet
+creation</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KEY_NAME</span><span class="op">=</span>Sentinel</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
