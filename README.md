@@ -23,6 +23,3 @@ docker run -d -p 8080:80 akash-webapp
 
 
 
-![JulianWe GitHub stats](https://github-readme-stats.vercel.app/api?username=JulianWe&hide=contribs,prs)
-
-
