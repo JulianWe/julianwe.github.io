@@ -6,9 +6,6 @@
 iconv -t utf-8 README.md | pandoc -t html -o README.html | iconv -f utf-8
 ``` 
 
-README.html
-github_index.html
-
 
 
 **How to build & run docker container**
@@ -17,6 +14,3 @@ docker build -t akash-webapp .
 
 docker run -d -p 8080:80 akash-webapp
 ``` 
-
-
-
