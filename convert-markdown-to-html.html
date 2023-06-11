@@ -1,0 +1,22 @@
+<h1
+id="how-to-convert-markdown-to-file-to-html-and-build-a-dockercontainer">How
+To Convert Markdown to file to HTML and build a Dockercontainer</h1>
+<p><strong>How to convert README.md file to HTML with utf-8
+encoding</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">iconv</span> <span class="at">-t</span> utf-8 README.md <span class="kw">|</span> <span class="ex">pandoc</span> <span class="at">-t</span> html <span class="at">-o</span> README.html <span class="kw">|</span> <span class="fu">iconv</span> <span class="at">-f</span> utf-8</span></code></pre></div>
+<p><strong>How to build docker container</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">FROM ubuntu:bionic</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y curl</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y nginx</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install npm -y</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install nodejs -y</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">COPY ./app /var/www/html/</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span></span></code></pre></div>
+<p><strong>How to run docker container</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> akash-webapp .</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8080:80 akash-webapp</span></code></pre></div>
