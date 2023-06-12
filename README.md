@@ -3,9 +3,7 @@
 
 ![Sentinel](images/sentinel.jpg)
 
-## About
-**Censorship-resistant, permissionless, and self-sovereign, Akash Network is the world’s first open source cloud. $AKT**
-## About
+
 | Key | Value |
 | --- | --- |
 | `Source ` | 🕳️ [Documentation](https://github.com/sentinel-official/cli-client) |
