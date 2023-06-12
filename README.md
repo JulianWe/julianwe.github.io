@@ -12,7 +12,7 @@
 
 
 ## Variables
-:information_source: **Note:** you can always check if all the required variables are set using "echo $variable" before your command.
+**Note:** you can always check if all the required variables are set using "echo $variable" before your command.
 |Name|Description|Example values |
 |---|---|---|
 |`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
