@@ -113,5 +113,3 @@ sudo sentinelcli connect \
 
 
 
-
-
