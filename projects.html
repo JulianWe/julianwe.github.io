@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Blog Startpage</title>
+<title>GitBlog Startpage</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,12 +11,12 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="index.html" class="w3-bar-item w3-button"><b>Blog </b>Startpage</a>
+    <a href="index.html" class="w3-bar-item w3-button"><b>GitBlog </b>Startpage</a>
 
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-      <a href="projects.html" class="w3-bar-item w3-button">Projects</a>
-      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="projects.html#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="about.html#about" class="w3-bar-item w3-button">About</a>
       <a href="contact.html#contact" class="w3-bar-item w3-button">Contact</a>
     </div>
   </div>
@@ -33,7 +33,20 @@
 
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
-
+  <table>
+    <colgroup>
+      <col style="width: 33%" />
+      <col style="width: 33%" />
+      <col style="width: 33%" />
+    </colgroup>
+    <thead>
+      <tr class="header">
+        <th>Name</th>
+        <th>Link</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
 	<tr class="odd">
           <td><code>Akash Deployment Tutorial</code></td>
           <td>🕳️ <a href="akash-tutorial.html">Akash deployment Tutorial</a></td>
@@ -67,10 +80,6 @@
       </tbody>
     </table>
 
-    <!-- Image of location/map -->
-<div class="w3-container">
-  <img src="./images/background.jpg" class="w3-image" style="width:100%">
-</div>
 
 <!-- End page content -->
 </div>

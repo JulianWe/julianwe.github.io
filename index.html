@@ -2,128 +2,163 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>🐇</title>
+
+  <!-- Browser Titel -->
+  <title>Handshake Tutorial</title>
 
   <!-- Favicon  -->
-  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
-    sizes="192x192" />
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
 
-  <style>
-    body,
-    h1 {
-      font-family: "Raleway", sans-serif
-    }
-
-    body,
-    html {
-      height: 100%
-    }
-
-    .bgimg {
-      background-image: url('./images/background.jpg');
-      min-height: 100%;
-      background-position: center;
-      background-size: cover;
-    }
-  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 </head>
 
 <body>
   <div id='content'>
-<!-- Beginn Menu -->
 
- 
-<div class="w3-display-middle">
-<hr class="w3-border-grey" style="margin:auto;width:40%">
+    <!-- Convert your README.md file to HTML unsing this command: iconv -t utf-8 README.md | pandoc -t html -o README.html | iconv -f utf-8-->
+    <!-- Beginn Tutorial -->
+    <h1 id="handshake-tutorial">👏 <a href="http://handshake.org/">Handshake</a> Tutorial</h1>
     <figure>
-      <img src="./images/git.jpg" alt="" />
+      <img src="./images/handshake.jpg" alt="" />
       <figcaption></figcaption>
     </figure>
-<div class="w3-display-middle">
-<hr class="w3-border-grey" style="margin:auto;width:40%">
-  
-  
-<!-- end Menu -->
-<body>
-  <div id='content'>
-
-
-    <!-- Beginn Starpage -->
-    <h1 id="this-is-a-blog-by-julian-wendland.">This is a blog by Julian Wendland.</h1>
+    <h2 id="about">About</h2>
+    <p><strong>Decentralized naming and certificate authority | $HNS</strong></p>
+    <p>In other words, an association between keys and names create the potential for the decentralized web by
+      allocating
+      cryptographically provable resources to names.</p>
     <table>
-      <colgroup>
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-      </colgroup>
       <thead>
         <tr class="header">
-          <th>Name</th>
-          <th>Link</th>
-          <th>Description</th>
+          <th>Key</th>
+          <th>Value</th>
         </tr>
       </thead>
       <tbody>
-
-        <li><div id="search"><form action="https://www.google.com/search" method="get">	
-          <input type="text" name="q" id="qu" size="27" maxlength="255" aria-label="Search text">
-          <input class="submit mousetrap" value="Search" id="btn" type="submit">
-          <input type="hidden" name="sitesearch" value="ss64.com/osx/"></form></div></li>
         <tr class="odd">
-          <td><code>Akash Deployment Tutorial</code></td>
-          <td>🕳️ <a href="akash-tutorial.html">Akash deployment Tutorial</a></td>
-          <td>How to deploy a Website on Akash</td>
+          <td><code>Source</code></td>
+          <td>🕳️ <a href="https://hsd-dev.org/">documentation</a></td>
+        </tr>
+        <tr class="even">
+          <td><code>Tutorial Author</code></td>
+          <td>☕ <code>Julian Wendland</code></td>
         </tr>
         <tr class="odd">
-          <td><code>How to convert Markdown to HTML</code></td>
-          <td>🕳️ <a href="convert-markdown-to-html.html">Convert Markdown to HTML</a></td>
-          <td>How to convert markdown to html using CLI</td>
-        </tr>
-        <tr class="odd">
-          <td><code>Sentinel Decentralized VPN Tutorial</code></td>
-          <td>🕳️ <a href="sentinel.html">Sentinel Decentralized VPN Tutorial</a></td>
-          <td>How to install and use DVPN</td>
-        </tr>
-        <tr class="even">
-          <td><code>Handshake Naming Tutorial</code></td>
-          <td>🕳️ <a href="handshake-tutorial.html">Handshake Tutorial</a></td>
-          <td>How to use Hanshake decentraliced naming</td>
-        </tr>
-        <tr class="even">
-          <td><code>Smart Contract Tutorial</code></td>
-          <td>🕳️ <a href="https://julianwe.github.io/SmartContractTutorial/">Smart Contract Tutorial</a></td>
-          <td>How deploy voting contract on Ethereum testnetwork</td>
-        </tr>
-        <tr class="even">
-          <td><code>Smart Contract Tutorial</code></td>
-          <td>🕳️ <a href="https://julianwe.github.io/MultiSigEthereumWallet/">Multi Sig Ethereum Wallet Tutorial</a></td>
-          <td>How deploy Multisig Ethereum wallet on Ethereum testnetwork</td>
-        </tr>
-        <tr class="even">
-          <td><code></code></td>
-          <td>🕳️ <a href="example-startpage.html">Startpage</a></td>
+          <td><code>$AKT Address</code></td>
+          <td><code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code></td>
         </tr>
       </tbody>
     </table>
-    
-    <!-- end README Starpage -->
+    <h1 id="prerequisites">prerequisites</h1>
+    <div class="sourceCode" id="cb1">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> apt-get install nodejs npm build-essential</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">npm</span> install node-gyp</span></code></pre>
+    </div>
+    <p><strong>First <a href="https://handshake.org/download/">download</a> the latest and greatest
+        packages</strong>
+    </p>
+    <p>In this Tutorial wie usend the following:</p>
+    <div class="sourceCode" id="cb2">
+      <pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">curl</span> https://handshake.org/files/hsd-2.3.0.tar.gz</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ex">curl</span> https://handshake.org/files/hs-client-0.0.9.tar.gz</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">tar</span> xvf hs*</span></code></pre>
+    </div>
+    <div class="sourceCode" id="cb3">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="bu">cd</span> hsd-2.0.2/hsd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ex">npm</span> install --production</span></code></pre>
+    </div>
+    <div class="sourceCode" id="cb4">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">cd</span> hs-client-0.0.8/hs-client</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="ex">npm</span> install --production</span></code></pre>
+    </div>
+    <div class="sourceCode" id="cb5">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="bu">cd</span> hsd directory..</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="ex">./bin/hsd</span> --log-level info</span></code></pre>
+    </div>
+    <p><strong>How to retrive address</strong></p>
+    <div class="sourceCode" id="cb6">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">jw@ansibleVM</span>:~/Handshake/hsd-2.3.0/hsd$ ./bin/hsw-cli account get default <span class="kw">|</span> <span class="fu">grep</span> receiveAddress</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>  <span class="st">&quot;receiveAddress&quot;</span>: <span class="st">&quot;hs1qe6zn0sehq68w0u7su5gr5fxqwuatd8p0htpwt8&quot;</span>,</span></code></pre>
+    </div>
+    <p>Copy this address and save it.</p>
+    <p>⚠️ <strong>Save a copy of your private key</strong>, write down the output of the 12 word phrase on a piece
+      of
+      paper
+      (do not save it in the cloud anywhere):</p>
+    <div class="sourceCode" id="cb7">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">./bin/hsw-cli</span> master <span class="kw">|</span> <span class="fu">grep</span> phrase</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="ex">jw@ansibleVM</span>:~/Handshake/hsd-2.3.0/hsd$   ./bin/hsw-cli master <span class="kw">|</span> <span class="fu">grep</span> phrase</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  <span class="st">&quot;phrase&quot;</span>: <span class="st">&quot;race anger neither midnight skull danger oxygen miss federal science lobster damage spider second ship limit wheat board hurry critic polar lobster horror imitate&quot;</span></span></code></pre>
+    </div>
+    <p><strong>How to check if a name is available</strong></p>
+    <div class="sourceCode" id="cb8">
+      <pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>  <span class="ex">./bin/hsd-cli</span> rpc getnameinfo julianwendland</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  <span class="ex">jw@ansibleVM</span>:~/Handshake/hsd-2.3.0/hsd$  ./bin/hsd-cli rpc getnameinfo binance</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  <span class="st">&quot;start&quot;</span>: <span class="kw">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    <span class="st">&quot;reserved&quot;</span>: <span class="fu">true</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>    <span class="st">&quot;week&quot;</span>: <span class="ex">0</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>    <span class="st">&quot;start&quot;</span>: <span class="ex">2016</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>  <span class="kw">}</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>  <span class="st">&quot;info&quot;</span>: <span class="ex">null</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="kw">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="ex">jw@ansibleVM</span>:~/Handshake/hsd-2.3.0/hsd$  ./bin/hsd-cli rpc getnameinfo julianwendland</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="kw">{</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>  <span class="st">&quot;start&quot;</span>: <span class="kw">{</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>    <span class="st">&quot;reserved&quot;</span>: <span class="fu">false</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>    <span class="st">&quot;week&quot;</span>: <span class="ex">49</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>    <span class="st">&quot;start&quot;</span>: <span class="ex">51408</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>  <span class="kw">}</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>  <span class="st">&quot;info&quot;</span>: <span class="ex">null</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="kw">}</span></span></code></pre>
+    </div>
+    <p><strong>How to open for binding if returnd false</strong></p>
+    <div class="sourceCode" id="cb9">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">./bin/hsw-cli</span> rpc sendopen julianwendland</span></code></pre>
+    </div>
+    <p>Send bid (5 is an example bid amount and 10 is your blinding mask, see documentation):</p>
+    <div class="sourceCode" id="cb10">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="ex">./bin/hsw-cli</span> rpc sendbid NAME 5 10</span></code></pre>
+    </div>
+    <p><strong>How to Reveal bid</strong></p>
+    <p>⚠️ <strong>You must reveal</strong> after bidding is closed <strong>within 10-block-days</strong> or you will
+      lose
+      your coins, see <a href="https://hsd-dev.org/">documentation</a></p>
+    <div class="sourceCode" id="cb11">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="ex">./bin/hsw-cli</span> rpc sendreveal NAME</span></code></pre>
+    </div>
+    <p><strong>If lost auction, how to refund coins back to yourself</strong></p>
+    <div class="sourceCode" id="cb12">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="ex">./bin/hsw-cli</span> rpc sendredeem</span></code></pre>
+    </div>
+    <p><strong>How to get a list of all names and the current state</strong></p>
+    <div class="sourceCode" id="cb13">
+      <pre
+        class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="ex">./bin/hsd-cli</span> rpc getnames</span></code></pre>
+    </div>
 
-      <div class="w3-display-middle">
-        <hr class="w3-border-grey" style="margin:auto;width:40%">
 
-    <figure>
-      <img src="./images/background.jpg" alt="" />
-      <figcaption></figcaption>
-    </figure>
+    <!-- End Tutorial -->
 
 
-      <div class="w3-display-middle">
-        <hr class="w3-border-grey" style="margin:auto;width:40%">
-        
-    <!-- end test -->
   </div>
-    <p class="w3-large w3-center">Soon running on <a href="https://akash.network/">Akash</a></p>
+
   </div>
   <style type='text/css'>
     body {
@@ -147,23 +182,6 @@
       body>#content {
         padding: 0px 20px 20px 20px !important;
       }
-    }
-
-    body,
-    h1 {
-      font-family: "Raleway", sans-serif
-    }
-
-    body,
-    html {
-      height: 100%
-    }
-
-    .bgimg {
-      background-image: url('./images/background.jpg');
-      min-height: 100%;
-      background-position: center;
-      background-size: cover;
     }
 
     body>#content {
