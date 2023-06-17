@@ -8,36 +8,34 @@
   <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
     sizes="192x192" />
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
-    <!-- Float links to the right. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-      <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-      <a href="#about" class="w3-bar-item w3-button">About</a>
-      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
-    </div>
-  </div>
-</div>
+  <style>
+    body,
+    h1 {
+      font-family: "Raleway", sans-serif
+    }
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="./images/background.jpg" alt="Architecture" width="1500" height="800">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>This is a blog by </b></span> <span class="w3-hide-small w3-text-light-grey">JulianWe.</span></h1>
-  </div>
-</header>
+    body,
+    html {
+      height: 100%
+    }
 
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
-
+    .bgimg {
+      background-image: url('./images/background.jpg');
+      min-height: 100%;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
   <div id='content'>
 <!-- Beginn Menu -->
 
+ 
+<div class="w3-display-middle">
+<hr class="w3-border-grey" style="margin:auto;width:40%">
     <figure>
       <img src="./images/git.jpg" alt="" />
       <figcaption></figcaption>
@@ -50,7 +48,29 @@
 <body>
   <div id='content'>
 
-        </div>
+
+    <!-- Beginn Starpage -->
+    <h1 id="this-is-a-blog-by-julian-wendland.">This is a blog by Julian Wendland.</h1>
+    <table>
+      <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+      </colgroup>
+      <thead>
+        <tr class="header">
+          <th>Name</th>
+          <th>Link</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <li><div id="search"><form action="https://www.google.com/search" method="get">	
+          <input type="text" name="q" id="qu" size="27" maxlength="255" aria-label="Search text">
+          <input class="submit mousetrap" value="Search" id="btn" type="submit">
+          <input type="hidden" name="sitesearch" value="ss64.com/osx/"></form></div></li>
+        <tr class="odd">
           <td><code>Akash Deployment Tutorial</code></td>
           <td>🕳️ <a href="akash-tutorial.html">Akash deployment Tutorial</a></td>
           <td>How to deploy a Website on Akash</td>
@@ -81,8 +101,8 @@
           <td>How deploy Multisig Ethereum wallet on Ethereum testnetwork</td>
         </tr>
         <tr class="even">
-          <td><code>Smart Contract Tutorial</code></td>
-          <td>🕳️ <a href="example-startpage.html">Examaple Startpage</a></td>
+          <td><code></code></td>
+          <td>🕳️ <a href="Example">Startpage</a></td>
         </tr>
       </tbody>
     </table>
@@ -91,12 +111,20 @@
 
       <div class="w3-display-middle">
         <hr class="w3-border-grey" style="margin:auto;width:40%">
-      </div>
-    <!-- Image of location/map -->
-  <div class="w3-container">
-    <img src="./images/git.jpg" class="w3-image" style="width:100%">
+
+    <figure>
+      <img src="./images/background.jpg" alt="" />
+      <figcaption></figcaption>
+    </figure>
 
 
+      <div class="w3-display-middle">
+        <hr class="w3-border-grey" style="margin:auto;width:40%">
+        
+    <!-- end test -->
+  </div>
+    <p class="w3-large w3-center">Soon running on <a href="https://akash.network/">Akash</a></p>
+  </div>
   <style type='text/css'>
     body {
       font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -317,7 +345,5 @@
     }
   </style>
 </body>
-
-
 
 </html>
