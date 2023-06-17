@@ -8,25 +8,30 @@
   <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
     sizes="192x192" />
 
-  <style>
-    body,
-    h1 {
-      font-family: "Raleway", sans-serif
-    }
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</div>
 
-    body,
-    html {
-      height: 100%
-    }
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="./images/background.jpg" alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>This is a blog by </b></span> <span class="w3-hide-small w3-text-light-grey">JulianWe.</span></h1>
+  </div>
+</header>
 
-    .bgimg {
-      background-image: url('./images/background.jpg');
-      min-height: 100%;
-      background-position: center;
-      background-size: cover;
-    }
-  </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
 </head>
 
 <body>
@@ -45,30 +50,6 @@
 <body>
   <div id='content'>
 
-
-    <!-- Beginn Starpage -->
-    <h1 id="this-is-a-blog-by-julian-wendland.">This is a blog by Julian Wendland.</h1>
-    <table>
-      <colgroup>
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-      </colgroup>
-      <thead>
-        <tr class="header">
-          <th>Name</th>
-          <th>Link</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <div class="navigationbar">
-          <a class="active" href="#">Here we can specify link1</a>
-          <a href="#">Here we can specify link2</a>
-          <a href="#">Here we can specify link3</a>
-          <a href="#">Here we can specify link4</a>
-          . . . .
-          <input type="text" placeholder="search here" />
         </div>
           <td><code>Akash Deployment Tutorial</code></td>
           <td>🕳️ <a href="akash-tutorial.html">Akash deployment Tutorial</a></td>
@@ -110,20 +91,12 @@
 
       <div class="w3-display-middle">
         <hr class="w3-border-grey" style="margin:auto;width:40%">
+      </div>
+    <!-- Image of location/map -->
+  <div class="w3-container">
+    <img src="./images/git.jpg" class="w3-image" style="width:100%">
 
-    <figure>
-      <img src="./images/background.jpg" alt="" />
-      <figcaption></figcaption>
-    </figure>
 
-
-      <div class="w3-display-middle">
-        <hr class="w3-border-grey" style="margin:auto;width:40%">
-        
-    <!-- end test -->
-  </div>
-    <p class="w3-large w3-center">Soon running on <a href="https://akash.network/">Akash</a></p>
-  </div>
   <style type='text/css'>
     body {
       font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -344,5 +317,10 @@
     }
   </style>
 </body>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Soon running on  <a href="https://akash.network/" title="Akash" target="_blank" class="w3-hover-text-red">Akash</a></p>
+</footer>
 
 </html>
