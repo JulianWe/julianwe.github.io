@@ -24,4 +24,12 @@ CMD ["nginx", "-g", "daemon off;"]
 docker build -t akash-webapp .
 
 docker run -d -p 8080:80 akash-webapp
+
+docker images -a
+
+docker login --username victorynox0815
+
+docker tag webapp victorynox0815/myrepo:webapp
+
+docker push victorynox0815/myrepo:webapp
 ``` 
