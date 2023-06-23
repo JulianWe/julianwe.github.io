@@ -38,9 +38,20 @@ export KEY_NAME=sentinel
 sentinelcli keys mnemonic 
 ```
 
-## Add Keys 
+## Add or Import Keys
 ```sh
-sentinelcli keys add sentinel --keyring-backend file
+sentinelcli keys import sentinel sentinel --keyring-backend file
+
+sentinelcli keys add sentinel --keyring-backend file  
+Enter keyring passphrase:
+Re-enter keyring passphrase:
+
+- name: Sentinel
+  type: local
+  address: sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AqHdR4e6Pd+b3R86ijGBD0cNopUBW0jR7Al//zE8TTci"}'
+  mnemonic: ""
+
 ```
 
 ## OR Generate Multiple Keys for Multisig Wallet
@@ -53,18 +64,6 @@ Example:
     keys add mymultisig --multisig "keyname1,keyname2,keyname3" --multisig-threshold 2
 ```
 
-## Add Keys
-```sh
-sentinelcli keys add Sentinel --keyring-backend file  
-Enter keyring passphrase:
-Re-enter keyring passphrase:
-
-- name: Sentinel
-  type: local
-  address: sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AqHdR4e6Pd+b3R86ijGBD0cNopUBW0jR7Al//zE8TTci"}'
-  mnemonic: ""
-```
 
 ## Query Nodes & select Node
 ```sh
@@ -75,6 +74,15 @@ sentinelcli query nodes \
     --page 1
 ```
 
+## Create own Sentinel Node on Akash:
+[Documentation](https://console.akash.network/new-deployment/sentinel)
+![Sentinel](images/create-sentinel-node1.jpg)
+![Sentinel](images/create-sentinel-node2.jpg)
+![Sentinel](images/create-sentinel-node3.jpg)
+![Sentinel](images/create-sentinel-node4.jpg)
+![Sentinel](images/create-sentinel-node4.jpg)
+
+
 ## Subscribe to Provider Node
 ```sh 
 sentinelcli tx subscription subscribe-to-node \
@@ -83,18 +91,18 @@ sentinelcli tx subscription subscribe-to-node \
     --chain-id sentinelhub-2 \
     --node https://rpc.sentinel.co:443 \
     --gas-prices 0.1udvpn \
-    --from Sentinel sentnode1qse6l5jc6nj95xrs86fzw53lsd8krl8ehv208x 1000
+    --from sentinel sentnode14gzkq6u0q8u4a7n87k2wzr6tg7lcmgstckkg2u 20000udvpn
 ```
+    
 
-
-## Query Account subscription
+## Query active Account subscription
 ```sh 
 sentinelcli query subscriptions \
     --home "${HOME}/.sentinelcli" \
     --node https://rpc.sentinel.co:443 \
     --status Active \
     --page 1 \
-    --address <ACCOUNT_ADDRESS>
+    --address sent1g9s5v5t0jfxcfqd6l4rkn4g8vat90rtky5jd2r
 ```
 
 
