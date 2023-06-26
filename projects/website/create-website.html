@@ -9,14 +9,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
 
+</head>
 <body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="index.html" class="w3-bar-item w3-button"><b>GitBlog</b> JulianWe</a>
+
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-small">
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</div>
+
 
 
   <!-- README content -->
   <div id='content'>
-
+    <link rel="stylesheet" href="../../css/md.css">
     <h1 id="How to create a Decentralized Website">How to create a Decentralized Website</h1>
     <p><strong>How to convert README.md file to HTML with utf-8
         encoding</strong></p>
@@ -53,27 +68,61 @@
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> tag webapp victorynox0815/myrepo:webapp</span>
 <span id="cb3-10"><ahref="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> push victorynox0815/myrepo:webapp</span></code></pre>
+      <!-- End README content -->
 
+
+
+      <!-- Hide show comments -->
+      <p class="w3-right"><button class="w3-button w3-black" onclick="hideClick('show_disqus_thread')"><b>Comments
+            &nbsp;</b>💬</span></button></p>
+      <p class="w3-clear"></p>
+
+      <div id="show_disqus_thread" style="display:none">
+
+        <!-- Comments -->
+        <div id="disqus_thread"></div>
+        <script>
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+          var disqus_config = function () {
+            this.page.url = 'https://julianwe.github.io/projects/template/template_copy.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = article_1_identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+
+
+        <script id="dsq-count-scr" src="//https-julianwe-github-io-1.disqus.com/count.js" async></script>
+        <div class="blog-post-comments">
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
 
-
-  <!-- End README content -->
-
-  <!-- Disqus Comments -->
-  <script type="text/javascript">
-    var disqus_shortname = 'JulianWe';
-
-    (function () {
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+  <!-- Functions -->
+  <script>
+    function hideClick() {
+      var x = document.getElementById("show_disqus_thread");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
   </script>
-
 
 
   <!-- CSS -->
@@ -295,7 +344,6 @@
       /* Darker */
     }
   </style>
-
 
 </body>
 
