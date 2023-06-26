@@ -1,8 +1,20 @@
+---
+title: 'Sentinel DVPN Tutorial '
+date: 2023-06-19 19:30
+tags:
+    - web3
+    - dvpn
+    - blockchain
+    - crypto
+category:
+    - decentralization
+description: How tu use Sentinel DVPN on Mac OS cli.
+photos: /projects/sentinel/images/sentinel.jpg
+---
 
 # ☁️ [Sentinel DVPN](https://sentinel.co/) Tutorial 🐇
 
 ![Sentinel](images/sentinel.jpg)
-
 
 | Key | Value |
 | --- | --- |
@@ -75,12 +87,57 @@ sentinelcli query nodes \
 ```
 
 ## Create own Sentinel Node on Akash:
-[Documentation](https://console.akash.network/new-deployment/sentinel)
-![Sentinel](images/create-sentinel-node1.jpg)
-![Sentinel](images/create-sentinel-node2.jpg)
-![Sentinel](images/create-sentinel-node3.jpg)
-![Sentinel](images/create-sentinel-node4.jpg)
-![Sentinel](images/create-sentinel-node4.jpg)
+[Akash Cloud Console](https://console.akash.network/new-deployment/sentinel)
+
+| Deploy RPC Node on Akash| Set name configure service | Review SDL File configuration | Review Deployment | Deploy |
+|-------|---------|-------|----------|------|
+| ![Deploy RPC Node on Akash](images/create-sentinel-node1.jpg) | ![Set name configure service](images/create-sentinel-node2.jpg) | ![Review SDL File Configuration](images/create-sentinel-node3.jpg) | ![ Review SDL File configuration](images/create-sentinel-node4.jpg) | ![Deploy](images/create-sentinel-node4.jpg) |
+
+
+## Example SDL File (review SDL File) with default values:
+```yml
+version: '2.0'
+services:
+  node:
+    image: ghcr.io/akash-network/cosmos-omnibus:v0.3.36-sentinel-v0.9.3
+    env:
+      - MONIKER=my-moniker-1
+      - CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/chain.json
+    expose:
+      - port: 26657
+        as: 80
+        to:
+          - global: true
+      - port: 26656
+        to:
+          - global: true
+profiles:
+  compute:
+    node:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 100Gi
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      pricing:
+        node:
+          denom: uakt
+          amount: 1000
+deployment:
+  node:
+    dcloud:
+      profile: node
+      count: 1
+```
 
 
 ## Subscribe to Provider Node

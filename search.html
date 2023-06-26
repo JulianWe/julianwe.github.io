@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>🐇 GitBlog</title>
+    <!-- Favicon  -->
+    <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
+        sizes="192x192" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- so meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Search">
+    <meta property="og:site_name" content="GitBlog">
+    <meta property=" og:locale" content="en_US">
+    <meta property="article:author" content="Julian Wendland">
+    <meta name="twitter:creator" content="@APYieldFarmer">
+    <link rel=" shortcut icon" href="">
+    <meta name="generator" content="Hexo 4.2.0">
+</head>
+
+<body>
+
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+            <a href="index.html" class="w3-bar-item w3-button"><b>GitBlog</b> JulianWe</a>
+
+            <!-- Float links to the right. Hide them on small screens       <a href="search.html"class="w3-bar-item w3-button">Search</a>-->
+            <div class="w3-right w3-small">
+                <a href="projects.html" class="w3-bar-item w3-button">Projects</a>
+                <a href="about.html" class="w3-bar-item w3-button">About</a>
+                <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
+                <a href="search.html" class="w3-bar-item w3-button">Search</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+        <img class="w3-image" src="https://raw.githubusercontent.com/JulianWe/julianwe.github.io/main/images/git.jpg"
+            alt="GitBlog" width="1500" height="800">
+        <div class="w3-display-middle w3-margin-top w3-center">
+            <h1 class="w3-large w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>This is a GitBlog by JulianWe.</b></span>
+        </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding" style="max-width:1564px">
+         <!-- Search Section -->
+        <div class="w3-container w3-padding-32" id="search">
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Search</h3>
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                <div class="content" itemprop="articleBody">
+                    <section id="search">
+                        <form>
+                            <input class="w3-input w3-section w3-border" type="text" class="search-input"
+                                id="search-input" placeholder="Search...">
+                        </form>
+                        <div class="w3-container w3-padding-32" id="search-result"></div>
+                            <!-- End Page content <p class="search-no-result">No results found...</p> -->
+                    </section>
+                </div>
+            </article>
+        </div>
+    </div>
+     <!-- End Page content -->
+
+
+    <!-- styles -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'" />
+    <!-- clipboard -->
+    <script src="../js/main.js"></script>
+    <!-- jquery -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+    <!-- search -->
+    <script src="../js/search.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var $inputArea = $("input#search-input");
+            var $resultArea = document.querySelector("div#search-result");
+
+            $inputArea.focus(function () {
+                var search_path = "search.xml";
+                if (search_path.length == 0) {
+                    search_path = "search.xml";
+                }
+                var path = "/" + search_path;
+                searchFunc(path, 'search-input', 'search-result');
+            });
+
+            $inputArea.keydown(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                }
+            });
+
+            var observer = new MutationObserver(function (mutationsList, observer) {
+                if (mutationsList.length == 1) {
+                    if (mutationsList[0].addedNodes.length) {
+                        $(".search-no-result").hide();
+                    } else if (mutationsList[0].removedNodes.length) {
+                        $(".search-no-result").show(200);
+                    }
+                }
+            });
+
+            observer.observe($resultArea, { childList: true });
+
+        });
+    </script>
+
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47797084-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-47797084-2');
+    </script>
+
+    <!-- Microsoft clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', '3w9d6u9uag');
+    </script>
+
+
+    <!-- Disqus Comments -->
+    <script type="text/javascript">
+        var disqus_shortname = 'tarunbatra';
+
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16">
+        <p>Soon running on <a href="https://akash.network/" title="Akash" target="_blank"
+                class="w3-hover-text-red">Akash</a></p>
+    </footer>
+
+</body>
+
+</html>
