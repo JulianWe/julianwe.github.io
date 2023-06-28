@@ -1,39 +1,31 @@
 ---
-version: "2.0"
-
+version: '2.0'
 services:
-  web:
-    image: ovrclk/lunie-light
+  webapp:
+    image: 'victorynox0815/docker-repo:webapp'
     expose:
-      - port: 3000
-        as: 80
+      - port: 80
+        as: 8080
         to:
           - global: true
-
 profiles:
   compute:
-    web:
+    webapp:
       resources:
         cpu:
-          units: 0.1
+          units: 2
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          - size: 10Gi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
-        web: 
+        webapp:
           denom: uakt
           amount: 1000
-
 deployment:
-  web:
-    westcoast:
-      profile: web
+  webapp:
+    dcloud:
+      profile: webapp
       count: 1
