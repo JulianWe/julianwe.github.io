@@ -1,496 +1,309 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-  <title>🐇 GitBlog</title>
+  <meta charset="UTF-8">
+  <!-- Browser Titel CHANGE-->
+  <title>sentinel</title>
   <!-- Favicon  -->
   <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
     sizes="192x192" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
-<body>
-
-  <!-- README content -->
-  <div id='content'>
-    <h1 id="sentinel-dvpn-tutorial">☁️ <a href="https://sentinel.co/">Sentinel DVPN</a> Tutorial 🐇</h1>
-    <figure>
-      <img src="images/sentinel.jpg" alt="Sentinel" />
-      <figcaption aria-hidden="true">Sentinel</figcaption>
-    </figure>
-    <table>
-      <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-      </colgroup>
-      <thead>
-        <tr class="header">
-          <th>Key</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="odd">
-          <td><code>Source</code></td>
-          <td>🕳️ <a href="https://github.com/sentinel-official/cli-client">Documentation</a></td>
-        </tr>
-        <tr class="even">
-          <td><code>Tutorial Author</code></td>
-          <td>☕ <code>Julian Wendland</code></td>
-        </tr>
-        <tr class="odd">
-          <td><code>$AKT Address</code></td>
-          <td><code>sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <h2 id="variables">Variables</h2>
-    <table>
-      <colgroup>
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-      </colgroup>
-      <thead>
-        <tr class="header">
-          <th>Name</th>
-          <th>Description</th>
-          <th>Example values</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="odd">
-          <td><code>ACCOUNT_ADDRESS</code></td>
-          <td>The address of your account.</td>
-          <td><code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code></td>
-        </tr>
-        <tr class="even">
-          <td><code>KEYRING_BACKEND</code></td>
-          <td>Keyring backend to use for local keys. (os,file or test)</td>
-          <td><code>file</code></td>
-        </tr>
-        <tr class="odd">
-          <td><code>KEY_NAME</code></td>
-          <td>The name of the key you will be deploying from.</td>
-          <td><code>julian</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <h1 id="prepare-sentinel-installation">Prepare <code>Sentinel</code>
-      Installation ☁️</h1>
-    <h2 id="start-installation">🏳️ Start Installation</h2>
-    <div class="sourceCode" id="cb1">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install v2ray wireguard-tools</span>
-        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--silent</span> https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre>
-    </div>
-    <h2 id="wallet-setup">💳 Wallet Setup</h2>
-    <p><strong>Setup required variables <code>KEY_NAME</code> for wallet
-        creation</strong></p>
-    <div class="sourceCode" id="cb2">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KEY_NAME</span><span class="op">=</span>sentinel</span></code></pre>
-    </div>
-    <h2 id="generate-mnemonic-passphrase">Generate Mnemonic Passphrase</h2>
-    <div class="sourceCode" id="cb3">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys mnemonic </span></code></pre>
-    </div>
-    <h2 id="add-or-import-keys">Add or Import Keys</h2>
-    <div class="sourceCode" id="cb4">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys import sentinel sentinel <span class="at">--keyring-backend</span> file</span>
-        <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-        <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys add sentinel <span class="at">--keyring-backend</span> file  </span>
-        <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> keyring passphrase:</span>
-        <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Re-enter</span> keyring passphrase:</span>
-        <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-        <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> name: Sentinel</span>
-        <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">type:</span> local</span>
-        <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">address:</span> sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg</span>
-        <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pubkey:</span> <span class="st">&#39;{&quot;@type&quot;:&quot;/cosmos.crypto.secp256k1.PubKey&quot;,&quot;key&quot;:&quot;AqHdR4e6Pd+b3R86ijGBD0cNopUBW0jR7Al//zE8TTci&quot;}&#39;</span></span>
-        <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnemonic:</span> <span class="st">&quot;&quot;</span></span></code></pre>
-    </div>
-    <h2 id="or-generate-multiple-keys-for-multisig-wallet">OR Generate
-      Multiple Keys for Multisig Wallet</h2>
-    <div class="sourceCode" id="cb5">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> can create and store a multisig key by passing the list of key names stored in a keyring</span>
-        <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> the minimum number of signatures required through <span class="at">--multisig-threshold.</span> The keys are</span>
-        <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sorted</span> by address, unless the flag <span class="at">--nosort</span> is set.</span>
-        <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Example:</span></span>
-        <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-        <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">keys</span> add mymultisig <span class="at">--multisig</span> <span class="st">&quot;keyname1,keyname2,keyname3&quot;</span> <span class="at">--multisig-threshold</span> 2</span></code></pre>
-    </div>
-    <h2 id="query-nodes-select-node">Query Nodes &amp; select Node</h2>
-    <div class="sourceCode" id="cb6">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> query nodes <span class="dt">\</span></span>
-        <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
-        <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
-        <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--status</span> Active <span class="dt">\</span></span>
-        <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--page</span> 1</span></code></pre>
-    </div>
-    <h2 id="create-own-sentinel-node-on-akash">Create own Sentinel Node on
-      Akash:</h2>
-    <p><a href="https://console.akash.network/new-deployment/sentinel">Akash Cloud Console</a></p>
-    <table>
-      <colgroup>
-        <col style="width: 17%" />
-        <col style="width: 23%" />
-        <col style="width: 17%" />
-        <col style="width: 25%" />
-        <col style="width: 15%" />
-      </colgroup>
-      <thead>
-        <tr class="header">
-          <th>Deploy RPC Node on Akash</th>
-          <th>Set name configure service</th>
-          <th>Review SDL File configuration</th>
-          <th>Review Deployment</th>
-          <th>Deploy</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="odd">
-          <td><img src="images/create-sentinel-node1.jpg" alt="Deploy RPC Node on Akash" /></td>
-          <td><img src="images/create-sentinel-node2.jpg" alt="Set name configure service" /></td>
-          <td><img src="images/create-sentinel-node3.jpg" alt="Review SDL File COnfiguration" /></td>
-          <td><img src="images/create-sentinel-node4.jpg" alt="Review SDL File configuration" /></td>
-          <td><img src="images/create-sentinel-node4.jpg" alt="Deploy" /></td>
-        </tr>
-      </tbody>
-    </table>
-    <h2 id="example-sdl-file-review-sdl-file-with-default-values">Example
-      SDL File (review SDL File) with default values:</h2>
-    <div class="sourceCode" id="cb7">
-      <pre
-        class="sourceCode yml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2.0&#39;</span></span>
-        <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-        <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">node</span><span class="kw">:</span></span>
-        <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> ghcr.io/akash-network/cosmos-omnibus:v0.3.36-sentinel-v0.9.3</span></span>
-        <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
-        <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> MONIKER=my-moniker-1</span></span>
-        <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/chain.json</span></span>
-        <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">expose</span><span class="kw">:</span></span>
-        <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">26657</span></span>
-        <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">as</span><span class="kw">:</span><span class="at"> </span><span class="dv">80</span></span>
-        <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">to</span><span class="kw">:</span></span>
-        <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">global</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-        <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">26656</span></span>
-        <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">to</span><span class="kw">:</span></span>
-        <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">global</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-        <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">profiles</span><span class="kw">:</span></span>
-        <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">compute</span><span class="kw">:</span></span>
-        <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">node</span><span class="kw">:</span></span>
-        <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">resources</span><span class="kw">:</span></span>
-        <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">cpu</span><span class="kw">:</span></span>
-        <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">units</span><span class="kw">:</span><span class="at"> </span><span class="dv">4</span></span>
-        <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">memory</span><span class="kw">:</span></span>
-        <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 8Gi</span></span>
-        <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">storage</span><span class="kw">:</span></span>
-        <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 100Gi</span></span>
-        <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">placement</span><span class="kw">:</span></span>
-        <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
-        <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">attributes</span><span class="kw">:</span></span>
-        <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">host</span><span class="kw">:</span><span class="at"> akash</span></span>
-        <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">signedBy</span><span class="kw">:</span></span>
-        <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">anyOf</span><span class="kw">:</span></span>
-        <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63</span></span>
-        <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">pricing</span><span class="kw">:</span></span>
-        <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">node</span><span class="kw">:</span></span>
-        <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">denom</span><span class="kw">:</span><span class="at"> uakt</span></span>
-        <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">amount</span><span class="kw">:</span><span class="at"> </span><span class="dv">1000</span></span>
-        <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">deployment</span><span class="kw">:</span></span>
-        <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">node</span><span class="kw">:</span></span>
-        <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
-        <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">profile</span><span class="kw">:</span><span class="at"> node</span></span>
-        <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code></pre>
-    </div>
-    <h2 id="subscribe-to-provider-node">Subscribe to Provider Node</h2>
-    <div class="sourceCode" id="cb8">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> tx subscription subscribe-to-node <span class="dt">\</span></span>
-        <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
-        <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--keyring-backend</span> file <span class="dt">\</span></span>
-        <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--chain-id</span> sentinelhub-2 <span class="dt">\</span></span>
-        <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
-        <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gas-prices</span> 0.1udvpn <span class="dt">\</span></span>
-        <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--from</span> sentinel sentnode14gzkq6u0q8u4a7n87k2wzr6tg7lcmgstckkg2u 20000udvpn</span></code></pre>
-    </div>
-    <h2 id="query-active-account-subscription">Query active Account
-      subscription</h2>
-    <div class="sourceCode" id="cb9">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> query subscriptions <span class="dt">\</span></span>
-        <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
-        <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
-        <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--status</span> Active <span class="dt">\</span></span>
-        <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--page</span> 1 <span class="dt">\</span></span>
-        <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--address</span> sent1g9s5v5t0jfxcfqd6l4rkn4g8vat90rtky5jd2r</span></code></pre>
-    </div>
-    <h2 id="connect">Connect</h2>
-    <div class="sourceCode" id="cb10">
-      <pre
-        class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sentinelcli connect <span class="dt">\</span></span>
-        <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
-        <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--keyring-backend</span> file <span class="dt">\</span></span>
-        <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--chain-id</span> sentinelhub-2 <span class="dt">\</span></span>
-        <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
-        <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gas-prices</span> 0.1udvpn <span class="dt">\</span></span>
-        <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--yes</span> <span class="dt">\</span></span>
-        <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--from</span> <span class="op">&lt;</span>KEY_NAME<span class="op">&gt;</span> <span class="op">&lt;</span>SUBSCRIPTION_ID<span class="op">&gt;</span> <span class="op">&lt;</span>NODE_ADDRESS<span class="op">&gt;</span></span></code></pre>
-    </div>
-    <!-- End README content -->
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
   </div>
-  </div>
-  </div>
+</div>
 
 
-  
+<!-- Start README -->
+<h1 id="sentinel-dvpn-tutorial">☁️ <a
+href="https://sentinel.co/">Sentinel DVPN</a> Tutorial 🐇</h1>
+<figure>
+<img src="images/sentinel.jpg" alt="Sentinel" />
+<figcaption aria-hidden="true">Sentinel</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>🕳️ <a
+href="https://github.com/sentinel-official/cli-client">Source</a>, <a
+href="https://docs.sentinel.co/clients/CLI/installation/">Docs</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$AKT Address</code></td>
+<td><code>sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="variables">Variables</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+<th>Example values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ACCOUNT_ADDRESS</code></td>
+<td>The address of your account.</td>
+<td><code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code></td>
+</tr>
+<tr class="even">
+<td><code>KEYRING_BACKEND</code></td>
+<td>Keyring backend to use for local keys. (os,file or test)</td>
+<td><code>file</code></td>
+</tr>
+<tr class="odd">
+<td><code>KEY_NAME</code></td>
+<td>The name of the key you will be deploying from.</td>
+<td><code>julian</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="prepare-sentinel-installation-start-installation">Prepare
+<code>Sentinel</code> Installation ☁️ 🏳️ Start Installation</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install v2ray wireguard-tools</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--silent</span> https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div>
+<h1 id="wallet-setup">💳 Wallet Setup</h1>
+<p><strong>Setup required variables <code>KEY_NAME</code> for wallet
+creation</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KEY_NAME</span><span class="op">=</span>julian</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KEYRING_BACKEND</span><span class="op">=</span>os</span></code></pre></div>
+<p><strong>Generate Mnemonic Passphrase</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys mnemonic </span></code></pre></div>
+<p><strong>Generate or Import Keys</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys add sentinel <span class="at">--keyring-backend</span> <span class="va">$KEYRING_BACKEND</span>  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> keyring passphrase:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Re-enter</span> keyring passphrase:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> name: Sentinel</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">type:</span> local</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">address:</span> sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pubkey:</span> <span class="st">&#39;{&quot;@type&quot;:&quot;/cosmos.crypto.secp256k1.PubKey&quot;,&quot;key&quot;:&quot;AqHdR4e6Pd+b3R86ijGBD0cNopUBW0jR7Al//zE8TTci&quot;}&#39;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnemonic:</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># or import existing keys</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys import <span class="va">$KEY_NAME</span> <span class="at">--keyring-backend</span> <span class="va">$KEYRING_BACKEND</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> keys list</span></code></pre></div>
+<p><strong>OR Generate Multiple Keys for Multisig Wallet</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> can create and store a multisig key by passing the list of key names stored in a keyring</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> the minimum number of signatures required through <span class="at">--multisig-threshold.</span> The keys are</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sorted</span> by address, unless the flag <span class="at">--nosort</span> is set.</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Example:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">keys</span> add mymultisig <span class="at">--multisig</span> <span class="st">&quot;keyname1,keyname2,keyname3&quot;</span> <span class="at">--multisig-threshold</span> 2</span></code></pre></div>
+<p><strong>Query Nodes &amp; select Node</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> query nodes <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--status</span> Active <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--page</span> 1 </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Select provider and export Provider node:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PROVIDER</span><span class="op">=</span>sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv</span></code></pre></div>
+<h1 id="create-own-sentinel-node-on-akash">Create own Sentinel Node on
+Akash:</h1>
+<p><a href="https://console.akash.network/new-deployment/sentinel">Akash
+Cloud Console</a></p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 23%" />
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Deploy RPC Node on Akash</th>
+<th>Set name configure service</th>
+<th>Review SDL File configuration</th>
+<th>Review Deployment</th>
+<th>Deploy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="images/create-sentinel-node1.jpg"
+alt="Deploy RPC Node on Akash" /></td>
+<td><img src="images/create-sentinel-node2.jpg"
+alt="Set name configure service" /></td>
+<td><img src="images/create-sentinel-node3.jpg"
+alt="Review SDL File Configuration" /></td>
+<td><img src="images/create-sentinel-node4.jpg"
+alt="Review SDL File configuration" /></td>
+<td><img src="images/create-sentinel-node4.jpg" alt="Deploy" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example SDL File (review SDL File) with default
+values:</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2.0&#39;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">node</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> ghcr.io/akash-network/cosmos-omnibus:v0.3.36-sentinel-v0.9.3</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> MONIKER=my-moniker-1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/sentinel/chain.json</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">expose</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">26657</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">as</span><span class="kw">:</span><span class="at"> </span><span class="dv">80</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">to</span><span class="kw">:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">global</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">26656</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">to</span><span class="kw">:</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">global</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">profiles</span><span class="kw">:</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">compute</span><span class="kw">:</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">node</span><span class="kw">:</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">resources</span><span class="kw">:</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">cpu</span><span class="kw">:</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">units</span><span class="kw">:</span><span class="at"> </span><span class="dv">4</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">memory</span><span class="kw">:</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 8Gi</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">storage</span><span class="kw">:</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 100Gi</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">placement</span><span class="kw">:</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">attributes</span><span class="kw">:</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">host</span><span class="kw">:</span><span class="at"> akash</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">signedBy</span><span class="kw">:</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">anyOf</span><span class="kw">:</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">pricing</span><span class="kw">:</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">node</span><span class="kw">:</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">denom</span><span class="kw">:</span><span class="at"> uakt</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">amount</span><span class="kw">:</span><span class="at"> </span><span class="dv">1000</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">deployment</span><span class="kw">:</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">node</span><span class="kw">:</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">profile</span><span class="kw">:</span><span class="at"> node</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span></code></pre></div>
+<p><strong>Subscribe to Provider Node</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> tx subscription subscribe-to-node <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--keyring-backend</span> <span class="va">$KEYRING_BACKEND</span> <span class="dt">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--chain-id</span> sentinelhub-2 <span class="dt">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gas-prices</span> 0.1udvpn <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--from</span> <span class="va">$KEY_NAME</span> <span class="va">$PROVIDER</span> 20000udvpn</span></code></pre></div>
+<p><strong>Query active Account subscription</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sentinelcli</span> query subscriptions <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--status</span> Active <span class="dt">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--page</span> 1 <span class="dt">\</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--address</span> <span class="st">&quot;sent1g9s5v5t0jfxcfqd6l4rkn4g8vat90rtky5jd2r&quot;</span></span></code></pre></div>
+<p><strong>Connect</strong></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sentinelcli connect <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span> <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--keyring-backend</span> file <span class="dt">\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--chain-id</span> sentinelhub-2 <span class="dt">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--node</span> https://rpc.sentinel.co:443 <span class="dt">\</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gas-prices</span> 0.1udvpn <span class="dt">\</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--yes</span> <span class="dt">\</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--from</span> <span class="op">&lt;</span>KEY_NAME<span class="op">&gt;</span> <span class="op">&lt;</span>SUBSCRIPTION_ID<span class="op">&gt;</span> <span class="op">&lt;</span>NODE_ADDRESS<span class="op">&gt;</span></span></code></pre></div>
+<p><strong>Disconnect</strong></p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sentinelcli disconnect <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--home</span> <span class="st">&quot;</span><span class="va">${HOME}</span><span class="st">/.sentinelcli&quot;</span></span></code></pre></div>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
+      &nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
   <script>
-    // Toggle between hiding and showing blog replies/comments
-    document.getElementById("myBtn").click();
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/sentinel/sentinel.html"; 
+      this.page.identifier = 4; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 
-    function myFunction(id) {
-      var x = document.getElementById(id);
-
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-      }
-
-      else {
-        x.className = x.className.replace(" w3-show", "");
-      }
-    }
-
-    function likeFunction(x) {
-      x.style.fontWeight = "bold";
-      x.innerHTML = "&#10003; Liked";
-    }
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
+  <script id="dsq-count-scr" src="//https-julianwe-github-io-1.disqus.com/count.js" async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
 
-  <!-- CSS -->
-  <style type='text/css'>
-    body {
-      font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color: #111;
-      background-color: #fdfdfd;
-      -webkit-text-size-adjust: 100%;
-      -webkit-font-feature-settings: "kern" 1;
-      -moz-font-feature-settings: "kern" 1;
-      -o-font-feature-settings: "kern" 1;
-      font-feature-settings: "kern" 1;
-      font-kerning: normal;
-      padding: 30px;
+
+
+
+<!-- Functions -->
+<script>
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
     }
+  }
 
-    @media only screen and (max-width: 600px) {
-      body {
-        padding: 5px;
-      }
-
-      body>#content {
-        padding: 0px 20px 20px 20px !important;
-      }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
     }
-
-    body,
-    h1 {
-      font-family: "Raleway", sans-serif
-    }
-
-    body,
-    html {
-      height: 100%
-    }
-
-    .bgimg {
-      background-image: url('./images/background.jpg');
-      min-height: 100%;
-      background-position: center;
-      background-size: cover;
-    }
-
-    body>#content {
-      margin: 0px;
-      max-width: 900px;
-      border: 1px solid #e1e4e8;
-      padding: 10px 40px;
-      padding-bottom: 20px;
-      border-radius: 2px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    hr {
-      color: #bbb;
-      background-color: #bbb;
-      height: 1px;
-      flex: 0 1 auto;
-      margin: 1em 0;
-      padding: 0;
-      border: none;
-    }
-
-    /**
-* Links
-*/
-    a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-
-    a:visited {
-      color: #0366d6;
-    }
-
-    a:hover {
-      color: #0366d6;
-      text-decoration: underline;
-    }
-
-    pre {
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      font-size: 85%;
-      line-height: 1.45;
-      overflow: auto;
-      padding: 16px;
-    }
-
-    /**
-* Code blocks
-*/
-
-    code {
-      background-color: rgba(27, 31, 35, .05);
-      border-radius: 3px;
-      font-size: 85%;
-      margin: 0;
-      word-wrap: break-word;
-      padding: .2em .4em;
-      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-    }
-
-    pre>code {
-      background-color: transparent;
-      border: 0;
-      display: inline;
-      line-height: inherit;
-      margin: 0;
-      overflow: visible;
-      padding: 0;
-      word-wrap: normal;
-      font-size: 100%;
-    }
-
-    /**
-* Blockquotes
-*/
-    blockquote {
-      margin-left: 30px;
-      margin-top: 0px;
-      margin-bottom: 16px;
-      border-left-width: 3px;
-      padding: 0 1em;
-      color: #828282;
-      border-left: 4px solid #e8e8e8;
-      padding-left: 15px;
-      font-size: 18px;
-      letter-spacing: -1px;
-      font-style: italic;
-    }
-
-    blockquote * {
-      font-style: normal !important;
-      letter-spacing: 0;
-      color: #6a737d !important;
-    }
-
-    /**
-* Tables
-*/
-    table {
-      border-spacing: 2px;
-      display: block;
-      font-size: 14px;
-      overflow: auto;
-      width: 100%;
-      margin-bottom: 16px;
-      border-spacing: 0;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-
-    th {
-      font-weight: 600;
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-
-    tr {
-      background-color: #fff;
-      border-top: 1px solid #c6cbd1;
-    }
-
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-
-    /**
-* Others
-*/
-
-    img {
-      max-width: 100%;
-    }
-
-    p {
-      line-height: 24px;
-      font-weight: 400;
-      font-size: 16px;
-      color: #24292e;
-    }
-
-    ul {
-      margin-top: 0;
-    }
-
-    li {
-      color: #24292e;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-
-    li+li {
-      margin-top: 0.25em;
-    }
-
-    * {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      color: #24292e;
-    }
-
-    a:visited {
-      color: #0366d6;
-    }
-
-    h1,
-    h2,
-    h3 {
-      border-bottom: 1px solid #eaecef;
-      color: #111;
-      /* Darker */
-    }
-  </style>
+  }
+</script>
 
 </body>
 

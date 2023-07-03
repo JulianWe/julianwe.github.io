@@ -18,12 +18,12 @@ photos: /projects/sentinel/images/sentinel.jpg
 
 | Key | Value |
 | --- | --- |
-| `Source ` | 🕳️ [Documentation](https://github.com/sentinel-official/cli-client) |
+| `Source ` | 🕳️ [Source](https://github.com/sentinel-official/cli-client), [Docs](https://docs.sentinel.co/clients/CLI/installation/)|
 | `Tutorial Author ` | ☕ `Julian Wendland` |
 | `$AKT Address` | `sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg` |
 
 
-## Variables
+# Variables
 |Name|Description|Example values |
 |---|---|---|
 |`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
@@ -31,30 +31,35 @@ photos: /projects/sentinel/images/sentinel.jpg
 |`KEY_NAME` | The name of the key you will be deploying from. | `julian` |
 
 
-# Prepare `Sentinel` Installation ☁️
-## 🏳️ Start Installation
+
+# Prepare `Sentinel` Installation ☁️ 🏳️ Start Installation
 ```sh
 brew install v2ray wireguard-tools
 curl --silent https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh | sh
 ```
 
 
-## 💳 Wallet Setup 
+# 💳 Wallet Setup 
+
 **Setup required variables `KEY_NAME`  for wallet creation**
+
 ```sh
-export KEY_NAME=sentinel
+export KEY_NAME=julian
+export KEYRING_BACKEND=os
 ```
 
-## Generate Mnemonic Passphrase 
+**Generate Mnemonic Passphrase**
+
 ```sh
 sentinelcli keys mnemonic 
 ```
 
-## Add or Import Keys
-```sh
-sentinelcli keys import sentinel sentinel --keyring-backend file
 
-sentinelcli keys add sentinel --keyring-backend file  
+**Generate or Import Keys**
+
+```sh
+sentinelcli keys add sentinel --keyring-backend $KEYRING_BACKEND  
+
 Enter keyring passphrase:
 Re-enter keyring passphrase:
 
@@ -64,9 +69,14 @@ Re-enter keyring passphrase:
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AqHdR4e6Pd+b3R86ijGBD0cNopUBW0jR7Al//zE8TTci"}'
   mnemonic: ""
 
+# or import existing keys
+sentinelcli keys import $KEY_NAME --keyring-backend $KEYRING_BACKEND
+sentinelcli keys list
 ```
 
-## OR Generate Multiple Keys for Multisig Wallet
+
+**OR Generate Multiple Keys for Multisig Wallet**
+
 ```sh
 You can create and store a multisig key by passing the list of key names stored in a keyring
 and the minimum number of signatures required through --multisig-threshold. The keys are
@@ -77,16 +87,23 @@ Example:
 ```
 
 
-## Query Nodes & select Node
+
+**Query Nodes & select Node**
+
 ```sh
 sentinelcli query nodes \
     --home "${HOME}/.sentinelcli" \
     --node https://rpc.sentinel.co:443 \
     --status Active \
-    --page 1
+    --page 1 
+
+#Select provider and export Provider node:
+export PROVIDER=sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv
 ```
 
-## Create own Sentinel Node on Akash:
+
+
+# Create own Sentinel Node on Akash:
 [Akash Cloud Console](https://console.akash.network/new-deployment/sentinel)
 
 | Deploy RPC Node on Akash| Set name configure service | Review SDL File configuration | Review Deployment | Deploy |
@@ -94,7 +111,8 @@ sentinelcli query nodes \
 | ![Deploy RPC Node on Akash](images/create-sentinel-node1.jpg) | ![Set name configure service](images/create-sentinel-node2.jpg) | ![Review SDL File Configuration](images/create-sentinel-node3.jpg) | ![ Review SDL File configuration](images/create-sentinel-node4.jpg) | ![Deploy](images/create-sentinel-node4.jpg) |
 
 
-## Example SDL File (review SDL File) with default values:
+
+**Example SDL File (review SDL File) with default values:**
 ```yml
 version: '2.0'
 services:
@@ -140,30 +158,33 @@ deployment:
 ```
 
 
-## Subscribe to Provider Node
+
+**Subscribe to Provider Node**
 ```sh 
 sentinelcli tx subscription subscribe-to-node \
     --home "${HOME}/.sentinelcli" \
-    --keyring-backend file \
+    --keyring-backend $KEYRING_BACKEND \
     --chain-id sentinelhub-2 \
     --node https://rpc.sentinel.co:443 \
     --gas-prices 0.1udvpn \
-    --from sentinel sentnode14gzkq6u0q8u4a7n87k2wzr6tg7lcmgstckkg2u 20000udvpn
+    --from $KEY_NAME $PROVIDER 20000udvpn
 ```
-    
 
-## Query active Account subscription
+
+
+**Query active Account subscription**
 ```sh 
 sentinelcli query subscriptions \
     --home "${HOME}/.sentinelcli" \
     --node https://rpc.sentinel.co:443 \
     --status Active \
     --page 1 \
-    --address sent1g9s5v5t0jfxcfqd6l4rkn4g8vat90rtky5jd2r
+    --address "sent1g9s5v5t0jfxcfqd6l4rkn4g8vat90rtky5jd2r"
 ```
 
 
-## Connect 
+
+**Connect**
 ```sh 
 sudo sentinelcli connect \
     --home "${HOME}/.sentinelcli" \
@@ -177,4 +198,8 @@ sudo sentinelcli connect \
 
 
 
-
+**Disconnect**
+```sh 
+sudo sentinelcli disconnect \
+    --home "${HOME}/.sentinelcli"
+```

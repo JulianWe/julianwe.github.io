@@ -1,0 +1,79 @@
+---
+- name: build html website
+  hosts: localhost
+  connection: localhost
+  gather_facts: False
+  vars:
+    path: "/Users/jw/Documents/GitHub/julianwe.github.io"
+
+  tasks:
+
+    - name: convert README to HTML
+      shell: | 
+        cd {{ path }}
+        for folder in projects/*; do pandoc -f markdown $folder/README.md > projects/${folder#*/}/${folder#*/}.html;  
+        done
+        ls {{ path }}/projects
+      register: folder
+
+    - name: set project, URLs & directorys facts
+      set_fact:
+        name: "{{ item | trim ('/')}}"
+        file_path: "{{ path }}/projects/{{ item }}/{{ item | trim ('/')}}.html"
+        jinja2_file_path:  "{{ path }}/projects/ansible/projects_html.j2"
+        url: "https://julianwe.github.io/projects/{{ item }}/{{ item | trim('/')}}.html"
+        identifier: "{{ index }}"
+      loop: "{{ folder.stdout_lines }}"
+      loop_control:
+        index_var: index
+      register: facts
+
+    - name: set html content facts
+      set_fact:
+        html: "{{ lookup('file', item.ansible_facts.file_path) }}"
+        file_path: "{{ item.ansible_facts.file_path }}"
+        url: "{{ item.ansible_facts.url }}"
+        identifier: "{{ item.ansible_facts.identifier }}"
+        name: "{{ item.ansible_facts.name }}"
+      loop: "{{ facts.results }}"
+      register: html_files
+
+    - name: create project HTML sites
+      template:
+        src: "{{ jinja2_file_path }}"
+        dest: "{{ item.ansible_facts.file_path }}"
+      delegate_to: localhost
+      when: item.ansible_facts.name != "template"
+      loop: "{{ html_files.results }}"
+
+    - name: Stop a container
+      docker_container:
+        name: webapp
+        state: stopped
+
+    - name: Log into private registry and force re-authorization
+      docker_login:
+        username: "victorynox0815"
+        password: ""
+        reauthorize: true
+      register: login
+
+    - name: Build an image and push
+      docker_image:
+        build:
+          path: "{{ path }}" 
+        name: victorynox0815/docker-repo:webapp
+        tag: v1
+        force_source: yes
+        push: yes
+        source: build
+      delegate_to: localhost
+
+    - name: Start a container
+      docker_container:
+        name: webapp
+        state: started
+
+    - name: Deploy Website on IPFS
+      command: ipfs add -r {{ path }}
+...

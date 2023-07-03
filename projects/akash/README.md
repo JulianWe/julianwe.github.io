@@ -1,14 +1,12 @@
 # ☁️ [Akash](https://akash.network/) deployment Tutorial 🐇
 
-![Akash](app/images/Akash.jpg)
+![](../akash/images/akash.png)
 
 
-## About
+# About
 
 **Censorship-resistant, permissionless, and self-sovereign, Akash Network is the world’s first open source cloud. $AKT**
 
-
-## About
 
 | Key | Value |
 | --- | --- |
@@ -17,11 +15,14 @@
 | `$AKT Address` | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
 
 
-## Variables
 
-:information_source: **Note:** you can always check if all the required variables are set using "echo $variable" before your command.
-|Name|Description|Example values |
-|---|---|---|
+# Variables
+
+**Note:** you can always check if all the required variables are set using "echo $variable" before your command.
+
+
+| Name | Description | Example values |
+| --- | --- | --- |
 |`AKASH_NET`| The URL of Akash Network. In This Tutorial we are using Mainnet | `https://raw.githubusercontent.com/ovrclk/net/master/mainnet` |
 |`AKASH_VERSION`| Akash Version. | `0.10.1` |
 |`AKASH_NODE`| Akash network configuration base URL. | `http://rpc.akash.forbole.com:80` |
@@ -29,11 +30,14 @@
 |`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
 |`KEYRING_BACKEND`| Keyring backend to use for local keys. (os,file or test) | `file` |
 |`KEY_NAME` | The name of the key you will be deploying from. | `julian` |
+|`AKASH_GAS` | Gas limit to set per-transaction; set to "auto" to calculate sufficient gas automatically. | `auto` |
+|`AKASH_GAS_ADJUSTMENT` | Adjustment factor to be multiplied against the estimate returned by the tx simulation. | `1.25` |
+|`AKASH_GAS_PRICES` | Gas prices in decimal format to determine the transaction fee | `0.025uakt` |
+|`AKASH_SIGN_MODE` | Signature mode. | `amino-json` |
 
 
-# Prepare `akash` environment ☁️
 
-## 🏳️ Start Installation
+# ☁️ Prepare `akash` environment & 🏳️ Start Installation
 
 ```sh
 cd ~
@@ -69,22 +73,16 @@ export AKASH_GAS=auto
 export AKASH_GAS_ADJUSTMENT=1.25
 export AKASH_GAS_PRICES=0.025uakt
 export AKASH_SIGN_MODE=amino-json
-
+export AKASH_KEY_NAME=julian
 
 # Check variables
-echo AKASH_NET: $AKASH_NET, AKASH_VERSION: $AKASH_VERSION, AKASH_VERSION, AKASH_NODE: $AKASH_NODE, AKASH_CHAIN_ID:  $AKASH_CHAIN_ID, AKASH_KEYRING_BACKEND:  $AKASH_KEYRING_BACKEND, AKASH_GAS: $AKASH_GAS, AKASH_ADJUSTMENTS:  $AKASH_GAS_ADJUSTMENT, AKASH_GAS_PRICES:  $AKASH_GAS_PRICES, AKASH_SIGN_MODE: $AKASH_SIGN_MODE
+echo AKASH_NET: $AKASH_NET, AKASH_VERSION: $AKASH_VERSION, AKASH_NODE: $AKASH_NODE, AKASH_CHAIN_ID:  $AKASH_CHAIN_ID, AKASH_KEYRING_BACKEND:  $AKASH_KEYRING_BACKEND, AKASH_GAS: $AKASH_GAS, AKASH_ADJUSTMENTS:  $AKASH_GAS_ADJUSTMENT, AKASH_GAS_PRICES:  $AKASH_GAS_PRICES, AKASH_SIGN_MODE: $AKASH_SIGN_MODE
 
 ```
 
 
-## 💳 Wallet Setup
 
-**Setup required variables `KEY_NAME` and `KEYRING_BACKEND` for wallet creation**
-
-```sh
-export AKASH_KEY_NAME=julian
-```
-
+# 💳 Wallet Setup
 
 **🔑 How to create key if you haven't yet setup a key**
 
@@ -126,6 +124,7 @@ type: secp256k1
 
 ```sh
 akash keys add $AKASH_KEY_NAME --keyring-backend $AKASH_KEYRING_BACKEND --recover
+or
 provider-services keys add $AKASH_KEY_NAME --keyring-backend $AKASH_KEYRING_BACKEND --recover
 ```
 
@@ -147,7 +146,10 @@ akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z
 The balance indicated is denominated in uAKT (AKT x 10^-6) We're now setup to deploy.
 
 ```sh
-akash query bank balances $ACCOUNT_ADDRESS --node $AKASH_NODE 
+provider-services query bank balances $ACCOUNT_ADDRESS --node $AKASH_NODE 
+```
+
+```sh
 balances:
 - amount: "20000000"
   denom: uakt
@@ -159,7 +161,10 @@ pagination:
 
 ℹ️ **Note: You can buy `$AKT` on [BitMax](https://bitmax.io/register?inviteCode=LQDS1MMP) using this link or [Osmosis](https://app.osmosis.zone/)** and withdraw them to your deployment `ACCOUNT_ADDRESS`
 
-## 📜 Prepare for deployment SDL File
+
+
+
+# 📝 Prepare for deployment SDL File
 
 [Choose deployment image](https://github.com/ovrclk/awesome-akash)
 Create a deployment configuration file: `deploy.yml` to deploy the `ovrclk/lunie-light` for [Lunie Light](https://github.com/ovrclk/lunie-light) Node app container using [SDL](https://github.com/ovrclk/docs/blob/5d695ab63f391ebf255d48859ed3f626040fbf47/sdl/README.md):
@@ -200,7 +205,7 @@ deployment:
 EOF
 ```
 
-
+# 📜 Certificate 
 **How to generate certificate & Publish Cert to the Blockchain** `requires $AKT fees`
 
 ```sh
@@ -208,11 +213,10 @@ provider-services tx cert generate client --from $AKASH_KEY_NAME
 provider-services tx cert publish client --from $AKASH_KEY_NAME
 
 confirm transaction before signing and broadcasting [y/N]: y
-
 ```
-
-
 ⚠️ **Important** certificate needs to be created only once per account and can be used across all deployments.
+
+
 
 **How to revoke certificate** `requires $AKT fees`
 
@@ -220,7 +224,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 provider-services tx cert revoke --from=$AKASH_KEY_NAME --node=$AKASH_NODE
 ```
 
-## 💣 How to deploy
+# 💣 How to deploy
 
 `requires $AKT fees`
 
@@ -240,7 +244,7 @@ echo $DSEQ $GSEQ $OSEQ
 ```
 
 
-**Query market bid list**
+**📉 Query market bid list**
 ```sh
 provider-services query market bid list --owner=$ACCOUNT_ADDRESS --node $AKASH_NODE --dseq $DSEQ --state=active
 ```
@@ -406,7 +410,7 @@ export SERVICE_NAME=webapp
 ```
 
 
-**How to verify deployment creation**
+**✓ How to verify deployment creation**
 
 ```sh
 # List all deloyments
@@ -435,7 +439,7 @@ akash --node $AKASH_NODE provider lease-logs --from $ACCOUNT_ADDRESS --provider 
 ```
 
 
-**♻️ How to Update Deployment** `requires $AKT fees`
+**♻️ How to update deployment** `requires $AKT fees`
 
 ```sh
 echo akash tx deployment update deploy.yml --from $KEY_NAME --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID --fees 5000uakt --keyring-backend $AKASH_KEYRING_BACKEND --dseq $DSEQ 
@@ -451,4 +455,4 @@ echo akash tx deployment close --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID --d
 ```
 
 
-### 💡 End 💲 `AKT` 🚀 🌕
+# 💡 End 💲 `AKT` 🚀 🌕

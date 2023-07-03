@@ -10,6 +10,5 @@ RUN apt-get install software-properties-common -y
 
 COPY . /var/www/html/
 
-
-
 CMD ["nginx", "-g", "daemon off;"]
+

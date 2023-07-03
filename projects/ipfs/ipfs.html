@@ -1,0 +1,195 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Browser Titel CHANGE-->
+  <title>ipfs</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
+    sizes="192x192" />
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+
+<!-- Start README -->
+<h1 id="ipfs-deployment-tutorial">☁️ <a
+href="ipns://ipfs.tech/">IPFS</a> deployment Tutorial 🐇</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source</code></td>
+<td>🕳️ <a
+href="http://docs-ipfs-tech.ipns.localhost:48084/how-to/command-line-quick-start/">Documentation</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$FIL Address</code></td>
+<td><code>0xfA66faf3Faa192277bAb21Ef547ebdB47617B1da</code></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="../ipfs/images/IPFS.jpg" alt="IPFS" />
+<figcaption aria-hidden="true">IPFS</figcaption>
+</figure>
+<p><strong>Hash based addressing instead of location based addressing
+with the worlds first Inter Planetary File System IPFS</strong></p>
+<h1 id="install-ipfs">Install IPFS</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://dist.ipfs.tech/kubo/v0.20.0/kubo_v0.20.0_darwin-amd64.tar.gz</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvzf</span> kubo_v0.20.0_darwin-amd64.tar.gz</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> kubo</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> bash install.sh</span></code></pre></div>
+<h1 id="initialize-ipfs">Initialize IPFS</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ipfs</span> daemon</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Initializing</span> daemon...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Kubo</span> version: 0.20.0</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Repo</span> version: 13</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">System</span> version: amd64/darwin</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Golang</span> version: go1.19.8</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Error:</span> no IPFS repo found in /Users/jw/.ipfs.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">please</span> run: <span class="st">&#39;ipfs init&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ipfs</span> init</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">generating</span> ED25519 keypair...done</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">peer</span> identity: 12D3KooWBcpXDYJbBx1bR4f3AfD4EahzVpcMLuM9fKnPmX3het4X</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">initializing</span> IPFS node at /Users/jw/.ipfs</span></code></pre></div>
+<h1 id="add-ipfs-files">Add IPFS Files</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ipfs</span> add <span class="at">-r</span> julianwe.github.io/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNrj4qtVTA3g4MeLwUGy6Txix3xstWu3Qi3US7RjccSFN julianwe.github.io/Dockerfile</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXCDfzm6WgXahFZYBuzxkWGWCvxxwAR3DFDx53UxbPpvn julianwe.github.io/about.html</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaPnEzBk6rAyHX3QnmQjdg87ttKjKvybeGrByPP2r7TdU julianwe.github.io/akash-project.html</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPKL9uRyVo7HU7Cuycck3YAZgzLedaBZj2qjuMh12dQAk julianwe.github.io/contact.html</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZiAmHUyo7gn9WJfiEuGVhwfonX3PRSKp2hjbW7vrd5L1 julianwe.github.io/convert-markdown-to-html.html</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmScSbR1NxB8Z324jFvDMyzoPRpuiuhDDCFNKaujcEvN2w julianwe.github.io/convert-markdown-to-html.md</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qma24iH72agTNeMeejKUNEcsZpq7rasfAga3HnAN7JHveh julianwe.github.io/convert-md-to-html.html</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbcSTFLuTQ3byMHfCUdc3GY9ckc7vZB4qA3xJJAa3sBa3 julianwe.github.io/deploy.yml</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRMGwW2zXsNKx7K7SjDnDVKjSTbBCmXJeqiwBxvy4c4bj julianwe.github.io/handshake-project.html</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmat2ZforYHNsWrzFp4RQANXsku2GXWZ9MngxjsNgU9PAC julianwe.github.io/images/Akash.jpg</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQonhUj3ZbrtSmYgNcBXmY8p8cdVE6dNoobS1eWdrT541 julianwe.github.io/images/background.jpg</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSR44XHr6JTy7Buf36TiU2jFsJBAWCDaB3CdTKpKCXxaG julianwe.github.io/images/defilego.jpg</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeMtQw97czTWb42ThscKQwkyg17cvrKz4SKCdDEiYRCP8 julianwe.github.io/images/git.jpg</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRjLMBhrT7tu47wB85zjpjBHDgKS7xmPcx97m66czsCxQ julianwe.github.io/images/handshake.jpg</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSABQNfBZGsou269RQT5Bx249SKWrQw3QrexmGcvPiDEt julianwe.github.io/images/me.jpg</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmanCiTyTCajxwjSFrbxrpsq3j2Sie7i33TNSnkTWYM8Fo julianwe.github.io/images/sentinel.jpg</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeCXCsAuoUyWceSxJB2JGNQNi13orrfxgE5LUHqjVAngb julianwe.github.io/index.html</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg julianwe.github.io/projects.html</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPyUBNkWo3F5MU6kb65ZhMUSKHd61fZUVtccjXFybxG6a julianwe.github.io/sentinel-project.html</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaSjso9LVWfQwSxMB8yB3h4264io3FNhVhGFdVnHeovuj julianwe.github.io/sentinel.md</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSFaMQKFD6GHqwWm6J8rGVqNnfip1YDsZappqR7EfzMSg julianwe.github.io/template-projects.html</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPRwFCQM2JksCgRjEEs94tCSiws3CFMj5LBjnHY6k65Ne julianwe.github.io/images</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb julianwe.github.io</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.16</span> MiB / 1.16 MiB <span class="pp">[</span><span class="ss">==================================================================================================</span><span class="pp">]</span> 100.00%</span></code></pre></div>
+<h1 id="ipfs-link-to-your-website">IPFS Link to your Website</h1>
+<p><a
+href="https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg">IPFS
+Link</a>
+https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg</p>
+<h1 id="link-dns-to-your-website">Link DNS to your website</h1>
+<p><a
+href="http://docs-ipfs-tech.ipns.localhost:48084/how-to/websites-on-ipfs/link-a-domain/">Docs</a>
+<a
+href="https://dnslink.io/#step-1-choose-a-domain-name-to-link-from">Docs</a></p>
+<h1 id="links">Links</h1>
+<p><a
+href="https://makoto-inoue.medium.com/how-to-host-your-dapp-with-ipfs-ens-and-access-it-via-ethdns-c96046059d87">Source</a>
+<a href="https://github.com/ipfs/ipfs-desktop">IPFS Desktop</a> <a
+href="https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch?hl=en">IPFS
+Addon</a> <a
+href="http://docs-ipfs-tech.ipns.localhost:48084/how-to/command-line-quick-start/">IPFS
+Docs</a></p>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
+      &nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/ipfs/ipfs.html"; 
+      this.page.identifier = 3; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src="//https-julianwe-github-io-1.disqus.com/count.js" async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Functions -->
+<script>
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+
+</html>
