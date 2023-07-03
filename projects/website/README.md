@@ -60,7 +60,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ``` 
 
 
-**Examplpe SDL File for Akash**
+**Example SDL File for Akash**
 
 ```yml
 ---
@@ -95,5 +95,30 @@ deployment:
       profile: webapp
       count: 1
 ``` 
+
+
+**Create .github/workflows/docker-image.yml Action file**
+
+```yml
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+``` 
+
 
 

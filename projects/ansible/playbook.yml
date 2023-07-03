@@ -1,4 +1,3 @@
----
 - name: build html website
   hosts: localhost
   connection: localhost
@@ -82,4 +81,3 @@
 
     - name: Deploy Website on IPFS
       command: ipfs add -r {{ path }}
-...
