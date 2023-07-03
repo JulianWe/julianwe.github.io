@@ -21,7 +21,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ```
 
 **Or convert README files to HTML using Ansible Playbook**
-```yml
+```yaml
 ---
 - name: build html website
   hosts: localhost
@@ -29,9 +29,11 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
   gather_facts: False
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
+  vars_prompt:
+    - name: pw
+      prompt: Enter the Docker password
 
   tasks:
-
     - name: convert README to HTML
       shell: | 
         cd {{ path }}
@@ -78,7 +80,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
     - name: Log into private registry and force re-authorization
       docker_login:
         username: "victorynox0815"
-        password: "*********"
+        password: "{{ pw }}"
         reauthorize: true
       register: login
 

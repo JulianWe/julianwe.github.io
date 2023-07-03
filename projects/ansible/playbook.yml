@@ -3,8 +3,13 @@
   hosts: localhost
   connection: localhost
   gather_facts: False
+
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
+
+  vars_prompt:
+    - name: pw
+      prompt: Enter the Docker password
 
   tasks:
 
@@ -12,7 +17,7 @@
       shell: | 
         cd {{ path }}
         for folder in projects/*; do pandoc -f markdown $folder/README.md > projects/${folder#*/}/${folder#*/}.html;  
-        done
+        done;
         ls {{ path }}/projects
       register: folder
 
@@ -20,7 +25,8 @@
       set_fact:
         name: "{{ item | trim ('/')}}"
         file_path: "{{ path }}/projects/{{ item }}/{{ item | trim ('/')}}.html"
-        jinja2_file_path:  "{{ path }}/projects/ansible/projects_html.j2"
+        projects_templatej2:  "{{ path }}/projects/ansible/projects_template.j2"
+        projectsj2: "{{ path }}/projects/ansible/projects.j2"
         url: "https://julianwe.github.io/projects/{{ item }}/{{ item | trim('/')}}.html"
         identifier: "{{ index }}"
       loop: "{{ folder.stdout_lines }}"
@@ -40,10 +46,10 @@
 
     - name: create project HTML sites
       template:
-        src: "{{ jinja2_file_path }}"
+        src: "{{ projects_templatej2 }}"
         dest: "{{ item.ansible_facts.file_path }}"
       delegate_to: localhost
-      when: item.ansible_facts.name != "template"
+      when: item.ansible_facts.name != "projects"
       loop: "{{ html_files.results }}"
 
     - name: Stop a container
@@ -54,7 +60,7 @@
     - name: Log into private registry and force re-authorization
       docker_login:
         username: "victorynox0815"
-        password: ""
+        password: "{{ pw }}"
         reauthorize: true
       register: login
 

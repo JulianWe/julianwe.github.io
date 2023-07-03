@@ -27,6 +27,7 @@
 
 
 <!-- Start README -->
+
 {{ item.ansible_facts.html }}
 
 <!-- END README -->
@@ -50,7 +51,6 @@
       this.page.url = "{{ item.ansible_facts.url }}"; 
       this.page.identifier = {{ item.ansible_facts.identifier }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
-
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
       s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
@@ -79,7 +79,6 @@
       x.style.display = "none";
     }
   }
-
   function menu() {
     var x = document.getElementById("links");
     if (x.style.display === "block") {
