@@ -76,6 +76,7 @@ added QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb julianwe.github.io
 **[ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html](ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html)**
 
 **Go to https://app.ens.domains/ and Link your content Hash to ENS Domain**
+
 | Set Content Hash | Update Records |
 |-------|---------|
 ![](../ipfs/images/ens1.jpg) | ![](../ipfs/images/ens2.jpg) |

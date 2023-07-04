@@ -10,6 +10,7 @@
   <!-- CSS  -->
   <link rel="stylesheet" href="../../css/splendor.css">
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <link rel="canonical" href="https://julianwe.github.io/projects/ipfs/ipfs.html#disqus_thread" />
 </head>
 
 <!-- Navbar -->
@@ -24,7 +25,6 @@
       <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
   </div>
 </div>
-
 
 <!-- Start README -->
 
@@ -116,9 +116,21 @@ href="ipfs://QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb/">ipfs://QmUJLpy2VaP
 <strong><a
 href="ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html">ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html</a></strong></p>
 <p><strong>Go to https://app.ens.domains/ and Link your content Hash to
-ENS Domain</strong> | Set Content Hash | Update Records | |——-|———| <img
-src="../ipfs/images/ens1.jpg" /> | <img src="../ipfs/images/ens2.jpg" />
-|</p>
+ENS Domain</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Set Content Hash</th>
+<th>Update Records</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="../ipfs/images/ens1.jpg" /></td>
+<td><img src="../ipfs/images/ens2.jpg" /></td>
+</tr>
+</tbody>
+</table>
 <h1 id="ipfs-link-to-your-website">IPFS Link to your Website</h1>
 <p><a
 href="https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg">IPFS
@@ -154,7 +166,7 @@ Docs</a></p>
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/ipfs/ipfs.html"; 
-      this.page.identifier = 4; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.identifier = 4;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
@@ -174,7 +186,7 @@ Docs</a></p>
 <!-- Recommendations -->
 <div id="disqus_recommendations"></div>
 <script>
-  (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+  (function () {
     var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
     s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
@@ -185,35 +197,9 @@ Docs</a></p>
   <a href="https://disqus.com/?ref_noscript" rel="nofollow">
     comments powered by Disqus.
   </a>
-</nosc
-<div id="disqus_recommendations"></div>
+</noscript>
 <!-- End Recommendations -->
 
-
-<!-- copy button -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js"
-  crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-  $(function () {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function (trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
-      }
-    });
-    clip.on('success', function (e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-</script>
-<!-- end copy button -->
 
 <!-- Functions -->
 <script>

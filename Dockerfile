@@ -9,7 +9,7 @@ RUN apt-get install -q -y ssmtp mailutils
 RUN apt-get install software-properties-common -y
 
 COPY . /var/www/html/
-COPY /.well-known/brave-rewards-verification.txt /
+COPY ./.well-known/brave-rewards-verification.txt /
 
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -10,6 +10,7 @@
   <!-- CSS  -->
   <link rel="stylesheet" href="../../css/splendor.css">
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <link rel="canonical" href="https://julianwe.github.io/projects/website/website.html#disqus_thread" />
 </head>
 
 <!-- Navbar -->
@@ -24,7 +25,6 @@
       <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
   </div>
 </div>
-
 
 <!-- Start README -->
 
@@ -183,7 +183,7 @@ class="sourceCode yml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/website/website.html"; 
-      this.page.identifier = 8; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.identifier = 8;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
@@ -203,7 +203,7 @@ class="sourceCode yml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#
 <!-- Recommendations -->
 <div id="disqus_recommendations"></div>
 <script>
-  (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+  (function () {
     var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
     s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
@@ -214,35 +214,9 @@ class="sourceCode yml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#
   <a href="https://disqus.com/?ref_noscript" rel="nofollow">
     comments powered by Disqus.
   </a>
-</nosc
-<div id="disqus_recommendations"></div>
+</noscript>
 <!-- End Recommendations -->
 
-
-<!-- copy button -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js"
-  crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-  $(function () {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function (trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
-      }
-    });
-    clip.on('success', function (e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-</script>
-<!-- end copy button -->
 
 <!-- Functions -->
 <script>
