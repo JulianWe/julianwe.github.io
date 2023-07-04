@@ -13,7 +13,7 @@ In other words, an association between keys and names create the potential for t
 | `Tutorial Author ` | ☕ `Julian Wendland` |
 | `$AKT Address` | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
 
-
+file:///Users/jw/Documents/GitHub/julianwe.github.io/projects/handshake/handshake.html
 # prerequisites
 ```sh
 sudo apt-get install nodejs npm build-essential
@@ -65,7 +65,7 @@ jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$   ./bin/hsw-cli master | grep phrase
 
 
 **How to check if a name is available**
-```sh
+```json
   ./bin/hsd-cli rpc getnameinfo julianwendland
   
   jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$  ./bin/hsd-cli rpc getnameinfo binance
@@ -116,6 +116,3 @@ Send bid (5 is an example bid amount and 10 is your blinding mask, see documenta
 ```sh
 ./bin/hsd-cli rpc getnames
 ```
-
-
-

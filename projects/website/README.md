@@ -61,7 +61,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ``` 
 
 **Build Docker Container using ansible**
-```yml
+```yaml
 - name: build html website
   hosts: localhost
   connection: localhost
@@ -105,7 +105,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ![](../website/images/pages.jpg)
 **Create .github/workflows/docker-image.yml Action file**
 
-```yml
+```yaml
 name: Docker Image CI
 
 on:
@@ -129,7 +129,7 @@ jobs:
 
 **Example SDL File for Akash**
 
-```yml
+```yaml
 ---
 version: '2.0'
 services:

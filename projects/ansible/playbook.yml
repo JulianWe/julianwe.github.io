@@ -51,33 +51,47 @@
       when: item.ansible_facts.name != "projects"
       loop: "{{ html_files.results }}"
 
-#     - name: Stop a container
-#       docker_container:
-#         name: webapp
-#         state: stopped
+    - name: set fact
+      set_fact:
+        projects_html: "{{ item.ansible_facts.html }}"
+      when: item.ansible_facts.name == "projects"
+      loop: "{{ html_files.results }}"
 
-#     - name: Log into private registry and force re-authorization
-#       docker_login:
-#         username: "victorynox0815"
-#         password: "{{ pw }}"
-#         reauthorize: true
-#       register: login
+    - name: create project site
+      template:
+        src: "{{ projectsj2 }}"
+        dest: "{{ path }}/projects.html"
+      delegate_to: localhost
+      when: item.ansible_facts.name == "projects"
+      loop: "{{ html_files.results }}"
 
-#     - name: Build an image and push
-#       docker_image:
-#         build:
-#           path: "{{ path }}" 
-#         name: victorynox0815/docker-repo:webapp
-#         tag: v1
-#         force_source: yes
-#         push: yes
-#         source: build
-#       delegate_to: localhost
+    # - name: Stop a container
+    #   docker_container:
+    #     name: webapp
+    #     state: stopped
 
-#     - name: Start a container
-#       docker_container:
-#         name: webapp
-#         state: started
+    # - name: Log into private registry and force re-authorization
+    #   docker_login:
+    #     username: "victorynox0815"
+    #     password: "{{ pw }}"
+    #     reauthorize: true
+    #   register: login
+
+    # - name: Build an image and push
+    #   docker_image:
+    #     build:
+    #       path: "{{ path }}" 
+    #     name: victorynox0815/docker-repo:webapp
+    #     tag: v1
+    #     force_source: yes
+    #     push: yes
+    #     source: build
+    #   delegate_to: localhost
+
+    # - name: Start a container
+    #   docker_container:
+    #     name: webapp
+    #     state: started
 
     - name: Deploy Website on IPFS
       command: ipfs add -r {{ path }}

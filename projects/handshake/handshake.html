@@ -59,7 +59,8 @@ provable resources to names.</p>
 </tr>
 </tbody>
 </table>
-<h1 id="prerequisites">prerequisites</h1>
+<p>file:///Users/jw/Documents/GitHub/julianwe.github.io/projects/handshake/handshake.html
+# prerequisites</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install nodejs npm build-essential</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install node-gyp</span></code></pre></div>
 <p><strong>First <a href="https://handshake.org/download/">download</a>
@@ -88,26 +89,27 @@ cloud anywhere):</p>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$</span>   ./bin/hsw-cli master <span class="kw">|</span> <span class="fu">grep</span> phrase</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;phrase&quot;</span><span class="ex">:</span> <span class="st">&quot;race anger neither midnight skull danger oxygen miss federal science lobster damage spider second ship limit wheat board hurry critic polar lobster horror imitate&quot;</span></span></code></pre></div>
 <p><strong>How to check if a name is available</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">./bin/hsd-cli</span> rpc getnameinfo julianwendland</span>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="er">./bin/hsd-cli</span> <span class="er">rpc</span> <span class="er">getnameinfo</span> <span class="er">julianwendland</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$</span>  ./bin/hsd-cli rpc getnameinfo binance</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;start&quot;</span><span class="ex">:</span> {</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;reserved&quot;</span><span class="ex">:</span> true,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;week&quot;</span><span class="ex">:</span> 0,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;start&quot;</span><span class="ex">:</span> 2016</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">},</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;info&quot;</span><span class="ex">:</span> null</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$</span>  ./bin/hsd-cli rpc getnameinfo julianwendland</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;start&quot;</span><span class="ex">:</span> {</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;reserved&quot;</span><span class="ex">:</span> false,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;week&quot;</span><span class="ex">:</span> 49,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;start&quot;</span><span class="ex">:</span> 51408</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">},</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;info&quot;</span><span class="ex">:</span> null</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$</span>  <span class="er">./bin/hsd-cli</span> <span class="er">rpc</span> <span class="er">getnameinfo</span> <span class="er">binance</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;reserved&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;week&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="fu">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="dv">2016</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;info&quot;</span><span class="fu">:</span> <span class="kw">null</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="er">jw@ansibleVM:~/Handshake/hsd-2.3.0/hsd$</span>  <span class="er">./bin/hsd-cli</span> <span class="er">rpc</span> <span class="er">getnameinfo</span> <span class="er">julianwendland</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;reserved&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;week&quot;</span><span class="fu">:</span> <span class="dv">49</span><span class="fu">,</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="dv">51408</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;info&quot;</span><span class="fu">:</span> <span class="kw">null</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <p><strong>How to open for binding if returnd false</strong></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./bin/hsw-cli</span> rpc sendopen julianwendland</span></code></pre></div>
 <p>Send bid (5 is an example bid amount and 10 is your blinding mask,
@@ -145,7 +147,7 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/handshake/handshake.html"; 
-      this.page.identifier = 3;
+      this.page.identifier = 6;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
