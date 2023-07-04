@@ -23,7 +23,7 @@ photos: /projects/sentinel/images/sentinel.jpg
 | `$AKT Address` | `sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg` |
 
 
-# Variables
+**Variables**
 |Name|Description|Example values |
 |---|---|---|
 |`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
@@ -31,13 +31,13 @@ photos: /projects/sentinel/images/sentinel.jpg
 |`KEY_NAME` | The name of the key you will be deploying from. | `julian` |
 
 
-# Prepare `Sentinel` Installation ☁️ 🏳️ Start Installation
+**Prepare `Sentinel` Installation ☁️ 🏳️ Start Installation**
 ```sh
 brew install v2ray wireguard-tools
 curl --silent https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh | sh
 ```
 
-# 💳 Wallet Setup 
+**💳 Wallet Setup**
 
 **Setup required variables `KEY_NAME`  for wallet creation**
 
@@ -97,11 +97,14 @@ export PROVIDER=sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv
 ```
 
 
-# Create own Sentinel Node on Akash:
+**Create own Sentinel Node on Akash:**
 [Akash Cloud Console](https://console.akash.network/new-deployment/sentinel)
-| Deploy RPC Node on Akash| Set name configure service | Review SDL File configuration | Review Deployment | Deploy |
-|-------|---------|-------|----------|------|
-| ![Deploy RPC Node on Akash](images/create-sentinel-node1.jpg) | ![Set name configure service](images/create-sentinel-node2.jpg) | ![Review SDL File Configuration](images/create-sentinel-node3.jpg) | ![Review SDL File configuration](images/create-sentinel-node4.jpg) | ![Deploy](images/create-sentinel-node4.jpg) |
+
+
+
+| Deploy RPC Node | configure service | Review SDL File | Review Deployment | Deploy |
+|---------|---------|---------|---------|---------|
+ ![](../sentinel/images/create-sentinel-node1.jpg) | ![](../sentinel/images/create-sentinel-node2.jpg) | ![](../sentinel/images/create-sentinel-node3.jpg) | ![](../sentinel/images/create-sentinel-node4.jpg) | ![](../sentinel/images/create-sentinel-node4.jpg) |
 
 
 

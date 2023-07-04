@@ -59,43 +59,17 @@ href="https://docs.sentinel.co/clients/CLI/installation/">Docs</a></td>
 </tr>
 </tbody>
 </table>
-<h1 id="variables">Variables</h1>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-<th>Example values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>ACCOUNT_ADDRESS</code></td>
-<td>The address of your account.</td>
-<td><code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code></td>
-</tr>
-<tr class="even">
-<td><code>KEYRING_BACKEND</code></td>
-<td>Keyring backend to use for local keys. (os,file or test)</td>
-<td><code>file</code></td>
-</tr>
-<tr class="odd">
-<td><code>KEY_NAME</code></td>
-<td>The name of the key you will be deploying from.</td>
-<td><code>julian</code></td>
-</tr>
-</tbody>
-</table>
-<h1 id="prepare-sentinel-installation-start-installation">Prepare
-<code>Sentinel</code> Installation ☁️ 🏳️ Start Installation</h1>
+<p><strong>Variables</strong> |Name|Description|Example values | |—|—|—|
+|<code>ACCOUNT_ADDRESS</code>| The address of your account. |
+<code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code> |
+|<code>KEYRING_BACKEND</code>| Keyring backend to use for local keys.
+(os,file or test) | <code>file</code> | |<code>KEY_NAME</code> | The
+name of the key you will be deploying from. | <code>julian</code> |</p>
+<p><strong>Prepare <code>Sentinel</code> Installation ☁️ 🏳️ Start
+Installation</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install v2ray wireguard-tools</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--silent</span> https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div>
-<h1 id="wallet-setup">💳 Wallet Setup</h1>
+<p><strong>💳 Wallet Setup</strong></p>
 <p><strong>Setup required variables <code>KEY_NAME</code> for wallet
 creation</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KEY_NAME</span><span class="op">=</span>julian</span>
@@ -133,20 +107,36 @@ creation</strong></p>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Select provider and export Provider node:</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PROVIDER</span><span class="op">=</span>sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv</span></code></pre></div>
-<h1 id="create-own-sentinel-node-on-akash">Create own Sentinel Node on
-Akash:</h1>
-<p><a href="https://console.akash.network/new-deployment/sentinel">Akash
-Cloud Console</a> | Deploy RPC Node on Akash| Set name configure service
-| Review SDL File configuration | Review Deployment | Deploy |
-|——-|———|——-|———-|——| | <img src="images/create-sentinel-node1.jpg"
-alt="Deploy RPC Node on Akash" /> | <img
-src="images/create-sentinel-node2.jpg"
-alt="Set name configure service" /> | <img
-src="images/create-sentinel-node3.jpg"
-alt="Review SDL File Configuration" /> | <img
-src="images/create-sentinel-node4.jpg"
-alt="Review SDL File configuration" /> | <img
-src="images/create-sentinel-node4.jpg" alt="Deploy" /> |</p>
+<p><strong>Create own Sentinel Node on Akash:</strong> <a
+href="https://console.akash.network/new-deployment/sentinel">Akash Cloud
+Console</a></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Deploy RPC Node</th>
+<th>configure service</th>
+<th>Review SDL File</th>
+<th>Review Deployment</th>
+<th>Deploy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="../sentinel/images/create-sentinel-node1.jpg" /></td>
+<td><img src="../sentinel/images/create-sentinel-node2.jpg" /></td>
+<td><img src="../sentinel/images/create-sentinel-node3.jpg" /></td>
+<td><img src="../sentinel/images/create-sentinel-node4.jpg" /></td>
+<td><img src="../sentinel/images/create-sentinel-node4.jpg" /></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Example SDL File (review SDL File) with default
 values:</strong></p>
 <div class="sourceCode" id="cb7"><pre
