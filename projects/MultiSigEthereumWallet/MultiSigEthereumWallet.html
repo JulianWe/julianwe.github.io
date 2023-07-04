@@ -1,0 +1,241 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Browser Titel CHANGE-->
+  <title>MultiSigEthereumWallet</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
+    sizes="192x192" />
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <link rel="canonical" href="https://julianwe.github.io/projects/MultiSigEthereumWallet/MultiSigEthereumWallet.html#disqus_thread" />
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+<!-- Start README -->
+
+<h1
+id="multisigethereumwallet---smart-contract-tutorial">MultiSigEthereumWallet
+- Smart Contract tutorial 🐇</h1>
+<p><img src="../MultiSigEthereumWallet/images/multisigwallet.jpg" /></p>
+<p><strong>This Tutorial shows how to write, deploy and interact with a
+ethereum MultiSigWallet smart contract</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source Code</code></td>
+<td>🕳️ <a
+href="https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications">Pluralsight
+- Ivan Mushketyk</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$ETH Address</code></td>
+<td><code>0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Download and install MetaMask wallet</strong></p>
+<p><a href="https://metamask.io/">Download Wallet</a></p>
+<p><strong>2. Request Rinkeby testnetwork tokens for transaction
+fee</strong></p>
+<p><a href="https://faucet.rinkeby.io/">Rinkeby Faucet</a></p>
+<p><strong>3. open Remix - Ethereum Web IDE:</strong></p>
+<p><a href="https://remix.ethereum.org/">Remix Ethereum IDE</a></p>
+<p><strong>4. Create Solidity Smart Contract file MultiSigWallet.sol in
+Remix IDE</strong></p>
+<pre class="solidity"><code>pragma solidity ^0.4.0;
+pragma experimental ABIEncoderV2;
+
+contract MultiSigWallet {
+
+    uint minApprovers;
+    address beneficiary;
+    address owner;
+    mapping (address =&gt; bool) approvedBy;
+    mapping (address =&gt; bool) isApprover;
+    uint approvalsNum;
+
+    constructor (
+
+        // List of approvers and minimum number of approvers 
+        address[] _approvers,
+        // 
+        uint _minApprovers,
+        // beneficiary address will receive all the funds after minimum number of approvals
+        address _beneficiary
+
+    ) public payable {
+
+        // check if approvers are more than minApprovers to allow withdraw 
+        require(_minApprovers &lt;= _approvers.length, &quot;Required number of approvers should be less than number of approvers&quot;);
+
+        minApprovers = _minApprovers;
+        beneficiary = _beneficiary;
+        owner = msg.sender;
+
+        // store and populate isApprover address mapping 
+        for (uint i = 0; i &lt; _approvers.length; i++){
+
+            address approver = _approvers[i];
+            isApprover[approver] = true;
+        }
+    }
+
+    // function to approve spendig funds from contract
+    function approve() public {
+
+        // check if callers has rigths to approve this transaction
+        require(isApprover[msg.sender], &quot;Not an approver&quot;);
+
+        // if caller has not yet approved 
+        if(!approvedBy[msg.sender]){
+
+            // increase number of approvals
+            approvalsNum++;
+            // to ensure that the same approver does not approve a transaction twice  set aproved by to true
+            approvedBy[msg.sender] = true;
+        }
+
+        // check if we have enough approvals to send funds from contract to beneficiary address
+        if (approvalsNum == minApprovers){
+            
+            // send contract balance to beneficiary address 
+            beneficiary.send(address(this).balance);
+            // dedestroy contract and return funds to owner if send fails because of wrong address
+            selfdestruct(owner);
+        }
+        
+    }
+
+    // function to reject spending if sender is not one of the Multi Sig Wallet approver. In this case send funds to owner.
+    function reject() public {
+
+        // check if callers has rigths to approve this transaction
+        require(isApprover[msg.sender], &quot;Not an approver&quot;);
+        // destroy smart contract if caller is approver 
+        selfdestruct(owner);
+    }
+
+
+}</code></pre>
+<p><strong>5. deploy MultiSigWallet.sol solidity contract with
+<code>_APPROVERS</code>, address[] set to:
+<code>["0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72","0xd32bac5c062e89912d067f7221e94fe77343D35a","0x0f0d2bf29aae4e6d8d646f967df8c49b28df05e5"]</code>,
+and <code>_MINAPPROVERS</code> for example to uint <code>1</code>
+(minimum required approvals to execute approve function and send funds
+to <code>_BENEFICIARY</code> address
+<code>0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72</code>.</strong></p>
+<p><img
+src="../MultiSigEthereumWallet/images/DeployMultiSigWallet.png" /></p>
+<p><strong>Approve Spending Wallet funds with one of the approver
+<code>_APPROVERS</code> address</strong> <img
+src="../MultiSigEthereumWallet/images/ApproveSpendingWalletFunds.jpg" /></p>
+<p><strong>Example contract creation transaction on testnet blockchain
+explorer</strong> <a
+href="https://ropsten.etherscan.io/tx/0x85e6e933d6fef3ffda240ee6b757e52c42fbb49a1dd74caa7df8d3bcc5002009">Contract
+creation Etherscan Link</a> <a
+href="https://ropsten.etherscan.io/tx/0x9995326e362c6d18be4559c7b0e36525c96608ea1228d33f74003ff95a5b6e7e">Contract
+approval Etherscan Link</a></p>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
+      &nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/MultiSigEthereumWallet/MultiSigEthereumWallet.html"; 
+      this.page.identifier = 1;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () {
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</noscript>
+<!-- End Recommendations -->
+
+
+<!-- Functions -->
+<script>
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Browser Titel CHANGE-->
+  <title>ERC-20</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
+    sizes="192x192" />
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <link rel="canonical" href="https://julianwe.github.io/projects/ERC-20/ERC-20.html#disqus_thread" />
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+<!-- Start README -->
+
+<h1 id="erc-20---smart-contract-tutorial">ERC-20 - Smart Contract
+tutorial 🐇</h1>
+<p><img src="../ERC-20/images/ERC-20-Token.jpg" /></p>
+<p><strong>This Tutorial shows how to write, deploy and interact with a
+ethereum token smart contract</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source Code</code></td>
+<td>🕳️ <a
+href="https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications">Pluralsight
+- Ivan Mushketyk</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$ETH Address</code></td>
+<td><code>0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Download and install MetaMask wallet</strong></p>
+<p><a href="https://metamask.io/">Download Wallet</a></p>
+<p><strong>2. Request Rinkeby testnetwork tokens for transaction
+fee</strong></p>
+<p><a href="https://faucet.rinkeby.io/">Rinkeby Faucet</a></p>
+<p><strong>3. open Remix - Ethereum Web IDE:</strong></p>
+<p><a href="https://remix.ethereum.org/">Remix Ethereum IDE</a></p>
+<p><strong>4. Create Solidity Smart Contract file MyCustomToken.sol in
+Remix IDE</strong></p>
+<pre class="solidity"><code>pragma solidity ^0.5.0;
+
+// ----------------------------------------------------------------------------
+// ERC Token Standard #20 Interface
+//
+// ----------------------------------------------------------------------------
+contract ERC20Interface {
+    function totalSupply() public view returns (uint);
+    function balanceOf(address tokenOwner) public view returns (uint balance);
+    function allowance(address tokenOwner, address spender) public view returns (uint remaining);
+    function transfer(address to, uint tokens) public returns (bool success);
+    function approve(address spender, uint tokens) public returns (bool success);
+    function transferFrom(address from, address to, uint tokens) public returns (bool success);
+
+    event Transfer(address indexed from, address indexed to, uint tokens);
+    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+}
+
+// ----------------------------------------------------------------------------
+// Safe Math Library
+// ----------------------------------------------------------------------------
+contract SafeMath {
+    function safeAdd(uint a, uint b) public pure returns (uint c) {
+        c = a + b;
+        require(c &gt;= a);
+    }
+    function safeSub(uint a, uint b) public pure returns (uint c) {
+        require(b &lt;= a); c = a - b; } function safeMul(uint a, uint b) public pure returns (uint c) { c = a * b; require(a == 0 || c / a == b); } function safeDiv(uint a, uint b) public pure returns (uint c) { require(b &gt; 0);
+        c = a / b;
+    }
+}
+
+
+contract MyCustomToken is ERC20Interface, SafeMath {
+    string public name;
+    string public symbol;
+    uint8 public decimals; // 18 decimals is the strongly suggested default, avoid changing it
+
+    uint256 public _totalSupply;
+
+    mapping(address =&gt; uint) balances;
+    mapping(address =&gt; mapping(address =&gt; uint)) allowed;
+
+    /**
+     * Constrctor function
+     *
+     * Initializes contract with initial supply tokens to the creator of the contract
+     */
+    constructor() public {
+        name = &quot;MyCustomToken&quot;;
+        symbol = &quot;MCT&quot;;
+        decimals = 18;
+        _totalSupply = 100000000000000000000000000;
+
+        balances[msg.sender] = _totalSupply;
+        emit Transfer(address(0), msg.sender, _totalSupply);
+    }
+
+    function totalSupply() public view returns (uint) {
+        return _totalSupply  - balances[address(0)];
+    }
+
+    function balanceOf(address tokenOwner) public view returns (uint balance) {
+        return balances[tokenOwner];
+    }
+
+    function allowance(address tokenOwner, address spender) public view returns (uint remaining) {
+        return allowed[tokenOwner][spender];
+    }
+
+    function approve(address spender, uint tokens) public returns (bool success) {
+        allowed[msg.sender][spender] = tokens;
+        emit Approval(msg.sender, spender, tokens);
+        return true;
+    }
+
+    function transfer(address to, uint tokens) public returns (bool success) {
+        balances[msg.sender] = safeSub(balances[msg.sender], tokens);
+        balances[to] = safeAdd(balances[to], tokens);
+        emit Transfer(msg.sender, to, tokens);
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint tokens) public returns (bool success) {
+        balances[from] = safeSub(balances[from], tokens);
+        allowed[from][msg.sender] = safeSub(allowed[from][msg.sender], tokens);
+        balances[to] = safeAdd(balances[to], tokens);
+        emit Transfer(from, to, tokens);
+        return true;
+    }
+}</code></pre>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
+      &nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/ERC-20/ERC-20.html"; 
+      this.page.identifier = 0;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () {
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</noscript>
+<!-- End Recommendations -->
+
+
+<!-- Functions -->
+<script>
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+
+</html>

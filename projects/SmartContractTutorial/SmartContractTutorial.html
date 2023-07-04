@@ -1,0 +1,252 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Browser Titel CHANGE-->
+  <title>SmartContractTutorial</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
+    sizes="192x192" />
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <link rel="canonical" href="https://julianwe.github.io/projects/SmartContractTutorial/SmartContractTutorial.html#disqus_thread" />
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+<!-- Start README -->
+
+<h1 id="ethereum-smart-contract-tutorial">Ethereum Smart Contract
+tutorial 🐇</h1>
+<p><img
+src="../SmartContractTutorial/images/SolidityContract.jpg" /></p>
+<p><strong>This Tutorial shows how to write, deploy and interact with a
+ethereum voting smart contract</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Source Code</code></td>
+<td>🕳️ <a
+href="https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications">Pluralsight
+- Ivan Mushketyk</a></td>
+</tr>
+<tr class="even">
+<td><code>Tutorial Author</code></td>
+<td>☕ <code>Julian Wendland</code></td>
+</tr>
+<tr class="odd">
+<td><code>$ETH Address</code></td>
+<td><code>0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Download and install MetaMask wallet</strong></p>
+<p><a href="https://metamask.io/">Download Wallet</a></p>
+<p><strong>2. Request Rinkeby testnetwork tokens for transaction
+fee</strong></p>
+<p><a href="https://faucet.rinkeby.io/">Rinkeby Faucet</a></p>
+<p><strong>3. open Remix - Ethereum Web IDE:</strong></p>
+<p><a href="https://remix.ethereum.org/">Remix Ethereum IDE</a></p>
+<p><strong>4. Create Solidity Smart Contract file VotingContract.sol in
+Remix IDE</strong></p>
+<pre class="solidity"><code>
+pragma solidity ^0.4.0;
+pragma experimental ABIEncoderV2;
+
+contract Voting {
+
+    // struct to safe option positions and if the option exists
+    struct OptionPos {
+        uint pos;
+        bool exists;
+    }
+
+    uint[] public votes;
+    string[] public options;
+    mapping (address =&gt; bool) hasVoted;
+    mapping (string =&gt; OptionPos) posOfOption;
+
+    constructor (string[] _options) public {
+
+        // create options from deployment input 
+        options = _options;
+        // set votes array length to available options
+        votes.length = options.length;
+
+        // fill posOfOption mapping to be able to voteByOptionName
+        for (uint i = 0; i &lt; options.length; i++){
+            OptionPos memory optionPos = OptionPos(i, true);
+            string optionName = options[i];
+            posOfOption[optionName] = optionPos;
+        }
+
+    }
+
+    // function to vote by option position and increase voting count
+    function voteUsingOptionPosition(uint option) public {
+
+        // Check allowed option value
+        require(0 &lt;= option &amp;&amp; option &lt; options.length,  &quot;Invalid Operation&quot; );
+        // Check if an Account has already voted
+        require(!hasVoted[msg.sender], &quot;This Address has already voted&quot;);
+
+        // increase vote for selected option
+        votes[option] = votes[option] +1;
+        // set hasVoted to yes
+        hasVoted[msg.sender] = true;
+    }
+
+
+    // function to vote by optionName 
+    function voteByOptionName (string optionName) public {
+
+        // Check if an Account has already voted
+        require(!hasVoted[msg.sender], &quot;This Address has already voted&quot;);
+
+        // use mapping to get position of option by optionName
+        // Note: using memory instead of storage = cheaper gas fee
+        OptionPos memory optionPos = posOfOption[optionName];
+        // check if option exists 
+        require(optionPos.exists,&quot;Option does not exist&quot;); 
+
+        // increase vote for selected option using optionPos struct
+        votes[optionPos.pos] = votes[optionPos.pos] + 1;
+        // set hasVoted to yes
+        hasVoted[msg.sender] = true;
+
+    }
+
+
+    // function to read available voting options
+    function getVotingOptions() public view returns (string[]) {
+
+        return options;
+    }
+
+    // function to get voting counts
+    function getVotes() public view returns (uint[]) {
+
+        return votes; 
+    }
+
+}
+</code></pre>
+<p><strong>6. Deploy Voting Smart Contract to Ethereum Rinkeby
+testnetwork using <code>["Tea","Coffee"]</code> for
+<code>_options</code> input variable</strong></p>
+<p><img
+src="../SmartContractTutorial/images/DeployVotingContract.jpg" /></p>
+<p><strong>7. Interacting with the public smart contract functions
+<code>voteByOptionName</code>
+<code>voteUsingOptionPosition</code></strong></p>
+<p>After deploying the smart contract we can call the function
+<code>getVotes</code> to see the initial result is <code>0,0</code>.
+Next step is to call the function <code>getVotingOptions</code> to see
+<code>["Tea","Coffee"]</code> is set. To vote for Coffee or Tea call the
+function <code>voteByOptionName</code> and choose between
+<code>Tea</code> or <code>Coffee</code> for <code>optionName</code>
+string parameter. Trying to call the function
+<code>voteUsingOptionPosition</code> from the same account leads to the
+expected errormessage “This Address has already voted” The last call of
+function <code>getVotes</code> shows as result <code>1,0</code> if you
+voted for <code>Tea</code> and <code>0,1</code> if you voted for
+<code>Coffee</code>.</p>
+<p><img
+src="../SmartContractTutorial/images/InteractWithSmartContract.jpg" /></p>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
+      &nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/SmartContractTutorial/SmartContractTutorial.html"; 
+      this.page.identifier = 2;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () {
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</noscript>
+<!-- End Recommendations -->
+
+
+<!-- Functions -->
+<script>
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+
+</html>
