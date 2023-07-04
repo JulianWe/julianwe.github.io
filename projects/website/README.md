@@ -1,4 +1,6 @@
-# How To Convert Markdown to file to HTML and build a Dockercontainer 
+# Create a Website using Docker and GitHub Pages
+
+![](../website/images/ansible-docker.jpg)
 
 **How to convert README.md file to HTML with utf-8 encoding**
 
@@ -46,7 +48,6 @@ docker push victorynox0815/myrepo:webapp
 ``` 
 
 
-
 **Combine Readme and Template**
 ```sh
 
@@ -57,6 +58,72 @@ for folder in projects/*/; do echo ${folder#*/};  done
 mkdir test
 
 for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folder#*/}.html;  done
+``` 
+
+**Build Docker Container using ansible**
+```yml
+- name: build html website
+  hosts: localhost
+  connection: localhost
+  gather_facts: False
+  vars:
+    path: "/Users/jw/Documents/GitHub/julianwe.github.io"
+  vars_prompt:
+    - name: pw
+      prompt: Enter the Docker password
+
+    - name: Stop a container
+      docker_container:
+        name: webapp
+        state: stopped
+
+    - name: Log into private registry and force re-authorization
+      docker_login:
+        username: "victorynox0815"
+        password: "{{ pw }}"
+        reauthorize: true
+      register: login
+
+    - name: Build an image and push
+      docker_image:
+        build:
+          path: "{{ path }}" 
+        name: victorynox0815/docker-repo:webapp
+        tag: v1
+        force_source: yes
+        push: yes
+        source: build
+      delegate_to: localhost
+
+    - name: Start a container
+      docker_container:
+        name: webapp
+        state: started
+``` 
+
+
+![](../website/images/pages.jpg)
+**Create .github/workflows/docker-image.yml Action file**
+
+```yml
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 ``` 
 
 
@@ -95,30 +162,5 @@ deployment:
       profile: webapp
       count: 1
 ``` 
-
-
-**Create .github/workflows/docker-image.yml Action file**
-
-```yml
-name: Docker Image CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-``` 
-
 
 

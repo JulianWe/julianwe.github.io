@@ -29,9 +29,6 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
   gather_facts: False
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
-  vars_prompt:
-    - name: pw
-      prompt: Enter the Docker password
 
   tasks:
     - name: convert README to HTML
@@ -71,34 +68,6 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
       delegate_to: localhost
       when: item.ansible_facts.name != "template"
       loop: "{{ html_files.results }}"
-
-    - name: Stop a container
-      docker_container:
-        name: webapp
-        state: stopped
-
-    - name: Log into private registry and force re-authorization
-      docker_login:
-        username: "victorynox0815"
-        password: "{{ pw }}"
-        reauthorize: true
-      register: login
-
-    - name: Build an image and push
-      docker_image:
-        build:
-          path: "{{ path }}" 
-        name: victorynox0815/docker-repo:webapp
-        tag: v1
-        force_source: yes
-        push: yes
-        source: build
-      delegate_to: localhost
-
-    - name: Start a container
-      docker_container:
-        name: webapp
-        state: started
 
     - name: Deploy Website on IPFS
       command: ipfs add -r {{ path }}

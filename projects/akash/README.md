@@ -1,6 +1,6 @@
 # ☁️ [Akash](https://akash.network/) deployment Tutorial 🐇
 
-![](../akash/images/akash.png)
+![](../akash/images/akash.jpg)
 
 
 # About

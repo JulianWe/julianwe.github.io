@@ -72,16 +72,21 @@ added QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb julianwe.github.io
  1.16 MiB / 1.16 MiB [==================================================================================================] 100.00%
 ```
 
+**[ipfs://QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb/](ipfs://QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb/)**
+**[ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html](ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html)**
+
+**Go to https://app.ens.domains/ and Link your content Hash to ENS Domain**
+| Set Content Hash | Update Records |
+|-------|---------|
+![](../ipfs/images/ens1.jpg) | ![](../ipfs/images/ens2.jpg) |
+
 # IPFS Link to your Website
 [IPFS Link](https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg)
 https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg
 
-
-
 # Link DNS to your website 
 [Docs](http://docs-ipfs-tech.ipns.localhost:48084/how-to/websites-on-ipfs/link-a-domain/)
 [Docs](https://dnslink.io/#step-1-choose-a-domain-name-to-link-from)
-
 
 # Links
 [Source](https://makoto-inoue.medium.com/how-to-host-your-dapp-with-ipfs-ens-and-access-it-via-ethdns-c96046059d87)

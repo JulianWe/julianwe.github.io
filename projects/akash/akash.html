@@ -30,7 +30,7 @@
 
 <h1 id="akash-deployment-tutorial">☁️ <a
 href="https://akash.network/">Akash</a> deployment Tutorial 🐇</h1>
-<p><img src="../akash/images/akash.png" /></p>
+<p><img src="../akash/images/akash.jpg" /></p>
 <h1 id="about">About</h1>
 <p><strong>Censorship-resistant, permissionless, and self-sovereign,
 Akash Network is the world’s first open source cloud. $AKT</strong></p>
@@ -481,7 +481,6 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#
 <p class="w3-clear"></p>
 
 <div id="show_disqus_thread" style="display:none">
-
   <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
@@ -489,12 +488,12 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
     var disqus_config = function () {
-      this.page.url = "https://julianwe.github.io/projects/akash/akash.html"; 
-      this.page.identifier = 0; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://julianwe.github.io/projects/akash/akash.html";
+      this.page.identifier = "0"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
-      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.src = "https://https-julianwe-github-io-1.disqus.com/embed.js";
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
@@ -507,8 +506,49 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#
   </div>
 </div>
 
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = "https://https-julianwe-github-io-1/recommendations.js"; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</nosc
+
+<!-- End Recommendations -->
 
 
+<!-- copy button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js"
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(function () {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function (trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+      }
+    });
+    clip.on('success', function (e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+</script>
+<!-- end copy button -->
 
 <!-- Functions -->
 <script>

@@ -14,7 +14,7 @@ photos: /projects/sentinel/images/sentinel.jpg
 
 # ☁️ [Sentinel DVPN](https://sentinel.co/) Tutorial 🐇
 
-![Sentinel](images/sentinel.jpg)
+![](../sentinel/images/sentinel.jpg)
 
 | Key | Value |
 | --- | --- |
@@ -31,13 +31,11 @@ photos: /projects/sentinel/images/sentinel.jpg
 |`KEY_NAME` | The name of the key you will be deploying from. | `julian` |
 
 
-
 # Prepare `Sentinel` Installation ☁️ 🏳️ Start Installation
 ```sh
 brew install v2ray wireguard-tools
 curl --silent https://raw.githubusercontent.com/sentinel-official/cli-client/master/scripts/install.sh | sh
 ```
-
 
 # 💳 Wallet Setup 
 
@@ -74,7 +72,6 @@ sentinelcli keys import $KEY_NAME --keyring-backend $KEYRING_BACKEND
 sentinelcli keys list
 ```
 
-
 **OR Generate Multiple Keys for Multisig Wallet**
 
 ```sh
@@ -85,8 +82,6 @@ Example:
 
     keys add mymultisig --multisig "keyname1,keyname2,keyname3" --multisig-threshold 2
 ```
-
-
 
 **Query Nodes & select Node**
 
@@ -102,13 +97,11 @@ export PROVIDER=sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv
 ```
 
 
-
 # Create own Sentinel Node on Akash:
 [Akash Cloud Console](https://console.akash.network/new-deployment/sentinel)
-
 | Deploy RPC Node on Akash| Set name configure service | Review SDL File configuration | Review Deployment | Deploy |
 |-------|---------|-------|----------|------|
-| ![Deploy RPC Node on Akash](images/create-sentinel-node1.jpg) | ![Set name configure service](images/create-sentinel-node2.jpg) | ![Review SDL File Configuration](images/create-sentinel-node3.jpg) | ![ Review SDL File configuration](images/create-sentinel-node4.jpg) | ![Deploy](images/create-sentinel-node4.jpg) |
+| ![Deploy RPC Node on Akash](images/create-sentinel-node1.jpg) | ![Set name configure service](images/create-sentinel-node2.jpg) | ![Review SDL File Configuration](images/create-sentinel-node3.jpg) | ![Review SDL File configuration](images/create-sentinel-node4.jpg) | ![Deploy](images/create-sentinel-node4.jpg) |
 
 
 
@@ -158,7 +151,6 @@ deployment:
 ```
 
 
-
 **Subscribe to Provider Node**
 ```sh 
 sentinelcli tx subscription subscribe-to-node \
@@ -195,7 +187,6 @@ sudo sentinelcli connect \
     --yes \
     --from <KEY_NAME> <SUBSCRIPTION_ID> <NODE_ADDRESS>
 ```
-
 
 
 **Disconnect**

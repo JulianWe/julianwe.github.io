@@ -30,10 +30,7 @@
 
 <h1 id="sentinel-dvpn-tutorial">☁️ <a
 href="https://sentinel.co/">Sentinel DVPN</a> Tutorial 🐇</h1>
-<figure>
-<img src="images/sentinel.jpg" alt="Sentinel" />
-<figcaption aria-hidden="true">Sentinel</figcaption>
-</figure>
+<p><img src="../sentinel/images/sentinel.jpg" /></p>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -139,38 +136,17 @@ creation</strong></p>
 <h1 id="create-own-sentinel-node-on-akash">Create own Sentinel Node on
 Akash:</h1>
 <p><a href="https://console.akash.network/new-deployment/sentinel">Akash
-Cloud Console</a></p>
-<table>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 23%" />
-<col style="width: 17%" />
-<col style="width: 25%" />
-<col style="width: 15%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Deploy RPC Node on Akash</th>
-<th>Set name configure service</th>
-<th>Review SDL File configuration</th>
-<th>Review Deployment</th>
-<th>Deploy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="images/create-sentinel-node1.jpg"
-alt="Deploy RPC Node on Akash" /></td>
-<td><img src="images/create-sentinel-node2.jpg"
-alt="Set name configure service" /></td>
-<td><img src="images/create-sentinel-node3.jpg"
-alt="Review SDL File Configuration" /></td>
-<td><img src="images/create-sentinel-node4.jpg"
-alt="Review SDL File configuration" /></td>
-<td><img src="images/create-sentinel-node4.jpg" alt="Deploy" /></td>
-</tr>
-</tbody>
-</table>
+Cloud Console</a> | Deploy RPC Node on Akash| Set name configure service
+| Review SDL File configuration | Review Deployment | Deploy |
+|——-|———|——-|———-|——| | <img src="images/create-sentinel-node1.jpg"
+alt="Deploy RPC Node on Akash" /> | <img
+src="images/create-sentinel-node2.jpg"
+alt="Set name configure service" /> | <img
+src="images/create-sentinel-node3.jpg"
+alt="Review SDL File Configuration" /> | <img
+src="images/create-sentinel-node4.jpg"
+alt="Review SDL File configuration" /> | <img
+src="images/create-sentinel-node4.jpg" alt="Deploy" /> |</p>
 <p><strong>Example SDL File (review SDL File) with default
 values:</strong></p>
 <div class="sourceCode" id="cb7"><pre
@@ -255,7 +231,6 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#
 <p class="w3-clear"></p>
 
 <div id="show_disqus_thread" style="display:none">
-
   <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
@@ -263,12 +238,12 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
     var disqus_config = function () {
-      this.page.url = "https://julianwe.github.io/projects/sentinel/sentinel.html"; 
-      this.page.identifier = 5; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://julianwe.github.io/projects/sentinel/sentinel.html";
+      this.page.identifier = "5"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
-      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.src = "https://https-julianwe-github-io-1.disqus.com/embed.js";
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
@@ -281,8 +256,49 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#
   </div>
 </div>
 
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = "https://https-julianwe-github-io-1/recommendations.js"; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</nosc
+
+<!-- End Recommendations -->
 
 
+<!-- copy button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js"
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(function () {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function (trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+      }
+    });
+    clip.on('success', function (e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+</script>
+<!-- end copy button -->
 
 <!-- Functions -->
 <script>

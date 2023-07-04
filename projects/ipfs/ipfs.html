@@ -111,6 +111,14 @@ with the worlds first Inter Planetary File System IPFS</strong></p>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPRwFCQM2JksCgRjEEs94tCSiws3CFMj5LBjnHY6k65Ne julianwe.github.io/images</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb julianwe.github.io</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.16</span> MiB / 1.16 MiB <span class="pp">[</span><span class="ss">==================================================================================================</span><span class="pp">]</span> 100.00%</span></code></pre></div>
+<p><strong><a
+href="ipfs://QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb/">ipfs://QmUJLpy2VaPjzms3SzCB6PXEtE2rNt2Lg3yjzijt8KhEWb/</a></strong>
+<strong><a
+href="ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html">ipfs://bafybeibj4htj2dnzhocbwswqu6icwrihovsbcxtv3o23gfvjr2ysyuqbue/projects/ipfs/ipfs.html</a></strong></p>
+<p><strong>Go to https://app.ens.domains/ and Link your content Hash to
+ENS Domain</strong> | Set Content Hash | Update Records | |——-|———| <img
+src="../ipfs/images/ens1.jpg" /> | <img src="../ipfs/images/ens2.jpg" />
+|</p>
 <h1 id="ipfs-link-to-your-website">IPFS Link to your Website</h1>
 <p><a
 href="https://gateway.ipfs.io/ipfs/QmdqSVLDuMkuzhAsNY76cLiMcscueJmVots1yztachtdsg">IPFS
@@ -140,7 +148,6 @@ Docs</a></p>
 <p class="w3-clear"></p>
 
 <div id="show_disqus_thread" style="display:none">
-
   <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
@@ -148,12 +155,12 @@ Docs</a></p>
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
     var disqus_config = function () {
-      this.page.url = "https://julianwe.github.io/projects/ipfs/ipfs.html"; 
-      this.page.identifier = 3; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://julianwe.github.io/projects/ipfs/ipfs.html";
+      this.page.identifier = "3"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
-      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.src = "https://https-julianwe-github-io-1.disqus.com/embed.js";
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
@@ -166,8 +173,49 @@ Docs</a></p>
   </div>
 </div>
 
+<!-- Recommendations -->
+<div id="disqus_recommendations"></div>
+<script>
+  (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = "https://https-julianwe-github-io-1/recommendations.js"; s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</nosc
+
+<!-- End Recommendations -->
 
 
+<!-- copy button -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js"
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(function () {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function (trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+      }
+    });
+    clip.on('success', function (e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+</script>
+<!-- end copy button -->
 
 <!-- Functions -->
 <script>
