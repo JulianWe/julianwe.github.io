@@ -62,8 +62,9 @@ sudo systemctl enable code-server
 ```
 
 
-sudo vi  /etc/nginx/sites-available/code-server.conf
+
 ```json
+sudo vi  /etc/nginx/sites-available/code-server.conf
 server {
     listen 80;
     listen [::]:80;
@@ -83,5 +84,19 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+**or install coder:**
+
+[Coder](https://github.com/coder/coder#coder)
+
+```sh
+# First, install Coder
+curl -L https://coder.com/install.sh | sh
+
+# Start the Coder server (caches data in ~/.cache/coder)
+coder server
+
+# Navigate to http://localhost:3000 to create your initial user
+# Create a Docker template, and provision a workspace
+```
 
 [Source](https://www.digitalocean.com/community/tutorials/how-to-set-up-the-code-server-cloud-ide-platform-on-ubuntu-18-04)

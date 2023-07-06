@@ -17,7 +17,7 @@ iconv -t utf-8 README.md | pandoc -t html -o README.html | iconv -f utf-8
 
 **How to build docker container**
 
-```yml
+```docker
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y curl
@@ -61,16 +61,75 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ``` 
 
 **Build Docker Container using ansible**
-```yaml
+
+```ansible
+---
 - name: build html website
   hosts: localhost
   connection: localhost
   gather_facts: False
+
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
+
   vars_prompt:
     - name: pw
       prompt: Enter the Docker password
+
+  tasks:
+
+    - name: convert README to HTML
+      shell: | 
+        cd {{ path }}
+        for folder in projects/*; do pandoc -f markdown $folder/README.md > projects/${folder#*/}/${folder#*/}.html;  
+        done;
+        ls {{ path }}/projects
+      register: folder
+
+    - name: set project, URLs & directorys facts
+      set_fact:
+        name: "{{ item | trim ('/')}}"
+        file_path: "{{ path }}/projects/{{ item }}/{{ item | trim ('/')}}.html"
+        projects_templatej2:  "{{ path }}/projects/ansible/projects_template.j2"
+        projectsj2: "{{ path }}/projects/ansible/projects.j2"
+        url: "https://julianwe.github.io/projects/{{ item }}/{{ item | trim('/')}}.html"
+        identifier: "{{ index }}"
+      loop: "{{ folder.stdout_lines }}"
+      loop_control:
+        index_var: index
+      register: facts
+
+    - name: set html content facts
+      set_fact:
+        html: "{{ lookup('file', item.ansible_facts.file_path) }}"
+        file_path: "{{ item.ansible_facts.file_path }}"
+        url: "{{ item.ansible_facts.url }}"
+        identifier: "{{ item.ansible_facts.identifier }}"
+        name: "{{ item.ansible_facts.name }}"
+      loop: "{{ facts.results }}"
+      register: html_files
+
+    - name: create project HTML sites
+      template:
+        src: "{{ projects_templatej2 }}"
+        dest: "{{ item.ansible_facts.file_path }}"
+      delegate_to: localhost
+      when: item.ansible_facts.name != "projects"
+      loop: "{{ html_files.results }}"
+
+    - name: set fact
+      set_fact:
+        projects_html: "{{ item.ansible_facts.html }}"
+      when: item.ansible_facts.name == "projects"
+      loop: "{{ html_files.results }}"
+
+    - name: create project site
+      template:
+        src: "{{ projectsj2 }}"
+        dest: "{{ path }}/projects.html"
+      delegate_to: localhost
+      when: item.ansible_facts.name == "projects"
+      loop: "{{ html_files.results }}"
 
     - name: Stop a container
       docker_container:
@@ -99,13 +158,16 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
       docker_container:
         name: webapp
         state: started
+
+    - name: Deploy Website on IPFS
+      command: ipfs add -r {{ path }}
 ``` 
 
 
 ![](../website/images/pages.jpg)
 **Create .github/workflows/docker-image.yml Action file**
 
-```yaml
+```docker
 name: Docker Image CI
 
 on:
@@ -128,7 +190,10 @@ jobs:
 
 
 **Example SDL File for Akash**
+<details>
+<summary>Show equivalent JSX</summary>
 
+```jsx
 ```yaml
 ---
 version: '2.0'
@@ -162,5 +227,4 @@ deployment:
       profile: webapp
       count: 1
 ``` 
-
-
+```

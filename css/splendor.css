@@ -29,7 +29,7 @@
 
   pre,
   blockquote {
-    border: 1px solid #999;
+    border: 1px solid #000000;
     page-break-inside: avoid;
   }
 
@@ -154,7 +154,7 @@ html {
 }
 
 body {
-  color: #444;
+  color: #000000;
   font-family: 'Merriweather', Georgia, serif;
   margin: 0;
   max-width: 100%;
@@ -197,17 +197,19 @@ h1 {
 /*  === End gross hack */
 
 p {
-  color: #555;
+  color: #000000;
   height: auto;
   line-height: 1.45;
 }
 
+
+/**
 pre,
 code {
   font-family: Menlo, Monaco, "Courier New", monospace;
 }
 
-/**/
+/
 code[class*=language-],
 pre[class*=language-] {
   color: #ccc;
@@ -243,7 +245,7 @@ pre[class*=language-] {
   border-radius: .3em;
   white-space: normal
 }
-
+**/
 .token.block-comment,
 .token.cdata,
 .token.comment,
@@ -929,7 +931,7 @@ ul {
 
 hr {
   border: 0;
-  border-top: 1px solid #eaecef
+  border-top: 1px solid #f6f8fa
 }
 
 table {
@@ -949,7 +951,7 @@ tr:nth-child(2n) {
 
 td,
 th {
-  border: 1px solid #dfe2e5;
+  border: 1px solid #000000;
   padding: .6em 1em
 }
 
@@ -1067,14 +1069,7 @@ th {
   outline: none
 }
 
-.btn-primary {
-  background-color: #1d4444;
-  color: #fff
-}
 
-.btn-primary:hover {
-  background-color: #296161
-}
 
 @media (min-width: 959px) {
   .sidebar {
@@ -3280,7 +3275,7 @@ ul li[data-v-0d020454] {
 .badge+.badge[data-v-15b7b770] {
   margin-left: 5px
 }
-
+/**
 .theme-code-block[data-v-759a7d02] {
   display: none
 }
@@ -3324,6 +3319,7 @@ ul li[data-v-0d020454] {
 .theme-code-group__nav-tab-active[data-v-deefee04] {
   border-bottom: 1px solid #42b983
 }
+**/
 
 .pre-blank[data-v-deefee04] {
   color: #42b983
@@ -3341,11 +3337,11 @@ pre {
 
 a,
 a:visited {
-  color: #3498db;
+  color: #000000;
 }
 
 a:hover,
 a:focus,
 a:active {
-  color: #2980b9;
+  color: #000000;
 }

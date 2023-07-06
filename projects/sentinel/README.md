@@ -8,7 +8,7 @@ tags:
     - crypto
 category:
     - decentralization
-description: How tu use Sentinel DVPN on Mac OS cli.
+description: How to use Sentinel DVPN on Mac OS cli.
 photos: /projects/sentinel/images/sentinel.jpg
 ---
 
@@ -18,7 +18,7 @@ photos: /projects/sentinel/images/sentinel.jpg
 
 | Key | Value |
 | --- | --- |
-| `Source ` | 🕳️ [Source](https://github.com/sentinel-official/cli-client), [Docs](https://docs.sentinel.co/clients/CLI/installation/)|
+| `Source` | 🕳️ [Source](https://github.com/sentinel-official/cli-client), [Docs](https://docs.sentinel.co/clients/CLI/installation/)|
 | `Tutorial Author ` | ☕ `Julian Wendland` |
 | `$AKT Address` | `sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg` |
 

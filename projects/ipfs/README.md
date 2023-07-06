@@ -170,7 +170,7 @@ added QmQuyQ7tSde7UA1tiQTpTVZAGxCYooMidGtJ5HyYVz3cvL julianwe.github.io/projects
 added QmTpU3Hc8VBN2FpQc2NpU1EPuLFL76ktkF966zTD5Cq3Ek julianwe.github.io/projects/website
 added QmYR9Nt64JrTxAMgQppiyQ91XGa4nS8ybUTzCZiz8ALGVp julianwe.github.io/projects
 added QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4 julianwe.github.io
- 57.59 MiB / 57.59 MiB [===================================================================================================================] 100.00%
+ 57.59 MiB / 57.59 MiB [============================================================================================================] 100.00%
 ```
 
 **IPFS Links to your Website**

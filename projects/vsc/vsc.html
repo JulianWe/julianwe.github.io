@@ -8,9 +8,16 @@
   <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
     sizes="192x192" />
   <!-- CSS  -->
-  <link rel="stylesheet" href="../../css/splendor.css">
+  <link rel="stylesheet" href="../../css/markdown.css">
+  <link rel="stylesheet" href="../../css/splendor.css"
+  <link rel="stylesheet" href="../../css/preview.css"
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css">
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <link rel="canonical" href="https://julianwe.github.io/projects/vsc/vsc.html#disqus_thread" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
+
+
+  <link rel="canonical" href="https://julianwe.github.io/projects/vsc/vsc.html#disqus_thread">
 </head>
 
 <!-- Navbar -->
@@ -72,22 +79,32 @@ class="sourceCode yml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start code-server</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status code-server</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable code-server</span></code></pre></div>
-<p>sudo vi /etc/nginx/sites-available/code-server.conf</p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="er">server</span> <span class="fu">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="er">listen</span> <span class="er">80;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="er">listen</span> <span class="er">[</span><span class="fu">:</span><span class="er">:]:</span><span class="dv">80</span><span class="er">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="er">server_name</span> <span class="er">julianwe.github.io;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="er">location</span> <span class="er">/</span> <span class="fu">{</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_pass</span> <span class="er">http</span><span class="fu">:</span><span class="er">//localhost:</span><span class="dv">8080</span><span class="er">/;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Upgrade</span> <span class="er">$http_upgrade;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Connection</span> <span class="er">upgrade;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Accept-Encoding</span> <span class="er">gzip;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="er">sudo</span> <span class="er">vi</span>  <span class="er">/etc/nginx/sites-available/code-server.conf</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="er">server</span> <span class="fu">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="er">listen</span> <span class="er">80;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="er">listen</span> <span class="er">[</span><span class="fu">:</span><span class="er">:]:</span><span class="dv">80</span><span class="er">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="er">server_name</span> <span class="er">julianwe.github.io;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="er">location</span> <span class="er">/</span> <span class="fu">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_pass</span> <span class="er">http</span><span class="fu">:</span><span class="er">//localhost:</span><span class="dv">8080</span><span class="er">/;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Upgrade</span> <span class="er">$http_upgrade;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Connection</span> <span class="er">upgrade;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="er">proxy_set_header</span> <span class="er">Accept-Encoding</span> <span class="er">gzip;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-s</span> /etc/nginx/sites-available/code-server.conf /etc/nginx/sites-enabled/code-server.conf</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nginx <span class="at">-t</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart nginx</span></code></pre></div>
+<p><strong>or install coder:</strong></p>
+<p><a href="https://github.com/coder/coder#coder">Coder</a></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, install Coder</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://coder.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the Coder server (caches data in ~/.cache/coder)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">coder</span> server</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to http://localhost:3000 to create your initial user</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Docker template, and provision a workspace</span></span></code></pre></div>
 <p><a
 href="https://www.digitalocean.com/community/tutorials/how-to-set-up-the-code-server-cloud-ide-platform-on-ubuntu-18-04">Source</a></p>
 
@@ -101,49 +118,82 @@ href="https://www.digitalocean.com/community/tutorials/how-to-set-up-the-code-se
 <p class="w3-clear"></p>
 
 <div id="show_disqus_thread" style="display:none">
-
   <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/vsc/vsc.html"; 
-      this.page.identifier = 10;
+      this.page.identifier = 11;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
-      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js'; <!-- 'https://https-julianwe-github-io-1.disqus.com/embed.js' -->
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
   </script>
-  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script> <!--'https://https-julianwe-github-io-1.disqus.com/count.js' -->
   <div class="blog-post-comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments.</noscript>
     </div>
   </div>
+  <!-- Recommendations -->
+  <div id="disqus_recommendations"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date()); // 
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <!-- End Recommendations -->
 </div>
-
-<!-- Recommendations -->
-<div id="disqus_recommendations"></div>
-<script>
-  (function () {
-    var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
-    s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>
-  Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-    comments powered by Disqus.
-  </a>
-</noscript>
-<!-- End Recommendations -->
-
 
 <!-- Functions -->
 <script>
+<!-- clipboard -->
+  const copyButtonLabel = "Copy Code";
+
+  // use a class selector if available
+  let blocks = document.querySelectorAll("pre");
+
+  blocks.forEach((block) => {
+    // only add button if browser supports Clipboard API
+    if (navigator.clipboard) {
+      let button = document.createElement("button");
+
+      button.innerText = copyButtonLabel;
+      block.appendChild(button);
+
+      button.addEventListener("click", async () => {
+        await copyCode(block, button);
+      });
+    }
+  });
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    // visual feedback that task is completed
+    button.innerText = "Code Copied";
+
+    setTimeout(() => {
+      button.innerText = copyButtonLabel;
+    }, 700);
+  }
+
+
+
   function hideClick() {
     var x = document.getElementById("show_disqus_thread");
     if (x.style.display === "none") {
@@ -161,6 +211,7 @@ href="https://www.digitalocean.com/community/tutorials/how-to-set-up-the-code-se
     }
   }
 </script>
+
 
 </body>
 

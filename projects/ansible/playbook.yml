@@ -57,13 +57,27 @@
       when: item.ansible_facts.name == "projects"
       loop: "{{ html_files.results }}"
 
+    - name: read the csv file
+      read_csv:
+        path: "/Users/jw/Documents/GitHub/julianwe.github.io/projects/projects/projects.csv"
+        delimiter: ','
+      register: projects_csv
+
+    - name: debug
+      debug:
+        msg: "{{ item }}, {{ projectsj2 }}"
+      loop: "{{ projects_csv.list }}"
+
+
+
     - name: create project site
       template:
         src: "{{ projectsj2 }}"
         dest: "{{ path }}/projects.html"
       delegate_to: localhost
-      when: item.ansible_facts.name == "projects"
-      loop: "{{ html_files.results }}"
+      loop: "{{ projects_csv.list }}"
+
+    - meta: end_play
 
     # - name: Stop a container
     #   docker_container:

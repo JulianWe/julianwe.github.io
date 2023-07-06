@@ -1,4 +1,4 @@
-# ERC-20 - Smart Contract tutorial 🐇
+# ERC-20 Smart Contract tutorial 🐇
 
 ![](../ERC-20/images/ERC-20-Token.jpg)
 
