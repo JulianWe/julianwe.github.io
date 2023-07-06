@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+  <link rel="stylesheet" href="./css/cards.css">
 </head>
 
 <body>
@@ -21,14 +21,13 @@
 
       <!-- Float links to the right. Hide them on small screens -->
       <div class="w3-right w3-small">
-        <a href="projects.html" class="w3-bar-item w3-button">Projects</a>
+        <a href="projects.html#projects" class="w3-bar-item w3-button">Projects</a>
         <a href="about.html" class="w3-bar-item w3-button">About</a>
         <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
         <a href="search.html" class="w3-bar-item w3-button">🔍</a>
       </div>
     </div>
   </div>
-
 
   <!-- Header -->
   <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
@@ -44,87 +43,100 @@
     <!-- Projects Section -->
     <div class="w3-container w3-padding-32" id="Projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
-      <div id='content'>
-            <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>🐇 Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Website Tutorial</code></td>
-<td>🕳️ <a href="projects/website/website.html">Create a Website using
-Docker and GitHub Pages</a></td>
-</tr>
-<tr class="even">
-<td><code>Ansible Tutorial</code></td>
-<td>🕳️ <a href="projects/ansible/ansible.html">How to create a
-decentralized Website using Ansible</a></td>
-</tr>
-<tr class="odd">
-<td><code>Akash Deployment Tutorial</code></td>
-<td>🕳️ <a href="projects/akash/akash.html">Akash Deployment
-Tutorial</a></td>
-</tr>
-<tr class="even">
-<td><code>IPFS Tutorial</code></td>
-<td>🕳️ <a href="projects/ipfs/ipfs.html">How to deploy a Website on
-IPFS</a></td>
-</tr>
-<tr class="odd">
-<td><code>Sentinel Tutorial</code></td>
-<td>🕳️ <a href="projects/sentinel/sentinel.html">Sentinel Decentralized
-VPN Tutorial</a></td>
-</tr>
-<tr class="even">
-<td><code>Hanshake Tutorial</code></td>
-<td>🕳️ <a href="projects/handshake/handshake.html">How to use Hanshake
-decentraliced naming and certificate authority</a></td>
-</tr>
-<tr class="odd">
-<td><code>Smart Contract Tutorial</code></td>
-<td>🕳️ <a
-href="projects/SmartContractTutorial/SmartContractTutorial.html">How
-deploy voting contract on Ethereum testnetwork</a></td>
-</tr>
-<tr class="even">
-<td><code>Multisig Ethereum Wallet</code></td>
-<td>🕳️ <a
-href="projects/MultiSigEthereumWallet/MultiSigEthereumWallet.html">How
-deploy Multisig Ethereum wallet on Ethereum testnetwork</a></td>
-</tr>
-<tr class="odd">
-<td><code>ERC-20 Token</code></td>
-<td>🕳️ <a href="projects/ERC-20/ERC-20.html">How deploy ERC-20 Token on
-Ethereum Testnetwork</a></td>
-</tr>
-<tr class="even">
-<td><code>VS Code Server</code></td>
-<td>🕳️ <a href="projects/vsc/vsc.html">How deploy VS Code
-Server</a></td>
-</tr>
-<tr class="odd">
-<td><code>Brave rewards</code></td>
-<td>🕳️ <a href="projects/brave/brave.html">How to enable Brave rewards
-on your Website</a></td>
-</tr>
-</tbody>
-</table>
-      </div>
+        <!-- partial:index.partial.html -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+        <section class="hero-section">
+          <div class="card-grid">
+            <a class="card" href="projects/akash/akash.html">
+              <div class="card__background" style="background-image: url(./projects/akash/images/akt.jpg)"></div>
+              <div class="card__content">
+                <p class="card__category">Decentralization</p>
+                <h3 class="card__heading">Akash Tutorial</h3>
+              </div>
+            </a>
+            <a class="card" href="projects/ansible/ansible.html">
+              <div class="card__background" style="background-image: url(./projects/ansible/images/ansible.jpg)">
+              </div>
+              <div class="card__content">
+                <p class="card__category">Automation</p>
+                <h3 class="card__heading">Ansible Automation</h3>
+              </div>
+            </a>
+            <a class="card" href="projects/brave/brave.html">
+              <div class="card__background" style="background-image: url(./projects/brave/images/bat.jpg)">
+              </div>
+              <div class="card__content">
+                <p class="card__category">Decentralization</p>
+                <h3 class="card__heading">Brave Rewards on your Website</h3>
+              </div>
+              </li>
+              <a class="card" href="projects/vsc/images/vscode.jpg">
+                <div class="card__background" style="background-image: url(./projects/vsc/images/vscode.jpg)">
+                </div>
+                <div class="card__content">
+                  <p class="card__category">Coding</p>
+                  <h3 class="card__heading">Visual Studio Code Server</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/ERC-20/ERC-20.html">
+                <div class="card__background" style="background-image: url(./projects/ERC-20/images/erc20.jpg)"></div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">ERC-20 Ethereum Token Tutorial</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/handshake/handshake.html">
+                <div class="card__background" style="background-image: url(./projects/handshake/images/h.jpg)"></div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">Hanshake Decentralized naming and certificate authority</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/ipfs/ipfs.html">
+                <div class="card__background" style="background-image: url(./projects/ipfs/images/ipf.jpg)"></div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">IPFS Inter Planetary File System Tutorial</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/sentinel/sentinel.html">
+                <div class="card__background" style="background-image: url(./projects/sentinel/images/dvpn.jpg)"></div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">Sentinel Decentralied VPN</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/website/website.html">
+                <div class="card__background" style="background-image: url(./projects/website/images/ghp.jpg)"></div>
+                <div class="card__content">
+                  <p class="card__category">Webdesign</p>
+                  <h3 class="card__heading">Create a Website on Github Pages</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/SmartContractTutorial/SmartContractTutorial.html">
+                <div class="card__background"
+                  style="background-image: url(./projects/SmartContractTutorial/images/sol.jpg)">
+                </div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">Create a Solidity Voting Smart Contract</h3>
+                </div>
+              </a>
+              <a class="card" href="projects/MultiSigEthereumWallet/MultiSigEthereumWallet.html">
+                <div class="card__background"
+                  style="background-image: url(./projects/MultiSigEthereumWallet/images/msw.jpg)">
+                </div>
+                <div class="card__content">
+                  <p class="card__category">Decentralization</p>
+                  <h3 class="card__heading">Create a Solidity Multisig Wallet</h3>
+                </div>
+              </a>
+              <div>
+        </section>
     </div>
   </div>
-
   <!-- End page content -->
-
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/tables.css">
 
   <!-- Footer -->
   <footer class="w3-center w3-black w3-padding-16">
