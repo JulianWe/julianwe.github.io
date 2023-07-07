@@ -189,9 +189,8 @@ jobs:
 ``` 
 
 
-**Example SDL File for Akash**
 <details>
-<summary>Show equivalent JSX</summary>
+<summary>Example SDL File for Akash</summary>
 
 ```jsx
 ```yaml
@@ -227,4 +226,4 @@ deployment:
       profile: webapp
       count: 1
 ``` 
-```
+``` 

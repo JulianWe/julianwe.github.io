@@ -1,0 +1,198 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Browser Titel -->
+  <title>chainlink</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
+  <link rel="canonical" href="https://julianwe.github.io/projects/chainlink/chainlink.html#disqus_thread">
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../../css/markdown.css">
+  <link rel="stylesheet" href="../../css/splendor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.min.css"/>
+
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+<!-- Start README -->
+
+<h1 id="how-to-create-a-chainlink-node">How to create a Chainlink
+Node</h1>
+<p><img src="../chainlink/images/chainlink.jpg" /></p>
+<p><a href="https://docs.chain.link/">Docs</a></p>
+<p><strong>Run Ethereum Client</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ethereum/client-go:latest</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.geth-goerli</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> eth <span class="at">-p</span> 8546:8546 <span class="at">-v</span> ~/.geth-goerli:/geth <span class="at">-it</span> <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ethereum/client-go <span class="at">--goerli</span> <span class="at">--ws</span> <span class="at">--ipcdisable</span> <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--ws.addr</span> 0.0.0.0 <span class="at">--ws.origins</span><span class="op">=</span><span class="st">&quot;*&quot;</span> <span class="at">--datadir</span> /geth</span></code></pre></div>
+<p><strong>create alchemy or infura account</strong>
+ETH_URL=wss://eth-goerli.alchemyapi.io/v2/YOUR_PROJECT_ID
+ETH_URL=wss://goerli.infura.io/ws/v3/YOUR_PROJECT_ID</p>
+<p>ETH_URL=wss://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3
+https://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3</p>
+<p><strong>create postgres database</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> cl-postgres <span class="at">-e</span> POSTGRES_PASSWORD=test0815test0815 <span class="at">-p</span> 5432:5432 <span class="at">-d</span> postgres</span></code></pre></div>
+<p><strong>create toml config</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.chainlink-goerli</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;[Log]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">Level = &#39;warn&#39;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">[WebServer]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">AllowOrigins = &#39;*&#39;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">SecureCookies = false</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">[WebServer.TLS]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">HTTPSPort = 0</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">[[EVM]]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">ChainID = &#39;5&#39;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">[[EVM.Nodes]]</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">Name = &#39;Goerli&#39;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">WSURL = &#39;wss://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3&#39;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">HTTPURL = &#39;https://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3&#39;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span> <span class="op">&gt;</span> ~/.chainlink-goerli/config.toml</span></code></pre></div>
+<p><strong>create database password config</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;[Password]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">Keystore = &#39;test0815test0815&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">[Database]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">URL = &#39;postgresql://postgres:test0815test0815@host.docker.internal:5432/postgres?sslmode=disable&#39;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span> <span class="op">&gt;</span> ~/.chainlink-goerli/secrets.toml</span></code></pre></div>
+<p><strong>start chainlink container</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/.chainlink-goerli <span class="kw">&amp;&amp;</span> <span class="ex">docker</span> run <span class="at">--platform</span> linux/x86_64/v8 <span class="at">--name</span> chainlink <span class="at">-v</span> ~/.chainlink-goerli:/chainlink <span class="at">-it</span> <span class="at">-p</span> 6688:6688 <span class="at">--add-host</span><span class="op">=</span>host.docker.internal:host-gateway smartcontract/chainlink:2.0.0 node <span class="at">-config</span> /chainlink/config.toml <span class="at">-secrets</span> /chainlink/secrets.toml start</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API EMail:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API Password:</span></code></pre></div>
+<p><strong>Connect chainlink UI</strong> http://localhost:6688</p>
+<p><img src="../chainlink/images/Operator.jpg" /></p>
+
+<!-- END README -->
+
+<!-- Hide show comments -->
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments&nbsp;</b>💬</span></button></p>
+
+<link rel="stylesheet" href="../../css/w3.css">
+<p class="w3-clear"></p>
+
+<div id="show_disqus_thread" style="display:none">
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/chainlink/chainlink.html"; 
+      this.page.identifier = 6;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js'; <!-- 'https://https-julianwe-github-io-1.disqus.com/embed.js' -->
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script> <!--'https://https-julianwe-github-io-1.disqus.com/count.js' -->
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+  <!-- Recommendations -->
+  <div id="disqus_recommendations"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date()); // 
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <!-- End Recommendations -->
+</div>
+
+
+<!-- Functions -->
+<script>
+  
+  <!-- clipboard -->
+  const copyButtonLabel = "Copy Code";
+
+  // use a class selector if available
+  let blocks = document.querySelectorAll("pre");
+
+  blocks.forEach((block) => {
+    // only add button if browser supports Clipboard API
+    if (navigator.clipboard) {
+      let button = document.createElement("button");
+
+      button.innerText = copyButtonLabel;
+      block.appendChild(button);
+
+      button.addEventListener("click", async () => {
+        await copyCode(block, button);
+      });
+    }
+  });
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    // visual feedback that task is completed
+    button.innerText = "Code Copied";
+
+    setTimeout(() => {
+      button.innerText = copyButtonLabel;
+    }, 700);
+  }
+
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+<!-- CodeBlock JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
+
+
+</body>
+
+</html>

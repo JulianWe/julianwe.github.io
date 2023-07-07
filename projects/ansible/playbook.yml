@@ -63,21 +63,17 @@
         delimiter: ','
       register: projects_csv
 
-    - name: debug
-      debug:
-        msg: "{{ item }}, {{ projectsj2 }}"
-      loop: "{{ projects_csv.list }}"
+
+    #     msg: "{{ item }}, {{ projectsj2 }}"
+    #   loop: "{{ projects_csv.list }}"
 
 
-
-    - name: create project site
-      template:
-        src: "{{ projectsj2 }}"
-        dest: "{{ path }}/projects.html"
-      delegate_to: localhost
-      loop: "{{ projects_csv.list }}"
-
-    - meta: end_play
+    # - name: create project site
+    #   template:
+    #     src: "{{ projectsj2 }}"
+    #     dest: "{{ path }}/projects.html"
+    #   delegate_to: localhost
+    #   loop: "{{ projects_csv.list }}"
 
     # - name: Stop a container
     #   docker_container:

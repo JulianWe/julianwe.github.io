@@ -2,22 +2,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- Browser Titel CHANGE-->
+  <!-- Browser Titel -->
   <title>website</title>
   <!-- Favicon  -->
-  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png"
-    sizes="192x192" />
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
+  <link rel="canonical" href="https://julianwe.github.io/projects/website/website.html#disqus_thread">
   <!-- CSS  -->
   <link rel="stylesheet" href="../../css/markdown.css">
-  <link rel="stylesheet" href="../../css/splendor.css"
-  <link rel="stylesheet" href="../../css/preview.css"
-
+  <link rel="stylesheet" href="../../css/splendor.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css">
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.min.css"/>
 
-
-  <link rel="canonical" href="https://julianwe.github.io/projects/website/website.html#disqus_thread">
 </head>
 
 <!-- Navbar -->
@@ -198,10 +193,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)</code></pre>
-<strong>Example SDL File for Akash</strong>
 <details>
 <summary>
-Show equivalent JSX
+Example SDL File for Akash
 </summary>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="vs">```yaml</span></span>
@@ -241,8 +235,7 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
 <!-- END README -->
 
 <!-- Hide show comments -->
-<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments
-      &nbsp;</b>💬</span></button></p>
+<p class="w3-right"><button class="w3-button w3-white" onclick="hideClick('show_disqus_thread')"><b>Comments&nbsp;</b>💬</span></button></p>
 
 <link rel="stylesheet" href="../../css/w3.css">
 <p class="w3-clear"></p>
@@ -253,7 +246,7 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/website/website.html"; 
-      this.page.identifier = 12;
+      this.page.identifier = 13;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
@@ -286,9 +279,11 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
   <!-- End Recommendations -->
 </div>
 
+
 <!-- Functions -->
 <script>
-<!-- clipboard -->
+  
+  <!-- clipboard -->
   const copyButtonLabel = "Copy Code";
 
   // use a class selector if available
@@ -322,8 +317,6 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
     }, 700);
   }
 
-
-
   function hideClick() {
     var x = document.getElementById("show_disqus_thread");
     if (x.style.display === "none") {
@@ -341,6 +334,10 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
     }
   }
 </script>
+
+<!-- CodeBlock JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
 
 
 </body>

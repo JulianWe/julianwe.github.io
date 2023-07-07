@@ -174,9 +174,9 @@ added QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4 julianwe.github.io
 ```
 
 **IPFS Links to your Website**
-**[ipfs://QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4](ipfs://QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4)**
-**[ipfs://ipfs://bafybeichfy7z4ci6busrjvhfslglox6vxcoshdg3tgqh6ikvhwd2fqqyg4/projects/ipfs/ipfs.html](ipfs://bafybeigs3i74yqmnrsshyjffmmrnxp5d6p3brobimprbsvzps6ghs3ecsm/projects/ipfs/ipfs.html)**
-**[https://gateway.ipfs.io/ipfs/QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4](https://gateway.ipfs.io/ipfs/QmT8WZM21D1cAJBFtuVUD7MWX8vSYarHStHavvCt847RK4)**
+**[ipfs://QmTtVgHuVWQEETLcPr1SVQNSvcTtosBKr1R8ehQgvps8Yd](ipfs://QmTtVgHuVWQEETLcPr1SVQNSvcTtosBKr1R8ehQgvps8Yd)**
+**[ipfs://ipfs://bafybeicsolhq5q2hfaz6kdyhwvws5vnrrmlfyxasawd7eokrvwktzclkiy/projects/ipfs/ipfs.html](ipfs://bafybeigs3i74yqmnrsshyjffmmrnxp5d6p3brobimprbsvzps6ghs3ecsm/projects/ipfs/ipfs.html)**
+**[https://gateway.ipfs.io/ipfs/QmTtVgHuVWQEETLcPr1SVQNSvcTtosBKr1R8ehQgvps8Yd](https://gateway.ipfs.io/ipfs/QmTtVgHuVWQEETLcPr1SVQNSvcTtosBKr1R8ehQgvps8Yd)**
 
 
 **Go to https://app.ens.domains/ and Link your content Hash to ENS Domain**
