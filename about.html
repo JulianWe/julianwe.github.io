@@ -8,7 +8,10 @@
     sizes="192x192" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./css/icons.css">
+  <link rel="stylesheet" href="./css/about.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/w3.css">
 </head>
 
 <body>
@@ -28,33 +31,21 @@
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-    <img class="w3-image" src="https://raw.githubusercontent.com/JulianWe/julianwe.github.io/main/images/git.jpg"
-      alt="GitBlog" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-      <h1 class="w3-large w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>This is a GitBlog by JulianWe.</b></span>
+  <!-- partial:index.partial.html -->
+  <div class="card" data-state="#about">
+    <div class="card-header">
+      <img class="card-avatar" src="./images/me.jpg" alt="avatar" />
+      <h1 class="card-fullname">Julian Wendland</h1>
+      <h2 class="card-jobtitle">Devops</h2>
     </div>
-  </header>
-
-  <!-- Page content -->
-  <div class="w3-content w3-padding" style="max-width:1564px">
-    <!-- About Section -->
-    <div class="w3-container w3-padding-32" id="about">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
-      <p>This Website is designed & hosted on GitHub and describes how to design and host a Website on Github or
-        alternetivly on a Decentralized cloud.
-      </p>
-    </div>
-    <div class="w3-row-padding w3-grayscale">
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <img src="https://raw.githubusercontent.com/JulianWe/julianwe.github.io/main/images/me.jpg" alt="JulianWe"
-          style="width:100%">
-        <h3>Julian We</h3>
-        <p class="w3-opacity">Website Creator</p>
-        <p>IT Consultant, Instructor & Forscher</p>
-        <p>
-          Find me on
+    <div class="card-main">
+      <div class="card-section is-active" id="about">
+        <div class="card-content">
+          <div class="card-subtitle">ABOUT</div>
+          <p class="card-desc">This Website is designed & hosted on GitHub and describes how to design and
+            host a Website on Github or
+            alternetivly on a Decentralized cloud.
+          </p>
           <a class="icon" target="_blank" rel="noopener" href="https://github.com/JulianWe" aria-label="github">
             <i class="fab fa-github"></i></a>
           <a class="icon" target="_blank" rel="noopener" href="https://twitter.com/APYieldFarmer" aria-label="twitter">
@@ -66,27 +57,50 @@
             aria-label="ethereum">
             <i class="fab fa-ethereum"></i>
           </a>
-        </p>
-        <p><a href="contact.html" class="w3-button w3-light-grey w3-block">Contact</a></p>
+
+        </div>
+      </div>
+      <div class="card-section" id="experience">
+        <div class="card-content">
+          <div class="card-subtitle">WORK EXPERIENCE</div>
+          <div class="card-timeline">
+            <div class="card-item" data-year="2023">
+              <div class="card-item-title">IT Consultant <span></span>Söldner Consult</div>
+              <div class="card-item-desc">Senior Consultant</div>
+            </div>
+            <div class="card-item" data-year="2020">
+              <div class="card-item-title">DevOps - Private Cloud <span></span>SAP</div>
+              <div class="card-item-desc">Senior Consultant</div>
+            </div>
+            <div class="card-item" data-year="2021">
+              <div class="card-item-title">Consulting <span>Sunrise Communications</span></div>
+              <div class="card-item-desc">Senior Consultant</div>
+            </div>
+            <div class="card-item" data-year="2020">
+              <div class="card-item-title">DevOps - Private Cloud <span>BSS Beiersdorf</span></div>
+              <div class="card-item-desc">Senior Consultant</div>
+            </div>
+            <div class="card-item" data-year="2019">
+              <div class="card-item-title">Enterprise Architekt <span>Bundesagentur für Arbeit</span></div>
+              <div class="card-item-desc">Senior Consultant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-buttons">
+        <button data-section="#about" class="is-active">ABOUT</button>
+        <button data-section="#experience">EXPERIENCE</button>
+
       </div>
     </div>
   </div>
-  </div>
-
-  <!-- End About section -->
+  
+  <!-- partial -->
+  <script src="./js/about.js"></script>
 
   <!-- Icons -->
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-    crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'" />
 
-  <!-- jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-  <!-- Footer -->
-  <footer class="w3-center w3-black w3-padding-16">
-    <p>Soon running on <a href="https://akash.network/" title="Akash" target="_blank"
-        class="w3-hover-text-red">Akash</a></p>
-  </footer>
 
 </body>
 

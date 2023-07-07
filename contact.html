@@ -8,7 +8,9 @@
     sizes="192x192" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/w3.css">
 </head>
 
 <body>
@@ -28,42 +30,36 @@
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-    <img class="w3-image" src="https://raw.githubusercontent.com/JulianWe/julianwe.github.io/main/images/git.jpg"
-      alt="GitBlog" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-      <h1 class="w3-large w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>This is a GitBlog by JulianWe.</b></span>
-    </div>
-  </header>
-
-
-  <!-- Page content -->
-  <div class="w3-content w3-padding" style="max-width:1564px">
-    <!-- Contact Section -->
-    <div class="w3-container w3-padding-32" id="contact">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-      <form id="fcf-form-id" class="fcf-form-class" method="post" action="mail.php">
-
-      <p>Lets get in touch and talk about your next project.</p>
-      <form action="mail.php" target="_blank">
-        <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-        <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
-        <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
-        <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
-        <button class="w3-button w3-black w3-section" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </form>
-    </div>
+  <!-- Contact Section -->
+  <div class="login-box">
+    <h2>Contact</h2>
+    <form action="mailto:julianwendland@gmx.de" method="post" enctype="text/plain">
+      <div class="user-box">
+        <input type="text" name="" required="">
+        <label>Name</label>
+      </div>
+      <div class="user-box">
+        <input type="Email" name="" required="">
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input type="Subject" name="" required="">
+        <label>Subject</label>
+      </div>
+      <div class="user-box">
+        <input type="Message" name="" required="">
+        <label>Message</label>
+      </div>
+      <a type="submit" href="mailto:julianwendland@gmx.de">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </a>
+    </form>
   </div>
-  <!-- End page content -->
-
-  <!-- Footer -->
-  <footer class="w3-center w3-black w3-padding-16">
-    <p>Soon running on <a href="https://akash.network/" title="Akash" target="_blank"
-        class="w3-hover-text-red">Akash</a></p>
-  </footer>
 
 </body>
+
 </html>
