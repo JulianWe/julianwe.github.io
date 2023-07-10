@@ -9,7 +9,7 @@ brew install ansible
 
 **Convert Singel README file using Pandoc CLI**
 ```sh 
-pandoc -f markdown README.md > ansible.html
+pandoc -f markdown -t html5 README.md > test.html
 ```
 
 **Convert README files to HTML using bash script**

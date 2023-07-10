@@ -37,7 +37,7 @@
 
 
 
-# ☁️ Prepare `akash` environment & 🏳️ Start Installation
+# ☁️ Prepare akash` environment & 🏳️ Start Installation
 
 ```sh
 cd ~
@@ -102,7 +102,7 @@ It is the only way to recover your account if you ever forget your password.
 
 ******** ******** ******** ******** ******** ******** ******** ******** ******** ******** ********
 ```
-:warning: **Important** write this mnemonic phrase in a safe place. It is the only way to recover your account if you ever forget your password.
+**Important** write this mnemonic phrase in a safe place. It is the only way to recover your account if you ever forget your password.
 
 
 **How to export keys** 🔒
@@ -367,7 +367,7 @@ provider-services send-manifest deploy.yml --dseq $DSEQ --provider $PROVIDER --f
 provider-services lease-status --dseq $DSEQ --from $AKASH_KEY_NAME --provider $PROVIDER
 ```
 
-```text
+```sh
 jw@ChainLink:~$ akash deploy create deploy.yml --from $KEY_NAME --chain-id $AKASH_CHAIN_ID --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --fees 5000uakt
 Enter keyring passphrase:
 I[2021-03-14|16:43:00.592] tx sent successfully                         hash=58F0A15FCCB40B79BB98031DC43FB99DB2DB0824D966EE45B94C977EB39703B8 code=0 codespace= action=create-deployment dseq=83887

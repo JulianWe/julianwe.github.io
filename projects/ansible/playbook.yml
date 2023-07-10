@@ -1,25 +1,26 @@
+---
 - name: build html website
   hosts: localhost
   connection: localhost
   gather_facts: False
-
+  
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
-
+  
   vars_prompt:
     - name: pw
       prompt: Enter the Docker password
-
+  
   tasks:
-
+  
     - name: convert README to HTML
       shell: | 
         cd {{ path }}
-        for folder in projects/*; do pandoc -f markdown $folder/README.md > projects/${folder#*/}/${folder#*/}.html;  
+        for folder in projects/*; do pandoc -f markdown -t html5 $folder/README.md > projects/${folder#*/}/${folder#*/}.html;  
         done;
         ls {{ path }}/projects
       register: folder
-
+  
     - name: set project, URLs & directorys facts
       set_fact:
         name: "{{ item | trim ('/')}}"
@@ -32,7 +33,7 @@
       loop_control:
         index_var: index
       register: facts
-
+  
     - name: set html content facts
       set_fact:
         html: "{{ lookup('file', item.ansible_facts.file_path) }}"
@@ -42,7 +43,7 @@
         name: "{{ item.ansible_facts.name }}"
       loop: "{{ facts.results }}"
       register: html_files
-
+  
     - name: create project HTML sites
       template:
         src: "{{ projects_templatej2 }}"
@@ -50,43 +51,43 @@
       delegate_to: localhost
       when: item.ansible_facts.name != "projects"
       loop: "{{ html_files.results }}"
-
+  
     - name: set fact
       set_fact:
         projects_html: "{{ item.ansible_facts.html }}"
       when: item.ansible_facts.name == "projects"
       loop: "{{ html_files.results }}"
-
+  
     - name: read the csv file
       read_csv:
         path: "/Users/jw/Documents/GitHub/julianwe.github.io/projects/projects/projects.csv"
         delimiter: ','
       register: projects_csv
-
-
+  
+  
     #     msg: "{{ item }}, {{ projectsj2 }}"
     #   loop: "{{ projects_csv.list }}"
-
-
+  
+  
     # - name: create project site
     #   template:
     #     src: "{{ projectsj2 }}"
     #     dest: "{{ path }}/projects.html"
     #   delegate_to: localhost
     #   loop: "{{ projects_csv.list }}"
-
+  
     # - name: Stop a container
     #   docker_container:
     #     name: webapp
     #     state: stopped
-
+  
     # - name: Log into private registry and force re-authorization
     #   docker_login:
     #     username: "victorynox0815"
     #     password: "{{ pw }}"
     #     reauthorize: true
     #   register: login
-
+  
     # - name: Build an image and push
     #   docker_image:
     #     build:
@@ -97,11 +98,12 @@
     #     push: yes
     #     source: build
     #   delegate_to: localhost
-
+  
     # - name: Start a container
     #   docker_container:
     #     name: webapp
     #     state: started
-
+  
     - name: Deploy Website on IPFS
       command: ipfs add -r {{ path }}
+...

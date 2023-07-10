@@ -83,8 +83,3 @@ http://localhost:6688
 
 ![](../chainlink/images/Operator.jpg)
 
-
-
-
-
-

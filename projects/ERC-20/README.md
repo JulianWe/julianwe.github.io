@@ -27,7 +27,7 @@
 
 **4. Create Solidity Smart Contract file MyCustomToken.sol in Remix IDE**
 
-```solidity
+```java
 pragma solidity ^0.5.0;
 
 // ----------------------------------------------------------------------------

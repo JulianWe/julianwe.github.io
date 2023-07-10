@@ -1,0 +1,145 @@
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <!-- Browser Titel -->
+  <title>git</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
+  <link rel="canonical" href="https://julianwe.github.io/projects/git/git.html#disqus_thread">
+  <!-- CSS  -->
+  <head>
+  <link rel="stylesheet" href="../../css/w3.css">
+  </head>
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/markdown.css">
+
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+      <a href="https://github.com/JulianWe" class="w3-bar-item w3-button"><i class="fab fa-github"></i></a>
+  </div>
+</div>
+
+<!-- Start README -->
+
+<h1 id="github-cheatsheet">GitHub Cheatsheet</h1>
+<p><img src="../git/images/gitCheatsheet.jpg" /> <img
+src="../git/images/gitCheat.jpg" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--show-origin</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Your Name&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> set remote <span class="at">-v</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> new branch:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> name</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Switching</span> between branches</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull upstream master</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule deinit <span class="at">-f</span> . </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash</span></code></pre></div>
+
+<!-- END README -->
+
+<!-- Recommendations -->
+<div class="disqus_recommendations">
+  <div id="disqus_recommendations"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date()); // 
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+</div>
+<!-- End Recommendations -->
+
+<div class="disqus_thread">
+  <!-- Comments -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/git/git.html#disqus_thread";
+      this.page.identifier = 8;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Functions -->
+<script>
+
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+<!-- CodeBlock JS -->
+<script src="../../prism.js"></script>
+<script src="../../prismLines.js"></script>
+
+</body>
+
+</html>

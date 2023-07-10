@@ -27,7 +27,7 @@
 
 **4. Create Solidity Smart Contract file VotingContract.sol in Remix IDE**
 
-```solidity
+```java
 
 pragma solidity ^0.4.0;
 pragma experimental ABIEncoderV2;

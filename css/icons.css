@@ -1940,7 +1940,7 @@
 
 .fa-ethereum:before {
     content: "\f42e";
-    color: #0e74aa;
+    color: #102436;
 }
 
 .fa-ethernet:before {
@@ -2433,7 +2433,8 @@
 
 .fa-github:before {
     content: "\f09b";
-    color: #0e74aa
+    color: #102436
+    
 }
 
 .fa-github-alt:before {
@@ -3326,7 +3327,7 @@
 
 .fa-linkedin:before {
     content: "\f08c";
-    color: #0e74aa
+    color: #102436
 }
 
 .fa-linkedin-in:before {
@@ -5495,7 +5496,7 @@
 
 .fa-twitter:before {
     content: "\f099";
-    color: #0e74aa
+    color: #102436
 }
 
 .fa-twitter-square:before {
