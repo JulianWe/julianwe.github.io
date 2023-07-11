@@ -10,8 +10,9 @@
   <link rel="canonical" href="https://julianwe.github.io/projects/website/website.html#disqus_thread">
   <!-- CSS  -->
   <head>
-  <link rel="stylesheet" href="../../css/w3.css">
+    <link rel="stylesheet" href="../../css/w3.css">
   </head>
+  <link rel="stylesheet" href="../../css/icons.css">
   <link rel="stylesheet" href="../../css/prism.css">
   <link rel="stylesheet" href="../../css/markdown.css">
 
@@ -27,7 +28,6 @@
       <a href="../../about.html" class="w3-bar-item w3-button">About</a>
       <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
       <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
-      <a href="https://github.com/JulianWe" class="w3-bar-item w3-button"><i class="fab fa-github"></i></a>
   </div>
 </div>
 
@@ -46,7 +46,7 @@ encoding</strong></p>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">iconv</span> <span class="at">-t</span> utf-8 README.md <span class="kw">|</span> <span class="ex">pandoc</span> <span class="at">-t</span> html <span class="at">-o</span> README.html <span class="kw">|</span> <span class="fu">iconv</span> <span class="at">-f</span> utf-8</span></code></pre></div>
 <p><strong>How to build docker container</strong></p>
-<pre class="docker"><code>FROM ubuntu:latest
+<pre class="dockerimage"><code>FROM ubuntu:latest
 
 RUN apt-get update &amp;&amp; apt-get install -y curl
 RUN apt-get update &amp;&amp; apt-get install -y nginx
@@ -78,124 +78,126 @@ CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</code></pre>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder <span class="kw">in</span> projects/<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span> <span class="ex">pandoc</span> <span class="at">-f</span> markdown <span class="va">$folder</span>/README.md <span class="op">&gt;</span> test/<span class="va">${folder</span><span class="op">#</span><span class="pp">*</span>/<span class="va">}</span>.html<span class="kw">;</span>  <span class="cf">done</span></span></code></pre></div>
 <p><strong>Build Docker Container using ansible</strong></p>
-<pre class="ansible"><code>---
-- name: build html website
-  hosts: localhost
-  connection: localhost
-  gather_facts: False
-
-  vars:
-    path: &quot;/Users/jw/Documents/GitHub/julianwe.github.io&quot;
-
-  vars_prompt:
-    - name: pw
-      prompt: Enter the Docker password
-
-  tasks:
-
-    - name: convert README to HTML
-      shell: | 
-        cd {{ path }}
-        for folder in projects/*; do pandoc -f markdown $folder/README.md &gt; projects/${folder#*/}/${folder#*/}.html;  
-        done;
-        ls {{ path }}/projects
-      register: folder
-
-    - name: set project, URLs &amp; directorys facts
-      set_fact:
-        name: &quot;{{ item | trim (&#39;/&#39;)}}&quot;
-        file_path: &quot;{{ path }}/projects/{{ item }}/{{ item | trim (&#39;/&#39;)}}.html&quot;
-        projects_templatej2:  &quot;{{ path }}/projects/ansible/projects_template.j2&quot;
-        projectsj2: &quot;{{ path }}/projects/ansible/projects.j2&quot;
-        url: &quot;https://julianwe.github.io/projects/{{ item }}/{{ item | trim(&#39;/&#39;)}}.html&quot;
-        identifier: &quot;{{ index }}&quot;
-      loop: &quot;{{ folder.stdout_lines }}&quot;
-      loop_control:
-        index_var: index
-      register: facts
-
-    - name: set html content facts
-      set_fact:
-        html: &quot;{{ lookup(&#39;file&#39;, item.ansible_facts.file_path) }}&quot;
-        file_path: &quot;{{ item.ansible_facts.file_path }}&quot;
-        url: &quot;{{ item.ansible_facts.url }}&quot;
-        identifier: &quot;{{ item.ansible_facts.identifier }}&quot;
-        name: &quot;{{ item.ansible_facts.name }}&quot;
-      loop: &quot;{{ facts.results }}&quot;
-      register: html_files
-
-    - name: create project HTML sites
-      template:
-        src: &quot;{{ projects_templatej2 }}&quot;
-        dest: &quot;{{ item.ansible_facts.file_path }}&quot;
-      delegate_to: localhost
-      when: item.ansible_facts.name != &quot;projects&quot;
-      loop: &quot;{{ html_files.results }}&quot;
-
-    - name: set fact
-      set_fact:
-        projects_html: &quot;{{ item.ansible_facts.html }}&quot;
-      when: item.ansible_facts.name == &quot;projects&quot;
-      loop: &quot;{{ html_files.results }}&quot;
-
-    - name: create project site
-      template:
-        src: &quot;{{ projectsj2 }}&quot;
-        dest: &quot;{{ path }}/projects.html&quot;
-      delegate_to: localhost
-      when: item.ansible_facts.name == &quot;projects&quot;
-      loop: &quot;{{ html_files.results }}&quot;
-
-    - name: Stop a container
-      docker_container:
-        name: webapp
-        state: stopped
-
-    - name: Log into private registry and force re-authorization
-      docker_login:
-        username: &quot;victorynox0815&quot;
-        password: &quot;{{ pw }}&quot;
-        reauthorize: true
-      register: login
-
-    - name: Build an image and push
-      docker_image:
-        build:
-          path: &quot;{{ path }}&quot; 
-        name: victorynox0815/docker-repo:webapp
-        tag: v1
-        force_source: yes
-        push: yes
-        source: build
-      delegate_to: localhost
-
-    - name: Start a container
-      docker_container:
-        name: webapp
-        state: started
-
-    - name: Deploy Website on IPFS
-      command: ipfs add -r {{ path }}</code></pre>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> build html website</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hosts</span><span class="kw">:</span><span class="at"> localhost</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">connection</span><span class="kw">:</span><span class="at"> localhost</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">gather_facts</span><span class="kw">:</span><span class="at"> </span><span class="ch">False</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">vars</span><span class="kw">:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;/Users/jw/Documents/GitHub/julianwe.github.io&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">vars_prompt</span><span class="kw">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> pw</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">prompt</span><span class="kw">:</span><span class="at"> Enter the Docker password</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tasks</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> convert README to HTML</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">      shell</span><span class="kw">: </span><span class="ch">|</span><span class="at"> </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        cd {{ path }}</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        for folder in projects/*; do pandoc -f markdown $folder/README.md &gt; projects/${folder#*/}/${folder#*/}.html;  </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        done;</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        ls {{ path }}/projects</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">register</span><span class="kw">:</span><span class="at"> folder</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> set project, URLs &amp; directorys facts</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">set_fact</span><span class="kw">:</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item | trim (&#39;/&#39;)}}&quot;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file_path</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ path }}/projects/{{ item }}/{{ item | trim (&#39;/&#39;)}}.html&quot;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">projects_templatej2</span><span class="kw">:</span><span class="at">  </span><span class="st">&quot;{{ path }}/projects/ansible/projects_template.j2&quot;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">projectsj2</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ path }}/projects/ansible/projects.j2&quot;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">url</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;https://julianwe.github.io/projects/{{ item }}/{{ item | trim(&#39;/&#39;)}}.html&quot;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">identifier</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ index }}&quot;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ folder.stdout_lines }}&quot;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop_control</span><span class="kw">:</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">index_var</span><span class="kw">:</span><span class="at"> index</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">register</span><span class="kw">:</span><span class="at"> facts</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> set html content facts</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">set_fact</span><span class="kw">:</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">html</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ lookup(&#39;file&#39;, item.ansible_facts.file_path) }}&quot;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file_path</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.file_path }}&quot;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">url</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.url }}&quot;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">identifier</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.identifier }}&quot;</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.name }}&quot;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ facts.results }}&quot;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">register</span><span class="kw">:</span><span class="at"> html_files</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> create project HTML sites</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">src</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ projects_templatej2 }}&quot;</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">dest</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.file_path }}&quot;</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">delegate_to</span><span class="kw">:</span><span class="at"> localhost</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">when</span><span class="kw">:</span><span class="at"> item.ansible_facts.name != &quot;projects&quot;</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ html_files.results }}&quot;</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> set fact</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">set_fact</span><span class="kw">:</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">projects_html</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ item.ansible_facts.html }}&quot;</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">when</span><span class="kw">:</span><span class="at"> item.ansible_facts.name == &quot;projects&quot;</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ html_files.results }}&quot;</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> create project site</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">src</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ projectsj2 }}&quot;</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">dest</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ path }}/projects.html&quot;</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">delegate_to</span><span class="kw">:</span><span class="at"> localhost</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">when</span><span class="kw">:</span><span class="at"> item.ansible_facts.name == &quot;projects&quot;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">loop</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ html_files.results }}&quot;</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Stop a container</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">docker_container</span><span class="kw">:</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> webapp</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">state</span><span class="kw">:</span><span class="at"> stopped</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log into private registry and force re-authorization</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">docker_login</span><span class="kw">:</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">username</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;victorynox0815&quot;</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">password</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ pw }}&quot;</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">reauthorize</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">register</span><span class="kw">:</span><span class="at"> login</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build an image and push</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">docker_image</span><span class="kw">:</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ path }}&quot;</span><span class="at"> </span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> victorynox0815/docker-repo:webapp</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">tag</span><span class="kw">:</span><span class="at"> v1</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">force_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">push</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> build</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">delegate_to</span><span class="kw">:</span><span class="at"> localhost</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Start a container</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">docker_container</span><span class="kw">:</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> webapp</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">state</span><span class="kw">:</span><span class="at"> started</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy Website on IPFS</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> ipfs add -r {{ path }}</span></span></code></pre></div>
 <p><img src="../website/images/pages.jpg" /> <strong>Create
 .github/workflows/docker-image.yml Action file</strong></p>
-<pre class="docker"><code>name: Docker Image CI
-
-on:
-  push:
-    branches: [ &quot;main&quot; ]
-  pull_request:
-    branches: [ &quot;main&quot; ]
-
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)</code></pre>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Docker Image CI</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">&quot;main&quot;</span><span class="at"> </span><span class="kw">]</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">&quot;main&quot;</span><span class="at"> </span><span class="kw">]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build the Docker image</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker build . --file Dockerfile --tag my-image-name:$(date +%s)</span></span></code></pre></div>
 <details>
 <summary>
 Example SDL File for Akash
@@ -303,8 +305,8 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
 </script>
 
 <!-- CodeBlock JS -->
-<script src="../../prism.js"></script>
-<script src="../../prismLines.js"></script>
+<script src="../../js/prism.js"></script>
+<script src="../../js/prismLines.js"></script>
 
 </body>
 

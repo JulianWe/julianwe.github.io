@@ -21,7 +21,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ```
 
 **Or convert README files to HTML using Ansible Playbook**
-```yaml
+```yml
 ---
 - name: build html website
   hosts: localhost

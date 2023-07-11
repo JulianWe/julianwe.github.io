@@ -17,7 +17,7 @@ iconv -t utf-8 README.md | pandoc -t html -o README.html | iconv -f utf-8
 
 **How to build docker container**
 
-```docker
+```yml
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y curl
@@ -62,7 +62,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 
 **Build Docker Container using ansible**
 
-```ansible
+```yml
 ---
 - name: build html website
   hosts: localhost
@@ -167,7 +167,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 ![](../website/images/pages.jpg)
 **Create .github/workflows/docker-image.yml Action file**
 
-```docker
+```yml
 name: Docker Image CI
 
 on:
