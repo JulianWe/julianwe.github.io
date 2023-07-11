@@ -9,12 +9,12 @@ tags:
 category:
     - decentralization
 description: How to use Sentinel DVPN on Mac OS cli.
-photos: /projects/sentinel/images/sentinel.jpg
+photos: ../sentinel/images/1_sentinel.jpg
 ---
 
 # ☁️ [Sentinel DVPN](https://sentinel.co/) Tutorial 🐇
 
-![](../sentinel/images/sentinel.jpg)
+![](../sentinel/images/1_sentinel.jpg)
 
 | Key | Value |
 | --- | --- |
@@ -23,8 +23,8 @@ photos: /projects/sentinel/images/sentinel.jpg
 | `$AKT Address` | `sent1nzsagwgzjmpcu0csx6xxmhhn5zuynwxfnghzmg` |
 
 
-**Variables**
-|Name|Description|Example values |
+
+| Name | Description | Example values |
 |---|---|---|
 |`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
 |`KEYRING_BACKEND`| Keyring backend to use for local keys. (os,file or test) | `file` |

@@ -1,3 +1,18 @@
+---
+title: 'Akash AKT Tutorial '
+date: 2023-06-19 19:30
+tags:
+    - web3
+    - akt
+    - cloud
+    - blockchain
+    - crypto
+category:
+    - decentralization
+description: How to use Akash on Mac OS cli.
+photos: ../akash/images/akash.jpg
+---
+
 # ☁️ [Akash](https://akash.network/) deployment Tutorial 🐇
 
 ![](../akash/images/akash.jpg)

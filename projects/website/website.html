@@ -8,6 +8,7 @@
   <!-- Favicon  -->
   <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
   <link rel="canonical" href="https://julianwe.github.io/projects/website/website.html#disqus_thread">
+
   <!-- CSS  -->
   <head>
     <link rel="stylesheet" href="../../css/w3.css">
@@ -31,6 +32,7 @@
   </div>
 </div>
 
+
 <!-- Start README -->
 
 <h1 id="create-a-website-using-docker-and-github-pages">Create a Website
@@ -46,18 +48,19 @@ encoding</strong></p>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">iconv</span> <span class="at">-t</span> utf-8 README.md <span class="kw">|</span> <span class="ex">pandoc</span> <span class="at">-t</span> html <span class="at">-o</span> README.html <span class="kw">|</span> <span class="fu">iconv</span> <span class="at">-f</span> utf-8</span></code></pre></div>
 <p><strong>How to build docker container</strong></p>
-<pre class="dockerimage"><code>FROM ubuntu:latest
-
-RUN apt-get update &amp;&amp; apt-get install -y curl
-RUN apt-get update &amp;&amp; apt-get install -y nginx
-
-RUN apt-get install npm -y
-RUN apt-get install nodejs -y
-RUN apt-get install vim -y
-
-COPY . /var/www/html/
-
-CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</code></pre>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">FROM ubuntu:latest</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y curl</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y nginx</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install npm -y</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install nodejs -y</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install vim -y</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">COPY . /var/www/html/</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span></span></code></pre></div>
 <p><strong>How to run docker container</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dockerimage</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> webapp .</span>
@@ -258,8 +261,8 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
 </div>
 <!-- End Recommendations -->
 
+<!-- Comments -->
 <div class="disqus_thread">
-  <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
@@ -280,7 +283,7 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
     </div>
   </div>
 </div>
-
+<!-- End Comments -->
 
 
 <!-- Functions -->
