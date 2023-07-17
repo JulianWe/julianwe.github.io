@@ -6,7 +6,7 @@
 
 | Key | Value |
 | --- | --- |
-| `Source Code` | 🕳️ [Pluralsight - Ivan Mushketyk](https://www.pluralsight.com/coursesethereum-blockchain-developing-applications) |
+| `Source Code` | 🕳️ [Pluralsight - Ivan Mushketyk](https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications) |
 | `Tutorial Author` | ☕ `Julian Wendland` |
 | `$ETH Address` | `0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72` |
 

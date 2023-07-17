@@ -59,6 +59,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ``` 
 
+**[Awesome VIM Colorschemes: https://github.com/rafi/awesome-vim-colorschemes](https://github.com/rafi/awesome-vim-colorschemes)**
 
 **create ~/.vimrc file**
 ```yaml
