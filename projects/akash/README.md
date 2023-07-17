@@ -184,7 +184,7 @@ pagination:
 [Choose deployment image](https://github.com/ovrclk/awesome-akash)
 Create a deployment configuration file: `deploy.yml` to deploy the `ovrclk/lunie-light` for [Lunie Light](https://github.com/ovrclk/lunie-light) Node app container using [SDL](https://github.com/ovrclk/docs/blob/5d695ab63f391ebf255d48859ed3f626040fbf47/sdl/README.md):
 
-```sh
+```yml
 cat > deploy.yml <<EOF
 ---
 version: '2.0'
