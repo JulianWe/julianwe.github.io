@@ -17,7 +17,7 @@ iconv -t utf-8 README.md | pandoc -t html -o README.html | iconv -f utf-8
 
 **How to build docker container**
 
-```yml
+```dockerfile
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y curl

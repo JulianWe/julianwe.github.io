@@ -7,12 +7,12 @@
   vars:
     path: "/Users/jw/Documents/GitHub/julianwe.github.io"
   
-  vars_prompt:
-    - name: pw
-      prompt: Enter the Docker password
+  # vars_prompt:
+  #   - name: pw
+  #     prompt: Enter the Docker password
   
   tasks:
-  
+
     - name: convert README to HTML
       shell: | 
         cd {{ path }}
@@ -27,6 +27,7 @@
         file_path: "{{ path }}/projects/{{ item }}/{{ item | trim ('/')}}.html"
         projects_templatej2:  "{{ path }}/projects/ansible/projects_template.j2"
         projectsj2: "{{ path }}/projects/ansible/projects.j2"
+        projectj2: "{{ path }}/projects/ansible/project.j2"
         url: "https://julianwe.github.io/projects/{{ item }}/{{ item | trim('/')}}.html"
         identifier: "{{ index }}"
       loop: "{{ folder.stdout_lines }}"
@@ -43,7 +44,37 @@
         name: "{{ item.ansible_facts.name }}"
       loop: "{{ facts.results }}"
       register: html_files
-  
+
+    # - name: regex replace class sourceCode mit language-
+    #   set_fact:
+    #     language: "{{ item.ansible_facts.html | regex_search('sourceCode ') | first }}"      
+    #   loop: "{{ html_files.results }}"
+    #   register: language
+
+    # - name: debug
+    #   debug:
+    #     msg: "{{ language }}"
+
+    # - name: debug
+    #   debug:
+    #     msg: "{{ item.ansible_facts.html  | grep -Po '(?<=(sourceCode ).*(?= code)' }}"
+    #   loop: "{{ html_files.results }}"
+
+    # - meta: end_play
+
+
+    # - meta: end_play
+
+    # - name: regex replace class sourceCode mit language-
+    #   replace:
+    #     path: "{{ item.ansible_facts.file_path }}" #item.ansible_facts.file_path
+    #     regexp: '<div class="sourceCode"'
+    #     replace: '<div class="language-"'
+    #   loop: "{{ html_files.results }}"
+    #   register: syntax_highlighting
+
+    # - meta: end_play
+
     - name: create project HTML sites
       template:
         src: "{{ projects_templatej2 }}"
@@ -64,45 +95,67 @@
         delimiter: ','
       register: projects_csv
   
-  
-    #     msg: "{{ item }}, {{ projectsj2 }}"
-    #   loop: "{{ projects_csv.list }}"
-  
-  
-    # - name: create project site
+    # - name: debug
     #   template:
-    #     src: "{{ projectsj2 }}"
-    #     dest: "{{ path }}/projects.html"
+    #     src: "{{ lookup('file', '/Users/jw/Documents/GitHub/julianwe.github.io/projects/ansible/project.j2') }}"
+    #     dest: "{{ path }}/projects-test.html"
     #   delegate_to: localhost
     #   loop: "{{ projects_csv.list }}"
+
+      # cmd: |
+    # - name: crate projects
+    #   shell: | 
+    #     cat > {{ path }}/projects-test.html 'EOF'
+    #     <a class="card" href={{ item.link }}>
+    #      <div class="card__background" style="background-image: url({{ item.pic }})>
+    #        </div>
+    #        <div class="card__content">
+    #        <p class="card__category">{{ item.category }}</p>
+    #        <h3 class="card__heading">{{ item.description }}</h3>
+    #        </div>
+    #     </a>  
+    #     EOF   
+    #   loop: "{{ projects_csv.list }}"
+
+        
+
+    - meta: end_play
+
+
+    - name: create project site
+      template:
+        src: "{{ projectj2 }}"
+        dest: "{{ path }}/projects.html"
+      delegate_to: localhost
+      loop: "{{ projects_csv.list }}"
   
-    # - name: Stop a container
-    #   docker_container:
-    #     name: webapp
-    #     state: stopped
+    - name: Stop a container
+      docker_container:
+        name: docker-repo:webapp
+        state: stopped
   
-    # - name: Log into private registry and force re-authorization
-    #   docker_login:
-    #     username: "victorynox0815"
-    #     password: "{{ pw }}"
-    #     reauthorize: true
-    #   register: login
+    - name: Log into private registry and force re-authorization
+      docker_login:
+        username: "victorynox0815"
+        password: "{{ pw }}"
+        reauthorize: true
+      register: login
   
-    # - name: Build an image and push
-    #   docker_image:
-    #     build:
-    #       path: "{{ path }}" 
-    #     name: victorynox0815/docker-repo:webapp
-    #     tag: v1
-    #     force_source: yes
-    #     push: yes
-    #     source: build
-    #   delegate_to: localhost
+    - name: Build an image and push
+      docker_image:
+        build:
+          path: "{{ path }}" 
+        name: victorynox0815/docker-repo:webapp
+        tag: v2
+        force_source: yes
+        push: yes
+        source: build
+      delegate_to: localhost
   
-    # - name: Start a container
-    #   docker_container:
-    #     name: webapp
-    #     state: started
+    - name: Start a container
+      docker_container:
+        name: webapp
+        state: started
   
     - name: Deploy Website on IPFS
       command: ipfs add -r {{ path }}

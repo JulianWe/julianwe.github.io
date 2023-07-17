@@ -7,10 +7,11 @@
 https-julianwe-github-io-1
 
 
-Replace the following URLs
+**Replace the following URLs:**
 ‘https://https-julianwe-github-io-1.disqus.com/recommendations.js’
 ‘https://https-julianwe-github-io-1.disqus.com/embed.js’
 ‘https://https-julianwe-github-io-1.disqus.com/count.js’
+
 url: https://julianwe.github.io/projects/akash/akash.html#disqus_thread
 identifier: 1
 
@@ -61,46 +62,41 @@ identifier: 1
 
 ```css
 div[class~="disqus_thread"] {
-  #disqus_thread {
-    position: relative;
-    max-width: 36rem;
-    margin-top: 1rem;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    margin-left: auto
-  }
+  position: relative;
+  max-width: 36rem;
+  margin-top: 1rem;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  margin-left: auto
+}
 
-  #disqus_thread:after {
-
-    content: "";
-    display: block;
-    height: 55px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: white;
-  }
+div[class~=disqus_thread]:after {
+  content: "";
+  display: block;
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: white
 }
 
 div[class~="disqus_recommendations"] {
-  #disqus_recommendations:before {
     position: relative;
     max-width: 36rem;
     margin-top: 1rem;
     margin-right: auto;
     margin-bottom: 1rem;
     margin-left: auto
-  }
+}
 
-  #disqus_recommendations:after {
+div[class~=disqus_recommendations]:after {
     content: "";
     display: block;
     height: 55px;
     width: 100%;
     position: absolute;
     bottom: 0;
-    background: white;
-  }
+    background: white
 }
 
 

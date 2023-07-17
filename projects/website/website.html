@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="../../css/w3.css">
   </head>
   <link rel="stylesheet" href="../../css/icons.css">
-  <link rel="stylesheet" href="../../css/prism.css">
-  <link rel="stylesheet" href="../../css/markdown.css">
+  <link rel="stylesheet" href="../../css/css.css">
 
 </head>
 
@@ -49,18 +48,18 @@ encoding</strong></p>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">iconv</span> <span class="at">-t</span> utf-8 README.md <span class="kw">|</span> <span class="ex">pandoc</span> <span class="at">-t</span> html <span class="at">-o</span> README.html <span class="kw">|</span> <span class="fu">iconv</span> <span class="at">-f</span> utf-8</span></code></pre></div>
 <p><strong>How to build docker container</strong></p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode yml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">FROM ubuntu:latest</span></span>
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ubuntu:latest</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y curl</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get update &amp;&amp; apt-get install -y nginx</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> curl</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> nginx</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install npm -y</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install nodejs -y</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">RUN apt-get install vim -y</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> install npm <span class="at">-y</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> install nodejs <span class="at">-y</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> install vim <span class="at">-y</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">COPY . /var/www/html/</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . /var/www/html/</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span></span></code></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;nginx&quot;</span>, <span class="st">&quot;-g&quot;</span>, <span class="st">&quot;daemon off;&quot;</span>]</span></code></pre></div>
 <p><strong>How to run docker container</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Dockerimage</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> webapp .</span>
@@ -267,7 +266,7 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
   <script>
     var disqus_config = function () {
       this.page.url = "https://julianwe.github.io/projects/website/website.html#disqus_thread";
-      this.page.identifier = 16;
+      this.page.identifier = 17;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
@@ -308,8 +307,7 @@ class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"
 </script>
 
 <!-- CodeBlock JS -->
-<script src="../../js/prism.js"></script>
-<script src="../../js/prismLines.js"></script>
+<script src="../../js/js.js"></script>
 
 </body>
 
