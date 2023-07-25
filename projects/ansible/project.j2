@@ -1,10 +1,6 @@
-(% for project in {{ project_csv.list }} %)
-<a class="card" href={{ project.link }}>
-    <div class="card__background" style="background-image: url({{ project.pic }})">
-    </div>
-    <div class="card__content">
-    <p class="card__category">{{ project.category }}</p>
-    <h3 class="card__heading">{{ project.description }}</h3>
-    </div>
-</a>
-(% endfor %)
+{% for projects in projects_csv.list %}
+ {% for item in projects.values() %}
+    {{ item }}
+ {% endfor %}
+{% endfor %}
+

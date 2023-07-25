@@ -63,10 +63,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 **create ~/.vimrc file**
 ```yaml
-autocmd FileType yaml setlocal ai ts=2 sw=2 et nu cuc
-autocmd FileType yaml colo desert
-set relativenumber
-
 " spaces & tabs
 set shiftwidth=4
 set tabstop=4
@@ -75,6 +71,7 @@ set smarttab
 set expandtab
 set autoindent
 
+set number
 
 " Spell checking
 set nospell
@@ -98,7 +95,6 @@ nnoremap <C-P> :bprev<CR>
 " map esc to jk
 inoremap jk <esc>
 
-
 call plug#begin('~/.config/nvim/plugged')
     " highligth
     Plug 'pearofducks/ansible-vim'
@@ -111,25 +107,16 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
     " Ansible snippets
     Plug 'phenomenes/ansible-snippets'
-    " Plug 'SirVer/ultisnips'
 call plug#end()
 
-"Airline things
-" let g:airline_theme='molokai'
-let g:airline#extensions#tabline#enabled = 1
+
+let g:lightline = {
+    \ 'colorscheme': 'archery',
+    \ }
 
 
-" set alternate color for modified active/inactive tabs
-" autocmd VimEnter *
-"    \ let g:airline#themes#molokai#palette.tabline = {
-"    \    'airline_tabmod':       ['#f8f8f8','#780000',231,88,''],
-"    \    'airline_tabmod_unsel': ['#dddddd','#463030',231,52,''],
-"    \ } | :AirlineRefresh
-
-" some syntax shit
 
 " basic colorscheme
-colorscheme onehalfdark
 set t_Co=256
 " highlight Normal gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
 highlight nonText gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
