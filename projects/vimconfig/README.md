@@ -168,7 +168,7 @@ plugins=(
 
 [GitHub zsh Themes](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 [GitHub zsh Plugin](https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh)
-[GitHub CLI](https://cli.github.com/)
+
 
 
 

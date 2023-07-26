@@ -34,14 +34,14 @@
 
 <!-- Start README -->
 
-<h1 id="how-to-create-a-chainlink-node">How to create a Chainlink
-Node</h1>
+<h1 id="how-to-create-a-chainlink-operator-node">How to create a
+Chainlink Operator Node</h1>
 <p><img src="../chainlink/images/chainlink.jpg" /></p>
 <p><a href="https://docs.chain.link/">Docs</a></p>
 <p><strong>Run Ethereum Client</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ethereum/client-go:latest</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.geth-goerli</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.geth-goerli <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/.geth-goerli</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> eth <span class="at">-p</span> 8546:8546 <span class="at">-v</span> ~/.geth-goerli:/geth <span class="at">-it</span> <span class="dt">\</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ethereum/client-go <span class="at">--goerli</span> <span class="at">--ws</span> <span class="at">--ipcdisable</span> <span class="dt">\</span></span>
@@ -54,7 +54,7 @@ https://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3</p>
 <p><strong>create postgres database</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--name</span> cl-postgres <span class="at">-e</span> POSTGRES_PASSWORD=test0815test0815 <span class="at">-p</span> 5432:5432 <span class="at">-d</span> postgres</span></code></pre></div>
 <p><strong>create toml config</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.chainlink-goerli</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/.chainlink-goerli <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/.chainlink-goerli</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;[Log]</span></span>
@@ -81,13 +81,69 @@ https://goerli.infura.io/v3/7611c5df22314fbe80f592e4ccce82b3</p>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">[Database]</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">URL = &#39;postgresql://postgres:test0815test0815@host.docker.internal:5432/postgres?sslmode=disable&#39;</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span> <span class="op">&gt;</span> ~/.chainlink-goerli/secrets.toml</span></code></pre></div>
-<p><strong>start chainlink container</strong></p>
+<p><strong>run chainlink operator container</strong></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/.chainlink-goerli <span class="kw">&amp;&amp;</span> <span class="ex">docker</span> run <span class="at">--platform</span> linux/x86_64/v8 <span class="at">--name</span> chainlink <span class="at">-v</span> ~/.chainlink-goerli:/chainlink <span class="at">-it</span> <span class="at">-p</span> 6688:6688 <span class="at">--add-host</span><span class="op">=</span>host.docker.internal:host-gateway smartcontract/chainlink:2.0.0 node <span class="at">-config</span> /chainlink/config.toml <span class="at">-secrets</span> /chainlink/secrets.toml start</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API EMail:</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API Password:</span></code></pre></div>
 <p><strong>Connect chainlink UI</strong> http://localhost:6688</p>
 <p><img src="../chainlink/images/Operator.jpg" /></p>
+<h1 id="how-to-setup-your-own-operator-smart-contract">How to setup your
+own Operator Smart Contract</h1>
+<p><a href="https://faucets.chain.link/goerli">Chainlink Testnet
+Token</a> <a
+href="https://docs.chain.link/chainlink-nodes/v1/fulfilling-requests">Chainlink
+Docs Fulfilling Request</a></p>
+<p><a
+href="https://remix.ethereum.org/#url=https://docs.chain.link/samples/ChainlinkNodes/Operator.sol&amp;lang=en&amp;optimize=false&amp;runs=200&amp;evmVersion=null&amp;version=soljson-v0.7.6+commit.7338295f.js">Remix
+Ethereum IDE</a></p>
+<p><strong>In Remix IDE Select compiler version ‘0.7.6’</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="an">SPDX-License-Identifier:</span><span class="co"> MIT</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pragma solidity <span class="op">^</span><span class="fl">0.7.6</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">&quot;@chainlink/contracts/src/v0</span><span class="op">.</span><span class="im">7/Operator</span><span class="op">.</span><span class="im">sol&quot;</span><span class="op">;</span></span></code></pre></div>
+<p><strong><a
+href="https://docs.chain.link/resources/link-token-contracts">ChainLink
+Contract Addresses:</a></strong></p>
+<p><strong>Goerli Testnet:
+0x326C977E6efc84E512bB9C30f76E30c160eD06FB</strong> <strong>Ethereum
+Mainnet: 0x514910771AF9Ca656af840dff83E8264EcF986CA</strong> Set ‘LINK’
+Contract and ‘OWNER’ values and click transact. <img
+src="../chainlink/images/deploy_contract.jpg" /></p>
+<p><strong>Note: the output shows your newly deployed operator smart
+contract: 0xfc5F20476E6289c7120A89D45e383EB28603152f</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[view</span> on etherscan]<span class="er">(</span><span class="ex">https://goerli.etherscan.io/tx/0xebeea65d9e90c804b049a8d34e115f88ea14ea49b267d2843a2e2ef8f0ee7382</span><span class="kw">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[block:9412412</span> txIndex:11]from: 0x0f0...f05E5to: Operator.<span class="er">(</span><span class="ex">constructor</span><span class="kw">)</span><span class="ex">value:</span> 0 weidata: 0x60a...f05e5logs: 0hash: 0xfd1...938e7</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">status</span>  true Transaction mined and execution succeed</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">transaction</span> hash    0xebeea65d9e90c804b049a8d34e115f88ea14ea49b267d2843a2e2ef8f0ee7382</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">block</span> hash  0xfd1c521f5cbd50873b056f5a34176ae2f33137abf326ca15b878c15fdc3938e7</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">block</span> number    9412412</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">contract</span> address    0xfc5F20476E6289c7120A89D45e383EB28603152f</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span>    0x0f0d2BF29AAe4E6D8d646F967Df8c49B28Df05E5</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">to</span>  Operator.<span class="er">(</span><span class="ex">constructor</span><span class="kw">)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gas</span> 3754948 gas</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">transaction</span> cost    3754948 gas </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">input</span>   0x60a...f05e5</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">decoded</span> input   {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;address link&quot;</span><span class="ex">:</span> <span class="st">&quot;0x326C977E6efc84E512bB9C30f76E30c160eD06FB&quot;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;address owner&quot;</span><span class="ex">:</span> <span class="st">&quot;0x0f0d2BF29AAe4E6D8d646F967Df8c49B28Df05E5&quot;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<p><strong>Copy your Chainlink node address from Operator ui under
+‘settings’ &amp; ‘key management’:
+0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA</strong> <img
+src="../chainlink/images/ChainLink_Operator.jpg" /></p>
+<p><a
+href="https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.7/Operator.sol">Chainlink
+Smart Contract (v0.7) that we deployed on GitHub</a> With the Following
+fuctions: <img src="../chainlink/images/deployed_contract.jpg" /></p>
+<p>and call the functions ‘setAuthorizedSenders’ &amp;
+‘isAuthorizedSender’ with the address of your node (in my case the
+array: ‘[“0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA”]’) to verify that
+your chainlink node address can call the operator contract. The function
+must return true. You can use Remix IDE or instead Etherscan:
+https://goerli.etherscan.io/address/0xfc5f20476e6289c7120a89d45e383eb28603152f#writeContract</p>
+<p><img src="../chainlink/images/Etherscan_CSC.jpg" /></p>
+<h1 id="add-a-job-to-your-node">Add a Job to your Node</h1>
 
 <!-- END README -->
 
