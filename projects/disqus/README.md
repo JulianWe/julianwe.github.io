@@ -1,10 +1,8 @@
 # Implementing comments & recommendations 
 
 
-**create disqus account https://disqus.com/**
-
-*create a website shotname in my case*
-https-julianwe-github-io-1
+**create disqus account https://disqus.com/ & website shotname in my case**
+*https-julianwe-github-io-1*
 
 
 **Replace the following URLs:**
@@ -36,13 +34,13 @@ identifier: 1
 </div>
 <!-- End Recommendations -->
 
+<!-- Comments -->
 <div class="disqus_thread">
-  <!-- Comments -->
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "https://julianwe.github.io/projects/akash/akash.html#disqus_thread";
-      this.page.identifier = 3;
+      this.page.url = "https://julianwe.github.io/projects/disqus/disqus.html#disqus_thread";
+      this.page.identifier = 7;
     };
     (function () { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
@@ -58,6 +56,7 @@ identifier: 1
     </div>
   </div>
 </div>
+<!-- End Comments -->
 ```
 
 ```css
@@ -81,23 +80,22 @@ div[class~=disqus_thread]:after {
 }
 
 div[class~="disqus_recommendations"] {
-    position: relative;
-    max-width: 36rem;
-    margin-top: 1rem;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    margin-left: auto
+  position: relative;
+  max-width: 36rem;
+  margin-top: 1rem;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  margin-left: auto
 }
 
 div[class~=disqus_recommendations]:after {
-    content: "";
-    display: block;
-    height: 55px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: white
+  content: "";
+  display: block;
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: white
 }
-
 
 ```
