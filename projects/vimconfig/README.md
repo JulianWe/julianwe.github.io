@@ -52,8 +52,13 @@ Visual Line Mode:
 Shift + V
 ```
 
+Switch between windows:
+```sh
+control + w
+```
 
 **Install Plugins**
+[VIM PLUG](https://github.com/junegunn/vim-plug)
 ```sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -62,7 +67,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 **[Awesome VIM Colorschemes: https://github.com/rafi/awesome-vim-colorschemes](https://github.com/rafi/awesome-vim-colorschemes)**
 
 **create ~/.vimrc file**
-```yaml
+```yml
 " spaces & tabs
 set shiftwidth=4
 set tabstop=4
@@ -96,7 +101,10 @@ nnoremap <C-P> :bprev<CR>
 inoremap jk <esc>
 
 call plug#begin('~/.config/nvim/plugged')
-    " highligth
+
+    " Ansible snippets
+    Plug 'phenomenes/ansible-snippets'
+    " Ansible highlight
     Plug 'pearofducks/ansible-vim'
     " Quick  Comment
     Plug 'tpope/vim-commentary'
@@ -105,18 +113,32 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     " Colorschemes
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
-    " Ansible snippets
-    Plug 'phenomenes/ansible-snippets'
+    " System Explorer
+    Plug 'preservim/nerdtree'
+    " Unix Filter
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    " Intelisense 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Autocomplte
+    Plug 'jiangmiao/auto-pairs'
+    " Icons
+    Plug 'ryanoasis/vim-devicons'
+    " Vim Prettier
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+
 call plug#end()
 
+" Start NERDTree and leave the cursor in it.
+autocmd VimEnter * NERDTree
 
-let g:lightline = {
-    \ 'colorscheme': 'archery',
-    \ }
+
+" UTF-8 encoding for Icons
+set encoding=UTF-8
 
 
 
 " basic colorscheme
+let g:lightline = {'colorscheme': 'archery'}
 set t_Co=256
 " highlight Normal gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
 highlight nonText gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
@@ -134,9 +156,60 @@ let g:ansible_extra_keywords_highlight = 1
 let g:ansible_normal_keywords_highlight = 'Constant'
 let g:ansible_with_keywords_highlight = 'Constant'
 let g:ansible_template_syntaxes = { '*.rb.j2': 'ruby' }
-au BufRead,BufNewFile /playbooks/.yml set filetype=yaml.ansible
 let g:ansible_name_highlight = 'b'
+au BufRead,BufNewFile /playbooks/.yml set filetype=yaml.ansible
 ```  
+
+[VIMAWESOME](https://vimawesome.com/)
+
+
+
+[FZF - fuzzy finder](https://github.com/junegunn/fzf)
+"It's an interactive Unix filter for command-line that can be used with any list; files, command history, processes, hostnames, bookmarks, git commits, etc."
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+
+[File Search](https://github.com/BurntSushi/ripgrep)
+```sh
+brew install ripgrep
+```
+
+[Intelisense](https://github.com/neoclide/coc.nvim)
+![](https://camo.githubusercontent.com/ea345e71d256e0bda72ec57d04a4d45a6cba21a3703486049a5d312a9d662383/68747470733a2f2f616c66732e6368696775612e636e2f6469616e796f752f646174612f706c6174666f726d2f64656661756c742f32303232303830312f323032322d30382d303125323030322d31342d30332e323032322d30382d303125323030325f31355f31362e676966)
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+[Autocomplete](https://github.com/jiangmiao/auto-pairs)
+
+Plug 'jiangmiao/auto-pairs'
+
+
+[System Explorer - nerdtree](https://github.com/preservim/nerdtree)
+"The NERDTree is a file system explorer for the Vim editor. Using this plugin, users can visually browse complex directory hierarchies, quickly open files for reading or editing, and perform basic file system operations."
+
+Plug 'preservim/nerdtree'
+
+
+[Git - vim-fugitive](https://github.com/tpope/vim-fugitive)
+"Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's "so awesome, it should be illegal". That's why it's called Fugitive."
+
+
+[vim-devicons](https://github.com/ryanoasis/vim-devicons)
+"Folder Icons"
+
+
+Plug 'ryanoasis/vim-devicons'
+
+set encoding=UTF-8
+
+[vim-prettier](https://github.com/prettier/vim-prettier)
+
+
+[vscode neovim](https://github.com/vscode-neovim/vscode-neovim)
+[vscode react](https://github.com/xabikos/vscode-react)
+
 
 **Install Plugin from .vimrc config**
 ```sh
@@ -145,11 +218,12 @@ let g:ansible_name_highlight = 'b'
 
 ![](../vimconfig/images/vim.jpg)
 
+
 **Install zsh on mac cli** 
 [Source ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/tree/master)
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
- 
+
 
 vi ~/.zshrc
 
@@ -162,15 +236,13 @@ plugins=(
   rbenv
   ruby
 )
-``` 
+```
 
 ![](../vimconfig/images/zsh.jpg)
 
+**Introducing [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim)**
+
 [GitHub zsh Themes](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 [GitHub zsh Plugin](https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh)
-
-
-
-
 
 

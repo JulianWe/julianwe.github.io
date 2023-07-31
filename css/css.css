@@ -238,7 +238,7 @@ pre[class*="sourceCode"] {
 }
 
 :not(pre)>code[class*="sourceCode"],
-pre[class*="sourceCode "] {
+pre[class*="sourceCode"] {
   background: #2d2d2d
 }
 
@@ -290,7 +290,7 @@ pre[class*="sourceCode "] {
 .token.important,
 .token.keyword,
 .token.selector {
-  color: #cc99cd
+  color: #fbfb20
 }
 
 .token.attr-value,
@@ -401,6 +401,48 @@ div[class*="sourceCode"]:before {
   color: #ffffff
 }
 
+pre[class*="sourceCode"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="sourceCode"].line-numbers>code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+.line-numbers-rows>span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows>span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
 div[class*="sourceCode"]:not(.line-numbers-mode) .line-numbers-wrapper {
   display: none
 }
@@ -464,6 +506,10 @@ div[class*="sourceCode"].line-numbers-mode:after {
 
 div[class~="sourceCode text"]:before {
   content: "text"
+}
+
+div[class~="sourceCode vim"]:before {
+  content: "vim"
 }
 
 div[class~="sourceCode solidity"]:before {
@@ -714,22 +760,22 @@ div[class~=disqus_thread]:after {
 }
 
 div[class~="disqus_recommendations"] {
-    position: relative;
-    max-width: 36rem;
-    margin-top: 1rem;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    margin-left: auto
+  position: relative;
+  max-width: 36rem;
+  margin-top: 1rem;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  margin-left: auto
 }
 
 div[class~=disqus_recommendations]:after {
-    content: "";
-    display: block;
-    height: 55px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: white
+  content: "";
+  display: block;
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: white
 }
 
 @media (max-width: 959px) {
@@ -2109,7 +2155,7 @@ code {
 
 :root {
   --accent-color: #ffffff;
-  --text-color: #000000;
+  --text-color: #ffffff;
   --border-color: #ffffff;
   --code-bg-color: #ffffff;
   --highlight-color: #ffffa0
@@ -3357,8 +3403,8 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
  */
 
 
-code[class*="sourceCode "],
-pre[class*="sourceCode "] {
+code[class*="sourceCode"],
+pre[class*="sourceCode"] {
   color: #ffffff;
   background: none;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -3382,16 +3428,16 @@ pre[class*="sourceCode "] {
 }
 
 /* Code blocks */
-pre[class*="sourceCode "] {
+pre[class*="sourceCode"] {
   padding: 1em;
   margin: .5em 0;
   overflow: auto;
   border-radius: 0.3em;
 }
 
-:not(pre)>code[class*="sourceCode "],
-pre[class*="sourceCode "] {
-  background: #102436;
+:not(pre)>code[class*="sourceCode"],
+pre[class*="sourceCode"] {
+  background: #ffffff;
   margin-top: 1rem;
   margin-right: auto;
   margin-bottom: 1rem;
@@ -3400,7 +3446,7 @@ pre[class*="sourceCode "] {
 }
 
 /* Inline code */
-:not(pre)>code[class*="sourceCode "] {
+:not(pre)>code[class*="sourceCode"] {
   padding: .1em;
   border-radius: .3em;
   white-space: normal;
@@ -3426,12 +3472,12 @@ pre[class*="sourceCode "] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: #f92672;
+  color: #fbff29;
 }
 
 .token.boolean,
 .token.number {
-  color: #ae81ff;
+  color: #fffb02;
 }
 
 .token.selector,
@@ -3555,13 +3601,13 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
   background-color: rgba(128, 128, 128, .2);
 }
 
-pre[class*="sourceCode "].line-numbers {
+pre[class*="sourceCode"].line-numbers {
   position: relative;
   padding-left: 3.8em;
   counter-reset: linenumber;
 }
 
-pre[class*="sourceCode "].line-numbers>code {
+pre[class*="sourceCode"].line-numbers>code {
   position: relative;
   white-space: inherit;
 }
@@ -3618,37 +3664,43 @@ div.code-toolbar:hover>.toolbar {
     IE11 and old Edge versions don't support :focus-within. */
 div.code-toolbar:focus-within>.toolbar {
   opacity: 1;
-
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 div.code-toolbar>.toolbar>.toolbar-item {
   display: inline-block;
+
 }
 
 div.code-toolbar>.toolbar>.toolbar-item>a {
   cursor: pointer;
+
 }
 
 div.code-toolbar>.toolbar>.toolbar-item>button {
+  position: relative;
+  top: 5px;
+  right: 10px;   
   background: none;
   border: 0;
-  color: inherit;
+  color: #ffffff;
   font: inherit;
   line-height: normal;
   overflow: visible;
-  padding: 0;
-  -webkit-user-select: none;
-  /* for button */
-  -moz-user-select: none;
-  -ms-user-select: none;
+
 }
+
 
 div.code-toolbar>.toolbar>.toolbar-item>a,
 div.code-toolbar>.toolbar>.toolbar-item>button,
 div.code-toolbar>.toolbar>.toolbar-item>span {
+  position: absolute;
   color: #ffffff;
+  margin-left: 15px;
+  margin-top: 10px;
   font-size: .8em;
-  padding: 0 .5em;
   background: #ffffff;
   background: rgba(224, 224, 224, 0.2);
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);

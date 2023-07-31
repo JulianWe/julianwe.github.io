@@ -429,6 +429,6 @@ gh issue list
 
 gh issue create --title "I found a bug" --body "Nothing works"
 
-gh api repos/JulianWe/julianwe.github.io/issues/1/comments -f body='Hi from CLI'
+gh api repos/JulianWe/julianwe.github.io/issues/2/comments -f body='Hi from CLI'
 
 ```
