@@ -79,7 +79,7 @@ for folder in projects/*; do pandoc -f markdown $folder/README.md > test/${folde
 | Name | Description | Example values |
 | --- | --- | --- |
 |`html`| README to HTML content without j2 | `{{ item.ansible_facts.html }}` |
-|`url`| Website URL. | `"{{ item.ansible_facts.url }}"` |
+|`url`| Website URL. | `{{ item.ansible_facts.url }}` |
 |`identifier`| disqus comment page identifier. | `{{ item.ansible_facts.identifier }}` |
 |`name`| Browser Title | `{{ item.ansible_facts.name }}` |
 
