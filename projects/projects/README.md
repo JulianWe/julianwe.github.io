@@ -11,5 +11,6 @@
 |`ERC-20 Token`| 🕳️  How deploy ERC-20 Token on Ethereum Testnetwork | ./projects/ERC-20/ERC-20.html | Decentralization | ./projects/ERC-20/images/erc20.jpg | 
 |`VS Code Server`| 🕳️  How deploy VS Code Server | ./projects/vsc/vsc.html | Coding | ./projects/vsc/images/vscode.jpg |
 |`Brave rewards`| 🕳️  How to enable Brave rewards on your Website | ./projects/brave/brave.html | Decentralization |./projects/brave/images/bat.jpg |
+|`Storj Storageserver`| 🕳️  Create Storj Storageserver| projects/storj/storj.html| Decentralization| ./projects/storj/images/2_storj.jpg |
 
 

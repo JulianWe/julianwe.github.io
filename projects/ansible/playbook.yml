@@ -64,17 +64,22 @@
         path: "/Users/jw/Documents/GitHub/julianwe.github.io/projects/projects/projects.csv"
         delimiter: ','
       register: projects_csv
+
   
     # - name: create project site
     #   template:
     #     src: "{{ projectj2 }}"
     #     dest: "{{ path }}/projects-test.html"
     #   delegate_to: localhost
-  
-    # - name: Stop a container
-    #   docker_container:
-    #     name: docker-repo:webapp
-    #     state: stopped
+    - name: docs
+      docker_container:
+
+
+    - name: Stop a container
+      docker_container:
+        name: docker-repo:webapp
+        state: stopped
+      when: state == started
   
     - name: Log into private registry and force re-authorization
       docker_login:
