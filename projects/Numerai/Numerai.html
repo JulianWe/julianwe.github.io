@@ -1,0 +1,183 @@
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <!-- Browser Titel -->
+  <title>Numerai</title>
+  <!-- Favicon  -->
+  <link rel="icon" href="https://akash-web-prod.s3.amazonaws.com/uploads/2020/02/cropped-akash-logo-192x192.png" sizes="192x192" />
+  <link rel="canonical" href="https://julianwe.github.io/projects/Numerai/Numerai.html#disqus_thread">
+
+  <!-- CSS  -->
+  <head>
+    <link rel="stylesheet" href="../../css/w3.css">
+  </head>
+  <link rel="stylesheet" href="../../css/icons.css">
+  <link rel="stylesheet" href="../../css/purge.css">
+
+</head>
+
+<!-- Navbar -->
+<div class="topnav">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <p class="right">
+      <a href="../../index.html" class="w3-bar-item w3-button"><b>GitBlog</a>
+      <a href="../../projects.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="../../about.html" class="w3-bar-item w3-button">About</a>
+      <a href="../../contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a href="../../search.html" class="w3-bar-item w3-button">🔍</a>
+  </div>
+</div>
+
+
+<!-- Start README -->
+
+<h1
+id="numerai-httpsnumer.aihome-apply-machine-learning-to-predict-the-stock-market.">Numerai
+https://numer.ai/home Apply machine learning to predict the stock
+market.</h1>
+<p><strong>Install CLI</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numerapi</span></code></pre></div>
+<p><strong>Download Data</strong> https://numer.ai/data/v4.2</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> numerapi import NumerAPI</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">napi</span> = NumerAPI<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/train_int8.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;train_int8.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/validation_int8.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;validation_int8.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/live_int8.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;live_int8.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/live_example_preds.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;live_example_preds.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/validation_example_preds.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;validation_example_preds.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/features.json&quot;</span><span class="ex">,</span> <span class="st">&quot;features.json&quot;</span><span class="kw">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/meta_model.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;meta_model.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/live_benchmark_models.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;live_benchmark_models.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/validation_benchmark_models.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;validation_benchmark_models.parquet&quot;</span><span class="kw">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">napi.download_dataset</span><span class="er">(</span><span class="st">&quot;v4.2/train_benchmark_models.parquet&quot;</span><span class="ex">,</span> <span class="st">&quot;train_benchmark_models.parquet&quot;</span><span class="kw">)</span></span></code></pre></div>
+<p><strong>CLI Commmands</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">➜</span>  ~ numerapi</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> numerapi <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> COMMAND <span class="pp">[</span><span class="ss">ARGS</span><span class="pp">]</span>...</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Wrapper</span> around the Numerai API</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Options:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--help</span>  Show this message and exit.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Commands:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">account</span>                   Get all information about your account!</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">check-new-round</span>           Check if a new round has started within the...</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">competitions</span>              Retrieves information about all competitions</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">current-round</span>             Get number of the current active round.</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">daily-model-performances</span>  Fetch daily performance of a model.</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">download-dataset</span>          Download specified file for the given round</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">leaderboard</span>               Get the leaderboard.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">list-datasets</span>             List of available data files</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">models</span>                    Get map of account models!</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">profile</span>                   Fetch the public profile of a user.</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="ex">stake-decrease</span>            Decrease your stake by <span class="kw">`</span><span class="ex">value</span><span class="kw">`</span> NMR.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="ex">stake-drain</span>               Completely remove your stake.</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="ex">stake-get</span>                 Get stake value of a user.</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="ex">stake-increase</span>            Increase your stake by <span class="kw">`</span><span class="ex">value</span><span class="kw">`</span> NMR.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="ex">submission-filenames</span>      Get filenames of your submissions</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="ex">submit</span>                    Upload predictions from file.</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="ex">transactions</span>              List all your deposits and withdrawals.</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="ex">user</span>                      Get all information about you! DEPRECATED <span class="at">-...</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="ex">version</span>                   Installed numerapi version.</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  </span></code></pre></div>
+<p><strong>Example Scripts
+https://github.com/numerai/example-scripts</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot; Example classifier on Numerai data using a xgboost regression. &quot;&quot;&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> pandas as pd</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> xgboost import XGBRegressor</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># training data contains features and targets</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">training_data</span> = pd.read_csv<span class="er">(</span><span class="st">&quot;numerai_training_data.csv&quot;</span><span class="kw">)</span><span class="ex">.set_index</span><span class="er">(</span><span class="st">&quot;id&quot;</span><span class="kw">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tournament data contains features only</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">tournament_data</span> = pd.read_csv<span class="er">(</span><span class="st">&quot;numerai_tournament_data.csv&quot;</span><span class="kw">)</span><span class="ex">.set_index</span><span class="er">(</span><span class="st">&quot;id&quot;</span><span class="kw">)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">feature_names</span> = [f for f in training_data.columns if <span class="st">&quot;feature&quot;</span> in f]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># train a model to make predictions on tournament data</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">model</span> = XGBRegressor<span class="er">(</span><span class="va">max_depth</span><span class="op">=</span>5, <span class="va">learning_rate</span><span class="op">=</span>0.01, <span class="dt">\</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                   <span class="va">n_estimators</span><span class="op">=</span>2000, <span class="va">colsample_bytree</span><span class="op">=</span>0.1<span class="kw">)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">model.fit</span><span class="er">(</span><span class="va">training_data</span><span class="op">[</span>feature_names<span class="op">]</span><span class="ex">,</span> training_data<span class="pp">[</span><span class="st">&quot;target&quot;</span><span class="pp">]</span><span class="kw">)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># submit predictions to numer.ai</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ex">predictions</span> = model.predict<span class="er">(</span><span class="va">tournament_data</span><span class="op">[</span>feature_names<span class="op">]</span><span class="kw">)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">predictions.to_csv</span><span class="er">(</span><span class="st">&quot;predictions.csv&quot;</span><span class="kw">)</span></span></code></pre></div>
+
+<!-- END README -->
+
+<!-- Recommendations -->
+<div class="disqus_recommendations">
+  <div id="disqus_recommendations"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script'); // IMPORTANT: Replace EXAMPLE with your forum shortname!
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/recommendations.js'; s.setAttribute('data-timestamp', +new Date()); // 
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+</div>
+<!-- End Recommendations -->
+
+<!-- Comments -->
+<div class="disqus_thread">
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://julianwe.github.io/projects/Numerai/Numerai.html#disqus_thread";
+      this.page.identifier = 2;
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-julianwe-github-io-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <script id="dsq-count-scr" src='https://https-julianwe-github-io-1.disqus.com/count.js' async></script>
+  <div class="blog-post-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  </div>
+</div>
+<!-- End Comments -->
+
+
+<!-- Functions -->
+<script>
+
+  function hideClick() {
+    var x = document.getElementById("show_disqus_thread");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  function menu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+<!-- CodeBlock JS -->
+<script src="../../js/js.js"></script>
+
+</body>
+
+</html>
