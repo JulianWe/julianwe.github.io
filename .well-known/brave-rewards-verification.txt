@@ -1,4 +1,4 @@
 This is a Brave Rewards publisher verification file.
 
 Domain: julianwe.github.io
-Token: d5cb047d75718a9981fb52ba23eb5339872893d6c7cef0faa85d792c99b09a27
+Token: 23b6a915cdde0205a7ef8eec7d0d47aaa81c7e8d1ff97017edfb4e08cb05ad74
