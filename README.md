@@ -1,6 +1,6 @@
 # Create a Website using Docker and GitHub Pages
 
-![](./ansible/roles/webpage/files/images/ansible-docker.jpg)
+![](../files/images/ansible-docker.jpg)
 
 **create a new repository with your username.github.io**
 ```sh
