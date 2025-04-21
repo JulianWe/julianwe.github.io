@@ -49,7 +49,7 @@ GitHub to use SSH Key</strong></a></h1>
 <p><img src="../../github/files/images/github.jpg" /></p>
 <p><strong>create new ssh key</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519-sk <span class="at">-f</span> ~/.ssh/id_ed25519 <span class="at">-C</span> <span class="st">&quot;julianwendland@gmx.de&quot;</span> <span class="kw">;</span> <span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
-<p><strong>Start ssh agent an background</strong></p>
+<p><strong>Start ssh agent in background</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
 <p><strong>add ssh key</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span>
@@ -63,12 +63,12 @@ GitHub to use SSH Key</strong></a></h1>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">IdentityFile</span> ~/.ssh/id_ed25519</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">Hostname</span> ssh.github.com</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">Port</span> 443 </span></code></pre></div>
-<p><strong>copy output to github settings page</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>  ~/.ssh/is_ed25519.pub</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.signingkey ~/.ssh/id_ed25519</span></code></pre></div>
 <p><strong>set remote origin to use ssh instead of password
 authentication</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:JulianWe/julianwe.github.io</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:JulianWe/julianwe.github.io</span></code></pre></div>
+<p><strong>copy output to github account settings page</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>  ~/.ssh/is_ed25519.pub</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.signingkey ~/.ssh/id_ed25519</span></code></pre></div>
 <p><strong>add ssh key to github <a
 href="https://github.com/settings/keys">account settings</a></strong>
 <img src="../../github/files/images/github-1.jpg" /></p>
