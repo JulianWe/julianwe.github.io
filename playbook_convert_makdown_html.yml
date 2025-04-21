@@ -1,0 +1,51 @@
+---
+- name: build html website
+  hosts: localhost
+  connection: localhost
+  gather_facts: False
+  
+  vars:
+    path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
+    blogpost: "{{ path }}/roles/webpage/templates/blogpost.j2"
+  
+  tasks:
+
+    - name: Include variables from a file
+      include_vars:
+        file: "{{ path }}/roles/webpage/vars/main.yml"
+      register: vars
+
+    - name: convert README to HTML
+      shell: | 
+        cd {{ path }}
+        for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
+        done;
+        ls {{ path }}/roles
+      register: folder
+
+    - name: set project, URLs & directorys facts
+      set_fact:
+        name: "{{ item | trim ('/')}}"
+        file_path: "{{ path }}/roles/{{ item }}/files/{{ item | trim ('/')}}.html"
+        url: "https://julianwe.github.io/blogpost/{{ item }}/{{ item | trim('/')}}.html"
+      loop: "{{ folder.stdout_lines }}"
+      loop_control:
+        index_var: index
+      register: facts
+  
+    - name: set html content facts
+      set_fact:
+        html: "{{ lookup('file', item.ansible_facts.file_path) }}"
+        file_path: "{{ item.ansible_facts.file_path }}"
+        url: "{{ item.ansible_facts.url }}"
+        name: "{{ item.ansible_facts.name }}"
+      loop: "{{ facts.results }}"
+      register: html_files
+
+    - name: create project HTML sites
+      template:
+        src: "{{ blogpost }}"
+        dest: "{{ item.ansible_facts.file_path }}"
+      delegate_to: localhost
+      loop: "{{ html_files.results }}"
+...
