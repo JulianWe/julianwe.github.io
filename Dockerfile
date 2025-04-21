@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-WORKDIR /ansible/roles/webpage/files 
+WORKDIR ansible/roles/webpage/files  
 RUN apt-get update && apt-get install -y curl
 RUN apt-get update && apt-get install -y nginx
 RUN apt-get install vim -y
