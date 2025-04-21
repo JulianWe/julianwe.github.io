@@ -6,6 +6,9 @@ RUN apt-get install vim -y
 RUN apt-get install npm -y
 RUN apt-get install nodejs -y
 
+RUN pwd
+RUN ls
+
 COPY . /var/www/html/
 COPY nginx.conf /etc/nginx/sites-enabled/default
 
