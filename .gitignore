@@ -1,2 +1,2 @@
-playbook_create_index_html.yml
-playbook_convert_makdown_html.yml
+playbooks/playbook_create_index_html.yml
+playbooks/playbook_convert_makdown_html.yml
