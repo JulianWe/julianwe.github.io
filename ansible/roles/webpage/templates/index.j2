@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ vars.home.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="#"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="#blog"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section class="home section active" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="home-info padd-15">
+                        <h3 class="profession">Hello, my name is <span class="typing">{{ vars.home.name }}</span>
+                        </h3>
+                        <h3 class="profession">I'm a <span class="typing">{{ vars.home.job }}</span></h3>
+                        <p>{{ vars.home.description }}</p>
+                        <a href="#" class="btn ">Download CV</a>
+                    </div>
+
+                    <div class="home-img padd-15">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="about section " id="about">
+        <div class="container">
+            <div class="row">
+                <div class="section-title padd-15">
+                    <h2>About me</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="about-content padd-15">
+                    <div class="row">
+                        <div class="about-text padd-15">
+                            <h3>{{ vars.about.me }}<span> & {{ vars.about.role }}</span></h3>
+                            <p>{{ vars.about.description }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="personal-info padd-15">
+                            <div class="row">
+                                <div class="info-item padd-15">
+                                    <p>Birthday: <span>{{ about.birthday }}</span></p>
+                                </div>
+                                <div class="info-item padd-15">
+                                    <p>Age: <span>{{ about.age }}</span></p>
+                                </div>
+                                <div class="info-item padd-15">
+                                    <p>Email: <span>{{ about.mail }}</span></p>
+                                </div>
+                                <div class="info-item padd-15">
+                                    <p>City: <span>{{ about.city }}</span></p>
+                                </div>
+                                <div class="info-item padd-15">
+                                    <p>Freelance: <span>{{ about.freelance }}</span></p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="buttons padd-15">
+                                    <a href="#contact" class="btn hire-me" data-section-index="1">Contact
+                                        me</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skills padd-15">
+                            <div class="row">
+                                <div class="skill-item padd-15">
+                                    <h5>JS</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 76%;"></div>
+                                        <div class="skill-percent">76%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>HTML</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 86%;"></div>
+                                        <div class="skill-percent">86%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>CSS</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 66%;"></div>
+                                        <div class="skill-percent">66%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Ansible</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 96%;"></div>
+                                        <div class="skill-percent">96%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Linux & Windows</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 76%;"></div>
+                                        <div class="skill-percent">76%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="education padd-15">
+                            <h3 class="title">Experience</h3>
+                            <div class="row">
+                                <div class="timeline-box padd-15">
+                                    <div class="timeline shadow-dark">
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.experience.1.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.experience.1.project }}</h4>
+                                            <p class="timeline-text">{{ about.experience.1.description }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.experience.2.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.experience.2.project }}</h4>
+                                            <p class="timeline-text">{{ about.experience.2.description }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.experience.3.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.experience.3.project }}</h4>
+                                            <p class="timeline-text">{{ about.experience.3.description }}</p>
+                                        </div>
+                                        
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.experience.4.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.experience.4.project }}</h4>
+                                            <p class="timeline-text">{{ about.experience.4.description }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience padd-15">
+                            <h3 class="title">Education</h3>
+                            <div class="row">
+                                <div class="timeline-box padd-15">
+                                    <div class="timeline shadow-dark">
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.education.1.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.education.1.title  }}</h4>
+                                            <p class="timeline-text">{{ about.education.1.description  }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.education.2.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.education.2.title  }}</h4>
+                                            <p class="timeline-text">{{ about.education.2.description  }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.education.3.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.education.3.title  }}</h4>
+                                            <p class="timeline-text">{{ about.education.3.description  }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.education.4.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.education.4.title  }}</h4>
+                                            <p class="timeline-text">{{ about.education.4.description  }}</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="circle-dot"></div>
+                                            <h3 class="timeline-date">
+                                                <i class="fa fa-calendar"></i>{{ about.education.5.calendar }}</h3>
+                                            <h4 class="timeline-title">{{ about.education.5.title  }}</h4>
+                                            <p class="timeline-text">{{ about.education.5.description  }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="service section " id="services">
+        <div class="container">
+            <div class="row">
+                <div class="section-title padd-15">
+                    <h2>Services</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-code"></i>
+                        </div>
+                        <h4>{{ services.1.service }}</h4>
+                        <p>{{ services.1.description }}</p>
+                    </div>
+                </div>
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-gears"></i>
+                        </div>
+                        <h4>{{ services.2.service }}</h4>
+                        <p>{{ services.2.description }}</p>
+                    </div>
+                </div>
+
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-server"></i>
+                        </div>
+                        <h4>{{ services.3.service }}</h4>
+                        <p>{{ services.3.description }}</p>
+                    </div>
+                </div>
+
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-cloud"></i>
+                        </div>
+                        <h4>{{ services.4.service }}</h4>
+                        <p>{{ services.4.description }}</p>
+                    </div>
+                </div>
+
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-laptop-code"></i>
+                        </div>
+                        <h4>{{ services.5.service }}</h4>
+                        <p>{{ services.5.description }}</p>
+                    </div>
+                </div>
+
+                <div class="service-item padd-15">
+                    <div class="service-item-inner">
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                        <h4>{{ services.6.service }}</h4>
+                        <p>{{ services.6.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog section " id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="section-title padd-15">
+                    <h2>Blog Posts</h2>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="w3-container w3-padding-32" id="Projects">
+
+                <!-- partial:index.partial.html -->
+                <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+                <link rel="stylesheet" href="./css/cards.css">
+                <section class="hero-section">
+                    <div class="card-grid">
+
+                        {% for blogpost in vars.blogposts  %}
+                            <a class="card" href={{ blogposts[blogpost].html }}> 
+                                <div class="card__background"
+                                    style="background-image: url({{ blogposts[blogpost].image }})"></div>
+                                <div class="card__content">
+                                    <p class="card__category">{{ blogposts[blogpost].category }}</p>
+                                    <h3 class="card__heading">{{ blogposts[blogpost].description }}</h3>
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                    <div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="section-title padd-15">
+                    <h2>Contact</h2>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form padd-15">
+            <h3 class="contact-title padd-15">
+                <div class="icon"><i class="fa fa-envelope"></i></div> Send me an email
+            </h3>
+            <h4 class="contact-subtitle padd-15">I'll contact you as soon as possible!</h4>
+            <div class="row">
+                <div class="form-item col-6 padd-15">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+
+                <div class="form-item col-6 padd-15">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-item col-12 padd-15">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-item col-12 padd-15">
+                    <div class="form-group">
+                        <textarea name="message" id="message" class="form-control"
+                            placeholder="Message"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-item col-12 padd-15">
+                    <div class="form-group">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="style-switcher">
+        <div class="style-switcher-toggler s-icon">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+
+        <div class="day-night s-icon">
+            <i class="fas "></i>
+        </div>
+
+        <h4>Theme Colors</h4>
+
+        <div class="colors">
+            <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+            <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+            <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+            <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+            <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+    <script src="../../webpage/files/js/js.js"></script>
+    <script src="../../webpage/files/js/script.js"></script>
+    
+    <body>
+
+</html>

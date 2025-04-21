@@ -1,0 +1,13 @@
+# Create Webpage using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- name: create webpage
+  hosts: localhost
+  connection: local
+
+  vars:
+    - example: example
+
+  roles:
+    - roles/ansible.webpage
+...

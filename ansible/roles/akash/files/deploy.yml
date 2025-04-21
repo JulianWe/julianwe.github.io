@@ -1,0 +1,31 @@
+---
+version: '2.0'
+services:
+  webapp:
+    image: 'victorynox0815/docker-repo:webapp'
+    expose:
+      - port: 80
+        as: 8080
+        to:
+          - global: true
+profiles:
+  compute:
+    webapp:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 512Mi
+        storage:
+          - size: 10Gi
+  placement:
+    dcloud:
+      pricing:
+        webapp:
+          denom: uakt
+          amount: 1000
+deployment:
+  webapp:
+    dcloud:
+      profile: webapp
+      count: 1

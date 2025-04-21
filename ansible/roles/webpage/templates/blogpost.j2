@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href="../../webpage/files/css/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+  <div class="main-container">
+      <div class="aside">
+        <div class="logo">
+          <a href="#home"><span></span>GitBlog</a>
+        </div>
+
+        <div class="nav-toggler">
+          <span></span>
+        </div>
+
+        <ul class="nav">
+          <li><a href="../../webpage/files/index.html#home"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="../../webpage/files/index.html#about"><i class="fa fa-user"></i>About</a></li>
+          <li><a href="../../webpage/files/index.html#services"><i class="fa fa-list"></i>Services</a></li>
+          <li><a href="../../webpage/files/index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+          <li><a href="../../webpage/files/index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+        </ul>
+      </div>
+  </div>
+</body>
+
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../../webpage/files/css/markdown.css">
+          <link rel="stylesheet" href="../../webpage/files/css/md.css">
+          
+          <!-- Start README.md -->
+
+          {{ item.ansible_facts.html }}
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <div class="style-switcher">
+      <div class="style-switcher-toggler s-icon">
+          <i class="fas fa-cog fa-spin"></i>
+      </div>
+
+      <div class="day-night s-icon">
+          <i class="fas "></i>
+      </div>
+
+      <h4>Theme Colors</h4>
+
+      <div class="colors">
+          <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+          <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+          <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+          <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+          <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+      </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../../webpage/files/js/script.js"></script>
+  <script src="../../webpage/files/js/js.js"></script>
+
+
+</html>

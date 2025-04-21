@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href="../../webpage/files/css/blog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+  <div class="main-container">
+      <div class="aside">
+        <div class="logo">
+          <a href="#home"><span></span>GitBlog</a>
+        </div>
+
+        <div class="nav-toggler">
+          <span></span>
+        </div>
+
+        <ul class="nav">
+          <li><a href="../../webpage/files/index.html#home"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="../../webpage/files/index.html#about"><i class="fa fa-user"></i>About</a></li>
+          <li><a href="../../webpage/files/index.html#services"><i class="fa fa-list"></i>Services</a></li>
+          <li><a href="../../webpage/files/index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+          <li><a href="../../webpage/files/index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+        </ul>
+      </div>
+  </div>
+</body>
+
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../../webpage/files/css/markdown.css">
+          <link rel="stylesheet" href="../../webpage/files/css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="configure-github-to-use-ssh-key"><a
+href="https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent"><strong>Configure
+GitHub to use SSH Key</strong></a></h1>
+<p><img src="../../github/files/images/github.jpg" /></p>
+<p><strong>create new ssh key</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519-sk <span class="at">-f</span> ~/.ssh/id_ed25519 <span class="at">-C</span> <span class="st">&quot;julianwendland@gmx.de&quot;</span> <span class="kw">;</span> <span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<p><strong>Start ssh agent an background</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p><strong>add ssh key</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">--apple-use-keychain</span> ~/.ssh/id_ed25519</span></code></pre></div>
+<p><strong>open ssh config and add github as host</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">open</span> ~/.ssh/config</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> github.com</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">AddKeysToAgent</span> yes</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">IgnoreUnknown</span> UseKeychain</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">IdentityFile</span> ~/.ssh/id_ed25519</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">Hostname</span> ssh.github.com</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">Port</span> 443 </span></code></pre></div>
+<p><strong>copy output to github settings page</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>  ~/.ssh/is_ed25519.pub</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.signingkey ~/.ssh/id_ed25519</span></code></pre></div>
+<p><strong>set remote origin to use ssh instead of password
+authentication</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:JulianWe/julianwe.github.io</span></code></pre></div>
+<p><strong>add ssh key to github <a
+href="https://github.com/settings/keys">account settings</a></strong>
+<img src="../../github/files/images/github-1.jpg" /></p>
+<p><strong>test ssh connection</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> passphrase for key <span class="st">&#39;/Users/jw/.ssh/id_ed25519&#39;</span>: </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi</span> JulianWe! You<span class="st">&#39;ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre></div>
+<p><strong>Source Documentation:</strong>
+https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key</p>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <div class="style-switcher">
+      <div class="style-switcher-toggler s-icon">
+          <i class="fas fa-cog fa-spin"></i>
+      </div>
+
+      <div class="day-night s-icon">
+          <i class="fas "></i>
+      </div>
+
+      <h4>Theme Colors</h4>
+
+      <div class="colors">
+          <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+          <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+          <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+          <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+          <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+      </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../../webpage/files/js/script.js"></script>
+  <script src="../../webpage/files/js/js.js"></script>
+
+
+</html>
