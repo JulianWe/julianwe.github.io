@@ -5,7 +5,7 @@
   gather_facts: False
   
   vars:
-    path: "/Users/jw/Documents/GitHub/webpage/ansible"
+    path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
     blogpost: "{{ path }}/roles/webpage/templates/blogpost.j2"
   
   tasks:
