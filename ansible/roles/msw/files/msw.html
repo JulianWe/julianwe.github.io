@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/blog.css">
+  <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/404.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+  <div class="main-container">
+      <div class="aside">
+        <div class="logo">
+          <a href="#home"><span></span>GitBlog</a>
+        </div>
+
+        <div class="nav-toggler">
+          <span></span>
+        </div>
+
+        <ul class="nav">
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#home"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#about"><i class="fa fa-user"></i>About</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#services"><i class="fa fa-list"></i>Services</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+          <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+        </ul>
+      </div>
+  </div>
+</body>
+
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/markdown.css">
+          <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1
+id="multisigethereumwallet---smart-contract-tutorial">MultiSigEthereumWallet
+- Smart Contract tutorial 🐇</h1>
+<p><img src="../../msw/files/images/multisigwallet.jpg" /></p>
+<p><strong>This Tutorial shows how to write, deploy and interact with
+your own ethereum multisig wallet</strong></p>
+<p><strong>1. Download and install MetaMask wallet</strong></p>
+<p><a href="https://metamask.io/">Download Wallet</a></p>
+<p><strong>2. Request Rinkeby testnetwork tokens for transaction
+fee</strong></p>
+<p><a href="https://faucet.rinkeby.io/">Rinkeby Faucet</a></p>
+<p><strong>3. open Remix - Ethereum Web IDE:</strong></p>
+<p><a href="https://remix.ethereum.org/">Remix Ethereum IDE</a></p>
+<p><strong>4. Create Solidity Smart Contract file MultiSigWallet.sol in
+Remix IDE</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pragma solidity <span class="op">^</span><span class="fl">0.4.0</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pragma experimental ABIEncoderV2<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>contract MultiSigWallet <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    uint minApprovers<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    address beneficiary<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    address owner<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mapping</span> <span class="op">(</span>address <span class="op">=&gt;</span> bool<span class="op">)</span> approvedBy<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mapping</span> <span class="op">(</span>address <span class="op">=&gt;</span> bool<span class="op">)</span> isApprover<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    uint approvalsNum<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">constructor</span> <span class="op">(</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// List of approvers and minimum number of approvers </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        address<span class="op">[]</span> _approvers<span class="op">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        uint _minApprovers<span class="op">,</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">// beneficiary address will receive all the funds after minimum number of approvals</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        address _beneficiary</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">)</span> <span class="kw">public</span> payable <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// check if approvers are more than minApprovers to allow withdraw </span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">require</span><span class="op">(</span>_minApprovers <span class="op">&lt;=</span> _approvers<span class="op">.</span><span class="fu">length</span><span class="op">,</span> <span class="st">&quot;Required number of approvers should be less than number of approvers&quot;</span><span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        minApprovers <span class="op">=</span> _minApprovers<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        beneficiary <span class="op">=</span> _beneficiary<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        owner <span class="op">=</span> msg<span class="op">.</span><span class="fu">sender</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">// store and populate isApprover address mapping </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>uint i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> _approvers<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            address approver <span class="op">=</span> _approvers<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            isApprover<span class="op">[</span>approver<span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// function to approve spendig funds from contract</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    function <span class="fu">approve</span><span class="op">()</span> <span class="kw">public</span> <span class="op">{</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">// check if callers has rigths to approve this transaction</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">require</span><span class="op">(</span>isApprover<span class="op">[</span>msg<span class="op">.</span><span class="fu">sender</span><span class="op">],</span> <span class="st">&quot;Not an approver&quot;</span><span class="op">);</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co">// if caller has not yet approved </span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(!</span>approvedBy<span class="op">[</span>msg<span class="op">.</span><span class="fu">sender</span><span class="op">]){</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="co">// increase number of approvals</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            approvalsNum<span class="op">++;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>            <span class="co">// to ensure that the same approver does not approve a transaction twice  set aproved by to true</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>            approvedBy<span class="op">[</span>msg<span class="op">.</span><span class="fu">sender</span><span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="co">// check if we have enough approvals to send funds from contract to beneficiary address</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>approvalsNum <span class="op">==</span> minApprovers<span class="op">){</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            <span class="co">// send contract balance to beneficiary address </span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            beneficiary<span class="op">.</span><span class="fu">send</span><span class="op">(</span><span class="fu">address</span><span class="op">(</span><span class="kw">this</span><span class="op">).</span><span class="fu">balance</span><span class="op">);</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="co">// dedestroy contract and return funds to owner if send fails because of wrong address</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>            <span class="fu">selfdestruct</span><span class="op">(</span>owner<span class="op">);</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="co">// function to reject spending if sender is not one of the Multi Sig Wallet approver. In this case send funds to owner.</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    function <span class="fu">reject</span><span class="op">()</span> <span class="kw">public</span> <span class="op">{</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        <span class="co">// check if callers has rigths to approve this transaction</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        <span class="fu">require</span><span class="op">(</span>isApprover<span class="op">[</span>msg<span class="op">.</span><span class="fu">sender</span><span class="op">],</span> <span class="st">&quot;Not an approver&quot;</span><span class="op">);</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>        <span class="co">// destroy smart contract if caller is approver </span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="fu">selfdestruct</span><span class="op">(</span>owner<span class="op">);</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>5. deploy MultiSigWallet.sol solidity contract with
+<code>_APPROVERS</code>, address[] set to:
+<code>["0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72","0xd32bac5c062e89912d067f7221e94fe77343D35a","0x0f0d2bf29aae4e6d8d646f967df8c49b28df05e5"]</code>,
+and <code>_MINAPPROVERS</code> for example to uint <code>1</code>
+(minimum required approvals to execute approve function and send funds
+to <code>_BENEFICIARY</code> address
+<code>0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72</code>.</strong></p>
+<p><img src="../../msw/files/images/DeployMultiSigWallet.png" /></p>
+<p><strong>Approve Spending Wallet funds with one of the approver
+<code>_APPROVERS</code> address</strong> <img
+src="../../msw/files/images/ApproveSpendingWalletFunds.jpg" /></p>
+<p><strong>Example contract creation transaction on testnet blockchain
+explorer</strong> <a
+href="https://ropsten.etherscan.io/tx/0x85e6e933d6fef3ffda240ee6b757e52c42fbb49a1dd74caa7df8d3bcc5002009">Contract
+creation Etherscan Link</a> <a
+href="https://ropsten.etherscan.io/tx/0x9995326e362c6d18be4559c7b0e36525c96608ea1228d33f74003ff95a5b6e7e">Contract
+approval Etherscan Link</a></p>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src="https://julianwe.github.io/ansible/roles/webpage/files/js/script.js"></script>
+  <script src="https://julianwe.github.io/ansible/roles/webpage/files/js/js.js"></script>
+
+
+</html>

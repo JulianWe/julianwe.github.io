@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/blog.css">
+  <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/404.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+  <div class="main-container">
+      <div class="aside">
+        <div class="logo">
+          <a href="#home"><span></span>GitBlog</a>
+        </div>
+
+        <div class="nav-toggler">
+          <span></span>
+        </div>
+
+        <ul class="nav">
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#home"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#about"><i class="fa fa-user"></i>About</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#services"><i class="fa fa-list"></i>Services</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+          <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+          <li><a href="https://julianwe.github.io/ansible/roles/webpage/files/index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+        </ul>
+      </div>
+  </div>
+</body>
+
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/markdown.css">
+          <link rel="stylesheet" href="https://julianwe.github.io/ansible/roles/webpage/files/css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="vimconfig-cheatsheet">Vimconfig Cheatsheet</h1>
+<p><img src="../../vim//files/images/VimCheat.jpg" /></p>
+<p><strong>VIM Tutor:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nvim</span> +Tutor</span></code></pre></div>
+<p>Jump to end of File</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + G</span></code></pre></div>
+<p>Jump to beginn of file:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gg</span></span></code></pre></div>
+<p>Search &amp; Replace:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:s/foo/bar/g</span></span></code></pre></div>
+<p>Multiline comment:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span></span></code></pre></div>
+<p>Search:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/</span></span></code></pre></div>
+<p>Jump to Line:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:42</span></span></code></pre></div>
+<p>Compare Two files:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vimdiff</span> file1.txt file2.txt</span></code></pre></div>
+<p>Insert Visual Block Mode:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Control</span> + V, Shift + I   or Delete with x</span></code></pre></div>
+<p>Visual Line Mode:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Shift</span> + V</span></code></pre></div>
+<p>Switch between windows:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">control</span> + w</span></code></pre></div>
+<p><strong>Install Plugins</strong> <a
+href="https://github.com/junegunn/vim-plug">VIM PLUG</a></p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fLo</span> ~/.vim/autoload/plug.vim <span class="at">--create-dirs</span> <span class="dt">\</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</span></code></pre></div>
+<p><strong><a
+href="https://github.com/rafi/awesome-vim-colorschemes">Awesome VIM
+Colorschemes:
+https://github.com/rafi/awesome-vim-colorschemes</a></strong></p>
+<p><strong>create ~/.vimrc file</strong></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; spaces &amp; tabs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">set shiftwidth=4</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">set tabstop=4</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">set softtabstop=4</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">set smarttab</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">set expandtab</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">set autoindent</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">set number</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> Spell checking</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="at">set nospell</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="at">nnoremap &lt;C-E&gt; :setlocal spell! spelllang=en&lt;CR&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="at">nnoremap &lt;C-G&gt; :setlocal spell! spelllang=de&lt;CR&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; Shortcutting split navigation, saving a keypress:</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">map &lt;C-h&gt; &lt;C-w&gt;h</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">map &lt;C-j&gt; &lt;C-w&gt;j</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">map &lt;C-k&gt; &lt;C-w&gt;k</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">map &lt;C-l&gt; &lt;C-w&gt;l</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> set leader Key</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="at">let mapleader =&quot; &quot;</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; set local leader to \</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="st">let maplocalleader = &quot;</span><span class="at">\\&quot;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; buffer navigation</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="st">nnoremap &lt;C-P&gt; :bprev&lt;CR&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> map esc to jk</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="at">inoremap jk &lt;esc&gt;</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="at">call plug</span><span class="co">#begin(&#39;~/.config/nvim/plugged&#39;)</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Ansible snippets</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;phenomenes/ansible-snippets&#39;</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span><span class="at"> Ansible highlight</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="at">    Plug &#39;pearofducks/ansible-vim&#39;</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Quick  Comment</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;tpope/vim-commentary&#39;</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span><span class="at"> Bar airline things</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="at">    Plug &#39;vim-airline/vim-airline&#39;</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="at">    Plug &#39;vim-airline/vim-airline-themes&#39;</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Colorschemes</span></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;sonph/onehalf&#39;, { &#39;rtp&#39;: &#39;vim&#39; }</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span><span class="at"> System Explorer</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="at">    Plug &#39;preservim/nerdtree&#39;</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Unix Filter</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;junegunn/fzf&#39;, { &#39;do&#39;: { -&gt; fzf#install() } }</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span><span class="at"> Intelisense </span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;release&#39;</span><span class="er">}</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Autocomplte</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;jiangmiao/auto-pairs&#39;</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span><span class="at"> Icons</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="at">    Plug &#39;ryanoasis/vim-devicons&#39;</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">&quot; Vim Prettier</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="st">    Plug &#39;prettier/vim-prettier&#39;, { &#39;do&#39;: &#39;yarn install --frozen-lockfile --production&#39; }</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="st">call plug#end()</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> Start NERDTree and leave the cursor in it.</span></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="at">autocmd VimEnter * NERDTree</span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; UTF-8 encoding for Icons</span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="st">set encoding=UTF-8</span></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> basic colorscheme</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="at">let g</span><span class="fu">:lightline = {&#39;colorscheme&#39;</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;archery&#39;</span><span class="er">}</span></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="at">set t_Co=256</span></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; highlight Normal gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE</span></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="st">highlight nonText gui=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE</span></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> highlight CursorLineNr gui=NONE guifg=NONE guibg=NONE ctermfg=11 ctermbg=NONE</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; highlight CursorLine  gui=NONE guifg=NONE guibg=NONE guifg=NONE ctermbg=NONE</span></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span><span class="at"> highlight LineNr gui=NONE guifg=NONE guibg=NONE ctermfg=8 ctermbg=NONE</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="at">set background=dark</span></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; ansible plugin config</span></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="st">let g:ansible_unindent_after_newline = 1</span></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="st">let g:ansible_yamlKeyName = &#39;yamlKey&#39;</span></span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="st">let g:ansible_attribute_highlight = &quot;</span><span class="at">ob&quot;</span></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="at">let g:ansible_extra_keywords_highlight = 1</span></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="at">let g:ansible_normal_keywords_highlight = &#39;Constant&#39;</span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="at">let g:ansible_with_keywords_highlight = &#39;Constant&#39;</span></span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="at">let g</span><span class="fu">:ansible_template_syntaxes = { &#39;*.rb.j2&#39;</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;ruby&#39;</span><span class="at"> </span><span class="er">}</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="at">let g:ansible_name_highlight = &#39;b&#39;</span></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="at">au BufRead,BufNewFile /playbooks/.yml set filetype=yaml.ansible</span></span></code></pre></div>
+<p><a href="https://vimawesome.com/">VIMAWESOME</a></p>
+<p><a href="https://github.com/junegunn/fzf">FZF - fuzzy finder</a>
+“It’s an interactive Unix filter for command-line that can be used with
+any list; files, command history, processes, hostnames, bookmarks, git
+commits, etc.”</p>
+<p>Plug ‘junegunn/fzf’, { ‘do’: { -&gt; fzf#install() } }</p>
+<p><a href="https://github.com/BurntSushi/ripgrep">File Search</a></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install ripgrep</span></code></pre></div>
+<p><a href="https://github.com/neoclide/coc.nvim">Intelisense</a> <img
+src="https://private-user-images.githubusercontent.com/251450/266519386-05f60ab8-dcb1-40f7-9e4a-3c03f5db5398.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUxOTE4NTQsIm5iZiI6MTc0NTE5MTU1NCwicGF0aCI6Ii8yNTE0NTAvMjY2NTE5Mzg2LTA1ZjYwYWI4LWRjYjEtNDBmNy05ZTRhLTNjMDNmNWRiNTM5OC5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDIwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQyMFQyMzI1NTRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mMTg2NzllNzI2MWVlMGMxNjkzMDdiMTIzMGQ0YmNmZjUwMzVjMWQyZDRjMzAzOGRmMTg5OTQzNThhNzc3ODJkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.IAvai8k5Dt-002j64Ks3fcKfB8cZh7ALur6z1NurDIk" /></p>
+<p>Plug ‘neoclide/coc.nvim’, {‘branch’: ‘release’}</p>
+<p><a
+href="https://github.com/jiangmiao/auto-pairs">Autocomplete</a></p>
+<p>Plug ‘jiangmiao/auto-pairs’</p>
+<p><a href="https://github.com/preservim/nerdtree">System Explorer -
+nerdtree</a> “The NERDTree is a file system explorer for the Vim editor.
+Using this plugin, users can visually browse complex directory
+hierarchies, quickly open files for reading or editing, and perform
+basic file system operations.”</p>
+<p>Plug ‘preservim/nerdtree’</p>
+<p><a href="https://github.com/tpope/vim-fugitive">Git -
+vim-fugitive</a> “Fugitive is the premier Vim plugin for Git. Or maybe
+it’s the premier Git plugin for Vim? Either way, it’s”so awesome, it
+should be illegal”. That’s why it’s called Fugitive.”</p>
+<p><a href="https://github.com/ryanoasis/vim-devicons">vim-devicons</a>
+“Folder Icons”</p>
+<p>Plug ‘ryanoasis/vim-devicons’</p>
+<p>set encoding=UTF-8</p>
+<p><a
+href="https://github.com/prettier/vim-prettier">vim-prettier</a></p>
+<p><a href="https://github.com/vscode-neovim/vscode-neovim">vscode
+neovim</a> <a href="https://github.com/xabikos/vscode-react">vscode
+react</a></p>
+<p><strong>Install Plugin from .vimrc config</strong></p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:PlugInstall</span></span></code></pre></div>
+<p><img src="../../vim/files/images/vim.jpg" /></p>
+<p><strong>Install zsh on mac cli</strong> <a
+href="https://github.com/ohmyzsh/ohmyzsh/tree/master">Source
+ohmyzsh</a></p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vi</span> ~/.zshrc</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  git</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  bundler</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  dotenv</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  macos</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  rake</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  rbenv</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  ruby</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span></code></pre></div>
+<p><img src="../../vim/files/images/zsh.jpg" /></p>
+<p><strong>Introducing <a
+href="https://github.com/vscode-neovim/vscode-neovim">vscode-neovim</a></strong></p>
+<p><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">GitHub zsh
+Themes</a> <a
+href="https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh">GitHub
+zsh Plugin</a></p>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src="https://julianwe.github.io/ansible/roles/webpage/files/js/script.js"></script>
+  <script src="https://julianwe.github.io/ansible/roles/webpage/files/js/js.js"></script>
+
+
+</html>
