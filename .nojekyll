@@ -1,3 +1,2 @@
-playbooks/*
 ansible/roles/webpage/tasks/playbook_create_index_html.yaml
 ansible/roles/webpage/tasks/playbook_convert_markdown_html.yaml
