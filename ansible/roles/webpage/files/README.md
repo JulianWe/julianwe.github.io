@@ -37,7 +37,7 @@ ansible-playbook playbooks/webpage.yml
 ```
 
 
-**How to build webserver with docker container**
+**how to build webserver with docker container**
 ```dockerfile
 FROM ubuntu:latest
 
@@ -54,8 +54,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 
-**Build HTML Blog using ansible**
-
+**convert reamdme files to html blogposts and create index.html file using ansible**
 ```yml
 ---
 - name: Include variables from a file
@@ -96,16 +95,6 @@ CMD ["nginx", "-g", "daemon off;"]
     dest: "{{ item.ansible_facts.file_path }}"
   delegate_to: localhost
   loop: "{{ html_files.results }}"
-...
-``` 
-
-**Build index.html file using ansible**
-```yml
----
-- name: Include variables from a file
-  include_vars:
-    file: "{{ path }}/roles/webpage/vars/main.yml"
-  register: vars
 
 - name: build index html file
   template:
@@ -115,28 +104,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ...
 ``` 
 
+
+**make sure to select deploy from branch instead of GitHub Actions in repository settings https://github.com/username/username.github.io/settings/pages**
 ![](../files/images/pages.jpg)
 
-
-**Create .github/workflows/docker-image.yml Action file**
-
-```yml
-name: Docker Image CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-``` 
