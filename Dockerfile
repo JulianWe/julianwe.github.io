@@ -7,6 +7,6 @@ RUN apt-get install npm -y
 RUN apt-get install nodejs -y
 
 COPY ansible/roles/webpage/files/ /var/www/html/
-#COPY . /etc/nginx/sites-enabled/default
+COPY ansible/roles/webpage/files/nginx /etc/nginx/sites-enabled/default
 
 CMD ["nginx", "-g", "daemon off;"]
