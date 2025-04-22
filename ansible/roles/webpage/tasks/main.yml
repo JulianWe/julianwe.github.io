@@ -3,7 +3,4 @@
 # tasks file for webpage
 
   - name: "Include playbook convert markdown to html"
-    import_tasks: playbook_convert_makdown_html.yaml
-
-  - name: "Include playbook create index html page"
-    import_tasks: playbook_create_index_html.yaml
+    import_tasks: playbook_convert_makdown_html.yml
