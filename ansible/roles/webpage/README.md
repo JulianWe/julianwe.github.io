@@ -7,35 +7,7 @@
 brew install ansible
 ```
 
-```sh
-ansible-galaxy init role webpage
 
-tree . 
-.
-├── README.md
-├── defaults
-│   └── main.yml
-├── files
-│   ├── css
-│   │   ├── cards.css
-│   │   └── style.css
-│   ├── images
-│   │   ├── index.html
-│   │   └── me.jpg
-│   ├── index.html
-│   └── js
-│       └── script.js
-├── tasks
-│   └── main.yml
-├── templates
-├── tests
-│   ├── inventory
-│   └── test.yml
-└── vars
-    └── main.yml
-
-12 directories, 14 files
-```
 
 **convert README files to HTML using Ansible Playbook**
 ```yml
@@ -92,6 +64,28 @@ tree .
 ...
 ```
 
+```yml
+Create .github/workflows/docker-image.yml Action file
+
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
 
 **Jinja2 HTML Project Template & Variables**
 
@@ -101,6 +95,9 @@ tree .
 |`url`| Website URL | `"{{ item.ansible_facts.url }}"` |
 |`identifier`| disqus comment page identifier. | `{{ item.ansible_facts.identifier }}` |
 |`name`| Browser Title | `{{ item.ansible_facts.name }}` |
+```
+
+
 
 ```html
 <html>
