@@ -1,5 +1,9 @@
 ---
 # vars file for webpage
+path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
+index_html: "{{ path }}/roles/webpage/templates/index.j2"
+index_file: "{{ path }}/roles/webpage/files/index.html"
+blogpost: "{{ path }}/roles/webpage/templates/blogpost.j2"
 home:
   title: "GitBlog"
   name: "Julian Wendland"
@@ -176,4 +180,3 @@ blogposts:
     image: "../../git/files/images/git.jpg"
     category: "Coding"
     description: "Git Cheatsheat"
-

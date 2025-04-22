@@ -1,0 +1,15 @@
+# Create Webpage using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- hosts: localhost 
+  tasks:
+
+    - name: Include variables from a file
+      include_vars:
+        file: "../roles/webpage/vars/main.yml"
+      register: vars
+      
+    - name: Include the webpage role
+      include_role:
+        name: roles/webpage 
+...

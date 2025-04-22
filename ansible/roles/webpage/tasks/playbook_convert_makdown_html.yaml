@@ -1,0 +1,35 @@
+---
+- name: convert markdown to html
+  shell: | 
+    cd {{ path }}
+    for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
+    done;
+    ls {{ path }}/roles
+  register: folder
+
+- name: set blogpost, url & directory facts
+  set_fact:
+    name: "{{ item | trim ('/')}}"
+    file_path: "{{ path }}/roles/{{ item }}/files/{{ item | trim ('/')}}.html"
+    url: "https://julianwe.github.io/{{ item }}/{{ item | trim('/')}}.html"
+  loop: "{{ folder.stdout_lines }}"
+  loop_control:
+    index_var: index
+  register: facts
+
+- name: set html content facts
+  set_fact:
+    html: "{{ lookup('file', item.ansible_facts.file_path) }}"
+    file_path: "{{ item.ansible_facts.file_path }}"
+    url: "{{ item.ansible_facts.url }}"
+    name: "{{ item.ansible_facts.name }}"
+  loop: "{{ facts.results }}"
+  register: html_files
+
+- name: create blogpost HTML sites
+  template:
+    src: "{{ blogpost }}"
+    dest: "{{ item.ansible_facts.file_path }}"
+  delegate_to: localhost
+  loop: "{{ html_files.results }}"
+...

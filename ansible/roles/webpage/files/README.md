@@ -1,12 +1,41 @@
-# Create a Website using Docker and GitHub Pages
+# Create a Portfolio Website using Docker and GitHub Pages
 
 ![](../files/images/ansible-docker.jpg)
 
+
 **create a new repository with your username.github.io**
 ```sh
-git init julianwe.github.io
+git init username.github.io
 git clone https://github.com/JulianWe/julianwe.github.io.git
+cp julianwe.github.io/ansible username.github.io/
 ``` 
+
+**build your own website with ansible role playbook "webpage.yml"**
+```sh
+# Create Webpage using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- hosts: localhost 
+  tasks:
+
+    - name: Include variables from a file
+      include_vars:
+        file: "../roles/webpage/vars/main.yml"
+      register: vars
+      
+    - name: Include the webpage role
+      include_role:
+        name: roles/webpage 
+...
+```
+
+**customize var/main.yml file with your information**
+```sh
+# run ansible playbook with your information
+cd username.gituhub.io
+ansible-playbook playbooks/webpage.yml
+```
+
 
 **How to build webserver with docker container**
 ```dockerfile
@@ -25,54 +54,64 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 
-**Build HTML Blog using ansible playbook**
+**Build HTML Blog using ansible**
 
 ```yml
 ---
-- name: playbook_convert_makdown_html
-  hosts: localhost
-  connection: localhost
-  gather_facts: False
-  
-  vars:
-    path: "/Users/jw/Documents/GitHub/webpage/ansible"
-    blogpost: "{{ path }}/roles/webpage/templates/blogpost.j2"
-  
-  tasks:
+- name: Include variables from a file
+  include_vars:
+    file: "{{ path }}/roles/webpage/vars/main.yml"
+  register: vars
 
-    - name: convert README to HTML
-      shell: | 
-        cd {{ path }}
-        for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
-        done;
-        ls {{ path }}/roles
-      register: folder
+- name: convert README to HTML
+  shell: | 
+    cd {{ path }}
+    for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
+    done;
+    ls {{ path }}/roles
+  register: folder
 
-    - name: set project, URLs & directorys facts
-      set_fact:
-        name: "{{ item | trim ('/')}}"
-        file_path: "{{ path }}/roles/{{ item }}/files/{{ item | trim ('/')}}.html"
-        url: "https://julianwe.github.io/blogpost/{{ item }}/{{ item | trim('/')}}.html"
-      loop: "{{ folder.stdout_lines }}"
-      loop_control:
-        index_var: index
-      register: facts
-  
-    - name: set html content facts
-      set_fact:
-        html: "{{ lookup('file', item.ansible_facts.file_path) }}"
-        file_path: "{{ item.ansible_facts.file_path }}"
-        url: "{{ item.ansible_facts.url }}"
-        name: "{{ item.ansible_facts.name }}"
-      loop: "{{ facts.results }}"
-      register: html_files
+- name: set project, URLs & directorys facts
+  set_fact:
+    name: "{{ item | trim ('/')}}"
+    file_path: "{{ path }}/roles/{{ item }}/files/{{ item | trim ('/')}}.html"
+    url: "https://julianwe.github.io/{{ item }}/{{ item | trim('/')}}.html"
+  loop: "{{ folder.stdout_lines }}"
+  loop_control:
+    index_var: index
+  register: facts
 
-    - name: create project HTML sites
-      template:
-        src: "{{ blogpost }}"
-        dest: "{{ item.ansible_facts.file_path }}"
-      delegate_to: localhost
-      loop: "{{ html_files.results }}"
+- name: set html content facts
+  set_fact:
+    html: "{{ lookup('file', item.ansible_facts.file_path) }}"
+    file_path: "{{ item.ansible_facts.file_path }}"
+    url: "{{ item.ansible_facts.url }}"
+    name: "{{ item.ansible_facts.name }}"
+  loop: "{{ facts.results }}"
+  register: html_files
+
+- name: create project HTML sites
+  template:
+    src: "{{ blogpost }}"
+    dest: "{{ item.ansible_facts.file_path }}"
+  delegate_to: localhost
+  loop: "{{ html_files.results }}"
+...
+``` 
+
+**Build index.html file using ansible**
+```yml
+---
+- name: Include variables from a file
+  include_vars:
+    file: "{{ path }}/roles/webpage/vars/main.yml"
+  register: vars
+
+- name: build index html file
+  template:
+    src: "{{ index_html }}"
+    dest: "{{ index_file }}"
+  delegate_to: localhost
 ...
 ``` 
 
