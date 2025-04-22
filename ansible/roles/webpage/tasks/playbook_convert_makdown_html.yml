@@ -26,10 +26,16 @@
   loop: "{{ facts.results }}"
   register: html_files
 
-- name: create blogpost HTML sites
+- name: create blogpost html files
   template:
     src: "{{ blogpost }}"
     dest: "{{ item.ansible_facts.file_path }}"
   delegate_to: localhost
   loop: "{{ html_files.results }}"
+
+- name: create index.html file
+  template:
+    src: "{{ index_html }}"
+    dest: "{{ index_file }}"
+  delegate_to: localhost
 ...

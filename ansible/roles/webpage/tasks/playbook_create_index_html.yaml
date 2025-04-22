@@ -1,7 +1,0 @@
----
-- name: build index html file
-  template:
-    src: "{{ index_html }}"
-    dest: "{{ index_file }}"
-  delegate_to: localhost
-...
