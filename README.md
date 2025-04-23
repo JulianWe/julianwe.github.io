@@ -1,6 +1,6 @@
 # Create a Portfolio Website using Docker and GitHub Pages
 
-![](../files/images/ansible-docker.jpg)
+![](ansible/roles/webpage/files/images/ansible-docker.jpg)
 
 
 **create a new repository with your username.github.io**
@@ -106,5 +106,5 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 **make sure to select deploy from branch instead of GitHub Actions in repository settings https://github.com/username/username.github.io/settings/pages**
-![](../files/images/pages.jpg)
+![](ansible/roles/webpage/files/images/pages.jpg)
 
