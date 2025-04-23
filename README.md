@@ -106,5 +106,5 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 **make sure to select deploy from branch instead of GitHub Actions in repository settings https://github.com/username/username.github.io/settings/pages**
-![](../files/images/pages.jpg)
+![](ansible/roled/webpage/files/images/pages.jpg)
 
