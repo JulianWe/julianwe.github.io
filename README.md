@@ -1,6 +1,6 @@
 # Create a Portfolio Website using Docker and GitHub Pages
 
-![](../files/images/ansible-docker.jpg)
+![](ansible/roles/webpage/files/images/ansible-docker.jpg)
 
 
 **create a new repository with your username.github.io**
