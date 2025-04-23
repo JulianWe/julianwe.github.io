@@ -1,6 +1,7 @@
 ---
 # vars file for webpage
 path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
+blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/blog"
 index_html: "{{ path }}/roles/webpage/templates/index.j2"
 index_file: "{{ path }}/roles/webpage/files/index.html"
 blogpost: "{{ path }}/roles/webpage/templates/blogpost.j2"
@@ -91,92 +92,92 @@ services:
     description: "I have serveral years of experience teaching official virtulization, infrastructure and automation courses."
 blogposts:
   akash:
-    html: "https://julianwe.github.io/ansible/roles/akash/files/akash.html"
+    html: "/blog/akash.html"
     image: "../../akash/files/images/akt.jpg"
     category: "Decentralization"
     description: "Akash Container Deployment"
   bat: 
-    html: "https://julianwe.github.io/ansible/roles/bat/files/bat.html"
+    html: "blog/bat.html"
     image: "../../bat/files/images/bat.jpg"
     category: "Decentralization"
     description: "Brave Rewards"
   stroj:
-    html: "https://julianwe.github.io/ansible/roles/storj/files/storj.html"
+    html: "blog/storj.html"
     image: "../../storj/files/images/storj.jpg"
     category: "Decentralization"
     description: "Storj Storageserver using AWS S3"
   ansible:
-    html: "https://julianwe.github.io/ansible/roles/ansible/files/ansible.html"
+    html: "blog/ansible.html"
     image: "../../ansible/files/images/ansible.jpg"
     category: "Automation"
     description: "Ansible Automation"
   link:
-    html: "https://julianwe.github.io/ansible/roles/link/files/link.html"
+    html: "blog/link.html"
     image: "../../link/files/images/link.jpg"
     category: "Decentralization"
     description: "Create Chainlink Node"
   akt:
-    html: "https://julianwe.github.io/ansible/roles/akt/files/akt.html"
+    html: "blog/akt.html"
     image: "../../akt/files/images/akt.jpg"
     category: "Decentralization"
     description: "Akash Cloud Provider"
   vsc:
-    html: "https://julianwe.github.io/ansible/roles/vsc/files/vsc.html"
+    html: "blog/vsc.html"
     image: "../../vsc/files/images/vsc.jpg"
     category: "Coding"
     description: "Visual Studio Code Server"
   dev:
-    html: "https://julianwe.github.io/ansible/roles/dev/files/dev.html"
+    html: "blog/dev.html"
     image: "../../dev/files/images/container.jpg"
     category: "Container"
     description: "Docker Development Container" 
   github:
-    html: "https://julianwe.github.io/ansible/roles/github/files/github.html"
+    html: "blog/github.html"
     image: "../../github/files/images/github.jpg"
     category: "Coding" 
     description: "Create SSH Keys for GitHub"
   ipfs:
-    html: "https://julianwe.github.io/ansible/roles/ipfs/files/ipfs.html"
+    html: "blog/ipfs.html"
     image: "../../ipfs/files/images/fil.jpg"
     category: "Decentralization"
     description: "IPFS Inter Planetary File System"
   erc:
-    html: "https://julianwe.github.io/ansible/roles/erc/files/erc20.html"
+    html: "blog/erc.html"
     image: "../../erc/files/images/eth.jpg"
     category: "Decentralization"
     description: "Create your own Ethereum Token"
   hns:
-    html: "https://julianwe.github.io/ansible/roles/hns/files/hns.html"
+    html: "blog/hns.html"
     image: "../../hns/files/images/hns.jpg"
     category: "Decentralization"
     description: "Hanshake Decentralized naming and certificate authority"    
   dvpn:
-    html: "https://julianwe.github.io/ansible/roles/dvpn/files/dvpn.html"
+    html: "blog/dvpn.html"
     image: "../../dvpn/files/images/dvpn.jpg"
     category: "Decentralization"
     description: "Sentinel Decentralized VPN"
   webpage:
-    html: "https://julianwe.github.io/ansible/roles/webpage/files/webpage.html"
+    html: "blog/webpage.html"
     image: "../../webpage/files/images/ghp.jpg"
     category: "Webdesign"
     description: "Create Github Pages Website"
   solidity:
-    html: "https://julianwe.github.io/ansible/roles/solidity/files/solidity.html"
+    html: "blog/solidity.html"
     image: "../../solidity/files/images/sol.jpg"
     category: "Decentralization"
     description: "Create Solidity Voting Smart Contract"
   msw:
-    html: "https://julianwe.github.io/ansible/roles/msw/files/msw.html"
+    html: "blog/msw.html"
     image: "../../msw/files/images/msw.jpg"
     category: "Decentralization"
     description: "Create Solidity Multisig Wallet"
   vim:
-    html: "https://julianwe.github.io/ansible/roles/vim/files/vim.html"
+    html: "blog/vim.html"
     image: "../../vim/files/images/vi.jpg"
     category: "Coding"
     description: "Vim Cheatsheat"
   git:
-    html: "https://julianwe.github.io/ansible/roles/git/files/git.html"
+    html: "blog/git.html"
     image: "../../git/files/images/git.jpg"
     category: "Coding"
     description: "Git Cheatsheat"
