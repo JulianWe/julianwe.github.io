@@ -92,12 +92,12 @@ services:
     description: "I have serveral years of experience teaching official virtulization, infrastructure and automation courses."
 blogposts:
   akash:
-    html: "/blog/akash.html"
+    html: "akash.html"
     image: "../../akash/files/images/akt.jpg"
     category: "Decentralization"
     description: "Akash Container Deployment"
   bat: 
-    html: "blog/bat.html"
+    html: "bat.html"
     image: "../../bat/files/images/bat.jpg"
     category: "Decentralization"
     description: "Brave Rewards"
