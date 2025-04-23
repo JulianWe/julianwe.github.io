@@ -329,7 +329,7 @@
                     <div class="card-grid">
 
                         {% for blogpost in vars.blogposts  %}
-                            <a class="card" href={{ file_path }}> 
+                            <a class="card" href={{ blogposts[blogpost].html }}> 
                                 <div class="card__background"
                                     style="background-image: url({{ blogposts[blogpost].image }})"></div>
                                 <div class="card__content">
