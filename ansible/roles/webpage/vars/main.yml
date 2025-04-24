@@ -92,7 +92,7 @@ services:
     description: "I have serveral years of experience teaching official virtulization, infrastructure and automation courses."
 blogposts:
   akash:
-    html: ",,/akash/files/akash.html"
+    html: "../akash/files/akash.html"
     image: "../../akash/files/images/akt.jpg"
     category: "Decentralization"
     description: "Akash Container Deployment"
@@ -102,7 +102,7 @@ blogposts:
     category: "Decentralization"
     description: "Brave Rewards"
   stroj:
-    html: "../../storj/storj.html"
+    html: "../../storj/files/storj.html"
     image: "../../storj/files/images/storj.jpg"
     category: "Decentralization"
     description: "Storj Storageserver using AWS S3"
@@ -157,7 +157,7 @@ blogposts:
     category: "Decentralization"
     description: "Sentinel Decentralized VPN"
   webpage:
-    html: "../../webpage/webpage.html"
+    html: "../../webpage/files/webpage.html"
     image: "../../webpage/files/images/ghp.jpg"
     category: "Webdesign"
     description: "Create Github Pages Website"
