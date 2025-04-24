@@ -1,0 +1,17 @@
+---
+- name: stop all running docker containers
+  shell:
+    cmd: docker stop $(docker ps -a -q)
+
+- name: build docker container
+  shell:
+    cmd: docker build -t webpage "{{ vars.paths.repository }}"
+
+- name: run docker container
+  shell:
+    cmd: docker run -d -p 8080:80 webpage
+
+- name: open webpage 
+  shell:
+    cmd: open http://localhost:8080 
+...

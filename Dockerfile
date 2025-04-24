@@ -6,7 +6,6 @@ RUN apt-get install vim -y
 RUN apt-get install npm -y
 RUN apt-get install nodejs -y
 
-COPY ansible/roles /var/www/html/
 COPY ansible/roles/webpage/files /var/www/html/
 COPY ansible/roles/webpage/files/nginx.conf /etc/nginx/sites-enabled/default
 

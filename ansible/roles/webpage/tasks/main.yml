@@ -1,6 +1,7 @@
-#SPDX-License-Identifier: MIT-0
----
 # tasks file for webpage
 
-  - name: "Include playbook convert markdown to html"
-    import_tasks: playbook_convert_makdown_html.yml
+  - name: "Include playbook webpage"
+    import_tasks: playbook_webpage.yml
+
+  - name: "Include playbook webserver"
+    import_tasks: playbook_webserver.yml

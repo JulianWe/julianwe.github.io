@@ -2,6 +2,7 @@
 # vars file for webpage
 paths:
   path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
+  repository: "/Users/jw/Documents/GitHub/julianwe.github.io"
   blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/blog"
   index_html: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
   index_file: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/index.html"
