@@ -1,4 +1,4 @@
-# ☁️ [Akash](https://akash.network/) deployment Tutorial 🐇
+# ☁️ [Akash](https://akash.network/) Server Deployment 🐇
 
 ![](../../akash/files/images/akash.jpg)
 
