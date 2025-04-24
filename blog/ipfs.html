@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href=../css/blog.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="../index.html#home"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="../index.html#home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="../index.html#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="../index.html#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="../index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="../index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+                <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../css/markdown.css">
+          <link rel="stylesheet" href="../css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="ipfs-deployment-tutorial">☁️ <a
+href="ipns://ipfs.tech/">IPFS</a> deployment Tutorial 🐇</h1>
+<figure>
+<img src="../../ipfs/files/images/ipfs.jpg" alt="IPFS" />
+<figcaption aria-hidden="true">IPFS</figcaption>
+</figure>
+<p><strong>Hash based addressing instead of location based addressing
+with the worlds first Inter Planetary File System IPFS</strong></p>
+<h1 id="install-ipfs">Install IPFS</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://dist.ipfs.tech/kubo/v0.20.0/kubo_v0.20.0_darwin-amd64.tar.gz</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xvzf</span> kubo_v0.20.0_darwin-amd64.tar.gz</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> kubo</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> bash install.sh</span></code></pre></div>
+<h1 id="initialize-ipfs">Initialize IPFS</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ipfs</span> daemon</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Initializing</span> daemon...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Kubo</span> version: 0.20.0</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Repo</span> version: 13</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">System</span> version: amd64/darwin</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Golang</span> version: go1.19.8</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Error:</span> no IPFS repo found in /Users/jw/.ipfs.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">please</span> run: <span class="st">&#39;ipfs init&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ipfs</span> init</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">generating</span> ED25519 keypair...done</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">peer</span> identity: 12D3KooWBcpXDYJbBx1bR4f3AfD4EahzVpcMLuM9fKnPmX3het4X</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">initializing</span> IPFS node at /Users/jw/.ipfs</span></code></pre></div>
+<h1 id="add-ipfs-files">Add IPFS Files</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">➜</span>  julianwe.github.io git:<span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">✗</span> ipfs add <span class="at">-r</span> .</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPwPK4gEqFn53HYweZ5L1Eue8PCbnz1kK5QQjFqSQZQ1q julianwe.github.io/Dockerfile</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSUXhJTSC7bAiDyLdXW4MgSjAjuYThYok2RFyH4FygWbb julianwe.github.io/about.html</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWyGFoveLsUHYkmKrJmaYr19izmKKs5shCR6BX8rb62JL julianwe.github.io/ansible.cfg</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUPAjQUjjM9JWS6J65jCEAbfEoc34YdXD8UD6G7sss8T9 julianwe.github.io/atom.xml</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPkJ5uVc3wnNYFDx61MYrxtXbFRtJLYsDG9TKEVz5PZFD julianwe.github.io/contact.html</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmR1xjms47sxxAirEusRgPPndMZVJTu6pmwydqCmUnLdr9 julianwe.github.io/css/about.css</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmP521HtUVxSUewyk4quwtdCeouU2duPKxs8pcD18TsHCr julianwe.github.io/css/cards.css</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcTwhuZuENYHNRFo9ksbxT3bzCsZkGYbpcyHVR3F2ZnSC julianwe.github.io/css/css.css</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcjDKBhX3PmzWZ9zHpttRmV21Q8HtqNhgV7PiBCvFKwjF julianwe.github.io/css/highlight.min.css</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmY9b1gpLRSAZfpssg9WSb13p5JQkEMqr8Jn6tUwhUw3iJ julianwe.github.io/css/icons.css</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRPe3jHy4Kf4yfGjNJwyAEdQ1EkKCSeF44JXh2iU4XNxr julianwe.github.io/css/kacheln.css</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYLKDZKfEDRKEwjRPoC3bUTA2B3LL2BZZZnRxfKUaMSdc julianwe.github.io/css/light.scss</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmfCBv14BCNoHtyH6zMq6RdFmvaFnn4Min3U1PejRoWD6j julianwe.github.io/css/login.css</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmdKeXGwTHPUoWSEwUsSYM5RPYJW51rw5maMGbpdtn3jRh julianwe.github.io/css/markdownOS.css</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbmetDxc3xxDJqZcPJ3gx7bRb6g7zx2SJCF1BdpJQpFCi julianwe.github.io/css/menu.css</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQFBqGsxYoUAjZcbon4oJVkrkL2wFPVAA6GTmXocz6Dgr julianwe.github.io/css/purge.css</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSF8TAoxe155RhV5KNSKmsc38GeA31DyJjp8NhuKVEnbP julianwe.github.io/css/w3.css</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZfg9saVxY6vwuSVwhxyv355G3t9TUzkwo4obNnrEThkM julianwe.github.io/github.jpg</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQonhUj3ZbrtSmYgNcBXmY8p8cdVE6dNoobS1eWdrT541 julianwe.github.io/images/background.jpg</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSR44XHr6JTy7Buf36TiU2jFsJBAWCDaB3CdTKpKCXxaG julianwe.github.io/images/defilego.jpg</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeMtQw97czTWb42ThscKQwkyg17cvrKz4SKCdDEiYRCP8 julianwe.github.io/images/git.jpg</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSABQNfBZGsou269RQT5Bx249SKWrQw3QrexmGcvPiDEt julianwe.github.io/images/me.jpg</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPbwjVQNz2yizfwAJrwXYJg5ek41KonPMz4VtVt5JXvDJ julianwe.github.io/index.html</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbSP3jsua4rd8zTVQ4AacTUZc3qdvViggpA36eyVLwDKH julianwe.github.io/js/about.js</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSQBW3QrPxmq9B46voNriLvxzr1QVQshNPMZttKfuwbkz julianwe.github.io/js/js.js</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTNseNTqxr77h4k9QyAVp514B43on6TR39XuoKJmtiyvr julianwe.github.io/js/light.js</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmURyMvfH5T7K3xfrF4hymC56DzSLGXFKT6nzhrpPMnkfM julianwe.github.io/js/menu.js</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVLTtmJZpL5Tji6DUfucSf4DUk4QZGMWBJ6CSdoY5tsn8 julianwe.github.io/js/readingTime.js</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZDA9aRK4wxegcs93sFm5zafP2C4Pt2HbWfoPQk14QZ53 julianwe.github.io/js/search.js</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWHrtPBhZu5aus9Ni8VvgJr5jErAKvpwigLsUVce6s4UN julianwe.github.io/lib/jquery/jquery.min.js</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH julianwe.github.io/lib/justified-gallery/css/justifiedGallery.min.css</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbDsvemWctRqRZC2gFL5ZimkCAzk66LQ84HvoccNe2R6m julianwe.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaUafHdjFAPSuiGx7jEYcXXGEWzNMzx9yLhz4dJsmLpXc julianwe.github.io/menu.html</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmR7KpQvwTU7t2HvnRj2yacouCQLEWBUeGjDTwd1kJTZyv julianwe.github.io/prism.css</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmemwBJf17PbfHTNDZQP4i1tgJdk53ePouMVnYZWhJAFfE julianwe.github.io/prism.js</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmP7fMUCJsitDxNZVTJzvpqxwLV92PGiQQqJf7pFv2YLPo julianwe.github.io/projects/ERC-20/ERC-20.html</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXMEWxaiFwDm9xqFsxCD9Qv4cjri75pTGjudbrjCvWutx julianwe.github.io/projects/ERC-20/MyCustomToken.sol</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZ6661nyvUjyXkWpjP2zkUCaX6gCioc75SmG8UvTTunct julianwe.github.io/projects/ERC-20/README.md</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmP6GeyKevoQAm7vaUWRaYixedoywgAii3Ai3urVykegHa julianwe.github.io/projects/ERC-20/images/ERC-20-Token.jpg</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmenhh8dACPeW76tUb5X1QhKZah5gr3J1q2dvpzjaRnLpV julianwe.github.io/projects/ERC-20/images/erc-20.jpg</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUt5Myb5n6Kw56oZp8pBQbXeRAa8eEjMoZD5RuUF4JYNc julianwe.github.io/projects/ERC-20/images/erc20.jpg</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeXCsy4MBF75MrsSNfQu4iDziyBeaJaEGwEQc7DV71Kpi julianwe.github.io/projects/MultiSigEthereumWallet/MultiSigEthereumWallet.html</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbR4ugaZsWwSXz8iBLxBfy84J6RGeGmCFCyFUXG1uhDtE julianwe.github.io/projects/MultiSigEthereumWallet/MultiSigWallet.sol</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQ8s9iNvzfHxWuVPtnrBwR591cmGjgqaYeEGt158HAjTr julianwe.github.io/projects/MultiSigEthereumWallet/README.md</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWWLhy2K4qPJbW4fzrmyuK19r2icZ6Bvoczxw7zbeZDQw julianwe.github.io/projects/MultiSigEthereumWallet/images/ApproveSpendingWalletFunds.jpg</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSu1G9u2W7bFxvAcaup7NhWC3qCADiYKgMbTegePqqoQu julianwe.github.io/projects/MultiSigEthereumWallet/images/DeployMultiSigWallet.png</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSgyLdhMGrsUoEKY3Moog6ZDooJobARoUHYw1QCa8gGE2 julianwe.github.io/projects/MultiSigEthereumWallet/images/msw.jpg</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRedAo81zKZMmgXgshtpWZJoJm54pdsbFJ1DFZo3WoPeR julianwe.github.io/projects/MultiSigEthereumWallet/images/multisigwallet.jpg</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXsRpA71CYJheV4U43UNZea474YeDRGNK6QPQQ883pmze julianwe.github.io/projects/SmartContractTutorial/README.md</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXUDgUQ2zP874zrqM6ifrZLVqdy5Wsv4bwNhSsU9tedba julianwe.github.io/projects/SmartContractTutorial/SmartContractTutorial.html</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSPtspbh8JiyW4TrwaPeVAkoC39oeKcxihaQWo1xr4U5s julianwe.github.io/projects/SmartContractTutorial/VotingContract.sol</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbW7Eg8CWaqWq2vQjv6mhunA8FWefegZnLpihstLLFWRq julianwe.github.io/projects/SmartContractTutorial/images/DeployVotingContract.jpg</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbVy3mSQJQE2YNxJBpMENKBXQiCXmu6DtLc992gB9siwz julianwe.github.io/projects/SmartContractTutorial/images/InteractWithSmartContract.jpg</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmb473LKqKErdJ49x7Evf3huXmBYetFN5eTuhiYkDjVggf julianwe.github.io/projects/SmartContractTutorial/images/SolidityContract.jpg</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeAagmDKqsq7fmPKRpR6hGNoStona6ZFUyjWb2JPELDCG julianwe.github.io/projects/SmartContractTutorial/images/sol.jpg</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmY8DkgEhJABmdenqzHrp7cB9n9Pa6KrbhJTDuxf3DhrgK julianwe.github.io/projects/akash/README.md</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZhKHJCHZWnvH4CFZjZVAok9rvgYhke8n8o3ekRGtktEn julianwe.github.io/projects/akash/akash.html</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNamuDmH3dFbDMcphoMPb1WR7tvofH3FKa9aw3vDSyZnX julianwe.github.io/projects/akash/deploy.yml</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXaVEGboArhWypcruHhDwAetitcpuESifhWBh4PZzDppx julianwe.github.io/projects/akash/deploy_web.yml</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTnxW6kHavhS4srHEnEUegVeaNhq5Zzu6NguhTPeVuiZY julianwe.github.io/projects/akash/deploy_webapp.yml</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmc33G9ucbKxQvKyuvxC8zgv7usquwjsqiQBcGFSwUy72n julianwe.github.io/projects/akash/deployment.yml</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZjxmPSrHw2zFN8HmDTY99SBT1C9meMchuj1bb43Tsway julianwe.github.io/projects/akash/genesis.json</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXGggCXxDXoZNGmDdxu8ygpZTETuWjgdJdtTmXtQzowSg julianwe.github.io/projects/akash/images/akash.jpg</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmR63fuHf3kTX788rRhXKLdmQpuWHf8uu21gWWsZK3ECo1 julianwe.github.io/projects/akash/images/akt.jpg</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSf7HgyskmukY5Z3CraqgejhPGBZJZeBqaXcA2oQcbA9e julianwe.github.io/projects/ansible/README.md</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPmoqcPGdJnzvuETiKRxoEM7XVtxmYR6M14iahZ61poJC julianwe.github.io/projects/ansible/ansible.cfg</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZexHWUWfD7gdrZnt4TBRiuKxJuJpw9HLxefveC6vL8aQ julianwe.github.io/projects/ansible/ansible.html</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeSnLu4X2FJ3ufFbZqSXgca47soJXyTbt8RS1SfjjE5eK julianwe.github.io/projects/ansible/images/ansible.jpg</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNvEPrSARSHNKrE6fC4sfJTGtHiwXoVvMMxwgWemxcyfu julianwe.github.io/projects/ansible/playbook.yml</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQBWfYJUfd61CJiPjV7gnGSCoXdQevU4J7iovDsiD6iXF julianwe.github.io/projects/ansible/project.j2</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeDWZJLyC4YQJHurp2Lry1C59nuYxhceKvd3aRU6coj1r julianwe.github.io/projects/ansible/projects.j2</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbrskWfqLoZx8dTWR95zqEasedPcuyJxWrAgd5ZzuMZSB julianwe.github.io/projects/ansible/projects_template copy.j2</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNZ5YSkDJ5kMBhpPy7B8xPbVe3TyfqEHgUDZQx7T2HEws julianwe.github.io/projects/ansible/projects_template.j2</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNmRe1f68AcaBvsWbKg8MKoqLxQdZpz9upqFq88F7H3U7 julianwe.github.io/projects/brave/README.md</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVhbqPNvGuX8A5LPBg9qm8K3TrK2ecizVa7qAvif8pSSQ julianwe.github.io/projects/brave/brave-rewards-verification.txt</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXfA3dL8hLtCk56QBDp7sqhQAppk3pfpLDX2Anhn3aPyv julianwe.github.io/projects/brave/brave.html</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVoq8RcdWzo9tW4FJ5iXkVt3qgoiL4X1Zpm2uc2TBHpXd julianwe.github.io/projects/brave/images/Brave.svg</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbtaBfRCxhLdc48LzmAHn2q1fknYeAoGXnFTatDDqgR7G julianwe.github.io/projects/brave/images/bat.jpg</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZUfPZiMg54nZUkkhFWTnbRSA3VNimUhPkZ9hNFdeHzTU julianwe.github.io/projects/brave/images/brave-rewards.jpg</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZRuNNxxAD5JeDz9RF69DsrcLDhcUrV2wgcixDt3wWNz4 julianwe.github.io/projects/brave/images/brave1.jpg</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbGDXyU5DqFFkubJzXhgPV8F36aJeVajDi19D2iLAZgi6 julianwe.github.io/projects/brave/images/brave2.jpg</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmT1VVZSJLfaeg3PNnSHv6karoSEgCxvJr9cS9pceqC3oe julianwe.github.io/projects/chainlink/README.md</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbMfndiYv7cBkBgnZcZQZUV8h2rs3HoUGu14HfaNQSZi4 julianwe.github.io/projects/chainlink/chainlink.html</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmefL9637pKWDgjQVfwgjVav4r7ynyXfYYMWAVi9ohsFwj julianwe.github.io/projects/chainlink/images/ChainLink_Operator.jpg</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmdpg2vX6fadHqhUKDhvDqASEwdZRtYyfiwiVuQWWhQyD3 julianwe.github.io/projects/chainlink/images/Etherscan_CSC.jpg</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVzkQeM5Th4CeoteastVVpJRw9VEVEKH9EEd8uQ3E9uJ7 julianwe.github.io/projects/chainlink/images/Operator.jpg</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVdJrEGNMnVT6SaKexkbgwfqus82EsLguA17VbuzyNHzz julianwe.github.io/projects/chainlink/images/chainlink.jpg</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTkkD3rU6LBW7x3MyAoctSDHdHi6tHREc76R9bu18nRgg julianwe.github.io/projects/chainlink/images/deploy_contract.jpg</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVPbC6Sb2bke3sGCP6cChcotkPu5Lg534VwNosKNgKywS julianwe.github.io/projects/chainlink/images/deployed_contract.jpg</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRwjT7Uommsha36yK2Nc7NyUDzMUGBUtbs8HuYqXXrtLb julianwe.github.io/projects/chainlink/images/link.jpg</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWES7w96gP9hoVw1N1uV1AhXBHwtsX6B2HXmt99RyPvHq julianwe.github.io/projects/disqus/README.md</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRxE9UwUbdPQm7zTJoH7f9EfkybNCuRGYGVZqHrsE5ij8 julianwe.github.io/projects/disqus/disqus.html</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmfWsZ2ptDijntotT4c3ia6LKpaZAZEuUudUts3S2MHNUL julianwe.github.io/projects/git/README.md</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcxxQX141tr2V9NBiLn9T1BS24m4L3q79paUHqRMzL7dU julianwe.github.io/projects/git/git-cheat-sheet-education.pdf</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbmpbidspfrAzGTHJUdVfdaJpXCinUE2vvbs9cq3Q1SkS julianwe.github.io/projects/git/git.html</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWbJeUW7yjVSkSAGeP3soJqiKQUxnxJxm7pL33MeHCjQX julianwe.github.io/projects/git/images/GIT.JPG</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcGhAJ5XRsnEDrjsSq3FxeGez78MCEJMZRmcxpbjq2ViB julianwe.github.io/projects/git/images/gitCheat.jpg</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNxziRS1sjouLGkYYoSFjKpF28pGmjJZZxSNaMvHHTwnT julianwe.github.io/projects/git/images/gitCheatsheet.jpg</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWRQGzzE3BGtbHsfkVd2zSoz6HxfiCnVUiTb7B2o4ZXWM julianwe.github.io/projects/handshake/README.md</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbUBTUQodmiyQ4NyA1tawNzddXeHjqjAm1z6U9NQukX7X julianwe.github.io/projects/handshake/handshake.html</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZFmQbWiLuBQF3NofF4i79ADhU7RdXJ4R5yyXQWvcBZQZ julianwe.github.io/projects/handshake/images/h.jpg</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSm2yc9XnSeBXejjzVfrpeQbiGCxxLSqB1tkgozc9Zb92 julianwe.github.io/projects/handshake/images/handshake.jpg</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qme5gLyVsvGwmCjbrqtQEsnYWcHvuGjdNBWbxaJi7Nf7G9 julianwe.github.io/projects/handshake/images/hns.jpg</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmV9jKms6hxFZUN6hF4Zdh4zZKD9iTMSTvYC3S5pWNujtj julianwe.github.io/projects/ipfs/README.md</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRV4uXwchpr1FfGAUXVvovk263DxTPv4Rqc6S8wcCFyun julianwe.github.io/projects/ipfs/images/IPFS.jpg</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmULN8ECS7NbomG5S8t1UHcsXkeJm6H4MbzqMHiZKTjeFC julianwe.github.io/projects/ipfs/images/ens1.jpg</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbMVtAcrmeE4Bm4ipZ68QCv4E4stLPiadQitbbPQfpKwH julianwe.github.io/projects/ipfs/images/ens2.jpg</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWTxtJrAhTRkq3fGYpfH6QEwK3P12emGWW5GLrhpKrwrL julianwe.github.io/projects/ipfs/images/ip.jpg</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQLopiZNxZ54rcmfyHVPhBssxpv4dY6DTK8E1Eu8E4XCQ julianwe.github.io/projects/ipfs/images/ipf.jpg</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaYLctuJbAZuzMMxbpQLsV9rYt8b3z4C1cYDJwRacfpYn julianwe.github.io/projects/ipfs/ipfs.html</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTNpZqmtr3t7AfNZuhAZWgXCfYhzWMSX1WCWRfypef5sH julianwe.github.io/projects/ipfs/kubo/install.sh</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYgwxvxyDMKz7HkM8K5TyMQCWfGq2GNGdMwnKkKt8Cwfo julianwe.github.io/projects/ipfs/kubo_v0.20.0_darwin-amd64.tar.gz</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTJQKt21FFwzTmvTpGLEs8WGkRrKMvfiUajo9sotwEZ5g julianwe.github.io/projects/mac/README.md</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZjuUJkjTwBtRHkRinqUX7SBTQrS5YncRu9MouezUQKMa julianwe.github.io/projects/mac/mac.html</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeRHMS26n6PBubh2s7bvhQfZWsQYWGxrsjEhcjTHUoP83 julianwe.github.io/projects/projects/README.md</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRMrWSqw4QLooPqcsy1y8edciuYZARWhVwV81nuVfMqqU julianwe.github.io/projects/projects/projects.csv</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaWCN7f6K6Trh4zWdSRPF55tDEAJT1TbSQJkKjhqAPAh8 julianwe.github.io/projects/projects/projects.html</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmfXnCmy7bG4VvaGYfSL7x6mnQfJotSSzzKpFNXKbLCH6n julianwe.github.io/projects/sentinel/README.md</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmanCiTyTCajxwjSFrbxrpsq3j2Sie7i33TNSnkTWYM8Fo julianwe.github.io/projects/sentinel/images/1_sentinel.jpg</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXL5DvW9PsgZQCq8BYzvSUM8REjRGUg3BEPJmFKDXQpUp julianwe.github.io/projects/sentinel/images/create-sentinel-node1.jpg</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaG1hLLGEwoufFVjx5mEw18FZoR1Hh2ytNLbyq86TDcNP julianwe.github.io/projects/sentinel/images/create-sentinel-node2.jpg</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbQppYJzdh8gAS2gacCQnVr3M9jkj5m1SojtoMGGtkPHx julianwe.github.io/projects/sentinel/images/create-sentinel-node3.jpg</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPJtNNnnPY6sBywaxEeQ6mxdbDdtgRxemQGS9NXYZTAhu julianwe.github.io/projects/sentinel/images/create-sentinel-node4.jpg</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVggdwSQAQuXRFtLE4CTsi18AVw9aZWwQJLScDuhpSnvX julianwe.github.io/projects/sentinel/images/dvpn.jpg</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQKhGqCWghgkgegY24tJw4urRsNiQGyYHqNZF26cvfaTE julianwe.github.io/projects/sentinel/script</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmW6TgMHEUqLBGavobiqSSxweTA8rfC3adkz2QST7HFtRb julianwe.github.io/projects/sentinel/sentinel-script.sh</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbsvTHwXakSdCckv9KdwJij9ZJ9ac9hAx6XuvQM5hmnxv julianwe.github.io/projects/sentinel/sentinel.html</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYqU4W2HJsowQdojL2d5ebLb3Ern4DDHHMQPj1kjBCNAD julianwe.github.io/projects/vimconfig/README.md</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmfStQhAvJjUfcqQPv3hqTzmiBrGVbrNPFzVwBJbKn1oMG julianwe.github.io/projects/vimconfig/images/VimCheat.jpg</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPRauqKMqETubCXwDPCucwj6ooZgvsfoRPaMUg3G6x5cz julianwe.github.io/projects/vimconfig/images/vi.jpg</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcwTGp2kTvGm7SCoUsSKrU6pvWmnU2Dj3PXSLkrMtm2wD julianwe.github.io/projects/vimconfig/images/vim.jpg</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYV4tqULcnhMEmLVmucxqjsQWXcm3WEsgHNtxstMvFFZv julianwe.github.io/projects/vimconfig/images/zsh.jpg</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmR4u4snxiD4gykr2iMsm5qraHu7SkBgkKX9XCYgcrSWmn julianwe.github.io/projects/vimconfig/vimconfig.html</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmdXnt3ZvTSC8u6hcxqPnVyrHedRXB86fzsP5YJw7SG4Hz julianwe.github.io/projects/vsc/Dockerfile</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSXzsw77gvHsSZSQXoXmH64rMHUqfjLaUUzvdtw3r57J6 julianwe.github.io/projects/vsc/README.md</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmP11jdi9cahj47W9H9MKFGeU8KiFjgHA18fPh4VBRAnjp julianwe.github.io/projects/vsc/images/vsc.jpg</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmajqacDcmaADnPMsgZJXNypE7NPALrPhgVNKdNmwYPBaN julianwe.github.io/projects/vsc/images/vscode.jpg</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeQKRwahXFEm9EQoJCMnvhtDgR3kiHodGb5mh2ukMv2ck julianwe.github.io/projects/vsc/vsc.html</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRkbBXe3ZvxiMSjaN2H3hvasdDW2o3R1yF511LV3gAfN6 julianwe.github.io/projects/website/README.md</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTC6PPRDf7LHtSZrJAF2uLfXP4y7fAia78pPGmeuyo9h9 julianwe.github.io/projects/website/images/ansible-docker.jpg</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qma1DjWBA6HGDQXERhZb8J8E4iF98hRjd55LvnrRQ52ydg julianwe.github.io/projects/website/images/ghp.jpg</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPu7Lr3qZkURtAaNsLoVFgRjP39pUAD7L1enanafvy2qh julianwe.github.io/projects/website/images/github_actions.jpg</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmdo2Xw8ccwxUD1NVvwwfeB91DgVXT6BEqj3rruJNspppa julianwe.github.io/projects/website/images/pages.jpg</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPm4WF5RD11Z2mh8RQYejUQpd2VVW94JyTh2ncPwbkBJ4 julianwe.github.io/projects/website/website.html</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbxammWtLsGyCcrCvYA8iJjufjwVpCTCXywLiTqZ5CTTs julianwe.github.io/projects.html</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYnBPHo5U6CVvZsLDVJoWbUegc99Ash7pLzKVzZ2N6tFK julianwe.github.io/search.html</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTuRaV8kpk1qZDuWyCzubgJ9vc5vYvV823egYExX23jLv julianwe.github.io/technologies.html</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUsayLndRLDh3ULx1r14YM3AGoSpJjTW9A3HMSv7sSiDE julianwe.github.io/css</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZE1Yb85CzWhVtSMX8N6zXfboNdXYJV8CMdzcpdYDpv5M julianwe.github.io/images</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUFaNXYpbkf6gTibEoZdKp9TVgZuh5wgoX2PRgWwVGzcs julianwe.github.io/js</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXJA6FHQXt4MfqB2xuer1cNBnjeKX8kWJcxArdywc4d7e julianwe.github.io/lib/jquery</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYyn5Gd82AWzPFFowS42UXVZcLFHtLorvhsNwJUkS3yRF julianwe.github.io/lib/justified-gallery/css</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmexP16d3a4m5VgKVW5QMB1FX2XbYYCKoSmXzPVAxTPVFv julianwe.github.io/lib/justified-gallery/js</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbmYDjrCN1GmQ11U4tWcmMADm3YarpTQs1fKct6r4TEW4 julianwe.github.io/lib/justified-gallery</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmPQXkj57Runa5SWAd8u6G64AWEnZKmx1vxghR6DpssKXf julianwe.github.io/lib</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbDb1f9mDJCjGxnQkPFZ33LdCYhxCNsamY4opQBM2r6UQ julianwe.github.io/projects/ERC-20/images</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmYWsb4sSYLhLgPsSfw32psU9GXyHErJqanJF7G2iHNVzv julianwe.github.io/projects/ERC-20</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZ7DUNSEQQxnQ3oDTCeuDQav9DKcLMbS3SDu2emmNgFuG julianwe.github.io/projects/MultiSigEthereumWallet/images</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmRxHokYmLpJtkve8E4ZGdxY5gKUhiY9JgBATCQeGRhBst julianwe.github.io/projects/MultiSigEthereumWallet</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeqxpgdjYQyojXmvQP1cKbKU7nytgWurxQ52RJehwuMzQ julianwe.github.io/projects/SmartContractTutorial/images</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXkyU45k2cw8idDtiSxX2dpF1wTBMSsopKpmGReuwbJfq julianwe.github.io/projects/SmartContractTutorial</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXmUy6BMWSmS8HyGbEYdiRvUt8DF1Sm47K2kthjMoRYow julianwe.github.io/projects/akash/images</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSkmWVgwm5y79672tGhAz8a8YjeJVFQ1SqAEKbmrYYCjh julianwe.github.io/projects/akash</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmXcp7hNi8EVTSzGSJp1p5sUEusLsKfw7dcZ8vV4yr437o julianwe.github.io/projects/ansible/images</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn julianwe.github.io/projects/ansible/templates</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmepwBshdPCEPnnfp8St1xE4FogHj9GkgdGaZ8TvLD4ngA julianwe.github.io/projects/ansible</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qme8XHvQ5PAFkonbTBxYQs1Wfpqtn6XBR4xMSHHQkf6Vbx julianwe.github.io/projects/brave/images</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZpbTDBDYeXGwYMcxNKB5wufZom9BMnqMoDRzkbpeTcv2 julianwe.github.io/projects/brave</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmeipGC4H3suAmX4FnXKUGVf3J3e97uiAfWS1U7ciK2E92 julianwe.github.io/projects/chainlink/images</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmf8tEsvpBdq61R39v6nhFbLhTU9SEjagmRaNRfjUx5cER julianwe.github.io/projects/chainlink</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaeRdLYRoSrVvojTTD1WYBYyww57Z8fLnWCtjhmxYtQz3 julianwe.github.io/projects/disqus</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNtmPCDp4hdWQ6SCeXztSfJpDsKLMBBfcStfzCssJnewx julianwe.github.io/projects/git/images</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmWpd654zuFgUTrGuPU6FNJRkv23nphB6UxU8ncdXSfmYG julianwe.github.io/projects/git</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUJMVcAThTrdA1f81B5pTNuYBTdexjBEFmcWUJWnxPDhQ julianwe.github.io/projects/handshake/images</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVvgsiJtagRoVFzLp9bva486F2qNgJ6YABbYvocvoJq9P julianwe.github.io/projects/handshake</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcVky85j8xYTJx1Sy8CVSSSUFzrzuYRsDCEhiS5HPuZay julianwe.github.io/projects/ipfs/images</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZQ7JAy71KtXGKwZNA85eVDTnqhoUTCjHJuQ5ng53PMwR julianwe.github.io/projects/ipfs/kubo</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbQ7F79LMbtXd9vrJLWcA26bLHAHJhpQJdmu6LQ77kRoH julianwe.github.io/projects/ipfs</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmUHNtyNhs8fD51WV2BeLmasi7U61kkdFEwfbKoPsJfp4F julianwe.github.io/projects/mac</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmbuH7Q8p5qscUjiX17QQwXFszPaZNmfKhiZhzANUfTdFR julianwe.github.io/projects/projects</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmTBRxehZssHBPGEaH8EocpjmZ1dXrimjJ4976rYbQHJvV julianwe.github.io/projects/sentinel/images</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmSJdQ7Eng3hCC2e9zH1w78yqHzKCmwJGtu8sKCKS2NT5E julianwe.github.io/projects/sentinel</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcrjBSWodtcPbMLh69A41BDPvLbLMf3GQwAkGRUHGRhnr julianwe.github.io/projects/vimconfig/images</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmaHPMsdLGGzcHn11kVyp4PhkvZWypXi4fLgsjFWiAmJSH julianwe.github.io/projects/vimconfig</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmcxY6DjbW8EcUuxLUwZLK9NPhoecgKCYfr12GyLBWymgK julianwe.github.io/projects/vsc/images</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmQxEW2LGXJc6B59BNU5fXC3hswDmaGhMVMw27wbHgYmqD julianwe.github.io/projects/vsc</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmVLrGY33EUx1fo1h1HjUDZWc3X3tmP3iWCRfm6rgjxDbm julianwe.github.io/projects/website/images</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmNzX3qoc9RyB8v4567M8E5kGUwURNujvp1ZXsDrJDLdVa julianwe.github.io/projects/website</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> QmZ22K7yejBp44reH6gjckHVAxDfGUgh5qFRwgvzksVYNU julianwe.github.io/projects</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ex">added</span> Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH julianwe.github.io</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a> <span class="ex">67.76</span> MiB / 67.76 MiB <span class="pp">[</span><span class="ss">==============================================================================================================</span><span class="pp">]</span> 100.00%</span></code></pre></div>
+<p><strong>IPFS Links to your Website</strong> <strong><a
+href="ipfs://Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH">ipfs://Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH</a></strong>
+<strong><a
+href="ipfs://bafybeigs3i74yqmnrsshyjffmmrnxp5d6p3brobimprbsvzps6ghs3ecsm/projects/ipfs/ipfs.html">ipfs://ipfs://bafybeicsolhq5q2hfaz6kdyhwvws5vnrrmlfyxasawd7eokrvwktzclkiy/projects/ipfs/ipfs.html</a></strong>
+<strong><a
+href="https://gateway.ipfs.io/ipfs/Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH">https://gateway.ipfs.io/ipfs/Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH</a></strong></p>
+<p><strong>Go to https://app.ens.domains/ and Link your content Hash to
+ENS Domain</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Set Content Hash</th>
+<th>Update Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../../ipfs/files/images/ens1.jpg" /></td>
+<td><img src="../../ipfs/files/images/ens2.jpg" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong><a
+href="https://julianwendland.eth">https://julianwendland.eth</a></strong></p>
+<p><strong>Link DNS to your website</strong> <a
+href="http://docs-ipfs-tech.ipns.localhost:48084/how-to/websites-on-ipfs/link-a-domain/">Docs</a>
+<a
+href="https://dnslink.io/#step-1-choose-a-domain-name-to-link-from">dnslink.io</a></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Description</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Source</code></td>
+<td><a
+href="http://docs-ipfs-tech.ipns.localhost:48084/how-to/command-line-quick-start/">Documentation</a></td>
+</tr>
+<tr>
+<td><code>Source</code></td>
+<td><a
+href="https://makoto-inoue.medium.com/how-to-host-your-dapp-with-ipfs-ens-and-access-it-via-ethdns-c96046059d87">Source</a></td>
+</tr>
+<tr>
+<td><code>IPFS Desktop</code></td>
+<td><a href="https://github.com/ipfs/ipfs-desktop">Download</a></td>
+</tr>
+<tr>
+<td><code>IPFS Addon</code></td>
+<td><a
+href="https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch?hl=en">Download
+IPFS Addon</a></td>
+</tr>
+</tbody>
+</table>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src=../js/script.js></script>
+  <script src=../js/js.js></script>
+
+</html>

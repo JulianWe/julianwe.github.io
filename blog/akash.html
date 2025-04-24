@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href=../css/blog.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="../index.html#home"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="../index.html#home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="../index.html#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="../index.html#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="../index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="../index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+                <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../css/markdown.css">
+          <link rel="stylesheet" href="../css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="akash-server-deployment">☁️ <a
+href="https://akash.network/">Akash</a> Server Deployment 🐇</h1>
+<p><img src="../../akash/files/images/akash.jpg" /></p>
+<p><strong>Censorship-resistant, permissionless, and self-sovereign,
+Akash Network is the world’s first open source cloud. $AKT</strong></p>
+<h1 id="variables">Variables</h1>
+<p><strong>Note:</strong> you can always check if all the required
+variables are set using “echo $variable” before your command.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Example values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AKASH_NET</code></td>
+<td>The URL of Akash Network. In This Tutorial we are using Mainnet</td>
+<td><code>https://raw.githubusercontent.com/ovrclk/net/master/mainnet</code></td>
+</tr>
+<tr>
+<td><code>AKASH_VERSION</code></td>
+<td>Akash Version.</td>
+<td><code>0.10.1</code></td>
+</tr>
+<tr>
+<td><code>AKASH_NODE</code></td>
+<td>Akash network configuration base URL.</td>
+<td><code>http://rpc.akash.forbole.com:80</code></td>
+</tr>
+<tr>
+<td><code>AKASH_CHAIN_ID</code></td>
+<td>Chain ID of the Akash network connecting to.</td>
+<td><code>akashnet-2</code></td>
+</tr>
+<tr>
+<td><code>ACCOUNT_ADDRESS</code></td>
+<td>The address of your account.</td>
+<td><code>akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad</code></td>
+</tr>
+<tr>
+<td><code>KEYRING_BACKEND</code></td>
+<td>Keyring backend to use for local keys. (os,file or test)</td>
+<td><code>file</code></td>
+</tr>
+<tr>
+<td><code>KEY_NAME</code></td>
+<td>The name of the key you will be deploying from.</td>
+<td><code>julian</code></td>
+</tr>
+<tr>
+<td><code>AKASH_GAS</code></td>
+<td>Gas limit to set per-transaction; set to “auto” to calculate
+sufficient gas automatically.</td>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<td><code>AKASH_GAS_ADJUSTMENT</code></td>
+<td>Adjustment factor to be multiplied against the estimate returned by
+the tx simulation.</td>
+<td><code>1.25</code></td>
+</tr>
+<tr>
+<td><code>AKASH_GAS_PRICES</code></td>
+<td>Gas prices in decimal format to determine the transaction fee</td>
+<td><code>0.025uakt</code></td>
+</tr>
+<tr>
+<td><code>AKASH_SIGN_MODE</code></td>
+<td>Signature mode.</td>
+<td><code>amino-json</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="prepare-akash-environment-start-installation">☁️ Prepare akash`
+environment &amp; 🏳️ Start Installation</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> untap ovrclk/tap</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> tap akash-network/tap</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install akash-provider-services</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install jq <span class="at">-y</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install unzip <span class="at">-y</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install coreutils <span class="at">-y</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sfL</span> https://raw.githubusercontent.com/akash-network/node/master/install.sh <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/genesis.json&quot;</span> <span class="op">&gt;</span> genesis.json </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/seed-nodes.txt&quot;</span> <span class="kw">|</span> <span class="fu">paste</span> <span class="at">-d,</span> <span class="at">-s</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/peer-nodes.txt&quot;</span> <span class="kw">|</span> <span class="fu">paste</span> <span class="at">-d,</span> <span class="at">-s</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv ./bin/akash /usr/local/bin</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv ./bin/provider-services /usr/local/bin</span></code></pre></div>
+<p><strong>Setup required variables for Installation &amp; later use.
+<code>AKASH_NET</code>,<code>AKASH_VERSION</code>,
+<code>AKASH_NODE</code> &amp; <code>AKASH_CHAIN_ID</code></strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_NET</span><span class="op">=</span><span class="st">&quot;https://raw.githubusercontent.com/akash-network/net/master/mainnet&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_VERSION</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-s</span> https://api.github.com/repos/akash-network/provider/releases/latest <span class="kw">|</span> <span class="ex">jq</span> <span class="at">-r</span> <span class="st">&#39;.tag_name&#39;</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_NODE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/rpc-nodes.txt&quot;</span> <span class="kw">|</span> <span class="fu">shuf</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_CHAIN_ID</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/chain-id.txt&quot;</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_KEYRING_BACKEND</span><span class="op">=</span>os</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_GAS</span><span class="op">=</span>auto</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_GAS_ADJUSTMENT</span><span class="op">=</span>1.25</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_GAS_PRICES</span><span class="op">=</span>0.025uakt</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_SIGN_MODE</span><span class="op">=</span>amino-json</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_KEY_NAME</span><span class="op">=</span>julian</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Check variables</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> AKASH_NET: <span class="va">$AKASH_NET</span>, AKASH_VERSION: <span class="va">$AKASH_VERSION</span>, AKASH_NODE: <span class="va">$AKASH_NODE</span>, AKASH_CHAIN_ID:  <span class="va">$AKASH_CHAIN_ID</span>, AKASH_KEYRING_BACKEND:  <span class="va">$AKASH_KEYRING_BACKEND</span>, AKASH_GAS: <span class="va">$AKASH_GAS</span>, AKASH_ADJUSTMENTS:  <span class="va">$AKASH_GAS_ADJUSTMENT</span>, AKASH_GAS_PRICES:  <span class="va">$AKASH_GAS_PRICES</span>, AKASH_SIGN_MODE: <span class="va">$AKASH_SIGN_MODE</span></span></code></pre></div>
+<h1 id="wallet-setup">💳 Wallet Setup</h1>
+<p><strong>🔑 How to create key if you haven’t yet setup a
+key</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> keys add <span class="va">$AKASH_KEY_NAME</span>  <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> keys add <span class="va">$AKASH_KEY_NAME</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> name: julian</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">type:</span> local</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">address:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">pubkey:</span> <span class="st">&#39;{&quot;@type&quot;:&quot;/cosmos.crypto.secp256k1.PubKey&quot;,&quot;key&quot;:&quot;A3vv0umfPwqVh24RYmVIa0CkfSQd/09gOR70o7tsRiPW&quot;}&#39;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mnemonic:</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">**Important**</span> write this mnemonic phrase in a safe place.</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">It</span> is the only way to recover your account if you ever forget your password.</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span> <span class="pp">********</span></span></code></pre></div>
+<p><strong>Important</strong> write this mnemonic phrase in a safe
+place. It is the only way to recover your account if you ever forget
+your password.</p>
+<p><strong>How to export keys</strong> 🔒</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> keys export <span class="va">$AKASH_KEY_NAME</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                     </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> passphrase to encrypt the exported key: <span class="pp">********</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-----BEGIN</span> TENDERMINT PRIVATE KEY-----</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">kdf:</span> bcrypt</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">salt:</span> <span class="pp">**************************</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">type:</span> secp256k1</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">********************************</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-----END</span> TENDERMINT PRIVATE KEY-----</span></code></pre></div>
+<p><strong>How to recover keys</strong> 🔓</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> keys add <span class="va">$AKASH_KEY_NAME</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">--recover</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">or</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> keys add <span class="va">$AKASH_KEY_NAME</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">--recover</span></span></code></pre></div>
+<p><strong>📬 How to retrieve and export <code>ACCOUNT_ADDRESS</code> as
+variable</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ACCOUNT_ADDRESS</span><span class="op">=</span><span class="va">$(</span><span class="ex">akash</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> keys show <span class="va">$AKASH_KEY_NAME</span> <span class="at">-a</span><span class="va">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">or</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ACCOUNT_ADDRESS</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">provider-services</span> keys show <span class="va">$AKASH_KEY_NAME</span> <span class="at">-a</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$ACCOUNT_ADDRESS</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z</span></span></code></pre></div>
+<p><strong>💰 How to check if there is enought <code>$AKT</code> to send
+transactions</strong></p>
+<p>The balance indicated is denominated in uAKT (AKT x 10^-6) We’re now
+setup to deploy.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query bank balances <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> </span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">balances:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> amount: <span class="st">&quot;20000000&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">denom:</span> uakt</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pagination:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">next_key:</span> null</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">total:</span> <span class="st">&quot;0&quot;</span></span></code></pre></div>
+<p>ℹ️ <strong>Note: You can buy <code>$AKT</code> on <a
+href="https://bitmax.io/register?inviteCode=LQDS1MMP">BitMax</a> using
+this link or <a href="https://app.osmosis.zone/">Osmosis</a></strong>
+and withdraw them to your deployment <code>ACCOUNT_ADDRESS</code></p>
+<h1 id="prepare-for-deployment-sdl-file">📝 Prepare for deployment SDL
+File</h1>
+<p><a href="https://github.com/ovrclk/awesome-akash">Choose deployment
+image</a> Create a deployment configuration file:
+<code>deploy.yml</code> to deploy the <code>ovrclk/lunie-light</code>
+for <a href="https://github.com/ovrclk/lunie-light">Lunie Light</a> Node
+app container using <a
+href="https://github.com/ovrclk/docs/blob/5d695ab63f391ebf255d48859ed3f626040fbf47/sdl/README.md">SDL</a>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="at">cat &gt; deploy.yml &lt;&lt;EOF</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2.0&#39;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">webapp</span><span class="kw">:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;victorynox0815/docker-repo:webapp&#39;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">expose</span><span class="kw">:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">80</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">as</span><span class="kw">:</span><span class="at"> </span><span class="dv">8080</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">to</span><span class="kw">:</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">global</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">profiles</span><span class="kw">:</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">compute</span><span class="kw">:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">webapp</span><span class="kw">:</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">resources</span><span class="kw">:</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">cpu</span><span class="kw">:</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">units</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">memory</span><span class="kw">:</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 512Mi</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">storage</span><span class="kw">:</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">size</span><span class="kw">:</span><span class="at"> 10Gi</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">placement</span><span class="kw">:</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">pricing</span><span class="kw">:</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">webapp</span><span class="kw">:</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">denom</span><span class="kw">:</span><span class="at"> uakt</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">amount</span><span class="kw">:</span><span class="at"> </span><span class="dv">1000</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">deployment</span><span class="kw">:</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">webapp</span><span class="kw">:</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dcloud</span><span class="kw">:</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">profile</span><span class="kw">:</span><span class="at"> webapp</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">count</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="at">EOF</span></span></code></pre></div>
+<h1 id="certificate">📜 Certificate</h1>
+<p><strong>How to generate certificate &amp; Publish Cert to the
+Blockchain</strong> <code>requires $AKT fees</code></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx cert generate client <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx cert publish client <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">confirm</span> transaction before signing and broadcasting <span class="pp">[</span><span class="ss">y/N</span><span class="pp">]</span>: y</span></code></pre></div>
+<p>⚠️ <strong>Important</strong> certificate needs to be created only
+once per account and can be used across all deployments.</p>
+<p><strong>How to revoke certificate</strong>
+<code>requires $AKT fees</code></p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx cert revoke <span class="at">--from</span><span class="op">=</span><span class="va">$AKASH_KEY_NAME</span> <span class="at">--node</span><span class="op">=</span><span class="va">$AKASH_NODE</span></span></code></pre></div>
+<h1 id="how-to-deploy">💣 How to deploy</h1>
+<p><code>requires $AKT fees</code></p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx deployment create deployment.yml <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span></span></code></pre></div>
+<p>You should see a json response and export the following variables
+<code>DSEQ</code> Deployment Sequence, <code>GSEQ</code> Group Sequence,
+<code>OSEQ</code> Order Sequence from <strong>your</strong>
+deployment.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">DSEQ</span><span class="op">=</span>11689056</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">OSEQ</span><span class="op">=</span>1</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GSEQ</span><span class="op">=</span>1</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$DSEQ</span> <span class="va">$GSEQ</span> <span class="va">$OSEQ</span></span></code></pre></div>
+<p><strong>📉 Query market bid list</strong></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query market bid list <span class="at">--owner</span><span class="op">=</span><span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--state</span><span class="op">=</span>active</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bids:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> bid:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">bid_id:</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dseq:</span> <span class="st">&quot;11679305&quot;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="ex">gseq:</span> 1</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="ex">oseq:</span> 1</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="ex">owner:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">provider:</span> akash1qhjtxmacslmefm3v4sn5ggq6ed9jn83cy2rjd0</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">created_at:</span> <span class="st">&quot;11679309&quot;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">price:</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;36.069600000000000000&quot;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">escrow_account:</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">balance:</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">depositor:</span> akash1qhjtxmacslmefm3v4sn5ggq6ed9jn83cy2rjd0</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">funds:</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="ex">id:</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>      <span class="ex">scope:</span> bid</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>      <span class="ex">xid:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z/11679305/1/1/akash1qhjtxmacslmefm3v4sn5ggq6ed9jn83cy2rjd0</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="ex">owner:</span> akash1qhjtxmacslmefm3v4sn5ggq6ed9jn83cy2rjd0</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="ex">settled_at:</span> <span class="st">&quot;11679458&quot;</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="ex">transferred:</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> bid:</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="ex">bid_id:</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dseq:</span> <span class="st">&quot;11679305&quot;</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>      <span class="ex">gseq:</span> 1</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>      <span class="ex">oseq:</span> 1</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>      <span class="ex">owner:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>      <span class="ex">provider:</span> akash1pev2y734effvxxn8rzkp5vqq0jmqq0y0s8hvjc</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="ex">created_at:</span> <span class="st">&quot;11679309&quot;</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="ex">price:</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;35.680000000000000000&quot;</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="ex">escrow_account:</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    <span class="ex">balance:</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    <span class="ex">depositor:</span> akash1pev2y734effvxxn8rzkp5vqq0jmqq0y0s8hvjc</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    <span class="ex">funds:</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    <span class="ex">id:</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>      <span class="ex">scope:</span> bid</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>      <span class="ex">xid:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z/11679305/1/1/akash1pev2y734effvxxn8rzkp5vqq0jmqq0y0s8hvjc</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="ex">owner:</span> akash1pev2y734effvxxn8rzkp5vqq0jmqq0y0s8hvjc</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="ex">settled_at:</span> <span class="st">&quot;11679361&quot;</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>    <span class="ex">transferred:</span></span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> bid:</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>    <span class="ex">bid_id:</span></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dseq:</span> <span class="st">&quot;11679305&quot;</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>      <span class="ex">gseq:</span> 1</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>      <span class="ex">oseq:</span> 1</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>      <span class="ex">owner:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>      <span class="ex">provider:</span> akash1pl9sm32kt0xmcyfwjsf9guu9f93yf8p6k7grtn</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>    <span class="ex">created_at:</span> <span class="st">&quot;11679309&quot;</span></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>    <span class="ex">price:</span></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;21.000000000000000000&quot;</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>  <span class="ex">escrow_account:</span></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>    <span class="ex">balance:</span></span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    <span class="ex">depositor:</span> akash1pl9sm32kt0xmcyfwjsf9guu9f93yf8p6k7grtn</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>    <span class="ex">funds:</span></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>    <span class="ex">id:</span></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>      <span class="ex">scope:</span> bid</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>      <span class="ex">xid:</span> akash1uft3wqwznsh5ffptr0gg40r2sr8vhdlgan0y4z/11679305/1/1/akash1pl9sm32kt0xmcyfwjsf9guu9f93yf8p6k7grtn</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>    <span class="ex">owner:</span> akash1pl9sm32kt0xmcyfwjsf9guu9f93yf8p6k7grtn</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>    <span class="ex">settled_at:</span> <span class="st">&quot;11679361&quot;</span></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>    <span class="ex">state:</span> closed</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>    <span class="ex">transferred:</span></span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>      <span class="ex">amount:</span> <span class="st">&quot;0.000000000000000000&quot;</span></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>      <span class="ex">denom:</span> uakt</span></code></pre></div>
+<p><strong>create, confirm &amp; get market lease</strong></p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PROVIDER</span><span class="op">=</span><span class="st">&quot;akash1u5cdg7k3gl43mukca4aeultuz8x2j68mgwn28e&quot;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx market lease create <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--provider</span> <span class="va">$PROVIDER</span> <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query market lease list <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query market bid get <span class="at">--owner</span><span class="op">=</span><span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--dseq</span>  <span class="va">$DSEQ</span> </span></code></pre></div>
+<p><strong>How to close deployment</strong></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx deployment close <span class="at">--dseq</span> <span class="va">$DSEQ</span>  <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span> </span></code></pre></div>
+<p><strong>How to send manifest to provider &amp; confirm
+URL</strong></p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> send-manifest deploy.yml <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--provider</span> <span class="va">$PROVIDER</span> <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> lease-status <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span> <span class="at">--provider</span> <span class="va">$PROVIDER</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jw@ChainLink:~$</span> akash deploy create deploy.yml <span class="at">--from</span> <span class="va">$KEY_NAME</span> <span class="at">--chain-id</span> <span class="va">$AKASH_CHAIN_ID</span> <span class="at">--keyring-backend</span> <span class="va">$KEYRING_BACKEND</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--fees</span> 5000uakt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> keyring passphrase:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:00.592<span class="op">]</span> <span class="ex">tx</span> sent successfully                         hash=58F0A15FCCB40B79BB98031DC43FB99DB2DB0824D966EE45B94C977EB39703B8 code=0 codespace= action=create-deployment dseq=83887</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:03.834<span class="op">]</span> <span class="ex">deployment</span> created                           addr=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket dseq=83887</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:03.834<span class="op">]</span> <span class="ex">order</span> for deployment created                 addr=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket dseq=83887 oseq=1</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:09.767<span class="op">]</span> <span class="ex">bid</span> for order created                        addr=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket dseq=83887 oseq=1 price=100uakt</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="va">D</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:09.767<span class="op">]</span> <span class="ex">Processing</span> bid</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="va">D</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:09.767<span class="op">]</span> <span class="ex">All</span> groups have at least one bid</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:24.767<span class="op">]</span> <span class="ex">Done</span> waiting on bids                         qty=1</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:24.767<span class="op">]</span> <span class="ex">Winning</span> bid                                  gseq=1 price=100uakt provider=akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.417<span class="op">]</span> <span class="ex">All</span> expected leases created                  addr=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket dseq=83887</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.417<span class="op">]</span> <span class="ex">lease</span> for order created                      addr=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket dseq=83887 oseq=1 price=100uakt</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.417<span class="op">]</span> <span class="ex">Waiting</span> on leases to be ready                leaseQuantity=1</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="va">D</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.417<span class="op">]</span> <span class="ex">Checking</span> status of lease                     lease=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket/83887/1/1/akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="va">D</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.528<span class="op">]</span> <span class="ex">Could</span> not get lease status                   lease=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket/83887/1/1/akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz err=<span class="st">&quot;remote server returned 404&quot;</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:28.918<span class="op">]</span> <span class="ex">sending</span> manifest to provider                 action=send-manifest provider=akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz dseq=83887</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="va">D</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:29.055<span class="op">]</span> <span class="ex">Could</span> not get lease status                   lease=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket/83887/1/1/akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz err=<span class="st">&quot;remote server returned 503&quot;</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:36.133<span class="op">]</span> <span class="ex">service</span> ready                                lease=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket/83887/1/1/akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz service=web</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="va">I</span><span class="op">[</span><span class="dv">2021</span>-03-14|16:43:36.133<span class="op">]</span> <span class="ex">lease</span> ready                                  leaseID=akash1ny2lt9mcfet63k8ur2ue9xqaunxe80we64hket/83887/1/1/akash1ccktptfkvdc67msasmesuy5m7gpc76z75kukpz</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;name&quot;</span><span class="ex">:</span> <span class="st">&quot;web&quot;</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;available&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;total&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;uris&quot;</span><span class="ex">:</span> [</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;5pvofe14fp8uhcmi1lhij63g0s.ingress.ams1p0.mainnet.akashian.io&quot;</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a> <span class="ex">],</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;observed_generation&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;replicas&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;updated_replicas&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;ready_replicas&quot;</span><span class="ex">:</span> 1,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;available_replicas&quot;</span><span class="ex">:</span> 1</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<p>ℹ️ <strong>Note:</strong> 🎉 <code>SERVICE_NAME</code> is “web”</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">SERVICE_NAME</span><span class="op">=</span>webapp</span></code></pre></div>
+<p><strong>✓ How to verify deployment creation</strong></p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all deloyments</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> query deployment list <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--chain-id</span> <span class="va">$AKASH_CHAIN_ID</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List specific dployment</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> query deployment get <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span></span></code></pre></div>
+<p><strong>🔍 How to view deployment</strong></p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> lease-status <span class="at">--log_level</span><span class="op">=</span>info <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--from</span> <span class="va">$KEY_NAME</span> <span class="at">--home</span> ~/.akash <span class="at">--provider</span> <span class="va">$PROVIDER</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span></span></code></pre></div>
+<p><strong>📝 How to view logs</strong></p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> lease-logs <span class="at">--dseq</span> <span class="st">&quot;</span><span class="va">$DSEQ</span><span class="st">&quot;</span> <span class="at">--provider</span> <span class="st">&quot;</span><span class="va">$PROVIDER</span><span class="st">&quot;</span> <span class="at">--from</span> <span class="st">&quot;</span><span class="va">$AKASH_KEY_NAME</span><span class="st">&quot;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> provider service-logs <span class="at">--service</span> <span class="va">$SERVICE_NAME</span> <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--gseq</span> <span class="va">$GSEQ</span> <span class="at">--oseq</span> <span class="va">$OSEQ</span> <span class="at">--provider</span> <span class="va">$PROVIDER</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ex">akash</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> provider lease-logs <span class="at">--from</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--provider</span> <span class="va">$PROVIDER</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">--service</span> SERVICE_NAME <span class="at">--home</span> ~/.akash </span></code></pre></div>
+<p><strong>♻️ How to update deployment</strong>
+<code>requires $AKT fees</code></p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> akash tx deployment update deploy.yml <span class="at">--from</span> <span class="va">$KEY_NAME</span> <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--chain-id</span> <span class="va">$AKASH_CHAIN_ID</span> <span class="at">--fees</span> 5000uakt <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span> </span></code></pre></div>
+<p><strong>❌ How to close deployment</strong>
+<code>requires $AKT fees</code></p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx deployment close <span class="at">--dseq</span> <span class="va">$AKASH_DSEQ</span>  <span class="at">--owner</span> <span class="va">$AKASH_ACCOUNT_ADDRESS</span> <span class="at">--from</span> <span class="va">$AKASH_KEY_NAME</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> akash tx deployment close <span class="at">--node</span> <span class="va">$AKASH_NODE</span> <span class="at">--chain-id</span> <span class="va">$AKASH_CHAIN_ID</span> <span class="at">--dseq</span> <span class="va">$DSEQ</span>  <span class="at">--owner</span> <span class="va">$ACCOUNT_ADDRESS</span> <span class="at">--from</span> <span class="va">$KEY_NAME</span> <span class="at">--keyring-backend</span> <span class="va">$AKASH_KEYRING_BACKEND</span> <span class="at">-y</span> <span class="at">--fees</span> 5000uakt  <span class="at">--gas</span><span class="op">=</span>auto</span></code></pre></div>
+<h1 id="end-akt">💡 End 💲 <code>AKT</code> 🚀 🌕</h1>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src=../js/script.js></script>
+  <script src=../js/js.js></script>
+
+</html>
