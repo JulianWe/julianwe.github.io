@@ -33,20 +33,13 @@
 
 - name: create index.html file
   template:
-    src: "{{ vars.paths.index_html }}"
+    src: "{{ vars.paths.index_template }}"
     dest: "{{ vars.paths.index_file }}"
   delegate_to: localhost
 
-- name: debug 
-  debug:
-    msg: "{{ item }}"
-  loop: "{{ facts.results }}"
-
-- meta: end_play
-
-- name: remove index.html and Dockerfile
+- name: remove index.html
   shell:
-    cmd: rm 
+    cmd: rm {{ vars.paths.index }}
 
 - name: copy html blogposts to blog folder
   shell:
@@ -56,5 +49,4 @@
 - name: copy index file to repository
   shell: 
     cmd: "cp {{ vars.paths.index_file }} {{ vars.paths.repository }}"
-  loop: "{{ facts.results }}"
 ...

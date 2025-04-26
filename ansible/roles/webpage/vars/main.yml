@@ -2,10 +2,11 @@
 # vars file for webpage
 paths:
   path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
-  repository: "/Users/jw/Documents/GitHub/julianwe.github.io"
+  repository: "/Users/jw/Documents/GitHub/julianwe.github.io/"
   blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/blog"
-  index_html: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
+  index_template: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
   index_file: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/index.html"
+  index: "/Users/jw/Documents/GitHub/julianwe.github.io/index.html"
   blogpost: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/blogpost.j2"
   style_css: "css/style.css"
   blog_css: "../css/blog.css"
@@ -18,7 +19,7 @@ home:
   name: "Julian Wendland"
   job: "DevOps Engineer"
   description: "with over 8 years experience in automating anything.."
-  cv: "../../webpage/files/CV_Julian_Wendland_ENG.docx"
+  blog: "index.html#blog"
 about:
   me: "I'm Julian Wendland"
   role: "DevOps Engineer"
@@ -53,19 +54,15 @@ about:
     2:
       calendar: "10/2016 – 09/2017"
       title: "Wirtschaftsinformatik"
-      description: "Studium Friedrich-Alexander-Universität"
+      description: "Studium"
     3:
       calendar: "10/2015 – 09/2016"
       title: "Rechtswissenschaften"
-      description: "Studium Friedrich-Alexander-Universität"
+      description: "Studium"
     4: 
       calendar: "08/2014 – 09/2015"
       title: "Projektmangement"
       description: "Werkstudent"
-    5:
-      calendar: "09/2002 – 06/2015"
-      title: "Abitur"
-      description: "Adam-Kraft-Gymnasium Schwabach"
   Skills:
     Ansible: 
     Linux:
@@ -85,7 +82,7 @@ services:
     description: "I offer custom devops automation with infrastructure as code solutions and scripting automation."
   2:
     service: "Automation"
-    description: "I Automate anything with a API or CLI from server infrastructure in private cloud environments to public cloud environments and more."
+    description: "I Automate anything from server infrastructure in private cloud environments to public cloud environments and more."
   3:
     service: "Virtualization"
     description: "I build deploy and automate on premises virtual infrasturctures for private cloud evironments."
@@ -116,8 +113,7 @@ blogposts:
     description: "Storj Storageserver using AWS S3"
   ansible:
     html: "./blog/ansible.html"
-    images: 
-      image: "ansible/roles/ansible/files/images/ansible.jpg"
+    image: "ansible/roles/ansible/files/images/ansible.jpg"
     category: "Automation"
     description: "Ansible Automation"
   link:
