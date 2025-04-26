@@ -19,7 +19,7 @@ home:
   name: "Julian Wendland"
   job: "DevOps Engineer"
   description: "with over 8 years experience in automating anything.."
-  blog: "index.html#blog"
+  blog: "./index.html#blog"
 about:
   me: "I'm Julian Wendland"
   role: "DevOps Engineer"
