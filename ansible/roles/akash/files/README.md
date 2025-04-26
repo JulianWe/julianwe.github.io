@@ -4,12 +4,9 @@
 
 **Censorship-resistant, permissionless, and self-sovereign, Akash Network is the world’s first open source cloud. $AKT**
 
-
-
 # Variables
 
 **Note:** you can always check if all the required variables are set using "echo $variable" before your command.
-
 
 | Name | Description | Example values |
 | --- | --- | --- |
@@ -24,7 +21,6 @@
 |`AKASH_GAS_ADJUSTMENT` | Adjustment factor to be multiplied against the estimate returned by the tx simulation. | `1.25` |
 |`AKASH_GAS_PRICES` | Gas prices in decimal format to determine the transaction fee | `0.025uakt` |
 |`AKASH_SIGN_MODE` | Signature mode. | `amino-json` |
-
 
 
 # ☁️ Prepare akash` environment & 🏳️ Start Installation
@@ -69,7 +65,6 @@ export AKASH_KEY_NAME=julian
 echo AKASH_NET: $AKASH_NET, AKASH_VERSION: $AKASH_VERSION, AKASH_NODE: $AKASH_NODE, AKASH_CHAIN_ID:  $AKASH_CHAIN_ID, AKASH_KEYRING_BACKEND:  $AKASH_KEYRING_BACKEND, AKASH_GAS: $AKASH_GAS, AKASH_ADJUSTMENTS:  $AKASH_GAS_ADJUSTMENT, AKASH_GAS_PRICES:  $AKASH_GAS_PRICES, AKASH_SIGN_MODE: $AKASH_SIGN_MODE
 
 ```
-
 
 
 # 💳 Wallet Setup
@@ -150,8 +145,6 @@ pagination:
 
 
 ℹ️ **Note: You can buy `$AKT` on [BitMax](https://bitmax.io/register?inviteCode=LQDS1MMP) using this link or [Osmosis](https://app.osmosis.zone/)** and withdraw them to your deployment `ACCOUNT_ADDRESS`
-
-
 
 
 # 📝 Prepare for deployment SDL File

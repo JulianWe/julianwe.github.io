@@ -37,6 +37,17 @@
     dest: "{{ vars.paths.index_file }}"
   delegate_to: localhost
 
+- name: debug 
+  debug:
+    msg: "{{ item }}"
+  loop: "{{ facts.results }}"
+
+- meta: end_play
+
+- name: remove index.html and Dockerfile
+  shell:
+    cmd: rm 
+
 - name: copy html blogposts to blog folder
   shell:
     cmd: "cp {{ item.ansible_facts.file_path }} {{ vars.paths.blog_folder }}"
@@ -45,5 +56,5 @@
 - name: copy index file to repository
   shell: 
     cmd: "cp {{ vars.paths.index_file }} {{ vars.paths.repository }}"
-  loop: "{{ facts.results }}"  
+  loop: "{{ facts.results }}"
 ...
