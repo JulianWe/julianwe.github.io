@@ -1,6 +1,6 @@
 # ⚙️ Deploy Website using Ansible, Docker and GitHub Pages
 
-![](./ansible/roles/webpage/images/ansible-docker.jpg)
+![](../ansible/roles/webpage/files/images/ansible-docker.jpg)
 
 ```sh
 This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages using Markdown files from github and coverts each README file into a HTML Blogpost. This allows you to automate all blogposts using ansible roles. ⚙️
@@ -53,6 +53,7 @@ ansible-playbook playbooks/webpage.yml
 
   - name: "Include playbook webserver"
     import_tasks: playbook_webserver.yml
+
 ```
 
 **the playbook_webpage.yml convert reamdme files into html blogposts and creates our index.html file using ansible and our jinja 2 template**
@@ -241,7 +242,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 
-**make sure to select deploy from branch instead of GitHub Actions in repository settings https://github.com/username/username.github.io/settings/pages this enables github pages for your repository and deploys your webpage with github action on every push**
-![](./ansible/roles/webpage/files/images/pages.jpg)
+**make sure to select deploy from branch instead of GitHub Actions in [repository settings](https://github.com/username/username.github.io/settings/pages) this enables github pages for your repository and deploys your webpage with github action on every push**
+![](../ansible/roles/webpage/files/images/pages.jpg)
 
 

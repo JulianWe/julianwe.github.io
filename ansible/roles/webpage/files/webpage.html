@@ -43,7 +43,8 @@
 
           <h1 id="deploy-website-using-ansible-docker-and-github-pages">⚙️ Deploy
 Website using Ansible, Docker and GitHub Pages</h1>
-<p><img src="./ansible/roles/webpage/images/ansible-docker.jpg" /></p>
+<p><img
+src="../ansible/roles/webpage/files/images/ansible-docker.jpg" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages using Markdown files from github and coverts each README file into a HTML Blogpost. This allows you to automate all blogposts using ansible roles. ⚙️</span></code></pre></div>
 <p><strong>before we can start make sure to install ansible and
 docker.</strong></p>
@@ -267,11 +268,11 @@ class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb11
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;nginx&quot;</span>, <span class="st">&quot;-g&quot;</span>, <span class="st">&quot;daemon off;&quot;</span>]</span></code></pre></div>
 <p><strong>make sure to select deploy from branch instead of GitHub
-Actions in repository settings
-https://github.com/username/username.github.io/settings/pages this
-enables github pages for your repository and deploys your webpage with
-github action on every push</strong> <img
-src="./ansible/roles/webpage/files/images/pages.jpg" /></p>
+Actions in <a
+href="https://github.com/username/username.github.io/settings/pages">repository
+settings</a> this enables github pages for your repository and deploys
+your webpage with github action on every push</strong> <img
+src="../ansible/roles/webpage/files/images/pages.jpg" /></p>
 
           <!-- End README.md -->
       </div>

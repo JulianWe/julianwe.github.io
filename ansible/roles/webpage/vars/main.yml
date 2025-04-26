@@ -3,7 +3,7 @@
 paths:
   path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
   repository: "/Users/jw/Documents/GitHub/julianwe.github.io/"
-  blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/blog"
+  blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/blog"
   index_template: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
   index_file: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/index.html"
   index: "/Users/jw/Documents/GitHub/julianwe.github.io/index.html"
@@ -96,6 +96,15 @@ services:
     service: "Training Courses "
     description: "I have serveral years of experience teaching official virtulization, infrastructure and automation courses."
 blogposts:
+  webpage:
+    html: "./blog/webpage.html"
+    image: "ansible/roles/webpage/files/images/ghp.jpg"
+    category: "Webdesign"
+    description: "Create Github Pages Website"
+    images: 
+      image: 
+        - 1: ./ansible/roles/webpage/images/ansible-docker.jpg
+        - 2: ./ansible/roles/webpage/files/images/pages.jpg
   akash:
     html: "./blog/akash.html"
     image: "ansible/roles/akash/files/images/akt.jpg"
@@ -111,11 +120,6 @@ blogposts:
     image: "ansible/roles/storj/files/images/storj.jpg"
     category: "Decentralization"
     description: "Storj Storageserver using AWS S3"
-  ansible:
-    html: "./blog/ansible.html"
-    image: "ansible/roles/ansible/files/images/ansible.jpg"
-    category: "Automation"
-    description: "Ansible Automation"
   link:
     html: "./blog/link.html"
     image: "ansible/roles/link/files/images/link.jpg"
@@ -161,11 +165,6 @@ blogposts:
     image: "ansible/roles/dvpn/files/images/dvpn.jpg"
     category: "Decentralization"
     description: "Sentinel Decentralized VPN"
-  webpage:
-    html: "./blog/webpage.html"
-    image: "ansible/roles/webpage/files/images/ghp.jpg"
-    category: "Webdesign"
-    description: "Create Github Pages Website"
   solidity:
     html: "./blog/solidity.html"
     image: "ansible/roles/solidity/files/images/sol.jpg"
