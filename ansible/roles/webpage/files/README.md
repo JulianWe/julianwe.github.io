@@ -33,19 +33,12 @@ cp julianwe.github.io/* username.github.io/
 **run ansible playbook webpage.yml to build your own webpage with your own blog like this on github.**
 ```sh
 # run ansible playbook with your information and build your own website NOTE: customize ansible/roles/webpage/vars/main.yml file with your information before you proceed.
-<<<<<<< HEAD
+
 export ANSIBLE_CONFIG=/Users/jw/Documents/GitHub/julianwe.github.io/ansible/ansible.cfg
-=======
->>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
 cd julianwe.gituhub.io/ansible
 ansible-playbook playbooks/webpage.yml
 ```
 
-<<<<<<< HEAD
-![](./videos/webpage.gif)
-
-=======
->>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
 **build your own website with ansible role playbook "webpage.yml".**
 ```sh
 ---
