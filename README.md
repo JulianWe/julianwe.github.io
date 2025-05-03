@@ -19,8 +19,6 @@ git clone https://github.com/JulianWe/julianwe.github.io.git
 cp julianwe.github.io/ansible username.github.io/
 ``` 
 
-![](../ansible/roles/webpage/files/webpage.mov)
-
 **run ansible playbook webpage.yml to build your own webpage with your own blog like this on github.**
 ```sh
 # run ansible playbook with your information and build your own website NOTE: customize ansible/roles/webpage/vars/main.yml file with your information before you proceed.

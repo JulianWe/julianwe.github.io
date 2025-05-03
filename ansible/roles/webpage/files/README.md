@@ -2,10 +2,15 @@
 
 ![](../ansible/roles/webpage/files/images/ansible-docker.jpg)
 
+
 ```text
 This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages 
 using readme files from github and coverts each readme file into a HTML Blogpost. 
 This allows you to automate all blogposts using ansible roles. ⚙️
+``` 
+
+```sh
+This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages using Markdown files from github and coverts each README file into a HTML Blogpost. This allows you to automate all blogposts using ansible roles. ⚙️
 ``` 
 
 **before we can start make sure to install ansible and docker.**
@@ -13,6 +18,7 @@ This allows you to automate all blogposts using ansible roles. ⚙️
 brew update
 brew upgrade
 brew cleanup
+
 brew install ansible
 brew install --cask docker
 ```
@@ -27,13 +33,19 @@ cp julianwe.github.io/* username.github.io/
 **run ansible playbook webpage.yml to build your own webpage with your own blog like this on github.**
 ```sh
 # run ansible playbook with your information and build your own website NOTE: customize ansible/roles/webpage/vars/main.yml file with your information before you proceed.
+<<<<<<< HEAD
 export ANSIBLE_CONFIG=/Users/jw/Documents/GitHub/julianwe.github.io/ansible/ansible.cfg
+=======
+>>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
 cd julianwe.gituhub.io/ansible
 ansible-playbook playbooks/webpage.yml
 ```
 
+<<<<<<< HEAD
 ![](./videos/webpage.gif)
 
+=======
+>>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
 **build your own website with ansible role playbook "webpage.yml".**
 ```sh
 ---
@@ -249,9 +261,14 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 
+<<<<<<< HEAD
 **make sure to select deploy from branch instead of GitHub Actions in [repository settings](https://github.com/username/username.github.io/settings/pages) this enables github pages for your repository and deploys your webpage with github action on every push**
 
 
+=======
+
+**make sure to select deploy from branch instead of GitHub Actions in [repository settings](https://github.com/username/username.github.io/settings/pages) this enables github pages for your repository and deploys your webpage with github action on every push**
+>>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
 ![](../ansible/roles/webpage/files/images/pages.jpg)
 
 
