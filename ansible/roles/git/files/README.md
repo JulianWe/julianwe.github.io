@@ -80,7 +80,7 @@ collaborate (see also: git help workflows)
 vi ~/.gitconfig
 ```
 
-```yml
+```yaml
 [user]
 	name = Julian Wendland
 	email = julianwendland@gmx.de

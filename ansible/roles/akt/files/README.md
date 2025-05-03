@@ -15,7 +15,7 @@ brew cleanup
 brew install google-cloud-sdk
 export PATH="$PATH:/google-cloud-sdk/bin"
 
-# Login to Google Cloud
+# login to Google Cloud
 gcloud auth login
 ```
 
@@ -43,10 +43,11 @@ Recommended Specs
 40 GB disk
 ```
 
+
 ```sh
 # create gcloud vm command using ui and add ssh public key to access vm
  cat ~/.ssh/jw_ed25519.pub
- ```
+```
 ![](../../akt/files/images/gcpvm.jpg)
 
 
@@ -68,10 +69,11 @@ AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj\+mnV0ckEBfr68LC3BqZd3JsD\ jw \
     --shielded-vtpm \
     --shielded-integrity-monitoring \
     --labels=goog-ec-src=vm_add-gcloud \
-    --reservation-affinity=any
+    --reservation-affinity=any \
+    --enable-nested-virtualization
 
 NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
-ansible  us-central1-c  n1-standard-1               10.128.0.15  35.192.168.243  RUNNING
+ansible  us-central1-c  t2d-standard-1              10.128.0.15  35.192.168.243  RUNNING
 ```
 
 **anternativly use ansible playbook to create gcp vm**
@@ -79,7 +81,7 @@ ansible  us-central1-c  n1-standard-1               10.128.0.15  35.192.168.243 
 - name: Create GCP instance
   gcp_compute_instance:
     name: my-instance
-    machine_type: n1-standard-1
+    machine_type: t2d-standard-1
     disks:
       - boot:
           auto_delete: true
@@ -115,7 +117,6 @@ ssh -i ~/.ssh/jw_rsa jw@34.173.226.140
 ```
 
 
-
 ```sh
 # Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
 cd ~ && sudo -s
@@ -133,11 +134,19 @@ pip3 install -r requirements.txt
 ```
 
 ```sh
+# Run provider script to build playbooks
+git clone https://github.com/akash-network/provider-playbooks.git
+cd provider-playbooks
+./scripts/setup_provider.sh
+```
+
+```sh
 # Run kubespray docker container
 docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/akash,dst=/kubespray/inventory \
   --mount type=bind,source="${HOME}"/.ssh/id_rsa.pub,dst=/root/.ssh/id_rsa \
   quay.io/kubespray/kubespray:v2.27.0 bash
 ```
+
 
 ```sh
 # Build Ansible Inventory for Kubernetes Hosts
@@ -223,7 +232,7 @@ ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rs
 
 ```sh
 # Inside the container you may now run the kubespray playbooks to create kubernetes cluster
-ansible-playbook -i inventory/hosts.yaml --private-key /root/.ssh/id_rsa -become cluster.yml
+ansible-playbook -i inventory/akash/hosts.yaml --private-key /root/.ssh/id_rsa -become cluster.yml
 ```
 
 ```sh

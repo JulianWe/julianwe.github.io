@@ -8,6 +8,7 @@
   register: folder
 
 - name: set blogpost, url & directory facts
+  no_log: true
   set_fact:
     name: "{{ item | trim ('/')}}"
     file_path: "{{ vars.paths.path }}/roles/{{ item }}/files/{{ item | trim ('/')}}.html"
@@ -17,6 +18,7 @@
   register: facts
 
 - name: set html content facts
+  no_log: true
   set_fact:
     html: "{{ lookup('file', item.ansible_facts.file_path) }}"
     file_path: "{{ item.ansible_facts.file_path }}"
@@ -25,6 +27,7 @@
   register: html_files
 
 - name: create blogpost html files
+  no_log: true
   template:
     src: "{{ vars.paths.blogpost }}"
     dest: "{{ item.ansible_facts.file_path }}"
@@ -33,20 +36,13 @@
 
 - name: create index.html file
   template:
-    src: "{{ vars.paths.index_html }}"
+    src: "{{ vars.paths.index_template }}"
     dest: "{{ vars.paths.index_file }}"
   delegate_to: localhost
 
-- name: debug 
-  debug:
-    msg: "{{ item }}"
-  loop: "{{ facts.results }}"
-
-- meta: end_play
-
-- name: remove index.html and Dockerfile
+- name: remove index.html
   shell:
-    cmd: rm 
+    cmd: rm {{ vars.paths.index }}
 
 - name: copy html blogposts to blog folder
   shell:
@@ -56,5 +52,4 @@
 - name: copy index file to repository
   shell: 
     cmd: "cp {{ vars.paths.index_file }} {{ vars.paths.repository }}"
-  loop: "{{ facts.results }}"
 ...
