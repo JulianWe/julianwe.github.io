@@ -39,7 +39,7 @@ cd julianwe.gituhub.io/ansible
 ansible-playbook playbooks/webpage.yml
 ```
 
-![](../vid/webpage.gif)
+![](../videos/webpage.gif)
 
 **build your own website with ansible role playbook "webpage.yml".**
 ```sh

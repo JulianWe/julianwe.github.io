@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
+  <link rel="stylesheet" href=../css/blog.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="#home"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="#home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="#contact"><i class="fa fa-comments"></i>Contact</a></li>
+                <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../css/markdown.css">
+          <link rel="stylesheet" href="../css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="implementing-brave-rewards-on-your-website">Implementing Brave
+rewards on your Website</h1>
+<p><img src="../images/brave.jpg" /></p>
+<pre class="text"><code>Earn for your online content
+Join Brave Creators and monetize your online presence today. Receive contributions from the millions of users on the Brave Browser, and add your crypto address to start receiving crypto contributions from your supporters all across the Web.</code></pre>
+<p><strong><a href="https://publishers.basicattentiontoken.org/">Create
+brave publisher account at:
+https://publishers.basicattentiontoken.org/</a></strong></p>
+<p><img src="../images/brave1.jpg" /></p>
+<p><strong>Download brave-rewards-verification.txt file</strong> <img
+src="../images/brave2.jpg" /></p>
+<pre class="text"><code>This is a Brave Creators publisher verification file.
+
+Domain: julianwe.github.io
+Token: a9ef0c881180bbbbf307df3cf861f2371a00f40a162c3c739c4f4998abb2c2fa</code></pre>
+<p><strong>verify brave publisher setup
+https://julianwe.github.io/.well-known/brave-rewards-verification.txt</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create well-known directory inside the directory where your index.html file resides</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> .well-known</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Move Brave Rewards verification file to well knwon folder</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> brave-rewards-verification.txt .well-known</span></code></pre></div>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src=../js/script.js></script>
+  <script src=../js/js.js></script>
+
+</html>
