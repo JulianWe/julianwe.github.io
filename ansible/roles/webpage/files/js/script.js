@@ -42,7 +42,7 @@ function updateNav(element){
     }
 }
 
-document.querySelector('.hire-me').addEventListener('click', function(){
+document.querySelector('.contact-me').addEventListener('click', function(){
     const sectionIndex = this.getAttribute('data-section-index');
     /*console.log(sectionIndex);*/
     showSection(this);

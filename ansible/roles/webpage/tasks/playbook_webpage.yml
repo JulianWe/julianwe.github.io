@@ -47,5 +47,5 @@
 
 - name: copy index.html to repository
   shell:
-    cmd: "cp {{ item.ansible_facts.index_file }} {{ vars.paths.repository }}"
+    cmd: "cp {{ vars.paths.index_file }} {{ vars.paths.repository }}"
 ...
