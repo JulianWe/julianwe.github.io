@@ -1,5 +1,5 @@
 ---
-- name: convert markdown to html
+- name: convert markdown readme to html files
   shell: | 
     cd {{ vars.paths.path }}
     for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
@@ -7,7 +7,7 @@
     ls {{ vars.paths.path }}/roles
   register: folder
 
-- name: set blogpost, url & directory facts
+- name: set blogpost & directory facts
   no_log: true
   set_fact:
     name: "{{ item | trim ('/')}}"
@@ -17,7 +17,7 @@
     index_var: index
   register: facts
 
-- name: set html content facts
+- name: set html blogpost content facts
   no_log: true
   set_fact:
     html: "{{ lookup('file', item.ansible_facts.file_path) }}"
@@ -26,7 +26,7 @@
   loop: "{{ facts.results }}"
   register: html_files
 
-- name: create blogpost html files
+- name: create blogpost html pages
   no_log: true
   template:
     src: "{{ vars.paths.blogpost }}"
@@ -39,10 +39,6 @@
     src: "{{ vars.paths.index_template }}"
     dest: "{{ vars.paths.index_file }}"
   delegate_to: localhost
-
-- name: remove index.html
-  shell:
-    cmd: rm {{ vars.paths.index }}
 
 - name: copy html blogposts to blog folder
   shell:
