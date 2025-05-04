@@ -1,11 +1,16 @@
 
 # ☁️ [AIOZ Network](https://docs.aioz.network/aioz-depin/aioz-nodes/cli-node) - Setup CLI Node 🐇
 
+
+![](../images/aioz_node.jpg)
+
+
 ```sh
 # download aioznode
-curl -LO https://github.com/AIOZNetwork/aioz-dcdn-cli-node/files/13561206/aioznode-darwin-amd64-1.1.0.tar.gz
-tar xzf aioznode-darwin-amd64-1.1.0.tar.gz
-mv aioznode-darwin-amd64-1.1.0 aioznode
+curl -LO https://github.com/AIOZNetwork/aioz-dcdn-cli-node/files/13561211/aioznode-linux-amd64-1.1.0.tar.gz
+tar xzf aioznode-linux-amd64-1.1.0.tar.gz
+mv aioznode-linux-amd64-1.1.0 aioznode
+
 export PATH="$PATH:/aioznode"
 ```
 
@@ -50,37 +55,24 @@ export PATH="$PATH:/aioznode"
 **Recover private key from mnemonic phrase**
 ```sh
 # Recover private key from mnemonic phrase
-./aioznode keytool recover "rain wing olive skate effort present long myself combine giant vote stay sweet bundle agree lock connect glide absent spider effort attitude enemy mouse" --save-pri-key privkey.json
+./aioznode keytool recover "rain wing olive skate effort present long myself combine giant vote stay sweet bundle agree lock connect glide absent spider effort attitude enemy mouse" --save-priv-key privkey.json
 ```
 
-`--save-pri-key` write the private key to file.
+`--save-priv-key` write the private key to file.
 
 
-**create shell script entrypoint.sh for docker container to run aioz node inside the docker container**
+**or create docker container to run aioz node**
 ```sh
-# create shell script setup.sh for docker container to run aioz node inside the docker container
-cat << EOF | setup.sh 
-#!/bin/bash
-
-# download Aioz 
-curl -LO https://github.com/AIOZNetwork/aioz-dcdn-cli-node/files/13561206/aioznode-darwin-amd64-1.1.0.tar.gz
-tar xzf aioznode-darwin-amd64-1.1.0.tar.gz
-mv aioznode-darwin-amd64-1.1.0 aioznode
-
-./aioznode start --home nodedata --priv-key-file privkey.json
-EOF
-```
-
-```sh
-# create docker container to run aioz node script
 FROM ubuntu:latest
+
 WORKDIR /root
+RUN apt update && apt upgrade -y
+RUN apt install curl -y
 COPY privkey.json /root
-RUN apt-get install aioznode
-RUN curl -LO https://github.com/AIOZNetwork/aioz-dcdn-cli-node/files/13561206/aioznode-darwin-amd64-1.1.0.tar.gz
-RUN tar xzf aioznode-darwin-amd64-1.1.0.tar.gz
-RUN mv aioznode-darwin-amd64-1.1.0 aioznode
-RUN chmod +x /root/aioznode
-RUN .\aioznode start --home nodedata --priv-key-file privkey.json
+RUN curl -LO https://github.com/AIOZNetwork/aioz-dcdn-cli-node/files/13561211/aioznode-linux-amd64-1.1.0.tar.gz
+RUN tar xzf aioznode-linux-amd64-1.1.0.tar.gz
+RUN mv aioznode-linux-amd64-1.1.0 /root/aioznode
+COPY privkey.json /root
+RUN /root/aioznode start --home nodedata --priv-key-file /root/privkey.json
 ```
 

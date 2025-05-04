@@ -3,7 +3,7 @@
 paths:
   path: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible"
   repository: "/Users/jw/Documents/GitHub/julianwe.github.io/"
-  blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/blog"
+  blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/blog"
   index_template: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
   index_file: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/index.html"
   index: "/Users/jw/Documents/GitHub/julianwe.github.io/index.html"
@@ -19,7 +19,7 @@ home:
   name: "Julian Wendland"
   job: "DevOps Engineer"
   description: "with over 8 years experience in automating anything.."
-  blog: "#blog"
+  blog: "./index.html#blog"
 about:
   me: "I'm Julian Wendland"
   role: "DevOps Engineer"
@@ -105,16 +105,6 @@ blogposts:
       image: 
         - 1: ./ansible/roles/webpage/images/ansible-docker.jpg
         - 2: ./ansible/roles/webpage/files/images/pages.jpg
-  glm:
-    html: "./blog/glm.html"
-    image: "ansible/roles/glm/files/images/glm.jpg"
-    category: "Decentralization"
-    description: "Golem Network Provider"
-  aioz:
-    html: "./blog/aioz.html"
-    image: "ansible/roles/aioz/files/images/aioz.jpg"
-    category: "Decentralization"
-    description: "Aioz Network Node"
   akash:
     html: "./blog/akash.html"
     image: "ansible/roles/akash/files/images/akt.jpg"
@@ -140,6 +130,16 @@ blogposts:
     image: "ansible/roles/akt/files/images/akt.jpg"
     category: "Decentralization"
     description: "Akash Cloud Provider"
+  glm:
+    html: "./blog/glm.html"
+    image: "ansible/roles/glm/files/images/glm.jpg"
+    category: "Decentralization"
+    description: "Golem Network Provider"
+  aioz:
+    html: "./blog/aioz.html"
+    image: "ansible/roles/aioz/files/images/aioz.jpg"
+    category: "Decentralization"
+    description: "Aioz Node"
   vsc:
     html: "./blog/vsc.html"
     image: "ansible/roles/vsc/files/images/vsc.jpg"

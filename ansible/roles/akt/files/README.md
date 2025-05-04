@@ -116,7 +116,6 @@ ssh -i ~/.ssh/jw_ed25519 jw@34.173.226.140
 ssh -i ~/.ssh/jw_rsa jw@34.173.226.140
 ```
 
-
 ```sh
 # Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
 cd ~ && sudo -s
@@ -161,11 +160,8 @@ CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/invento
 ```
 
 
-
-```sh
-# Create Inventory File add ansible_user and vars section
-```
 ```yml
+# Create Inventory File add ansible_user and vars section
 cat <<EOF > inventory/akash/hosts.yaml
   all:
     vars:
@@ -232,7 +228,7 @@ ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rs
 
 ```sh
 # Inside the container you may now run the kubespray playbooks to create kubernetes cluster
-ansible-playbook -i inventory/akash/hosts.yaml --private-key /root/.ssh/id_rsa -become cluster.yml
+ansible-playbook -i inventory/akash/inventory.ini --private-key /root/.ssh/id_rsa -become cluster.yml
 ```
 
 ```sh

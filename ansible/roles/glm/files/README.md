@@ -1,5 +1,6 @@
 # Share Compute Resources with golem
 
+![](../images/golem.jpg)
 
 **make sure to enable nested virtulization on gcp vm**
 ```sh
@@ -25,7 +26,6 @@ AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj\+mnV0ckEBfr68LC3BqZd3JsD\ jw \
 NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
 ansible  us-central1-c  n1-standard-2               10.128.0.24  34.173.226.140  RUNNING
 ```
-
 
 **in order to delete vm type the following command**
 ```sh
