@@ -6,7 +6,6 @@ paths:
   blog_folder: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/blog"
   index_template: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/index.j2"
   index_file: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/files/index.html"
-  index: "/Users/jw/Documents/GitHub/julianwe.github.io/index.html"
   blogpost: "/Users/jw/Documents/GitHub/julianwe.github.io/ansible/roles/webpage/templates/blogpost.j2"
   style_css: "css/style.css"
   blog_css: "../css/blog.css"
@@ -19,7 +18,7 @@ home:
   name: "Julian Wendland"
   job: "DevOps Engineer"
   description: "with over 8 years experience in automating anything.."
-  blog: "./index.html#blog"
+  blog: "#blog"
 about:
   me: "I'm Julian Wendland"
   role: "DevOps Engineer"
