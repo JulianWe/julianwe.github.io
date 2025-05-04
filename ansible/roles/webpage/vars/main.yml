@@ -98,7 +98,7 @@ services:
 blogposts:
   webpage:
     html: "./blog/webpage.html"
-    image: "ansible/roles/webpage/files/images/ghp.jpg"
+    image: "./images/ghp.jpg"
     category: "Webdesign"
     description: "OpenSource Github Pages Webpage"
     images: 
@@ -107,92 +107,92 @@ blogposts:
         - 2: ./ansible/roles/webpage/files/images/pages.jpg
   akash:
     html: "./blog/akash.html"
-    image: "ansible/roles/akash/files/images/akt.jpg"
+    image: "./images/akt.jpg"
     category: "Decentralization"
     description: "Akash Container Deployment"
   bat: 
     html: "./blog/bat.html"
-    image: "ansible/roles/bat/files/images/bat.jpg"
+    image: "./images/bat.jpg"
     category: "Decentralization"
     description: "Brave Rewards"
   stroj:
     html: "./blog/storj.html"
-    image: "ansible/roles/storj/files/images/storj.jpg"
+    image: "./images/storj.jpg"
     category: "Decentralization"
     description: "Storj Storageserver using AWS S3"
   link:
     html: "./blog/link.html"
-    image: "ansible/roles/link/files/images/link.jpg"
+    image: "./images/link.jpg"
     category: "Decentralization"
     description: "Create Chainlink Node"
   akt:
     html: "./blog/akt.html"
-    image: "ansible/roles/akt/files/images/akt.jpg"
+    image: "./images/akt.jpg"
     category: "Decentralization"
     description: "Akash Cloud Provider"
   glm:
     html: "./blog/glm.html"
-    image: "ansible/roles/glm/files/images/glm.jpg"
+    image: "./images/glm.jpg"
     category: "Decentralization"
     description: "Golem Network Provider"
   aioz:
     html: "./blog/aioz.html"
-    image: "ansible/roles/aioz/files/images/aioz.jpg"
+    image: "./images/aioz.jpg"
     category: "Decentralization"
     description: "Aioz Node"
   vsc:
     html: "./blog/vsc.html"
-    image: "ansible/roles/vsc/files/images/vsc.jpg"
+    image: "./images/vsc.jpg"
     category: "Coding"
     description: "Visual Studio Code Server"
   dev:
     html: "./blog/dev.html"
-    image: "ansible/roles/dev/files/images/container.jpg"
+    image: "./images/container.jpg"
     category: "Container"
     description: "Docker Development Container" 
   github:
     html: "./blog/github.html"
-    image: "ansible/roles/github/files/images/github.jpg"
+    image: "./images/github.jpg"
     category: "Coding" 
     description: "Create SSH Keys for GitHub"
   ipfs:
     html: "./blog/ipfs.html"
-    image: "ansible/roles/ipfs/files/images/fil.jpg"
+    image: "./images/fil.jpg"
     category: "Decentralization"
     description: "IPFS Inter Planetary File System"
   erc:
     html: "./blog/erc.html"
-    image: "ansible/roles/erc/files/images/eth.jpg"
+    image: "./images/eth.jpg"
     category: "Decentralization"
     description: "Create your own Ethereum Token"
   hns:
     html: "./blog/hns.html"
-    image: "ansible/roles/hns/files/images/hns.jpg"
+    image: "./images/hns.jpg"
     category: "Decentralization"
     description: "Hanshake Decentralized naming and certificate authority"    
   dvpn:
     html: "./blog/dvpn.html"
-    image: "ansible/roles/dvpn/files/images/dvpn.jpg"
+    image: "./images/dvpn.jpg"
     category: "Decentralization"
     description: "Sentinel Decentralized VPN"
   solidity:
     html: "./blog/solidity.html"
-    image: "ansible/roles/solidity/files/images/sol.jpg"
+    image: "./images/sol.jpg"
     category: "Decentralization"
     description: "Create Solidity Voting Smart Contract"
   msw:
     html: "./blog/msw.html"
-    image: "ansible/roles/msw/files/images/msw.jpg"
+    image: "./images/msw.jpg"
     category: "Decentralization"
     description: "Create Solidity Multisig Wallet"
   vim:
     html: "./blog/vim.html"
-    image: "ansible/roles/vim/files/images/vi.jpg"
+    image: "./images/vi.jpg"
     category: "Coding"
     description: "Vim Cheatsheat"
   git:
     html: "./blog/git.html"
-    image: "ansible/roles/git/files/images/git.jpg"
+    image: "./images/git.jpg"
     category: "Coding"
     description: "Git Cheatsheat"
 
