@@ -1,6 +1,6 @@
 # GitHub Cheatsheet
 
-![](../../git/files/images/gitCheatsheet.jpg)
+![](./images/gitCheatsheet.jpg)
 
 
 ```sh

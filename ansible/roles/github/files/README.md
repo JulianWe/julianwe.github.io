@@ -1,7 +1,7 @@
 # [**Configure GitHub to use SSH Key**](https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)
 
 
-![](../../github/files/images/github.jpg)
+![](../images/github.jpg)
 
 
 **create new ssh key**
@@ -44,7 +44,7 @@ git config --global user.signingkey ~/.ssh/id_ed25519
 ```
 
 **add ssh key to github [account settings](https://github.com/settings/keys)**
-![](../../github/files/images/github-1.jpg)
+![](../images/github-1.jpg)
 
 **test ssh connection**
 ```sh

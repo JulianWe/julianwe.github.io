@@ -1,6 +1,6 @@
 # MultiSigEthereumWallet - Smart Contract tutorial 🐇
 
-![](../../msw/files/images/multisigwallet.jpg)
+![](../images/soliditywallet.jpg)
 
 **This Tutorial shows how to write, deploy and interact with your own ethereum multisig wallet**
 
@@ -101,12 +101,12 @@ contract MultiSigWallet {
 **5. deploy MultiSigWallet.sol solidity contract with `_APPROVERS`, address[] set to: `["0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72","0xd32bac5c062e89912d067f7221e94fe77343D35a","0x0f0d2bf29aae4e6d8d646f967df8c49b28df05e5"]`, and `_MINAPPROVERS` for example to uint `1` (minimum required approvals to execute approve function and send funds to `_BENEFICIARY` address `0xB345BD9ff34DeFf59526DF03B0A41d5E7C54bC72`.**
 
 
-![](../../msw/files/images/DeployMultiSigWallet.png)
+![](../images/DeployMultiSigWallet.png)
 
 
 
 **Approve Spending Wallet funds with one of the approver `_APPROVERS` address**
-![](../../msw/files/images/ApproveSpendingWalletFunds.jpg)
+![](../images/ApproveSpendingWalletFunds.jpg)
 
 
 

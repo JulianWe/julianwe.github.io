@@ -1,6 +1,6 @@
 # ERC-20 Smart Contract tutorial 🐇
 
-![](../../erc/files/images/erc20.jpg)
+![](../images/erc20.jpg)
 
 **This Tutorial shows how to write, deploy and interact with a ethereum token smart contract**
 
@@ -114,9 +114,6 @@ contract MyCustomToken is ERC20Interface, SafeMath {
 }
 ```
 
-
-| Source | Documentation |
-| --- | --- |
-| `Source Code` | 🕳️ [Pluralsight - Ivan Mushketyk](https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications) |
+[Pluralsight - Ivan Mushketyk](https://www.pluralsight.com/courses/ethereum-blockchain-developing-applications)
 
 

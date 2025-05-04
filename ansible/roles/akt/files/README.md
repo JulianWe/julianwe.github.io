@@ -1,6 +1,6 @@
 # **Setup Akash Cloud Provider on GCP 🐇**
 
-![](../../akt/files/images/akash.jpg)
+![](../images/akash.jpg)
 
 
 [**Source: Documentation**](https://akash.network/docs/providers/build-a-cloud-provider/akash-cli/kubernetes-cluster-for-akash-providers/kubernetes-cluster-for-akash-providers/)
@@ -48,7 +48,7 @@ Recommended Specs
 # create gcloud vm command using ui and add ssh public key to access vm
  cat ~/.ssh/jw_ed25519.pub
 ```
-![](../../akt/files/images/gcpvm.jpg)
+![](../images/gcpvm.jpg)
 
 
 ```sh

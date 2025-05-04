@@ -1,7 +1,7 @@
 # Cloud Development Container 
 
 
-![](../../dev/files/images/docker.jpg)
+![](../images/docker.jpg)
 
 ```sh
 # install github & clone this repository 

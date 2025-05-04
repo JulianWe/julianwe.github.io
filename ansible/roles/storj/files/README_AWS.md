@@ -166,5 +166,5 @@ d97849abf896   storjlabs/storagenode:latest             "/entrypoint"   3 second
 
 
 **Visit your Storagenode http://localhost:14002**
-![](../storj/images/storj.jpg)
+![](../images/storj.jpg)
 

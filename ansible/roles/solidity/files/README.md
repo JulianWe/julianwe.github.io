@@ -1,6 +1,6 @@
 # Ethereum Smart Contract tutorial 🐇
 
-![](../../solidity/files/images/solidity-1.jpg)
+![](../images/solidity-1.jpg)
 
 **This Tutorial shows how to write, deploy and interact with a ethereum voting smart contract**
 
@@ -107,7 +107,7 @@ contract Voting {
 
 **6. Deploy Voting Smart Contract to Ethereum Rinkeby testnetwork using `["Tea","Coffee"]` for `_options` input variable**
 
-![](../../solidity/files/images/contract-1.jpg)
+![](../images/contract-1.jpg)
 
 
 **7. Interacting with the public smart contract functions `voteByOptionName` `voteUsingOptionPosition`**
@@ -118,5 +118,5 @@ To vote for Coffee or Tea call the function `voteByOptionName` and choose betwee
 Trying to call the function `voteUsingOptionPosition` from the same account leads to the expected errormessage "This Address has already voted"
 The last call of function `getVotes` shows as result `1,0` if you voted for `Tea` and `0,1` if you voted for `Coffee`.
 
-![](../../solidity/images/contract-1.jpg)
+![](../images/contract-1.jpg)
 

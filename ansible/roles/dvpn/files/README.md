@@ -1,28 +1,6 @@
----
-title: 'Sentinel DVPN Tutorial '
-date: 2023-06-19 19:30
-tags:
-    - web3
-    - dvpn
-    - blockchain
-    - crypto
-category:
-    - decentralization
-description: How to use Sentinel DVPN on Mac OS cli.
-photos: ../sentinel/images/1_sentinel.jpg
----
-
 # ☁️ [Sentinel DVPN](https://sentinel.co/) Tutorial 🐇
 
-![](../../dvpn/files/images/sentinel.jpg)
-
-
-
-| Name | Description | Example values |
-|---|---|---|
-|`ACCOUNT_ADDRESS`| The address of your account. | `akash1srujzhj2v9fkzhnn635udlczyhdpetuh34mhad` |
-|`KEYRING_BACKEND`| Keyring backend to use for local keys. (os,file or test) | `file` |
-|`KEY_NAME` | The name of the key you will be deploying from. | `julian` |
+![](../images/sentinel.jpg)
 
 
 **Prepare `Sentinel` Installation ☁️ 🏳️ Start Installation**
@@ -98,7 +76,7 @@ export PROVIDER=sentnode1qf7cgleytuz2wy7zd9mgjjuqfmxefqqnefjvhv
 
 | Deploy RPC Node | configure service | Review SDL File | Review Deployment |
 |---------|---------|---------|---------|
- ![](../../dvpn/files/images/dvpn-1.jpg) | ![](../../dvpn/files/images/dvpn-2.jpg) | ![](../../dvpn/files/images/dvpn-3.jpg) | ![](../../dvpn/files/images/dvpn-4.jpg) | 
+ ![](../images/dvpn-1.jpg) | ![](../images/dvpn-2.jpg) | ![](../images/dvpn-3.jpg) | ![](../images/dvpn-4.jpg) | 
 
 
 **Example SDL File (review SDL File) with default values:**
@@ -192,7 +170,6 @@ sudo sentinelcli disconnect \
 ```
 
 
-| Key | Value |
-| --- | --- |
-| `Source` | 🕳️ [Source](https://github.com/sentinel-official/cli-client), [Docs](https://docs.sentinel.co/clients/CLI/installation/)|
+[Source](https://github.com/sentinel-official/cli-client)
+[Docs](https://docs.sentinel.co/clients/CLI/installation/)|
 

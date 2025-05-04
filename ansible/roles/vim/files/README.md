@@ -1,6 +1,6 @@
 # Vimconfig Cheatsheet
 
-![](../../vim//files/images/VimCheat.jpg)
+![](../images/VimCheat.jpg)
 
 **VIM Tutor:**
 ```sh
@@ -205,8 +205,6 @@ Plug 'ryanoasis/vim-devicons'
 set encoding=UTF-8
 
 [vim-prettier](https://github.com/prettier/vim-prettier)
-
-
 [vscode neovim](https://github.com/vscode-neovim/vscode-neovim)
 [vscode react](https://github.com/xabikos/vscode-react)
 
@@ -216,7 +214,7 @@ set encoding=UTF-8
 :PlugInstall
 ```
 
-![](../../vim/files/images/vim.jpg)
+![](../images/vim.jpg)
 
 
 **Install zsh on mac cli** 
@@ -238,7 +236,7 @@ plugins=(
 )
 ```
 
-![](../../vim/files/images/zsh.jpg)
+![](../images/zsh.jpg)
 
 **Introducing [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim)**
 

@@ -1,6 +1,6 @@
 # ☁️ [Akash](https://akash.network/) Server Deployment 🐇
 
-![](../../akash/files/images/akash.jpg)
+![](../images/akash.jpg)
 
 **Censorship-resistant, permissionless, and self-sovereign, Akash Network is the world’s first open source cloud. $AKT**
 

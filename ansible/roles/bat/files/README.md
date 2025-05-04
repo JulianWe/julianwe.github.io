@@ -1,6 +1,6 @@
 # Implementing Brave rewards on your Website
 
-![](../../bat/files/images/brave.jpg)
+![](../images/brave.jpg)
 
 ```text
 Earn for your online content
@@ -9,10 +9,10 @@ Join Brave Creators and monetize your online presence today. Receive contributio
 
 **[Create brave publisher account at: https://publishers.basicattentiontoken.org/](https://publishers.basicattentiontoken.org/)**
 
-![](../../bat/files/images/brave1.jpg)
+![](../images/brave1.jpg)
 
 **Download brave-rewards-verification.txt file**
-![](../../bat/files/images/brave2.jpg)
+![](../images/brave2.jpg)
 
 ```text
 This is a Brave Creators publisher verification file.

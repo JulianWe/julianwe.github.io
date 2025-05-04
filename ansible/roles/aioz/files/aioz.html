@@ -73,8 +73,9 @@ ask for it from the standard input stream.</p>
 <p><strong>Withdraw reward</strong></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Withdraw reward</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./aioznode</span> reward withdraw <span class="at">--address</span> 0xfA66faf3Faa192277bAb21Ef547ebdB47617B1da <span class="at">--amount</span> 1aioz <span class="at">--priv-key-file</span> privkey.json</span></code></pre></div>
-<p><strong>Recover private key from mnemonic phrase</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recover private key from mnemonic phrase</span></span>
+<p><strong>Recover private key from mnemonic phrase or create a new
+one</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recover private key from mnemonic phrase </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./aioznode</span> keytool recover <span class="st">&quot;rain wing olive skate effort present long myself combine giant vote stay sweet bundle agree lock connect glide absent spider effort attitude enemy mouse&quot;</span> <span class="at">--save-priv-key</span> privkey.json</span></code></pre></div>
 <p><code>--save-priv-key</code> write the private key to file.</p>
 <p><strong>or create docker container to run aioz node</strong></p>

@@ -1,6 +1,6 @@
 # How to create a Chainlink Operator Node
 
-![](../../link/files/images/link.jpg)
+![](../images/link.jpg)
 
 [Docs](https://docs.chain.link/)
 
@@ -81,7 +81,7 @@ Enter API Password:
 **Connect chainlink UI**
 http://localhost:6688
 
-![](../../link/files/images/Operator.jpg)
+![](../images/Operator.jpg)
 
 
 
@@ -691,7 +691,7 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
 **Goerli Testnet: 0x326C977E6efc84E512bB9C30f76E30c160eD06FB**
 **Ethereum Mainnet: 0x514910771AF9Ca656af840dff83E8264EcF986CA**
 Set 'LINK' 0x326C977E6efc84E512bB9C30f76E30c160eD06FB Goerli Token Testnet contract and 'OWNER' (Wallet Address) values and click transact.
-![](../../link/files/images/deploy_contract.jpg)
+![](../images/deploy_contract.jpg)
 
 **Note: the output shows your newly deployed operator smart contract: 0xfc5F20476E6289c7120A89D45e383EB28603152f**
 ```sh
@@ -715,16 +715,16 @@ decoded input	{
 
 
 **Copy your Chainlink node address from Operator ui under 'settings' & 'key management': 0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA**
-![](../../link/files/images/ChainLink_Operator.jpg)
+![](../images/ChainLink_Operator.jpg)
 
 
 [Chainlink Smart Contract (v0.7) that we deployed on GitHub](https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.7/Operator.sol)
 With the Following fuctions:
-![](../chainlink/images/deployed_contract.jpg)
+![](../images/deployed_contract.jpg)
 
 and call the functions 'setAuthorizedSenders' & 'isAuthorizedSender' with the address of your node (in my case the array: '["0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA"]') to verify that your chainlink node address can call the operator contract. The function must return true. You can use Remix IDE or instead Etherscan: https://goerli.etherscan.io/address/0xfc5f20476e6289c7120a89d45e383eb28603152f#writeContract
 
-![](../../link/files/images/Etherscan_CSC.jpg)
+![](../images/Etherscan_CSC.jpg)
 
 
 # Add a Job to your Node

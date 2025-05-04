@@ -52,9 +52,9 @@ export PATH="$PATH:/aioznode"
 ./aioznode reward withdraw --address 0xfA66faf3Faa192277bAb21Ef547ebdB47617B1da --amount 1aioz --priv-key-file privkey.json
 ```
 
-**Recover private key from mnemonic phrase**
+**Recover private key from mnemonic phrase or create a new one**
 ```sh
-# Recover private key from mnemonic phrase
+# Recover private key from mnemonic phrase 
 ./aioznode keytool recover "rain wing olive skate effort present long myself combine giant vote stay sweet bundle agree lock connect glide absent spider effort attitude enemy mouse" --save-priv-key privkey.json
 ```
 

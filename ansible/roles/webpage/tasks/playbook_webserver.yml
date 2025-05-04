@@ -1,7 +1,7 @@
 ---
-- name: remove all docker containers
-  shell:
-    cmd: docker rm -f $(docker ps -a -q)
+# - name: remove all docker containers
+#   shell:
+#     cmd: docker rm -f $(docker ps -a -q)
 
 - name: build docker container
   shell:

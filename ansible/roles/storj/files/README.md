@@ -1,7 +1,7 @@
 
 # How to use Storj to rent out empty Harddrive or AWS S3 Storage
 
-![](../../storj/files/images/storj-1.jpg)
+![](../images/storj-1.jpg)
 
 
 **Prerequisites**
@@ -166,5 +166,5 @@ d97849abf896   storjlabs/storagenode:latest             "/entrypoint"   3 second
 
 
 **Visit your Storagenode http://localhost:14002**
-![](../../storj/files/images/storj-2.jpg)
+![](../images/storj-2.jpg)
 

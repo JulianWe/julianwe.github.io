@@ -16,6 +16,7 @@
     msg: "{{ id_rsa }}"
 
 # - name: install kubespray
+#   state: present
 #   shell: | 
 #     cd ~
 #     git clone -b v2.26.0 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
@@ -26,6 +27,7 @@
 #     source venv/bin/activate 
 #     pip3 install -r requirements.txt
 #   register: kubespray 
+
 
 # - name: generate ssh key
 #   shell: | 

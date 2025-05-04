@@ -2,7 +2,7 @@
 
 
 
-![IPFS](../../ipfs/files/images/ipfs.jpg)
+![IPFS](../images/ipfs.jpg)
 
 **Hash based addressing instead of location based addressing with the worlds first Inter Planetary File System IPFS**
 
@@ -242,7 +242,7 @@ added Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH julianwe.github.io
 
 | Set Content Hash | Update Records |
 |---------|---------|
-![](../../ipfs/files/images/ens1.jpg) | ![](../../ipfs/files/images/ens2.jpg) |
+![](../images/ens1.jpg) | ![](../images/ens2.jpg) |
 
 **[https://julianwendland.eth](https://julianwendland.eth)**
 
@@ -251,10 +251,9 @@ added Qmb3rqyUJqosq7t9t8ZFG27qxDAc1WNojsJAk9DFQw7VkH julianwe.github.io
 [Docs](http://docs-ipfs-tech.ipns.localhost:48084/how-to/websites-on-ipfs/link-a-domain/)
 [dnslink.io](https://dnslink.io/#step-1-choose-a-domain-name-to-link-from)
 
-| Description | Link |
-| --- | --- |
-| `Source` | [Documentation](http://docs-ipfs-tech.ipns.localhost:48084/how-to/command-line-quick-start/) |
-| `Source` | [Source](https://makoto-inoue.medium.com/how-to-host-your-dapp-with-ipfs-ens-and-access-it-via-ethdns-c96046059d87)
-| `IPFS Desktop` | [Download](https://github.com/ipfs/ipfs-desktop)
-| `IPFS Addon`| [Download IPFS Addon](https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch?hl=en)
+
+[Documentation](http://docs-ipfs-tech.ipns.localhost:48084/how-to/command-line-quick-start/) 
+[Source](https://makoto-inoue.medium.com/how-to-host-your-dapp-with-ipfs-ens-and-access-it-via-ethdns-c96046059d87)
+[Download](https://github.com/ipfs/ipfs-desktop)
+[Download IPFS Addon](https://chrome.google.com/webstore/detail/ipfs-companion/nibjojkomfdiaoajekhjakgkdhaomnch?hl=en)
 

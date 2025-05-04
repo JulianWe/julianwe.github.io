@@ -1,6 +1,6 @@
 # 👏 [Handshake](https://handshake.org/) Tutorial
 
-![](../../hns/files/images/handshake.png)
+![](../images/handshake.png)
 
 ## About
 **Decentralized naming and certificate authority | $HNS**

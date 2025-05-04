@@ -1,6 +1,6 @@
 # ⚙️ Deploy Website using Ansible, Docker and GitHub Pages
 
-![](../ansible/roles/webpage/files/images/ansible-docker.jpg)
+![](../images/ansible-docker.jpg)
 
 
 ```text
@@ -253,15 +253,7 @@ COPY . /var/www/html/
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-
-<<<<<<< HEAD
 **make sure to select deploy from branch instead of GitHub Actions in [repository settings](https://github.com/username/username.github.io/settings/pages) this enables github pages for your repository and deploys your webpage with github action on every push**
-
-
-=======
-
-**make sure to select deploy from branch instead of GitHub Actions in [repository settings](https://github.com/username/username.github.io/settings/pages) this enables github pages for your repository and deploys your webpage with github action on every push**
->>>>>>> 7d54febd10e0f1a7e1e91af9998efcf8962931a1
-![](../ansible/roles/webpage/files/images/pages.jpg)
+![](../images/pages.jpg)
 
 

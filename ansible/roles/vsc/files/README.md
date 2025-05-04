@@ -1,7 +1,7 @@
 # Visual Studio Code Server on GitHub
 
 
-![](../../vsc/files/images/codeserver.jpg)
+![](../images/codeserver.jpg)
 
 ```sh
 docker run -d \
