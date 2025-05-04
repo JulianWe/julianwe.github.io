@@ -43,7 +43,7 @@
 
           <h1 id="how-to-create-a-chainlink-operator-node">How to create a
 Chainlink Operator Node</h1>
-<p><img src="../../link/files/images/link.jpg" /></p>
+<p><img src="../images/link.jpg" /></p>
 <p><a href="https://docs.chain.link/">Docs</a></p>
 <p><strong>Run Ethereum Client</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ethereum/client-go:latest</span>
@@ -95,7 +95,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API EMail:</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> API Password:</span></code></pre></div>
 <p><strong>Connect chainlink UI</strong> http://localhost:6688</p>
-<p><img src="../../link/files/images/Operator.jpg" /></p>
+<p><img src="../images/Operator.jpg" /></p>
 <h1 id="how-to-setup-your-own-operator-smart-contract">How to setup your
 own Operator Smart Contract</h1>
 <p><a href="https://faucets.chain.link/goerli">Chainlink Testnet
@@ -700,7 +700,7 @@ Contract Addresses:</a></strong></p>
 Mainnet: 0x514910771AF9Ca656af840dff83E8264EcF986CA</strong> Set ‘LINK’
 0x326C977E6efc84E512bB9C30f76E30c160eD06FB Goerli Token Testnet contract
 and ‘OWNER’ (Wallet Address) values and click transact. <img
-src="../../link/files/images/deploy_contract.jpg" /></p>
+src="../images/deploy_contract.jpg" /></p>
 <p><strong>Note: the output shows your newly deployed operator smart
 contract: 0xfc5F20476E6289c7120A89D45e383EB28603152f</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[view</span> on etherscan]<span class="er">(</span><span class="ex">https://goerli.etherscan.io/tx/0xebeea65d9e90c804b049a8d34e115f88ea14ea49b267d2843a2e2ef8f0ee7382</span><span class="kw">)</span></span>
@@ -722,18 +722,18 @@ contract: 0xfc5F20476E6289c7120A89D45e383EB28603152f</strong></p>
 <p><strong>Copy your Chainlink node address from Operator ui under
 ‘settings’ &amp; ‘key management’:
 0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA</strong> <img
-src="../../link/files/images/ChainLink_Operator.jpg" /></p>
+src="../images/ChainLink_Operator.jpg" /></p>
 <p><a
 href="https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.7/Operator.sol">Chainlink
 Smart Contract (v0.7) that we deployed on GitHub</a> With the Following
-fuctions: <img src="../chainlink/images/deployed_contract.jpg" /></p>
+fuctions: <img src="../images/deployed_contract.jpg" /></p>
 <p>and call the functions ‘setAuthorizedSenders’ &amp;
 ‘isAuthorizedSender’ with the address of your node (in my case the
 array: ‘[“0x321f40D5D7f678A35DCfC15Df852135F2c53e1AA”]’) to verify that
 your chainlink node address can call the operator contract. The function
 must return true. You can use Remix IDE or instead Etherscan:
 https://goerli.etherscan.io/address/0xfc5f20476e6289c7120a89d45e383eb28603152f#writeContract</p>
-<p><img src="../../link/files/images/Etherscan_CSC.jpg" /></p>
+<p><img src="../images/Etherscan_CSC.jpg" /></p>
 <h1 id="add-a-job-to-your-node">Add a Job to your Node</h1>
 <p>To be able to earn Link rewards You will create a job that calls an
 OpenAPI, parses the response and then return a uint256 In the Chainlink

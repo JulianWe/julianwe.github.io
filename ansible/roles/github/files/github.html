@@ -44,7 +44,7 @@
           <h1 id="configure-github-to-use-ssh-key"><a
 href="https://docs.github.com/de/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent"><strong>Configure
 GitHub to use SSH Key</strong></a></h1>
-<p><img src="../../github/files/images/github.jpg" /></p>
+<p><img src="../images/github.jpg" /></p>
 <p><strong>create new ssh key</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519-sk <span class="at">-f</span> ~/.ssh/id_ed25519 <span class="at">-C</span> <span class="st">&quot;julianwendland@gmx.de&quot;</span> <span class="kw">;</span> <span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
 <p><strong>Start ssh agent in background</strong></p>
@@ -69,7 +69,7 @@ authentication</strong></p>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.signingkey ~/.ssh/id_ed25519</span></code></pre></div>
 <p><strong>add ssh key to github <a
 href="https://github.com/settings/keys">account settings</a></strong>
-<img src="../../github/files/images/github-1.jpg" /></p>
+<img src="../images/github-1.jpg" /></p>
 <p><strong>test ssh connection</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> passphrase for key <span class="st">&#39;/Users/jw/.ssh/id_ed25519&#39;</span>: </span>
