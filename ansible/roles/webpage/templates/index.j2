@@ -15,7 +15,7 @@
     <div class="main-container">
         <div class="aside">
             <div class="logo">
-                <a href="index.html#home"><span></span>{{ vars.home.title }}</a>
+                <a href="index.html"><span></span>{{ vars.home.title }}</a>
             </div>
 
             <div class="nav-toggler">
@@ -24,9 +24,9 @@
 
             <ul class="nav">
                 <li><a href="index.html#home" class="active"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="index.html#blog"><i class="fa fa-briefcase"></i>Blog</a></li>
                 <li><a href="index.html#about"><i class="fa fa-user"></i>About</a></li>
                 <li><a href="index.html#services"><i class="fa fa-list"></i>Services</a></li>
-                <li><a href="index.html#blog"><i class="fa fa-briefcase"></i>Blog</a></li>
                 <li><a href="index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
                 <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
             </ul>
@@ -42,7 +42,9 @@
                         </h3>
                         <h3 class="profession">I'm a <span class="typing">{{ vars.home.job }}</span></h3>
                         <p>{{ vars.home.description }}</p>
-                        <a href="{{ vars.home.blog }}" class="btn ">Visit Blog</a>
+                        <div class="buttons padd-15">
+                            <a href="#blog" class="btn hire-me" data-section-index="1">Visit Blog</a>
+                        </div>
                     </div>
 
                     <div class="home-img padd-15">
@@ -75,24 +77,6 @@
                     <div class="row">
                         <div class="personal-info padd-15">
                             <div class="row">
-                                <div class="info-item padd-15">
-                                    <p>Birthday: <span>{{ about.birthday }}</span></p>
-                                </div>
-                                <div class="info-item padd-15">
-                                    <p>Age: <span>{{ about.age }}</span></p>
-                                </div>
-                                <div class="info-item padd-15">
-                                    <p>Email: <span>{{ about.mail }}</span></p>
-                                </div>
-                                <div class="info-item padd-15">
-                                    <p>City: <span>{{ about.city }}</span></p>
-                                </div>
-                                <div class="info-item padd-15">
-                                    <p>Freelance: <span>{{ about.freelance }}</span></p>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="buttons padd-15">
                                     <a href="#contact" class="btn hire-me" data-section-index="1">Contact
                                         me</a>
@@ -102,17 +86,59 @@
                         <div class="skills padd-15">
                             <div class="row">
                                 <div class="skill-item padd-15">
+                                    <h5>Ansible</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 82%;"></div>
+                                        <div class="skill-percent">82%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Virtulization</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 87%;"></div>
+                                        <div class="skill-percent">87%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Cloud</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 65%;"></div>
+                                        <div class="skill-percent">65%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Linux & Windows</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 78%;"></div>
+                                        <div class="skill-percent">78%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>PowerShell</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 72%;"></div>
+                                        <div class="skill-percent">72%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
+                                    <h5>Rest API</h5>
+                                    <div class="progress">
+                                        <div class="progress-in" style="width: 75%;"></div>
+                                        <div class="skill-percent">75%</div>
+                                    </div>
+                                </div>
+                                <div class="skill-item padd-15">
                                     <h5>JS</h5>
                                     <div class="progress">
-                                        <div class="progress-in" style="width: 76%;"></div>
-                                        <div class="skill-percent">76%</div>
+                                        <div class="progress-in" style="width: 68%;"></div>
+                                        <div class="skill-percent">68%</div>
                                     </div>
                                 </div>
                                 <div class="skill-item padd-15">
                                     <h5>HTML</h5>
                                     <div class="progress">
-                                        <div class="progress-in" style="width: 86%;"></div>
-                                        <div class="skill-percent">86%</div>
+                                        <div class="progress-in" style="width: 74%;"></div>
+                                        <div class="skill-percent">74%</div>
                                     </div>
                                 </div>
                                 <div class="skill-item padd-15">
@@ -120,20 +146,6 @@
                                     <div class="progress">
                                         <div class="progress-in" style="width: 66%;"></div>
                                         <div class="skill-percent">66%</div>
-                                    </div>
-                                </div>
-                                <div class="skill-item padd-15">
-                                    <h5>Ansible</h5>
-                                    <div class="progress">
-                                        <div class="progress-in" style="width: 96%;"></div>
-                                        <div class="skill-percent">96%</div>
-                                    </div>
-                                </div>
-                                <div class="skill-item padd-15">
-                                    <h5>Linux & Windows</h5>
-                                    <div class="progress">
-                                        <div class="progress-in" style="width: 76%;"></div>
-                                        <div class="skill-percent">76%</div>
                                     </div>
                                 </div>
                             </div>

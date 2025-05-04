@@ -18,7 +18,6 @@ home:
   name: "Julian Wendland"
   job: "DevOps Engineer"
   description: "with over 8 years experience in automating anything.."
-  blog: "#blog"
 about:
   me: "I'm Julian Wendland"
   role: "DevOps Engineer"
@@ -40,11 +39,11 @@ about:
     3:
      calendar: "2020"
      project: "Private Cloud Automation - Beiersdorf"
-     description: "There I worked on the Server Deployment Automation."
+     description: "There I worked on the Windows & Linux Server Deployment Automation with vRealize Orchestrator."
     4:
      calendar: "2019"
      project: "Enterprise Architect - Senior Consultant"
-     description: "There I automated the private cloud authorization concept."
+     description: "There I automated the private cloud authorization concept for Windows & Linux Server."
   education:
     1:
       calendar: "12/2020 – heute"

@@ -51,6 +51,15 @@ document.querySelector('.hire-me').addEventListener('click', function(){
     addBackSection(sectionIndex);
 })
 
+document.querySelector('.visit-blog').addEventListener('click', function(){
+    const sectionIndex = this.getAttribute('data-section-index');
+    /*console.log(sectionIndex);*/
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
 /* Activating Mobile Menu */
 
 const navTogglerBtn = document.querySelector('.nav-toggler');

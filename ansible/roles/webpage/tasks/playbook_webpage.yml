@@ -1,5 +1,5 @@
 ---
-- name: convert markdown readme to html files
+- name: convert markdown readme to html
   shell: | 
     cd {{ vars.paths.path }}
     for folder in roles/*; do pandoc -f markdown -t html5 $folder/files/README.md > roles/${folder#*/}/files/${folder#*/}.html;  
@@ -44,4 +44,8 @@
   shell:
     cmd: "cp {{ item.ansible_facts.file_path }} {{ vars.paths.blog_folder }}"
   loop: "{{ facts.results }}"
+
+- name: copy index.html to repository
+  shell:
+    cmd: "cp {{ item.ansible_facts.index_file }} {{ vars.paths.repository }}"
 ...
