@@ -1,6 +1,6 @@
 # ERC-20 Smart Contract tutorial 🐇
 
-![](../images/erc20.jpg)
+![](../images/ethereum.jpg)
 
 **This Tutorial shows how to write, deploy and interact with a ethereum token smart contract**
 

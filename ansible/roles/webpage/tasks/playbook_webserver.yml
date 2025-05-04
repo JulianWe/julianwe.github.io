@@ -2,6 +2,7 @@
 - name: stop all running docker containers
   shell:
     cmd: docker stop $(docker ps -a -q)
+
 - name: remove all docker containers
   shell:
     cmd: docker rm -f $(docker ps -a -q)
