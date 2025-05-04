@@ -48,7 +48,7 @@ Recommended Specs
 # create gcloud vm command using ui and add ssh public key to access vm
  cat ~/.ssh/jw_ed25519.pub
 ```
-![](../images/gcpvm.jpg)
+![](../images/gcp_vm.jpg)
 
 
 ```sh
