@@ -1,4 +1,20 @@
 ---
+
+- name: verify installation
+  shell: | 
+    cd ~
+    ls 
+  register: kubespray
+
+- name: verify ssh
+  shell: | 
+    cat $HOME/.ssh/id_rsa
+  register: id_rsa
+
+- name: debug
+  debug:
+    msg: "{{ id_rsa }}"
+
 # - name: install kubespray
 #   shell: | 
 #     cd ~
@@ -11,18 +27,19 @@
 #     pip3 install -r requirements.txt
 #   register: kubespray 
 
-- name: generate ssh key
-  shell: | 
-    ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub
-  register: ssh_key
+# - name: generate ssh key
+#   shell: | 
+#     ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/ls_id_rsa" -P "" ; cat ~/.ssh/ls_id_rsa.pub 
+#   register: ssh_key
 
-- name: generate inventory
+- name: install kubernetes & docker
   shell: | 
-    cd ~/kubespray
-    cp -rfp inventory/sample inventory/akash
-    declare -a IPS=(10.0.10.11 10.0.10.12 10.0.10.13 10.0.10.14)
-    CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
-  register: inventory
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    sudo apt-get update && sudo apt-get upgrade -y
+    sudo apt-get install docker.io -y
+    sudo apt-get install kubelet kubeadm kubectl -y    
+  register: kubectl
 
 - name: systemctl start kubelet & kubectl
   shell: | 
@@ -30,7 +47,7 @@
     systemctl enable containerd
     systemctl start kubelet
     systemctl enable kubelet
-    journalctl -u kubelet -f
-    kubectl get pods -A -o wide 
-  register: kubectl
+    kubectl get pods -A -o wide  
+  register: systemctl
+
 ...

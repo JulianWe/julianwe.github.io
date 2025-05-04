@@ -100,7 +100,7 @@ blogposts:
     html: "./blog/webpage.html"
     image: "ansible/roles/webpage/files/images/ghp.jpg"
     category: "Webdesign"
-    description: "Create Github Pages Website"
+    description: "OpenSource Github Pages Webpage"
     images: 
       image: 
         - 1: ./ansible/roles/webpage/images/ansible-docker.jpg
