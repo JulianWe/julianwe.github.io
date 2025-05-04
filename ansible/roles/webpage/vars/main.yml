@@ -119,11 +119,21 @@ blogposts:
     image: "./images/link.jpg"
     category: "Decentralization"
     description: "Create Chainlink Node"
+  dvpn:
+    html: "./blog/dvpn.html"
+    image: "./images/dvpn.jpg"
+    category: "Decentralization"
+    description: "Sentinel Decentralized VPN"
   akt:
     html: "./blog/akt.html"
     image: "./images/akt.jpg"
     category: "Decentralization"
     description: "Akash Cloud Provider"
+  erc:
+    html: "./blog/erc.html"
+    image: "./images/eth.jpg"
+    category: "Decentralization"
+    description: "Create your own Ethereum Token"
   glm:
     html: "./blog/glm.html"
     image: "./images/glm.jpg"
@@ -154,21 +164,11 @@ blogposts:
     image: "./images/fil.jpg"
     category: "Decentralization"
     description: "IPFS Inter Planetary File System"
-  erc:
-    html: "./blog/erc.html"
-    image: "./images/eth.jpg"
-    category: "Decentralization"
-    description: "Create your own Ethereum Token"
   hns:
     html: "./blog/hns.html"
     image: "./images/hns.jpg"
     category: "Decentralization"
     description: "Hanshake Decentralized naming and certificate authority"    
-  dvpn:
-    html: "./blog/dvpn.html"
-    image: "./images/dvpn.jpg"
-    category: "Decentralization"
-    description: "Sentinel Decentralized VPN"
   solidity:
     html: "./blog/solidity.html"
     image: "./images/sol.jpg"
