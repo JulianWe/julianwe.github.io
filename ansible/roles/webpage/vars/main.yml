@@ -101,7 +101,7 @@ blogposts:
     description: "OpenSource Github Pages Webpage"
   akash:
     html: "./blog/akash.html"
-    image: "./images/akt.jpg"
+    image: "./images/akt1.jpg"
     category: "Decentralization"
     description: "Akash Container Deployment"
   bat: 
