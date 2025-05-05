@@ -1,9 +1,30 @@
 ---
-- name: build akash provider container
+- name: install kubernetes packages
   shell: | 
     apt-get update && apt-get upgrade -y
     apt-get install docker.io -y
     apt-get install kubelet kubeadm kubectl -y  
     apt-get install apt-transport-https ca-certificates curl -y
   register: packages
+
+- name: systemctl start & enable container services
+  shell: | 
+    systemctl enable docker
+    systemctl start docker
+    systemctl start containerd
+    systemctl enable containerd
+    systemctl start kubelet
+    systemctl enable kubelet
+  register: systemctl
+
+- name: kubeadm init
+  shell: | 
+    kubeadm init
+  register: kubeadm_init
+
+- name: kubeadm init
+  shell: | 
+    kubeadm join {{ kubeadm_init }}
+  register: kubeadm_join
+
 ...

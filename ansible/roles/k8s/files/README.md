@@ -1,6 +1,6 @@
 # Setup Kubernetes cluster on ubuntu
 
-![](../images/k8s.jpg)
+![](../images/kubernetes.jpg)
 
 ```sh
 # installing Kubernetes
