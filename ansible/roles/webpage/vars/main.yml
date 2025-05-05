@@ -189,5 +189,8 @@ blogposts:
     image: "./images/vi.jpg"
     category: "Coding"
     description: "Vim Cheatsheat"
-
-
+  k8s:
+    html: "./blog/k8s.html"
+    image: "./images/k8s.jpg"
+    category: "Container"
+    description: "Kubernetes Cluster"

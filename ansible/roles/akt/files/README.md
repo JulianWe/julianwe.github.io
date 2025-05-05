@@ -76,34 +76,6 @@ NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    
 ansible  us-central1-c  t2d-standard-1              10.128.0.15  35.192.168.243  RUNNING
 ```
 
-**anternativly use ansible playbook to create gcp vm**
-```yml
-- name: Create GCP instance
-  gcp_compute_instance:
-    name: my-instance
-    machine_type: t2d-standard-1
-    disks:
-      - boot:
-          auto_delete: true
-          initialize_params:
-            source_image: projects/debian-cloud/global/images/debian-9-drawfork-v20180627
-    network_interface:
-      network: default
-      access_config: {}
-    zone: us-central1-a
-    auth_kind: serviceaccount
-    project: my-project-id
-    service_account_file: /path/to/service-account-file.json
-
-- name: Deploy Docker container
-  docker_container:
-    name: ubuntu
-    image: my-docker-image:latest
-    state: started
-    restart_policy: always
-    pull: yes
-  delegate_to: localhost
-```
 
 ```sh
 # copy public ed25519 or rsa SSH key from gcp vm in known hosts file and connect to vm. 
@@ -117,118 +89,13 @@ ssh -i ~/.ssh/jw_rsa jw@34.173.226.140
 ```
 
 ```sh
-# Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
-cd ~ && sudo -s
-apt-get update && apt-get upgrade
-apt-get install docker.io -y
-apt-get install python3-pip virtualenv -y
-git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
-
-# Setup Python 3 environment and install requirements
-cd ~/kubespray
-virtualenv --python=python3 venv
-source venv/bin/activate
-python3 -m pip install --upgrade pip
-pip3 install -r requirements.txt
-```
-
-```sh
-# Run provider script to build playbooks
-git clone https://github.com/akash-network/provider-playbooks.git
-cd provider-playbooks
-./scripts/setup_provider.sh
-```
-
-```sh
-# Run kubespray docker container
-docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/akash,dst=/kubespray/inventory \
-  --mount type=bind,source="${HOME}"/.ssh/id_rsa.pub,dst=/root/.ssh/id_rsa \
-  quay.io/kubespray/kubespray:v2.27.0 bash
-```
-
-
-```sh
-# Build Ansible Inventory for Kubernetes Hosts
-cd ~/kubespray
-
-cp -rfp inventory/sample inventory/akash
-
-#REPLACE IP ADDRESSES BELOW WITH YOUR KUBERNETES CLUSTER IP ADDRESSES
-declare -a IPS=(10.0.10.136 10.0.10.239 10.0.10.253 10.0.10.9)
-
-CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
-```
-
-
-```yml
-# Create Inventory File add ansible_user and vars section
-cat <<EOF > inventory/akash/hosts.yaml
-  all:
-    vars:
-      ansible_user: root
-    hosts:
-      node1:
-        ansible_host: 10.0.10.136
-        ip: 10.0.10.136
-        access_ip: 10.0.10.136
-      node2:
-        ansible_host: 10.0.10.239
-        ip: 10.0.10.239
-        access_ip: 10.0.10.239
-      node3:
-        ansible_host: 10.0.10.253
-        ip: 10.0.10.253
-        access_ip: 10.0.10.253
-      node4:
-        ansible_host: 10.0.10.9
-        ip: 10.0.10.9
-        access_ip: 10.0.10.9
-    children:
-      kube_control_plane:
-        hosts:
-          node1:
-          node2:
-          node3:
-      kube_node:
-        hosts:
-          node1:
-          node2:
-          node3:
-          node4:
-      etcd:
-        hosts:
-          node1:
-          node2:
-          node3:
-      k8s_cluster:
-        children:
-          kube_control_plane:
-          kube_node:
-      calico_rr:
-        hosts: {}
-EOF
-```
-
-```sh
-# Update DNS Server Config group_vars
-vi inventory/akash/group_vars/all/all.yml
-```
-```yml
-## Uncomment upstream dns servers
-upstream_dns_servers:
-  - 8.8.8.8
-  - 1.1.1.1
-```
-
-
-```sh
-# Generate ed25519 ssh key to access container on ubuntu passwordless vm with ed25519
-ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub
-```
-
-```sh
-# Inside the container you may now run the kubespray playbooks to create kubernetes cluster
-ansible-playbook -i inventory/akash/inventory.ini --private-key /root/.ssh/id_rsa -become cluster.yml
+# installing Kubernetes
+apt-get update && apt-get upgrade -y
+apt-get install docker.io gpg -y
+apt-get install kubelet kubeadm kubectl -y  
+apt-get install python3-pip virtualenv -y  
+apt-get install apt-transport-https ca-certificates curl -y
+kubeadm init 
 ```
 
 ```sh
@@ -242,7 +109,75 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 ```sh
 # SSH into Kubernetes Master Node verify kubernetes installation
 kubectl get nodes
+kubectl get pods -A -o wide 
 ```
+
+```sh
+# Run provider script to build playbooks
+git clone https://github.com/akash-network/provider-playbooks.git
+cd provider-playbooks
+./scripts/setup_provider.sh
+```
+
+```sh
+# Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
+cd ~ && sudo -s
+apt-get update && apt-get upgrade
+apt-get install docker.io -y
+apt-get install python3-pip virtualenv -y
+git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
+```
+
+```sh
+# Setup Python 3 environment and install requirements
+cd ~/kubespray
+virtualenv --python=python3 venv
+source venv/bin/activate
+python3 -m pip install --upgrade pip
+pip3 install -r requirements.txt
+```
+
+```sh
+# Build Ansible Inventory for Kubernetes Hosts
+cd ~/kubespray
+
+cp -rfp inventory/sample inventory/akash
+
+#REPLACE IP ADDRESSES BELOW WITH YOUR KUBERNETES CLUSTER IP ADDRESSES
+declare -a IPS=(10.0.10.11 10.0.10.12 10.0.10.13 10.0.10.14)
+
+CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+```
+
+```sh
+# Update DNS Server Config group_vars
+vi inventory/akash/group_vars/all/all.yml
+```
+```yml
+## Uncomment upstream dns servers
+upstream_dns_servers:
+  - 8.8.8.8
+  - 1.1.1.1
+```
+
+```sh
+# Generate ed25519 ssh key to access container on ubuntu passwordless vm with ed25519
+ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub
+```
+
+```sh
+# Run kubespray docker container
+docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/akash,dst=/kubespray/inventory \
+  --mount type=bind,source="${HOME}"/.ssh/id_rsa.pub,dst=/root/.ssh/id_rsa \
+  quay.io/kubespray/kubespray:v2.27.0 bash
+```
+
+
+```sh
+# Inside the container you may now run the kubespray playbooks to create kubernetes cluster
+ansible-playbook -i inventory/akash/inventory.ini --private-key /root/.ssh/id_rsa -become cluster.yml
+```
+
 
 ```sh
 # Create and apply custom kernel parameters
@@ -263,8 +198,8 @@ sysctl -p /etc/sysctl.d/90-akash.conf
 
 **Copy Public Key to the Kubernetes Hosts**
 ```sh
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.136
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.239
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.253
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.9
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.11
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.12
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.13
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.14
 ```

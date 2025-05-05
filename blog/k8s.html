@@ -43,18 +43,31 @@
 
           <h1 id="setup-kubernetes-cluster-on-ubuntu">Setup Kubernetes cluster on
 ubuntu</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt-get upgrade <span class="at">-y</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install kubeadm kubectl kubelet <span class="at">-y</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-mark hold kubeadm kubelet kubectl </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable docker</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start docker</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubeadm init</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">kubeadm</span> join</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span></span></code></pre></div>
+<p><img src="../images/k8s.jpg" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># installing Kubernetes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt-get upgrade <span class="at">-y</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker.io <span class="at">-y</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install kubelet kubeadm kubectl <span class="at">-y</span>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install apt-transport-https ca-certificates curl <span class="at">-y</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use systemctl to start and enable container services</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable docker</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start docker</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start containerd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable containerd</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start kubelet</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable kubelet</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use kubeadm to initilize k8s and join node to cluster</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kubeadm init</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kubeadm</span> join</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure access to k8s</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$HOME</span>/.kube</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-i</span> /etc/kubernetes/admin.conf <span class="va">$HOME</span>/.kube/config</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chown</span> <span class="va">$(</span><span class="fu">id</span> <span class="at">-u</span><span class="va">)</span>:<span class="va">$(</span><span class="fu">id</span> <span class="at">-g</span><span class="va">)</span> <span class="va">$HOME</span>/.kube/config</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">KUBECONFIG</span><span class="op">=</span>/etc/kubernetes/admin.conf</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ssh into kubernetes master node verify kubernetes installation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">-A</span> <span class="at">-o</span> wide </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">kubectl</span> get pods <span class="at">--all-namespaces</span></span></code></pre></div>
 
           <!-- End README.md -->
       </div>

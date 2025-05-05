@@ -6,7 +6,7 @@
 
     - name: Include variables from a file
       include_vars:
-        file: "../roles/akt/vars/main.yml"
+        file: "../roles/akt/vars/hosts.yml"
       register: vars
 
     - name: Include group vars from a file

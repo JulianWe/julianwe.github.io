@@ -1,0 +1,9 @@
+---
+- name: build akash provider container
+  shell: | 
+    apt-get update && apt-get upgrade -y
+    apt-get install docker.io -y
+    apt-get install kubelet kubeadm kubectl -y  
+    apt-get install apt-transport-https ca-certificates curl -y
+  register: packages
+...
