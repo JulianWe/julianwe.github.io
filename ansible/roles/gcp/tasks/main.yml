@@ -1,2 +1,5 @@
 ---
 # tasks file for gcp
+
+  - name: "Include playbook gcp"
+    import_tasks: gcp.yml

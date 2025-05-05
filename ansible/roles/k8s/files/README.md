@@ -2,6 +2,12 @@
 
 ![](../images/kubernetes.jpg)
 
+
+```sh
+# run kubernetes.yml playbook to install kubernetes on selected inventory hosts with the following steps 
+ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
+```
+
 ```sh
 # installing Kubernetes
 sudo apt-get update && sudo apt-get upgrade -y

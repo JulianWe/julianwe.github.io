@@ -1,2 +1,5 @@
 ---
 # tasks file for k8s
+
+  - name: "Include playbook k8s"
+    import_tasks: k8s.yml

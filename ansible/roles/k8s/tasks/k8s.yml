@@ -17,14 +17,31 @@
     systemctl enable kubelet
   register: systemctl
 
-- name: kubeadm init
+- name: initialize k8s
   shell: | 
-    kubeadm init
+    kubeadm init --ignore-preflight-errors=all
   register: kubeadm_init
 
-- name: kubeadm init
+- name: debug init
+  debug:
+    msg: {{ kubeadm_init.stdout_lines }}
+  register: kubeadm_init
+
+- name: copy k8s config
+  shell: | 
+    mkdir -p $HOME/.kube
+    cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    chown $(id -u):$(id -g) $HOME/.kube/config
+    export KUBECONFIG=/etc/kubernetes/admin.conf
+  register: config
+
+- name: kubeadm join
   shell: | 
     kubeadm join {{ kubeadm_init }}
   register: kubeadm_join
 
+- name: kubectl get nodes
+  shell: | 
+    kubectl get nodes
+  register: nodes
 ...

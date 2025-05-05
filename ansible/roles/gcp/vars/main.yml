@@ -1,2 +1,9 @@
 ---
 # vars file for gcp
+vms:
+  gcp_vm_1:
+    name: gcp_vm_1
+  gcp_vm_2:
+    name: gcp_vm_2
+  gcp_vm_3:
+    name: gcp_vm_3

@@ -1,0 +1,16 @@
+
+# Create Kubernetes Cluster using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- hosts: gcp
+  tasks:
+
+    - name: Include variables from a file
+      include_vars:
+        file: "../roles/k8s/vars/main.yml"
+      register: vars
+
+    - name: Include the k8s role
+      include_role:
+        name: roles/k8s 
+
