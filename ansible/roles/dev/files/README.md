@@ -7,7 +7,7 @@
 # install github & clone this repository 
 brew install git
 git clone https://github.com/JulianWe/julianwe.github.io.git
-cd julianwe.github.io/projects/container
+cd julianwe.github.io/ansible/roles/dev/files
 ```
 
 
@@ -45,8 +45,8 @@ docker run -d -it container
 
 # Show running container
 docker ps
-CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS        PORTS                  NAMES
-a78f8f665291   container         "/bin/bash"              1 second ago   Up 1 second                          affectionate_matsumoto
+CONTAINER ID   IMAGE             COMMAND                  CREATED        STATUS        PORTS      NAMES
+a78f8f665291   container         "/bin/bash"              1 second ago   Up 1 second              affectionate_matsumoto
 
 # Enter  docker container using container id 
 docker exec -it a78f8f665291 /bin/bash

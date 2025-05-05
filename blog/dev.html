@@ -5,8 +5,6 @@
   <title>GitBlog</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🐇</text></svg>" />
   <link rel="stylesheet" href=../css/blog.css>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="icon" href="./images/favicon.png" type="image/svg+xml" sizes="any">
@@ -48,7 +46,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install github &amp; clone this repository </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/JulianWe/julianwe.github.io.git</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> julianwe.github.io/projects/container</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> julianwe.github.io/ansible/roles/dev/files</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Dockerfile</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ubuntu:latest</span>
@@ -78,8 +76,8 @@ class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb2-
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show running container</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">CONTAINER</span> ID   IMAGE             COMMAND                  CREATED        STATUS        PORTS                  NAMES</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">a78f8f665291</span>   container         <span class="st">&quot;/bin/bash&quot;</span>              1 second ago   Up 1 second                          affectionate_matsumoto</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">CONTAINER</span> ID   IMAGE             COMMAND                  CREATED        STATUS        PORTS      NAMES</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">a78f8f665291</span>   container         <span class="st">&quot;/bin/bash&quot;</span>              1 second ago   Up 1 second              affectionate_matsumoto</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter  docker container using container id </span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> a78f8f665291 /bin/bash</span>
