@@ -2,9 +2,12 @@
 - name: install kubernetes packages
   shell: | 
     apt-get update && apt-get upgrade -y
-    apt-get install docker.io -y
-    apt-get install kubelet kubeadm kubectl -y  
     apt-get install apt-transport-https ca-certificates curl -y
+    apt-get install docker.io gpg -y
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    apt-get update
+    apt-get install kubelet kubeadm kubectl -y
   register: packages
 
 - name: systemctl start & enable container services
@@ -24,8 +27,7 @@
 
 - name: debug init
   debug:
-    msg: {{ kubeadm_init.stdout_lines }}
-  register: kubeadm_init
+    msg: "{{ kubeadm_init.stdout_lines }}"
 
 - name: copy k8s config
   shell: | 

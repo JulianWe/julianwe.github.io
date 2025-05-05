@@ -2,7 +2,7 @@
 # Create Kubernetes Cluster using Ansible Playbooks & Roles
 # Author: Julian Wendland
 ---
-- hosts: gcp
+- hosts: gcp_test
   tasks:
 
     - name: Include variables from a file

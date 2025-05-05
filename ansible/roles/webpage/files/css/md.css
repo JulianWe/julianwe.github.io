@@ -32,10 +32,21 @@
     tr,
     img {
         page-break-inside: avoid;
+        border-radius: 6px;
+        border-top: 6px;
+        border-bottom: 6px;
+        border-left: 6px;
+        border-right: 6px;
     }
 
     img {
         max-width: 100% !important;
+        border-radius: 6px;
+        border-radius: 6px;
+        border-top: 6px;
+        border-bottom: 6px;
+        border-left: 6px;
+        border-right: 6px;
     }
 }
 
@@ -76,6 +87,12 @@ svg,
 select,
 textarea {
     max-width: 100%;
+    border-radius: 6px;
+    border-radius: 6px;
+    border-top: 6px;
+    border-bottom: 6px;
+    border-left: 6px;
+    border-right: 6px;
 }
 
 
@@ -84,6 +101,7 @@ textarea {
 html {
     font-size: 18px;
     max-width: 100%;
+    
 }
 
 body {
@@ -95,6 +113,12 @@ body {
 
 div img {
     width: 100%;
+    border-radius: 6px;
+    border-radius: 6px;
+    border-top: 6px;
+    border-bottom: 6px;
+    border-left: 6px;
+    border-right: 6px;
 }
 
 blockquote p {
@@ -707,6 +731,7 @@ div[class~="sourceCode php"]:before {
     border-style: none;
     max-width: 80rem;
     box-sizing: content-box;
+    border-radius: 6px;
 }
 
 .markdown-body code,
@@ -1187,14 +1212,17 @@ div[class~="sourceCode php"]:before {
 
 .markdown-body table img {
     background-color: transparent;
+    border-radius: 6px;
 }
 
 .markdown-body img[align=right] {
     padding-left: 20px;
+    border-radius: 6px;
 }
 
 .markdown-body img[align=left] {
     padding-right: 20px;
+    border-radius: 6px;
 }
 
 .markdown-body .emoji {
@@ -1221,6 +1249,7 @@ div[class~="sourceCode php"]:before {
 .markdown-body span.frame span img {
     display: block;
     float: left;
+    border-radius: 6px;
 }
 
 .markdown-body span.frame span span {
@@ -1246,6 +1275,7 @@ div[class~="sourceCode php"]:before {
 .markdown-body span.align-center span img {
     margin: 0 auto;
     text-align: center;
+    border-radius: 6px;
 }
 
 .markdown-body span.align-right {
@@ -1264,6 +1294,7 @@ div[class~="sourceCode php"]:before {
 .markdown-body span.align-right span img {
     margin: 0;
     text-align: right;
+    border-radius: 6px;
 }
 
 .markdown-body span.float-left {
@@ -1587,6 +1618,7 @@ div[class~="sourceCode php"]:before {
 .markdown-body g-emoji img {
     width: 1em;
     height: 1em;
+    border-radius: 6px;
 }
 
 .markdown-body .task-list-item {

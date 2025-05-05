@@ -49,7 +49,7 @@ Recommended Specs
  cat ~/.ssh/jw_ed25519.pub
 ```
 ![](../images/gcp_vm.jpg)
-
+jw:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj+mnV0ckEBfr68LC3BqZd3JsD jw
 
 ```sh
 # create gcp ubuntu vm ansible host

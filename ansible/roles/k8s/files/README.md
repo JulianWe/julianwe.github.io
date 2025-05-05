@@ -10,7 +10,9 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
 
 ```sh
 # installing Kubernetes
-sudo apt-get update && sudo apt-get upgrade -y
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt update
 sudo apt-get install docker.io -y
 sudo apt-get install kubelet kubeadm kubectl -y  
 sudo apt-get install apt-transport-https ca-certificates curl -y
@@ -28,8 +30,12 @@ sudo systemctl enable kubelet
 
 ```sh
 # use kubeadm to initilize k8s and join node to cluster
-sudo kubeadm init
-kubeadm join
+sudo kubeadm init --ignore-preflight-errors=all
+
+# from the output obove copy join command
+sudo kubeadm join 10.128.0.25:6443 --token fwi0hd.d4iky3jefr99dgxc -discovery-token-ca-cert-hash sha256:49ae71aa5b60f8efc376dbc2ff2978f7c93d733e05a8c0beddf65 --ignore-preflight-errors=all
+
+kubeadm join 10.128.0.45:6443 --token 7jm2ro.hb118l2dgjl12nm1 --discovery-token-ca-cert-hash sha256:a57d8bd13c643717f7ae86560143c62be8fd96acd7ea4 --ignore-preflight-errors=all
 ```
 
 ```sh

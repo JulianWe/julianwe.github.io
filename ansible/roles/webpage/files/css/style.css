@@ -353,6 +353,7 @@ h3.profession {
     max-width: 40%;
     text-align: center;
     position: relative;
+    border-radius: 6px;
 }
 
 .home-img::after {
@@ -364,6 +365,7 @@ h3.profession {
     border-right: 10px solid var(--skin-color);
     right: 20px;
     bottom: -40px;
+    border-radius: 6px;
 }
 
 .home-img::before {
@@ -375,12 +377,13 @@ h3.profession {
     border-left: 10px solid var(--skin-color);
     left: -20px;
     top: -40px;
+    border-radius: 6px;
 }
 
 .home .home-img img {
     height: 400px;
     margin: auto;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 /* About */
@@ -675,6 +678,7 @@ h3.profession {
 .blog .blog-item-inner .blog-img img {
     width: 100%;
     display: block;
+    border-radius: 6px;
 }
 
 
@@ -711,6 +715,7 @@ h3.profession {
 .blogpost .blogpost-item-inner .blogpost-img img {
     width: 100%;
     display: block;
+    border-radius: 6px;
 }
 
 
@@ -843,6 +848,7 @@ h3.profession {
     .home-img::before,
     .home-img::after {
         display: none;
+        border-radius: 6px;
     }
 
     .about .about-content .personal-info .info-item p span {
@@ -860,6 +866,7 @@ h3.profession {
 
     .home .home-img {
         display: none;
+        border-radius: 6px;
     }
 
     .about .about-content .skills,

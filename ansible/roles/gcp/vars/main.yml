@@ -1,9 +1,16 @@
 ---
 # vars file for gcp
 vms:
-  gcp_vm_1:
-    name: gcp_vm_1
-  gcp_vm_2:
-    name: gcp_vm_2
-  gcp_vm_3:
-    name: gcp_vm_3
+  vm:
+    name: kubernetes
+    size: t2d-standard-1
+    project: akash-456617
+    zone: us-central1-a
+    ssh: jw:ssh-ed25519\ AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj\+mnV0ckEBfr68LC3BqZd3JsD\ jw
+    sa: 513538345283-compute@developer.gserviceaccount.com
+    network_tier: PREMIUM
+    stack_type: IPV4_ONLY
+    subnet: default
+    maintenance_policy: MIGRATE
+    provisioning_model: STANDARD
+  

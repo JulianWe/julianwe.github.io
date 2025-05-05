@@ -31,10 +31,22 @@
     tr,
     img {
         page-break-inside: avoid;
+        border-radius: 6px;
+        border-radius: 6px;
+        border-top: 6px;
+        border-bottom: 6px;
+        border-left: 6px;
+        border-right: 6px;
     }
 
     img {
         max-width: 100% !important;
+        border-image: 6px;
+        border-radius: 6px;
+        border-top: 6px;
+        border-bottom: 6px;
+        border-left: 6px;
+        border-right: 6px;
     }
 
     p,
@@ -99,6 +111,12 @@ svg,
 select,
 textarea {
     max-width: 100%;
+    border-radius: 6px;
+    border-radius: 6px;
+    border-top: 6px;
+    border-bottom: 6px;
+    border-left: 6px;
+    border-right: 6px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
@@ -111,6 +129,12 @@ html {
 div img {
     width: 100%;
     max-width: 80rem;
+    border-radius: 6px;
+    border-radius: 6px;
+    border-top: 6px;
+    border-bottom: 6px;
+    border-left: 6px;
+    border-right: 6px;
 }
 
 blockquote p {
@@ -688,7 +712,8 @@ th {
 }
 
 img[loading] {
-    height: auto
+    height: auto;
+    border-radius: 6px;
 }
 
 code {

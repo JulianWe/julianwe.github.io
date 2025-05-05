@@ -144,7 +144,7 @@ pagination:
 ```
 
 
-ℹ️ **Note: You can buy `$AKT` on [BitMax](https://bitmax.io/register?inviteCode=LQDS1MMP) using this link or [Osmosis](https://app.osmosis.zone/)** and withdraw them to your deployment `ACCOUNT_ADDRESS`
+ℹ️ **Note: You can buy `$AKT` on [BitMax](https://crypto.com/app/x7oujro0iw) using this link or [Osmosis](https://app.osmosis.zone/)** and withdraw them to your deployment `ACCOUNT_ADDRESS`
 
 
 # 📝 Prepare for deployment SDL File
