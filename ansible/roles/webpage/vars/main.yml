@@ -148,7 +148,7 @@ blogposts:
     html: "./blog/aioz.html"
     image: "./images/aioz.jpg"
     category: "Decentralization"
-    description: "Aioz Node"
+    description: "Aioz Network Node"
   vsc:
     html: "./blog/vsc.html"
     image: "./images/vsc.jpg"
