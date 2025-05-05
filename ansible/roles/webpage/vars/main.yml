@@ -98,7 +98,7 @@ blogposts:
     html: "./blog/webpage.html"
     image: "./images/ghp.jpg"
     category: "Webdesign"
-    description: "OpenSource Github Pages Webpage"
+    description: "Open Source Github Pages Webpage"
   akash:
     html: "./blog/akash.html"
     image: "./images/akt1.jpg"
