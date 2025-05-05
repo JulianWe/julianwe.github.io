@@ -184,6 +184,11 @@ blogposts:
     image: "./images/msw.jpg"
     category: "Decentralization"
     description: "Create Solidity Multisig Wallet"
+  gcp:
+    html: "./blog/gcp.html"
+    image: "./images/gcp.jpg"
+    category: "Cloud"
+    description: "Virtual Machine on GCP"
   vim:
     html: "./blog/vim.html"
     image: "./images/vi.jpg"

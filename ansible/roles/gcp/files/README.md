@@ -16,12 +16,12 @@ ansible-playbook playbooks/gcp.yml -vvv
 ssh-keygen -t ed25519  -f ~/.ssh/jw_ed25519 -C jw ; cat ~/.ssh/jw_ed25519.pub
 ```
 
-
 **access new gcp vm using ssh**
 ```sh
 ssh-keyscan -t ed25519 35.226.46.33 >> ~/.ssh/known_hosts
 ssh -i ~/.ssh/jw_ed25519 jw@35.226.46.33
 ```
+
 ![](../videos/gcp.gif)
 
 **this playbook creates your own vm on gcp and sets your external ip as fact**
