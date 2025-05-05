@@ -36,14 +36,4 @@
     chown $(id -u):$(id -g) $HOME/.kube/config
     export KUBECONFIG=/etc/kubernetes/admin.conf
   register: config
-
-- name: kubeadm join
-  shell: | 
-    kubeadm join {{ kubeadm_init }}
-  register: kubeadm_join
-
-- name: kubectl get nodes
-  shell: | 
-    kubectl get nodes
-  register: nodes
 ...
