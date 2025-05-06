@@ -5,8 +5,8 @@
     apt-get install apt-transport-https ca-certificates curl -y
     apt-get install docker.io gpg -y
     echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /kubernetes-apt-keyring.gpg 
-    mv  kubernetes-apt-keyring.gpg /etc/apt/keyrings
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o kubernetes-apt-keyring.gpg 
+    mv kubernetes-apt-keyring.gpg /etc/apt/keyrings
     apt-get update
     apt-get install kubelet kubeadm kubectl -y
   register: packages
@@ -37,4 +37,13 @@
     chown $(id -u):$(id -g) $HOME/.kube/config
     export KUBECONFIG=/etc/kubernetes/admin.conf
   register: config
+
+- name: sleep for 150 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 150
+
+- name: kubectl get nodes for kubeadm join
+  shell: | 
+    kubectl get nodes
+  register: nodes
 ...

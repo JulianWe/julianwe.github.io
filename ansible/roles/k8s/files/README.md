@@ -15,17 +15,17 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
 [gcp]
 34.16.28.102 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
 
-[gcp_test]
+[kubernetes]
 35.226.46.33 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
 ```
 
 
-**this playbook installes kubernetes on our gcp_test vm**
+**this playbook installes kubernetes on our [kubernetes] vm**
 ```sh
 # Create Kubernetes Cluster using Ansible Playbooks & Roles
 # Author: Julian Wendland
 ---
-- hosts: gcp_test
+- hosts: kubernetes
   tasks:
 
     - name: Include variables from a file
@@ -48,8 +48,8 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
     apt-get install apt-transport-https ca-certificates curl -y
     apt-get install docker.io gpg -y
     echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /kubernetes-apt-keyring.gpg 
-    mv  kubernetes-apt-keyring.gpg /etc/apt/keyrings
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o kubernetes-apt-keyring.gpg 
+    mv kubernetes-apt-keyring.gpg /etc/apt/keyrings
     apt-get update
     apt-get install kubelet kubeadm kubectl -y
   register: packages
@@ -73,6 +73,11 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
   debug:
     msg: "{{ kubeadm_init.stdout_lines }}"
 
+- name: kubectl get nodes for kubeadm join
+  shell: | 
+    kubectl get nodes
+  register: nodes
+
 - name: copy k8s config
   shell: | 
     mkdir -p $HOME/.kube
@@ -83,8 +88,7 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
 ...
 ```
 
-
-**manuel steps**
+**same procedure with manuel steps on ubuntu**
 ```sh
 # installing Kubernetes
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -108,17 +112,19 @@ sudo systemctl enable kubelet
 ```sh
 # use kubeadm to initilize k8s and join node to cluster
 sudo kubeadm init --ignore-preflight-errors=all
-
-# from the output obove copy join command
-kubeadm join 10.128.0.45:6443 --token 7jm2ro.hb118l2dgjl12nm1 --discovery-token-ca-cert-hash sha256:a57d8bd13c643717f7ae86560143c62be8fd96acd7ea4 --ignore-preflight-errors=all
 ```
 
 ```sh
-# Configure access to k8s
+# configure access to k8s
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+
+```sh
+# from the kubeadm init output copy join command and run on worker nodes
+kubeadm join 10.128.0.52:6443 --token c625mw.unir2d5c5t8v838f --discovery-token-ca-cert-hash sha256:c7bd19bdc0d77acbe563df872c50d41a9ce51db0ea334f09392f1fb55f63f908 --ignore-preflight-errors=all
 ```
 
 ```sh

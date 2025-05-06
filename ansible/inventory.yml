@@ -1,8 +1,8 @@
 [gcp]
 34.16.28.187 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
 
-[gcp_test]
-35.226.46.33 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
+[kubernetes]
+35.226.46.33  ansible_ssh_private_key_file=~/.ssh/jw_ed25519
 
 [master]
 10.0.10.11

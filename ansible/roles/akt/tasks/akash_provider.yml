@@ -14,6 +14,13 @@
     ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub 
   register: ssh_key
 
+- name: generate ssh key
+  shell: | 
+    git clone https://github.com/akash-network/provider-playbooks.git
+    cd provider-playbooks
+    ./scripts/setup_provider.sh
+  register: ssh_key
+
 - name: systemctl start kubelet & kubectl
   shell: | 
     systemctl start containerd

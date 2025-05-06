@@ -49,7 +49,6 @@ Recommended Specs
  cat ~/.ssh/jw_ed25519.pub
 ```
 ![](../images/gcp_vm.jpg)
-jw:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj+mnV0ckEBfr68LC3BqZd3JsD jw
 
 ```sh
 # create gcp ubuntu vm ansible host
@@ -88,48 +87,20 @@ ssh -i ~/.ssh/jw_ed25519 jw@34.173.226.140
 ssh -i ~/.ssh/jw_rsa jw@34.173.226.140
 ```
 
-```sh
-# installing Kubernetes
-apt-get update && apt-get upgrade -y
-apt-get install docker.io gpg -y
-apt-get install kubelet kubeadm kubectl -y  
-apt-get install python3-pip virtualenv -y  
-apt-get install apt-transport-https ca-certificates curl -y
-kubeadm init 
-```
-
-```sh
-# Configure access to k8s
-mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
-export KUBECONFIG=/etc/kubernetes/admin.conf
-```
-
-```sh
-# SSH into Kubernetes Master Node verify kubernetes installation
-kubectl get nodes
-kubectl get pods -A -o wide 
-```
-
-```sh
-# Run provider script to build playbooks
-git clone https://github.com/akash-network/provider-playbooks.git
-cd provider-playbooks
-./scripts/setup_provider.sh
-```
 
 ```sh
 # Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
 cd ~ && sudo -s
-apt-get update && apt-get upgrade
+apt-get update && apt-get upgrade -y
+apt-get install ansible -y 
 apt-get install docker.io -y
+apt-get install apt-transport-https ca-certificates curl -y
 apt-get install python3-pip virtualenv -y
-git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
 ```
 
 ```sh
 # Setup Python 3 environment and install requirements
+git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
 cd ~/kubespray
 virtualenv --python=python3 venv
 source venv/bin/activate
@@ -160,24 +131,18 @@ upstream_dns_servers:
   - 1.1.1.1
 ```
 
-```sh
-# Generate ed25519 ssh key to access container on ubuntu passwordless vm with ed25519
-ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub
-```
-
-```sh
-# Run kubespray docker container
-docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/akash,dst=/kubespray/inventory \
-  --mount type=bind,source="${HOME}"/.ssh/id_rsa.pub,dst=/root/.ssh/id_rsa \
-  quay.io/kubespray/kubespray:v2.27.0 bash
-```
-
-
+ssh
 ```sh
 # Inside the container you may now run the kubespray playbooks to create kubernetes cluster
 ansible-playbook -i inventory/akash/inventory.ini --private-key /root/.ssh/id_rsa -become cluster.yml
 ```
 
+```sh
+# Run provider script to build playbooks
+git clone https://github.com/akash-network/provider-playbooks.git
+cd provider-playbooks
+./scripts/setup_provider.sh
+```
 
 ```sh
 # Create and apply custom kernel parameters
