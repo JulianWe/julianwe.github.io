@@ -1,6 +1,6 @@
 # ⚙️ Deploy Website using Ansible, Docker and GitHub Pages
 
-![](../images/ansible-docker.jpg)
+![](../images/ansible_docker.jpg)
 
 
 ```sh

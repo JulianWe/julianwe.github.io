@@ -10,7 +10,7 @@
 ansible-playbook playbooks/akash.yml -i inventory.yml --become
 ```
 
-```sh
+```yml
 # Setup Akash Provider using Ansible Playbooks & Roles
 # Author: Julian Wendland
 ---
