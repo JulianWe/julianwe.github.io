@@ -1,6 +1,6 @@
 # **Setup Akash Cloud Provider on GCP 🐇**
 
-![](../images/akt_ansible.jpg)
+![](../images/akt_provider.jpg)
 
 
 [**Source: Documentation**](https://akash.network/docs/providers/build-a-cloud-provider/akash-cli/kubernetes-cluster-for-akash-providers/kubernetes-cluster-for-akash-providers/)
