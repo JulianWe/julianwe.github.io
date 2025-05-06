@@ -5,18 +5,9 @@
 
 [**Source: Documentation**](https://akash.network/docs/providers/build-a-cloud-provider/akash-cli/kubernetes-cluster-for-akash-providers/kubernetes-cluster-for-akash-providers/)
 
-
 ```sh
-# install gcloud cli
-brew update
-brew upgrade
-brew cleanup
-
-brew install google-cloud-sdk
-export PATH="$PATH:/google-cloud-sdk/bin"
-
-# login to Google Cloud
-gcloud auth login
+# run ansible playbook to automate the following steps 
+ansible-playbook playbooks/akash.yml -i inventory.yml --become
 ```
 
 ```sh
@@ -43,14 +34,17 @@ Recommended Specs
 40 GB disk
 ```
 
-
 ```sh
 # create gcloud vm command using ui and add ssh public key to access vm
  cat ~/.ssh/jw_ed25519.pub
 ```
+
 ![](../images/gcp_vm.jpg)
 
 ```sh
+# login to Google Cloud
+gcloud auth login
+
 # create gcp ubuntu vm ansible host
 gcloud compute instances create ansible \
     --project=akash-456617 \
@@ -112,9 +106,10 @@ pip3 install -r requirements.txt
 # Build Ansible Inventory for Kubernetes Hosts
 cp -rfp inventory/sample inventory/akash
 
-#REPLACE IP ADDRESSES BELOW WITH YOUR KUBERNETES CLUSTER IP ADDRESSES
+# Replace IP Addresses with your kubernetes cluster ip Addresses 
 declare -a IPS=(10.0.10.11 10.0.10.12 10.0.10.13 10.0.10.14)
 
+# build ansible hosts.yaml file
 CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 ```
 

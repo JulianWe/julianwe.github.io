@@ -1,10 +1,5 @@
-#SPDX-License-Identifier: MIT-0
 ---
 # tasks file for akt
 
   - name: "Include playbook akash provider"
-    import_tasks: akash_provider.yml
-
-  # - name: "Include playbook cluster"
-  #   import_tasks: cluster.yml
-    
+    import_tasks: akt.yml
