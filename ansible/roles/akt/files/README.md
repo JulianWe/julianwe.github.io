@@ -90,7 +90,7 @@ ssh -i ~/.ssh/jw_rsa jw@34.173.226.140
 
 ```sh
 # Clone Kubespray for Kubernetes Setup https://github.com/kubespray Download Updates and and install Kubespray 
-cd ~ && sudo -s
+sudo -s
 apt-get update && apt-get upgrade -y
 apt-get install ansible -y 
 apt-get install docker.io -y
@@ -110,8 +110,6 @@ pip3 install -r requirements.txt
 
 ```sh
 # Build Ansible Inventory for Kubernetes Hosts
-cd ~/kubespray
-
 cp -rfp inventory/sample inventory/akash
 
 #REPLACE IP ADDRESSES BELOW WITH YOUR KUBERNETES CLUSTER IP ADDRESSES
@@ -124,6 +122,7 @@ CONFIG_FILE=inventory/akash/hosts.yaml python3 contrib/inventory_builder/invento
 # Update DNS Server Config group_vars
 vi inventory/akash/group_vars/all/all.yml
 ```
+
 ```yml
 ## Uncomment upstream dns servers
 upstream_dns_servers:
@@ -131,10 +130,19 @@ upstream_dns_servers:
   - 1.1.1.1
 ```
 
-ssh
 ```sh
-# Inside the container you may now run the kubespray playbooks to create kubernetes cluster
-ansible-playbook -i inventory/akash/inventory.ini --private-key /root/.ssh/id_rsa -become cluster.yml
+# generate ssh key to access kubernetes nodes
+ssh-keygen -t rsa -f ~/.ssh/jw_rsa -C jw ; cat ~/.ssh/jw_rsa.pub
+```
+
+```sh
+# run kubespray playbooks to create kubernetes cluster
+ansible-playbook -i inventory/akash/hosts.yaml -b -v --private-key=~/.ssh/id_rsa cluster.yml
+```
+
+```sh
+# verify kubespray installation
+kubectl get nodes
 ```
 
 ```sh

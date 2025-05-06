@@ -1,6 +1,15 @@
 ---
 - name: install kubespray
   shell: | 
+    apt-get update && apt-get upgrade -y
+    apt-get install ansible -y 
+    apt-get install docker.io -y
+    apt-get install apt-transport-https ca-certificates curl -y
+    apt-get install python3-pip virtualenv -y
+  register: kubespray 
+
+- name: install kubespray
+  shell: | 
     cd ~
     git clone -b v2.26.0 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
     cd ~/kubespray
@@ -8,6 +17,15 @@
     source venv/bin/activate 
     pip3 install -r requirements.txt
   register: kubespray 
+
+
+
+  git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
+cd ~/kubespray
+virtualenv --python=python3 venv
+source venv/bin/activate
+python3 -m pip install --upgrade pip
+pip3 install -r requirements.txt
 
 - name: generate ssh key
   shell: | 
