@@ -41,74 +41,80 @@
           
           <!-- Start README.md -->
 
-          <h1 id="create-virtual-machine-on-google-cloud-platform">Create Virtual
-Machine on Google Cloud Platform</h1>
+          <h1 id="create-virtual-machine-on-google-cloud-platform">⚙️ Create
+Virtual Machine on Google Cloud Platform</h1>
 <p><img src="../images/google.jpg" /></p>
 <p><strong>create your own account at
 https://cloud.google.com/</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run ansible playbook playbooks/gcp.yml to create gcp vm</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> julianwe.github.io/ansible</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ansible-playbook</span> playbooks/gcp.yml <span class="at">-vvv</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install gcloud cli</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install google-cloud-sdk</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PATH</span><span class="st">:/google-cloud-sdk/bin&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># login gcp</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth</span></code></pre></div>
 <p><strong>create your ed25519 credentials to access vm</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519  <span class="at">-f</span> ~/.ssh/jw_ed25519 <span class="at">-C</span> jw <span class="kw">;</span> <span class="fu">cat</span> ~/.ssh/jw_ed25519.pub</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519  <span class="at">-f</span> ~/.ssh/jw_ed25519 <span class="at">-C</span> jw <span class="kw">;</span> <span class="fu">cat</span> ~/.ssh/jw_ed25519.pub</span></code></pre></div>
 <p><strong>access new gcp vm using ssh</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keyscan</span> <span class="at">-t</span> ed25519 35.226.46.33 <span class="op">&gt;&gt;</span> ~/.ssh/known_hosts</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/jw_ed25519 jw@35.226.46.33</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keyscan</span> <span class="at">-t</span> ed25519 35.226.46.33 <span class="op">&gt;&gt;</span> ~/.ssh/known_hosts</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/jw_ed25519 jw@35.226.46.33</span></code></pre></div>
 <p><img src="../videos/gcp.gif" /></p>
 <p><strong>this playbook creates your own vm on gcp and sets your
 external ip as fact</strong></p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode yml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> gcloud compute instances create</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  shell</span><span class="kw">: </span><span class="ch">|</span><span class="at"> </span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    gcloud compute instances create {{ vars.vms.vm.name }} \</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        --project={{ vars.vms.vm.project }} \</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        --zone={{ vars.vms.vm.zone }} \</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        --machine-type={{ vars.vms.vm.size }} \</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        --network-interface=network-tier={{ vars.vms.vm.network_tier }},stack-type={{ vars.vms.vm.stack_type }},subnet={{ vars.vms.vm.subnet }} \</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        --metadata=ssh-keys={{ vars.vms.vm.ssh }} \</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        --maintenance-policy={{ vars.vms.vm.maintenance_policy }} \</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        --provisioning-model={{ vars.vms.vm.provisioning_model }} \</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        --service-account={{ vars.vms.vm.sa }} \</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/trace.append \</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        --create-disk=auto-delete=yes,boot=yes,device-name=ansible-1,disk-resource-policy=projects/akash-456617/regions/us-central1/resourcePolicies/default-schedule-1,image={{ vars.vms.vm.image}},mode=rw,size=10,type=pd-standard \</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        --no-shielded-secure-boot \</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        --shielded-vtpm \</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        --shielded-integrity-monitoring \</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        --labels=goog-ec-src=vm_add-gcloud \</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        --reservation-affinity=any \</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        --enable-nested-virtualization</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">register</span><span class="kw">:</span><span class="at"> vm</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> set fact</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">set_fact</span><span class="kw">:</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">IPs</span><span class="kw">:</span><span class="at">  </span><span class="st">&quot;{{ vm.stdout_lines | regex_findall(&#39;</span><span class="sc">\\</span><span class="st">b(?:[0-9]{1,3}</span><span class="sc">\\</span><span class="st">.){3}[0-9]{1,3}</span><span class="sc">\\</span><span class="st">b&#39;) }}&quot;</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> External IP</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">msg</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ IPs.1 }}&quot;</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
-<p><strong>you can customize vm settings in vars.yml file</strong></p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode yml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vars file for gcp</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vms</span><span class="kw">:</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">vm</span><span class="kw">:</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> kubernetes</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> projects/ubuntu-os-cloud/global/images/ubuntu-2404-noble-amd64-v20250409</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">size</span><span class="kw">:</span><span class="at"> t2d-standard-1</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">project</span><span class="kw">:</span><span class="at"> akash-456617</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">zone</span><span class="kw">:</span><span class="at"> us-central1-a</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ssh</span><span class="kw">:</span><span class="at"> jw:ssh-ed25519\ AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj\+mnV0ckEBfr68LC3BqZd3JsD\ jw</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sa</span><span class="kw">:</span><span class="at"> 513538345283-compute@developer.gserviceaccount.com</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">network_tier</span><span class="kw">:</span><span class="at"> PREMIUM</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">stack_type</span><span class="kw">:</span><span class="at"> IPV4_ONLY</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">subnet</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">maintenance_policy</span><span class="kw">:</span><span class="at"> MIGRATE</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">provisioning_model</span><span class="kw">:</span><span class="at"> STANDARD</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> gcloud compute instances create</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  shell</span><span class="kw">: </span><span class="ch">|</span><span class="at"> </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    gcloud compute instances create {{ vars.vms.vm.name }} \</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        --project={{ vars.vms.vm.project }} \</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        --zone={{ vars.vms.vm.zone }} \</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        --machine-type={{ vars.vms.vm.size }} \</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        --network-interface=network-tier={{ vars.vms.vm.network_tier }},stack-type={{ vars.vms.vm.stack_type }},subnet={{ vars.vms.vm.subnet }} \</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        --metadata=ssh-keys={{ vars.vms.vm.ssh }} \</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        --maintenance-policy={{ vars.vms.vm.maintenance_policy }} \</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        --provisioning-model={{ vars.vms.vm.provisioning_model }} \</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        --service-account={{ vars.vms.vm.sa }} \</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/trace.append \</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        --create-disk=auto-delete=yes,boot=yes,device-name=ansible-1,disk-resource-policy=projects/akash-456617/regions/us-central1/resourcePolicies/default-schedule-1,image={{ vars.vms.vm.image}},mode=rw,size=10,type=pd-standard \</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        --no-shielded-secure-boot \</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        --shielded-vtpm \</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        --shielded-integrity-monitoring \</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        --labels=goog-ec-src=vm_add-gcloud \</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        --reservation-affinity=any \</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        --enable-nested-virtualization</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">register</span><span class="kw">:</span><span class="at"> vm</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> set fact</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">set_fact</span><span class="kw">:</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">IPs</span><span class="kw">:</span><span class="at">  </span><span class="st">&quot;{{ vm.stdout_lines | regex_findall(&#39;</span><span class="sc">\\</span><span class="st">b(?:[0-9]{1,3}</span><span class="sc">\\</span><span class="st">.){3}[0-9]{1,3}</span><span class="sc">\\</span><span class="st">b&#39;) }}&quot;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> External IP</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">msg</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ IPs.1 }}&quot;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<p><strong>you can customize vm settings in vars.yml file</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vars file for gcp</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vms</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">vm</span><span class="kw">:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> kubernetes</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> projects/ubuntu-os-cloud/global/images/ubuntu-2404-noble-amd64-v20250409</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">size</span><span class="kw">:</span><span class="at"> t2d-standard-1</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">project</span><span class="kw">:</span><span class="at"> akash-456617</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">zone</span><span class="kw">:</span><span class="at"> us-central1-a</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ssh</span><span class="kw">:</span><span class="at"> jw:ssh-ed25519\ AAAAC3NzaC1lZDI1NTE5AAAAIKTNqCzRZVoWV5hbr4yj\+mnV0ckEBfr68LC3BqZd3JsD\ jw</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sa</span><span class="kw">:</span><span class="at"> 513538345283-compute@developer.gserviceaccount.com</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">network_tier</span><span class="kw">:</span><span class="at"> PREMIUM</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">stack_type</span><span class="kw">:</span><span class="at"> IPV4_ONLY</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">subnet</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">maintenance_policy</span><span class="kw">:</span><span class="at"> MIGRATE</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">provisioning_model</span><span class="kw">:</span><span class="at"> STANDARD</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
 <p><strong>in order to delete vm use the following command</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> compute instances delete kubernetes <span class="at">--zone</span><span class="op">=</span>us-central1-a</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> compute instances delete kubernetes <span class="at">--zone</span><span class="op">=</span>us-central1-a</span></code></pre></div>
 
           <!-- End README.md -->
       </div>
