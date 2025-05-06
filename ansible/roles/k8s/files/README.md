@@ -1,4 +1,4 @@
-# Setup Kubernetes cluster on ubuntu
+# ⚙️ Run Kubernetes cluster on Ubuntu VM
 
 ![](../images/kubernetes.jpg)
 

@@ -1,4 +1,4 @@
-# Create Virtual Machine on Google Cloud Platform
+# ⚙️ Create Virtual Machine on Google Cloud Platform
 
 
 ![](../images/google.jpg)

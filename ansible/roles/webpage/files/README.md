@@ -3,7 +3,7 @@
 ![](../images/ansible-docker.jpg)
 
 
-```text
+```sh
 This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages 
 using readme files from github and coverts each readme file into a HTML Blogpost. 
 This allows you to automate all blogposts using ansible roles. ⚙️

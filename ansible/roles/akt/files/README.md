@@ -25,7 +25,7 @@ ssh-keygen -t ed25519  -f ~/.ssh/jw_ed25519 -C jw ; cat ~/.ssh/jw_ed25519.pub
 ssh-keygen -t rsa -f ~/.ssh/jw_rsa -C jw ; cat ~/.ssh/id_rsa.pub
 ```
 
-```text
+```sh
 # deployment sizing ubuntu 22.04 x86/64, amd64 noble image built on 2025-04-09 from Google Cloud
 Ansible Node Requirements (t2d-standard-1 (1 vCPU, 4 GB Arbeitsspeicher))
 Kubernetes Control Plane Node Requirements (t2d-standard-2 (2 vCPU, 8 GB Arbeitsspeicher))
