@@ -4,8 +4,9 @@
     apt-get update && apt-get upgrade -y
     apt-get install apt-transport-https ca-certificates curl -y
     apt-get install docker.io gpg -y
-    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /kubernetes-apt-keyring.gpg 
+    mv  kubernetes-apt-keyring.gpg /etc/apt/keyrings
     apt-get update
     apt-get install kubelet kubeadm kubectl -y
   register: packages
@@ -25,7 +26,7 @@
     kubeadm init --ignore-preflight-errors=all
   register: kubeadm_init
 
-- name: debug init
+- name: display kubeadm init for kubeadm join command
   debug:
     msg: "{{ kubeadm_init.stdout_lines }}"
 

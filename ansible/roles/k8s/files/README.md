@@ -8,6 +8,8 @@
 ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
 ```
 
+![](../videos/kubernetes.gif)
+
 ```sh
 # create inventory.yml file with any virtual machine
 [gcp]
@@ -35,6 +37,52 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
       include_role:
         name: roles/k8s
 ```
+
+
+**this playbook automates the folloowing steps until kubeadm join**
+```sh
+---
+- name: install kubernetes packages
+  shell: | 
+    apt-get update && apt-get upgrade -y
+    apt-get install apt-transport-https ca-certificates curl -y
+    apt-get install docker.io gpg -y
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | gpg --dearmor -o /kubernetes-apt-keyring.gpg 
+    mv  kubernetes-apt-keyring.gpg /etc/apt/keyrings
+    apt-get update
+    apt-get install kubelet kubeadm kubectl -y
+  register: packages
+
+- name: systemctl start & enable container services
+  shell: | 
+    systemctl enable docker
+    systemctl start docker
+    systemctl start containerd
+    systemctl enable containerd
+    systemctl start kubelet
+    systemctl enable kubelet
+  register: systemctl
+
+- name: initialize k8s
+  shell: | 
+    kubeadm init --ignore-preflight-errors=all
+  register: kubeadm_init
+
+- name: display kubeadm init for kubeadm join command
+  debug:
+    msg: "{{ kubeadm_init.stdout_lines }}"
+
+- name: copy k8s config
+  shell: | 
+    mkdir -p $HOME/.kube
+    cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    chown $(id -u):$(id -g) $HOME/.kube/config
+    export KUBECONFIG=/etc/kubernetes/admin.conf
+  register: config
+...
+```
+
 
 **manuel steps**
 ```sh
