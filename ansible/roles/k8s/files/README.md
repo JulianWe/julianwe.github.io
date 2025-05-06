@@ -9,6 +9,35 @@ ansible-playbook playbooks/kubernetes.yml -i inventory.yml --become
 ```
 
 ```sh
+# create inventory.yml file with any virtual machine
+[gcp]
+34.16.28.102 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
+
+[gcp_test]
+35.226.46.33 ansible_ssh_private_key_file=~/.ssh/jw_ed25519
+```
+
+
+**this playbook installes kubernetes on our gcp_test vm**
+```sh
+# Create Kubernetes Cluster using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- hosts: gcp_test
+  tasks:
+
+    - name: Include variables from a file
+      include_vars:
+        file: "../roles/k8s/vars/main.yml"
+      register: vars
+
+    - name: Include the k8s role
+      include_role:
+        name: roles/k8s
+```
+
+**manuel steps**
+```sh
 # installing Kubernetes
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg

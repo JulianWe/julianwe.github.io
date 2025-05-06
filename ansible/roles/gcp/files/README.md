@@ -60,12 +60,13 @@ ssh -i ~/.ssh/jw_ed25519 jw@35.226.46.33
 
 
 **you can customize vm settings in vars.yml file**
+```yml
 ---
 # vars file for gcp
-```yml
 vms:
   vm:
     name: kubernetes
+    image: projects/ubuntu-os-cloud/global/images/ubuntu-2404-noble-amd64-v20250409
     size: t2d-standard-1
     project: akash-456617
     zone: us-central1-a
@@ -76,7 +77,7 @@ vms:
     subnet: default
     maintenance_policy: MIGRATE
     provisioning_model: STANDARD
-    image: projects/ubuntu-os-cloud/global/images/ubuntu-2404-noble-amd64-v20250409
+...
 ```
 
 

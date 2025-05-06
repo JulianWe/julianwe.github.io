@@ -188,7 +188,7 @@ blogposts:
     html: "./blog/gcp.html"
     image: "./images/gcp.jpg"
     category: "Cloud"
-    description: "Virtual Machine on GCP"
+    description: "GCP Virtual Machine"
   vim:
     html: "./blog/vim.html"
     image: "./images/vi.jpg"
