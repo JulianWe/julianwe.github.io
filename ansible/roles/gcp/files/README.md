@@ -15,6 +15,8 @@ ansible-playbook playbooks/gcp.yml -vvv
 brew install google-cloud-sdk
 export PATH="$PATH:/google-cloud-sdk/bin"
 
+# login gcp
+gcloud auth
 ```
 
 **create your ed25519 credentials to access vm**

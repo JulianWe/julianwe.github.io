@@ -11,6 +11,83 @@ ansible-playbook playbooks/akash.yml -i inventory.yml --become
 ```
 
 ```sh
+# Setup Akash Provider using Ansible Playbooks & Roles
+# Author: Julian Wendland
+---
+- hosts: gcp 
+  tasks:
+      
+    - name: Include the akt role
+      include_role:
+        name: roles/akt
+...
+```
+
+```yml
+---
+- name: install packages
+  shell: | 
+    apt-get update && apt-get upgrade -y
+    apt-get install ansible -y 
+    apt-get install docker.io -y
+    apt-get install apt-transport-https ca-certificates curl -y
+    apt-get install python3-pip virtualenv -y
+  register: packages 
+
+- name: install kubespray
+  shell: | 
+    git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
+    cd ~/kubespray
+    virtualenv --python=python3 venv
+    source venv/bin/activate
+    python3 -m pip install --upgrade pip
+    pip3 install -r requirements.txt
+  register: kubespray 
+
+- name: generate ssh key
+  shell: | 
+    ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub 
+  register: ssh_key
+
+- name: copy hosts.yml file to remote hosts.yml
+  ansible.builtin.copy:
+    src: ansible/roles/akt/vars/hosts.yaml 
+    dest: /kubespray/inventory/akash/
+
+- name: copy group_vars.yml file to remote hosts.yml
+  ansible.builtin.copy:
+    src: ansible/roles/akt/vars/group_vars.yaml
+    dest: /kubespray/inventory/akash/
+
+- name: run ansible playbook
+  shell: | 
+    ansible-playbook -i inventory/akash/hosts.yaml -b -v --private-key=~/.ssh/id_rsa cluster.yml
+  args:
+    path: /root/kubespray
+  register: ansible_playbook
+
+- name: clone provider playbooks
+  shell: | 
+    git clone https://github.com/akash-network/provider-playbooks.git
+    cd provider-playbooks
+    ./scripts/setup_provider.sh
+  args:
+    path: /root/kubespray
+  register: ssh_key
+
+- name: systemctl start kubelet & kubectl
+  shell: | 
+    systemctl start containerd
+    systemctl enable containerd
+    systemctl start kubelet
+    systemctl enable kubelet
+    kubectl get pods -A -o wide  
+  register: systemctl
+...
+```
+
+
+```sh
 # generate ssh key to access gcp ubuntu vm with ed25519 or rsa**
 ssh-keygen -t ed25519  -f ~/.ssh/jw_ed25519 -C jw ; cat ~/.ssh/jw_ed25519.pub
 ssh-keygen -t rsa -f ~/.ssh/jw_rsa -C jw ; cat ~/.ssh/id_rsa.pub
