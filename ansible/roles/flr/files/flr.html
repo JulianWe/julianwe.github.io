@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href=../css/blog.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="icon" href="../images/favicon.png" type="image/svg+xml" sizes="any">
+  
+</head>
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="../index.html#home"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="../index.html#home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="../index.html#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="../index.html#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="../index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="../index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+                <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../css/markdown.css">
+          <link rel="stylesheet" href="../css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="run-flare-node-using-docker"><a
+href="https://dev.flare.network/run-node/using-docker">Run Flare Node
+using Docker</a></h1>
+<p><img src="../images/flare.jpg" /></p>
+<p><strong>install disk util</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install fdisk</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install xxd</span></code></pre></div>
+<p><strong>install docker compose</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Docker&#39;s official GPG key:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install ca-certificates curl</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> install <span class="at">-m</span> 0755 <span class="at">-d</span> /etc/apt/keyrings</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-fsSL</span> https://download.docker.com/linux/debian/gpg <span class="at">-o</span> /etc/apt/keyrings/docker.asc</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod a+r /etc/apt/keyrings/docker.asc</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the repository to Apt sources:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;deb [arch=</span><span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span><span class="st"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian </span><span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">  </span><span class="va">$(</span><span class="bu">.</span> /etc/os-release <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$VERSION_CODENAME</span><span class="st">&quot;</span><span class="va">)</span><span class="st"> stable&quot;</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sudo</span> tee /etc/apt/sources.list.d/docker.list <span class="op">&gt;</span> /dev/null</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt-get upgrade</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span></code></pre></div>
+<p><strong>add your user to docker group</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> flare</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> flare</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-a</span> <span class="at">-G</span> docker <span class="va">$USER</span></span></code></pre></div>
+<p><strong>backup device</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-s</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /etc/fstab /etc/fstab.backup</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">fstab_entry</span><span class="op">=</span><span class="st">&quot;UUID=</span><span class="va">$(</span><span class="fu">sudo</span> blkid <span class="at">-o</span> value <span class="at">-s</span> UUID /dev/sdb<span class="va">)</span><span class="st"> /mnt/db ext4 discard,defaults 0 2&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$fstab_entry</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/fstab</span></code></pre></div>
+<p><strong>list disk partition and create db mount</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add disk on gcp vm and name it sbd</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sda</span>       8:0    0  100G  0 disk </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda1</span>    8:1    0 99.9G  0 part /</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda14</span>   8:14   0    3M  0 part </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">└─sda15</span>   8:15   0  124M  0 part /boot/efi</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">sdb</span>       8:16   0  100G  0 disk </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/db</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> jw:root /mnt/db</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 <span class="at">-m</span> 0 <span class="at">-E</span> lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/sdb /mnt/db</span></code></pre></div>
+<p><strong>create config.json folder &amp; file for your flare
+node</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /opt/flare/conf</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /opt/flare/logs</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> jw:root /opt/flare</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> /opt/flare/conf/config.json <span class="op">&lt;&lt;EOF</span><span class="st"> </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;snowman-api-enabled&quot;: false,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;coreth-admin-api-enabled&quot;: false,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;eth-apis&quot;: [</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;eth&quot;,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;eth-filter&quot;,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;net&quot;,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;web3&quot;,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;internal-eth&quot;,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;internal-blockchain&quot;,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;internal-transaction&quot;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">  ],</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;rpc-gas-cap&quot;: 50000000,</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;rpc-tx-fee-cap&quot;: 100,</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;pruning-enabled&quot;: true,</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;local-txs-enabled&quot;: false,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;api-max-duration&quot;: 0,</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;api-max-blocks-per-request&quot;: 0,</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;allow-unfinalized-queries&quot;: false,</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;allow-unprotected-txs&quot;: false,</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;remote-tx-gossip-only-enabled&quot;: false,</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;log-level&quot;: &quot;info&quot;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p><strong>run flare observer docker container</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> flare <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> NETWORK_ID=<span class="st">&quot;flare&quot;</span> <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> AUTOCONFIGURE_BOOTSTRAP=<span class="st">&quot;1&quot;</span> <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> AUTOCONFIGURE_PUBLIC_IP=<span class="st">&quot;1&quot;</span> <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> AUTOCONFIGURE_BOOTSTRAP_ENDPOINT=<span class="st">&quot;https://flare-bootstrap.flare.network/ext/info&quot;</span> <span class="dt">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-v</span> /mnt/db:/app/db <span class="at">-v</span> /opt/flare/conf:/app/conf/C <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-v</span> /opt/flare/logs:/app/logs <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 0.0.0.0:9650:9650 <span class="dt">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 0.0.0.0:9651:9651 <span class="dt">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  flarefoundation/go-flare:v1.10.0</span></code></pre></div>
+<p><strong>create docker_compose.yaml file</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cat <span class="op">&gt;</span> /opt/observer/docker-compose.yaml <span class="op">&lt;&lt;EOF</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">services:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">  observer:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">    container_name: flare-observer</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">    image: flarefoundation/go-flare:v1.10.0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">    restart: on-failure</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">    environment:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">      - NETWORK_ID=flare</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">      - AUTOCONFIGURE_BOOTSTRAP=1</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">      - AUTOCONFIGURE_PUBLIC_IP=1</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">      - AUTOCONFIGURE_BOOTSTRAP_ENDPOINT=https://flare-bootstrap.flare.network/ext/info</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">    volumes:</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">      - /mnt/db:/app/db</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">      - /opt/flare/conf:/app/conf/C</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">      - /opt/flare/logs:/app/logs</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">    ports:</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">      - 0.0.0.0:9650:9650</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">      - 0.0.0.0:9651:9651</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p><strong>create directory &amp; confirm flare observer
+health</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /opt/observer</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> jw:root /opt/observer</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> http://localhost:9650/ext/health <span class="kw">|</span> <span class="ex">jq</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> http://127.0.0.1:9650/ext/health <span class="kw">|</span> <span class="ex">jq</span> <span class="at">-r</span> <span class="st">&quot;.checks.network.message.connectedPeers&quot;</span></span></code></pre></div>
+<h1 id="register-as-validator">Register as Validator</h1>
+<p><strong>confirm your node is running</strong></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST <span class="at">--data</span> <span class="st">&#39;{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;jsonrpc&quot;:&quot;2.0&quot;,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;id&quot;     :1,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;method&quot; :&quot;info.getNodeID&quot;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">}&#39;</span> <span class="at">-H</span> <span class="st">&#39;content-type:application/json;&#39;</span> 127.0.0.1:9650/ext/info</span></code></pre></div>
+<p><strong>inspect validator status</strong></p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace nodeIDs with your node ID from the output above</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--data</span> <span class="st">&#39;{</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;method&quot;: &quot;platform.getCurrentValidators&quot;,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;params&quot;: {</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;nodeIDs&quot;: [&quot;NodeID-NcHj9PHyvtVJaiJfD2xvC4cuqkttTBZof&quot;]</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">    },</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;id&quot;: 1</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="st">}&#39;</span> <span class="at">-H</span> <span class="st">&#39;content-type:application/json;&#39;</span> https://flare-api.flare.network/ext/P <span class="kw">|</span> <span class="ex">jq</span></span></code></pre></div>
+<p><strong>create public &amp; private key</strong></p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> ghcr.io/flare-foundation/fast-updates/go-client:latest keygen</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;PublicKeyX&quot;</span><span class="ex">:</span><span class="st">&quot;0x134b190aebdc183dc6f7870219d697503c8f64a9528cca6bb996e2ea9916cead&quot;</span><span class="ex">,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;PublicKeyY&quot;</span><span class="ex">:</span><span class="st">&quot;0x105a58d95d38c3c0b745d1040a583c68af91585aea4bb56eb31dba68dff33537&quot;</span><span class="ex">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;PrivateKey&quot;</span><span class="ex">:</span><span class="st">&quot;0x00750a76dd8f6e944232078625231a25447f6f0cbf4c864260de5bee08afd835&quot;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace key and address with your values from the output above to generate signature the address is in this case the public key</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> ghcr.io/flare-foundation/fast-updates/go-client:latest keygen <span class="at">--key</span> <span class="st">&quot;0x00750a76dd8f6e944232078625231a25447f6f0cbf4c864260de5bee08afd835&quot;</span> <span class="at">--address</span> <span class="st">&quot;0x134b190aebdc183dc6f7870219d697503c8f64a9528cca6bb996e2ea9916cead&quot;</span></span></code></pre></div>
+<p><strong>register public key</strong></p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">registerPublicKey</span><span class="er">(</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">bytes32</span> 0x134b190aebdc183dc6f7870219d697503c8f64a9528cca6bb996e2ea9916cead, // <span class="op">&lt;</span>-- REPLACE WITH YOUR GENERATED PublicKeyX</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">bytes32</span> 0x105a58d95d38c3c0b745d1040a583c68af91585aea4bb56eb31dba68dff33537, // <span class="op">&lt;</span>-- REPLACE WITH YOUR GENERATED PublicKeyY</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">bytes</span> 0x094f245f8a2d6c366d4646042478d6c32b04fdd044ebc1add082fa8d1910e0cc0b223cb7df3e6470bd1aa95d4968eecf96f0c794ec945e4b31dbb0f34605e75b28f9f6e15bb106c02d0eeaadc9cbdc8beb610b153d46a1347742b8ae948f255b  // <span class="op">&lt;</span>-- REPLACE WITH YOUR GENERATED Signature</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<p><strong>find staker.crt and staker.key under
+~/.avalanchego/staking/</strong></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="va">PATH_TO_CRT</span><span class="op">=</span>~/.avalanchego/staking/staker.crt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="va">ZERO_PREFIX</span><span class="op">=</span>0000000000000000000000000000000000000000000000000000000000000000</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="va">PATH_TO_KEY</span><span class="op">=</span>~/.avalanchego/staking/staker.key</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="va">IDENTITY_ADDRESS</span><span class="op">=</span>0x134b190aebdc183dc6f7870219d697503c8f64a9528cca6bb996e2ea9916cead </span></code></pre></div>
+<p>**use the following commands to generate the required contract
+arguments _nodeId _certificateRaw &amp; _signature**</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="va">$PATH_TO_CRT</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">base64</span> <span class="at">-d</span> <span class="kw">|</span> <span class="ex">openssl</span> dgst <span class="at">-sha256</span> <span class="at">-binary</span> <span class="kw">|</span> <span class="ex">openssl</span> rmd160 <span class="at">-provider</span> legacy <span class="at">-binary</span> <span class="kw">|</span> <span class="ex">xxd</span> <span class="at">-p</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&#39;s/^/0x/;&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="va">$PATH_TO_CRT</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> <span class="at">-1</span> <span class="kw">|</span> <span class="fu">base64</span> <span class="at">-d</span> <span class="kw">|</span> <span class="ex">xxd</span> <span class="at">-p</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&#39;s/^/0x/;&#39;</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="va">$ZERO_PREFIX$IDENTITY_ADDRESS</span> <span class="kw">|</span> <span class="ex">xxd</span> <span class="at">-r</span> <span class="at">-p</span> <span class="kw">|</span> <span class="ex">openssl</span> dgst <span class="at">-sha256</span> <span class="at">-sign</span> <span class="va">$PATH_TO_KEY</span> <span class="kw">|</span> <span class="ex">xxd</span> <span class="at">-p</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">&#39;\n&#39;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&#39;s/^/0x/;&#39;</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span></span></code></pre></div>
+<p><strong>create config.json file to configure the node</strong></p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> config.json <span class="op">&lt;&lt;EOF</span><span class="st"> </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;snowman-api-enabled&quot;: false,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;coreth-admin-api-enabled&quot;: false,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;coreth-admin-api-dir&quot;: &quot;&quot;,</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;eth-apis&quot;: [&quot;web3&quot;],</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;continuous-profiler-dir&quot;: &quot;&quot;,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;continuous-profiler-frequency&quot;: 900000000000,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;continuous-profiler-max-files&quot;: 5,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;rpc-gas-cap&quot;: 50000000,</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;rpc-tx-fee-cap&quot;: 100,</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;preimages-enabled&quot;: false,</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;pruning-enabled&quot;: true,</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;snapshot-async&quot;: true,</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;snapshot-verification-enabled&quot;: false,</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;metrics-enabled&quot;: true,</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;metrics-expensive-enabled&quot;: false,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;local-txs-enabled&quot;: false,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;api-max-duration&quot;: 30000000000,</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;ws-cpu-refill-rate&quot;: 0,</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;ws-cpu-max-stored&quot;: 0,</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;api-max-blocks-per-request&quot;: 30,</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;allow-unfinalized-queries&quot;: false,</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;allow-unprotected-txs&quot;: false,</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;keystore-directory&quot;: &quot;&quot;,</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;keystore-external-signer&quot;: &quot;&quot;,</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;keystore-insecure-unlock-allowed&quot;: false,</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;remote-tx-gossip-only-enabled&quot;: false,</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;tx-regossip-frequency&quot;: 60000000000,</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;tx-regossip-max-size&quot;: 15,</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;log-level&quot;: &quot;info&quot;,</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;offline-pruning-enabled&quot;: false,</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;offline-pruning-bloom-filter-size&quot;: 512,</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;offline-pruning-data-directory&quot;: &quot;&quot;</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<h1 id="using-flare-stake-tool">Using Flare Stake Tool</h1>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install @flarenetwork/flare-stake-tool <span class="at">-g</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flare-stake-tool</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">PRIVATE_KEY_CB58</span><span class="op">=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="va">PRIVATE_KEY_HEX</span><span class="op">=</span><span class="st">&quot;&quot;</span></span></code></pre></div>
+<p><strong>Launch the Staking Tool</strong></p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flare-stake-tool</span> interactive</span></code></pre></div>
+<p><strong>retrieve your validators node ID by running</strong></p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--location</span> <span class="st">&#39;http://localhost:9650/ext/info&#39;</span> <span class="at">--header</span> <span class="st">&#39;Content-Type: application/json&#39;</span> <span class="at">--data</span> <span class="st">&#39;{ &quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;id&quot;:1, &quot;method&quot;:&quot;info.getNodeID&quot; }&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flare-stake-tool</span> info validators</span></code></pre></div>
+<p>flare-stake-tool interactive</p>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src=../js/script.js></script>
+  <script src=../js/js.js></script>
+
+</html>
