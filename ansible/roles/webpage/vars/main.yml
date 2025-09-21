@@ -144,6 +144,16 @@ blogposts:
     image: "./images/glm.jpg"
     category: "Decentralization"
     description: "Golem Network Provider"
+  flr:
+    html: "./blog/flr.html"
+    image: "./images/flr.jpg"
+    category: "Decentralization"
+    description: "Flare Network Node"
+  sia:
+    html: "./blog/sia.html"
+    image: "./images/sia.jpg"
+    category: "Decentralization"
+    description: "Sia Storage Node"
   aioz:
     html: "./blog/aioz.html"
     image: "./images/aioz.jpg"
@@ -159,6 +169,11 @@ blogposts:
     image: "./images/github.jpg"
     category: "Coding" 
     description: "Create SSH Keys for GitHub"
+  cbk:
+    html: "./blog/cbk.html"
+    image: "./images/cbk.jpg"
+    category: "Decentralization" 
+    description: "Nervos Network Node" 
   ipfs:
     html: "./blog/ipfs.html"
     image: "./images/fil.jpg"

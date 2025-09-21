@@ -1,0 +1,13 @@
+services:
+  hostd:
+    image: ghcr.io/siafoundation/hostd:latest
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:9980:9980/tcp
+      - 9981-9984:9981-9984/tcp
+    volumes:
+      - hostd-data:/data
+      - /storage:/storage
+
+volumes:
+  hostd-data:

@@ -16,7 +16,7 @@ brew install google-cloud-sdk
 export PATH="$PATH:/google-cloud-sdk/bin"
 
 # login gcp
-gcloud auth
+gcloud auth login
 ```
 
 **create your ed25519 credentials to access vm**

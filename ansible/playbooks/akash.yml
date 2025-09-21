@@ -1,7 +1,7 @@
 # Setup Akash Provider using Ansible Playbooks & Roles
 # Author: Julian Wendland
 ---
-- hosts: gcp 
+- hosts: kubernetes 
   tasks:
       
     - name: Include the akt role

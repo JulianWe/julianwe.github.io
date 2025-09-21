@@ -63,7 +63,6 @@ export AKASH_KEY_NAME=julian
 
 # Check variables
 echo AKASH_NET: $AKASH_NET, AKASH_VERSION: $AKASH_VERSION, AKASH_NODE: $AKASH_NODE, AKASH_CHAIN_ID:  $AKASH_CHAIN_ID, AKASH_KEYRING_BACKEND:  $AKASH_KEYRING_BACKEND, AKASH_GAS: $AKASH_GAS, AKASH_ADJUSTMENTS:  $AKASH_GAS_ADJUSTMENT, AKASH_GAS_PRICES:  $AKASH_GAS_PRICES, AKASH_SIGN_MODE: $AKASH_SIGN_MODE
-
 ```
 
 
@@ -213,7 +212,6 @@ provider-services tx cert revoke --from=$AKASH_KEY_NAME --node=$AKASH_NODE
 
 ```sh
 provider-services tx deployment create deployment.yml --from $AKASH_KEY_NAME
-
 ```
 
 You should see a json response and export the following variables `DSEQ` Deployment Sequence, `GSEQ` Group Sequence, `OSEQ` Order Sequence from **your** deployment.
@@ -229,7 +227,7 @@ echo $DSEQ $GSEQ $OSEQ
 
 **📉 Query market bid list**
 ```sh
-provider-services query market bid list --owner=$ACCOUNT_ADDRESS --node $AKASH_NODE --dseq $DSEQ --state=active
+    provider-services query market bid list --owner=$ACCOUNT_ADDRESS --node $AKASH_NODE --dseq $DSEQ --state=active
 ```
 
 ```sh
@@ -389,7 +387,7 @@ I[2021-03-14|16:43:36.133] lease ready                                  leaseID=
 ℹ️ **Note:** 🎉 `SERVICE_NAME` is "web"
 
 ```sh
-export SERVICE_NAME=webapp
+export SERVICE_NAME=web
 ```
 
 

@@ -3,7 +3,22 @@
 ![](../images/akt_provider.jpg)
 
 
-[**Source: Documentation**](https://akash.network/docs/providers/build-a-cloud-provider/akash-cli/kubernetes-cluster-for-akash-providers/kubernetes-cluster-for-akash-providers/)
+
+# Setup with CLI
+
+```sh
+cd ~
+apt install jq -y
+apt install unzip -y
+curl -sSfL https://raw.githubusercontent.com/akash-network/node/main/install.sh | sh
+```
+
+vi /etc/environment
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+
+
+# Setup with ansible
 
 ```sh
 # run ansible playbook to automate the following steps 
@@ -34,46 +49,59 @@ ansible-playbook playbooks/akash.yml -i inventory.yml --become
     apt-get install python3-pip virtualenv -y
   register: packages 
 
-- name: install kubespray
-  shell: | 
-    git clone -b v2.24.1 --depth=1 https://github.com/kubernetes-sigs/kubespray.git
-    cd ~/kubespray
-    virtualenv --python=python3 venv
-    source venv/bin/activate
-    python3 -m pip install --upgrade pip
-    pip3 install -r requirements.txt
-  register: kubespray 
+- name: ensure directory
+  stat:
+    path: /home/jw/kubespray
+  register: exists
+
+- name: ensure ssh keys
+  stat:
+    path: ~/.ssh/id_rsa.pub 
+  register: id_rsa_exists
+
+- name: clone kubespray repository
+  shell:  | 
+    git clone https://github.com/kubernetes-sigs/kubespray.git
+  when: true !=  exists.stat.exists
 
 - name: generate ssh key
   shell: | 
     ssh-keygen -t rsa -C $(hostname) -f "$HOME/.ssh/id_rsa" -P "" ; cat ~/.ssh/id_rsa.pub 
   register: ssh_key
+  when: true != id_rsa_exists.stat.exists
 
-- name: copy hosts.yml file to remote hosts.yml
+- name: copy hosts.yml file to remote host
   ansible.builtin.copy:
-    src: ansible/roles/akt/vars/hosts.yaml 
-    dest: /kubespray/inventory/akash/
+    src: ../vars/k8s_hosts.yml 
+    dest: /home/jw/kubespray/inventory/k8s_hosts.yml 
 
-- name: copy group_vars.yml file to remote hosts.yml
+- name: copy group_vars.yml file to remote host
   ansible.builtin.copy:
-    src: ansible/roles/akt/vars/group_vars.yaml
-    dest: /kubespray/inventory/akash/
+    src: ../vars/group_vars.yml
+    dest: /home/jw/kubespray/inventory/group_vars.yml
+
+- name: copy cluster_config.yml file to remote host
+  ansible.builtin.copy:
+    src: ../vars/cluster_config.yml
+    dest: /home/jw/kubespray/inventory/cluster_config.yml
 
 - name: run ansible playbook
   shell: | 
-    ansible-playbook -i inventory/akash/hosts.yaml -b -v --private-key=~/.ssh/id_rsa cluster.yml
-  args:
-    path: /root/kubespray
-  register: ansible_playbook
+    cd /home/jw/kubespray
+    sudo -s
+    python3 -m venv k8s-venv
+    source k8s-venv/bin/activate
+    pip install -r requirements.txt
+    ansible-playbook -i inventory/k8s_hosts.yml -b -v -e @inventory/cluster_config.yml --user=ubuntu --become-user=root --private-key=~/.ssh/id_rsa --become cluster.yml
+  register: playbook_run
+  delegate_to: "{{ ansible_host }}"
 
 - name: clone provider playbooks
   shell: | 
     git clone https://github.com/akash-network/provider-playbooks.git
     cd provider-playbooks
     ./scripts/setup_provider.sh
-  args:
-    path: /root/kubespray
-  register: ssh_key
+  register: setup_provider
 
 - name: systemctl start kubelet & kubectl
   shell: | 
@@ -118,7 +146,7 @@ Recommended Specs
 
 ![](../images/gcp_vm.jpg)
 
-```sh
+```sh 
 # login to Google Cloud
 gcloud auth login
 
@@ -151,7 +179,7 @@ ansible  us-central1-c  t2d-standard-1              10.128.0.15  35.192.168.243 
 # copy public ed25519 or rsa SSH key from gcp vm in known hosts file and connect to vm. 
 # Note ed25519 is more secure than rsa!
 
-ssh-keyscan -t ed25519 34.173.226.140 >> ~/.ssh/known_hosts
+ssh-keyscan -t ed25519 35.226.46.33 >> ~/.ssh/known_hosts
 ssh-keyscan -t rsa 34.173.226.140 >> ~/.ssh/known_hosts
 
 ssh -i ~/.ssh/jw_ed25519 jw@34.173.226.140
@@ -210,6 +238,7 @@ ssh-keygen -t rsa -f ~/.ssh/jw_rsa -C jw ; cat ~/.ssh/jw_rsa.pub
 ```sh
 # run kubespray playbooks to create kubernetes cluster
 ansible-playbook -i inventory/akash/hosts.yaml -b -v --private-key=~/.ssh/id_rsa cluster.yml
+ansible-playbook -i /root/kubespray/inventory/hosts.yaml -e @/root/kubespray/inventory/cluster-config.yaml --private-key=~/.ssh/id_rsa --become cluster.yml -vvv
 ```
 
 ```sh
@@ -248,3 +277,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.12
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.13
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.10.14
 ```
+
+
+[**Source: Documentation**](https://akash.network/docs/providers/build-a-cloud-provider/akash-cli/kubernetes-cluster-for-akash-providers/kubernetes-cluster-for-akash-providers/)

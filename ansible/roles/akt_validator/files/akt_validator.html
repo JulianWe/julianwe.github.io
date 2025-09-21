@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GitBlog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href=../css/blog.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="icon" href="../images/favicon.png" type="image/svg+xml" sizes="any">
+  
+</head>
+
+<body class="dark">
+    <div class="main-container">
+        <div class="aside">
+            <div class="logo">
+                <a href="../index.html#home"><span></span>GitBlog</a>
+            </div>
+
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+
+            <ul class="nav">
+                <li><a href="../index.html#home"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="../index.html#about"><i class="fa fa-user"></i>About</a></li>
+                <li><a href="../index.html#services"><i class="fa fa-list"></i>Services</a></li>
+                <li><a href="../index.html#blog" class="active"><i class="fa fa-briefcase"></i>Blog</a></li>
+                <li><a href="../index.html#contact"><i class="fa fa-comments"></i>Contact</a></li>
+                <li><a href="https://github.com/JulianWe/julianwe.github.io"><i class="fa-brands fa-github"></i>GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+
+  <section class="blogpost section " id="blogpost">
+      <div class="container">
+
+          <link rel="stylesheet" href="../css/markdown.css">
+          <link rel="stylesheet" href="../css/md.css">
+          
+          <!-- Start README.md -->
+
+          <h1 id="setup-akash-validator">Setup Akash Validator</h1>
+<p><strong>configure variables</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">AKASH_NET</span><span class="op">=</span><span class="st">&quot;https://raw.githubusercontent.com/akash-network/net/main/mainnet&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AKASH_CHAIN_ID</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$AKASH_NET</span><span class="st">/chain-id.txt&quot;</span><span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p><strong>create staking validator</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx staking create-validator <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--amount</span><span class="op">=</span>1000000uakt <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--pubkey</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">akash</span> tendermint show-validator<span class="va">)</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--moniker</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_MONIKER</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chain-id</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_CHAIN_ID</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--commission-rate</span><span class="op">=</span><span class="st">&quot;0.10&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--commission-max-rate</span><span class="op">=</span><span class="st">&quot;0.20&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--commission-max-change-rate</span><span class="op">=</span><span class="st">&quot;0.01&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">--min-self-delegation</span><span class="op">=</span><span class="st">&quot;1&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas</span><span class="op">=</span><span class="st">&quot;auto&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas-prices</span><span class="op">=</span><span class="st">&quot;0.0025uakt&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas-adjustment</span><span class="op">=</span>1.5 <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">--from</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_KEY_NAME</span><span class="st">&quot;</span> </span></code></pre></div>
+<p><strong>create keybase.io account https://keybase.io/ and creyte pgp
+key for your identity</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> tx staking edit-validator</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--new-moniker=</span><span class="st">&quot;</span><span class="va">$AKASH_MONIKER</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--website</span><span class="op">=</span><span class="st">&quot;https://akash.network&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--identity</span><span class="op">=</span>51A04EF97948D704 <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--details</span><span class="op">=</span><span class="st">&quot;Validator&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chain-id</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_CHAIN_ID</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas</span><span class="op">=</span><span class="st">&quot;auto&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas-prices</span><span class="op">=</span><span class="st">&quot;0.0025uakt&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">--gas-adjustment</span><span class="op">=</span>1.5 <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">--from</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_KEY_NAME</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">--commission-rate</span><span class="op">=</span><span class="st">&quot;0.10&quot;</span> </span></code></pre></div>
+<p><strong>view validator description</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query staking validator <span class="va">$AKASH_VALIDATOR_ADDRESS</span></span></code></pre></div>
+<p><strong>Track Validator Signing Information</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> query slashing signing-info <span class="va">$AKASH_VALIDATOR_PUBKEY</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chain-id</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$AKASH_CHAIN_ID</span><span class="st">&quot;</span></span></code></pre></div>
+<p><strong>start provider services</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> start</span></code></pre></div>
+<p><strong>provider services status</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">provider-services</span> status</span></code></pre></div>
+
+          <!-- End README.md -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+  <script src=../js/script.js></script>
+  <script src=../js/js.js></script>
+
+</html>

@@ -1,0 +1,2 @@
+cluster_name: akash-k8s
+kube_version: v1.26.5

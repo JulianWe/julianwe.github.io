@@ -7,14 +7,14 @@
 This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages 
 using readme files from github and coverts each readme file into a HTML Blogpost. 
 This allows you to automate all blogposts using ansible roles. ⚙️
-``` 
+```
 
 ```sh
 This Blogpost describes how to deploy your own webpage with ansible roles, docker and GitHub pages using Markdown files from github and coverts each README file into a HTML Blogpost. This allows you to automate all blogposts using ansible roles. ⚙️
-``` 
+```
 
 **before we can start make sure to install ansible and docker.**
-```sh 
+```sh
 brew update
 brew upgrade
 brew cleanup
